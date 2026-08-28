@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { existsSync, readFileSync } from 'node:fs';
 import test from 'node:test';
+import vm from 'node:vm';
 
 const root = new URL('..', import.meta.url);
 
@@ -30,6 +31,27 @@ test('service worker rotates the cache after privacy-sensitive content changes',
   const worker = readFileSync(new URL('sw.js', root), 'utf8');
   assert.match(worker, /okinawa-road-book-v3/);
   assert.match(worker, /key !== CACHE/);
+});
+
+test('service worker only removes old caches owned by this app', async () => {
+  const worker = readFileSync(new URL('sw.js', root), 'utf8');
+  const deleted = [];
+  const handlers = {};
+  const context = {
+    caches: {
+      keys: async () => ['okinawa-road-book-v2', 'another-pages-app-v1', 'okinawa-road-book-v3'],
+      delete: async (key) => { deleted.push(key); },
+    },
+    self: {
+      addEventListener: (name, handler) => { handlers[name] = handler; },
+      clients: { claim: async () => {} },
+    },
+  };
+  vm.runInNewContext(worker, context);
+  let activation;
+  handlers.activate({ waitUntil: (promise) => { activation = promise; } });
+  await activation;
+  assert.deepEqual(deleted, ['okinawa-road-book-v2']);
 });
 
 test('date navigation only captures date buttons, not clicks inside the day view', () => {

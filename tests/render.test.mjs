@@ -13,9 +13,9 @@ const trip = JSON.parse(readFileSync(new URL('../content/trip.json', import.meta
 
 test('date centering calculates horizontal scroll without moving the page', () => {
   assert.equal(typeof renderModule.centeredScrollLeft, 'function');
-  assert.equal(renderModule.centeredScrollLeft(320, 900, 400, 86), 283);
-  assert.equal(renderModule.centeredScrollLeft(320, 900, 16, 86), 0);
-  assert.equal(renderModule.centeredScrollLeft(320, 900, 820, 86), 580);
+  assert.equal(renderModule.centeredScrollLeft(320, 900, 40, 350, 710, 86), 283);
+  assert.equal(renderModule.centeredScrollLeft(320, 900, 0, 350, 366, 86), 0);
+  assert.equal(renderModule.centeredScrollLeft(320, 900, 388, 350, 782, 86), 580);
 });
 
 test('variant tabs expose selected state and all three pacing choices', () => {

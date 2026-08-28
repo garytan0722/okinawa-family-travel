@@ -6,7 +6,8 @@ const TYPE_ICONS = {
   view: '🌊', walk: '👟', cafe: '☕',
 };
 
-export function centeredScrollLeft(containerWidth, scrollWidth, itemOffset, itemWidth) {
+export function centeredScrollLeft(containerWidth, scrollWidth, currentScrollLeft, containerLeft, itemLeft, itemWidth) {
+  const itemOffset = itemLeft - containerLeft + currentScrollLeft;
   const centered = itemOffset + (itemWidth / 2) - (containerWidth / 2);
   return Math.max(0, Math.min(scrollWidth - containerWidth, centered));
 }

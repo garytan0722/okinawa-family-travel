@@ -2,7 +2,7 @@
   color-scheme: light;
   --ink: #4b3d39;
   --cocoa: #6a5149;
-  --sea: #58a9b8;
+  --sea: #347987;
   --road: #f28c78;
   --sun: #ffd86a;
   --ivory: #fff8ec;
@@ -11,6 +11,8 @@
   --pink: #ffb9af;
   --sky: #d7eef3;
   --muted: #756b66;
+  --focus: #4b3d39;
+  --focus-on-color: #ffd86a;
   --line: rgba(75, 61, 57, .15);
   --shadow: 0 12px 0 rgba(106, 81, 73, .07), 0 22px 50px rgba(106, 81, 73, .1);
   --display: ui-rounded, "Hiragino Maru Gothic ProN", "PingFang TC", sans-serif;
@@ -32,9 +34,12 @@ button, textarea, input { font: inherit; }
 a { color: inherit; }
 button, a { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible, textarea:focus-visible, input:focus-visible {
-  outline: 3px solid var(--sun);
+  outline: 3px solid var(--focus);
   outline-offset: 3px;
 }
+.bottom-nav a:focus-visible,
+.record-card button:focus-visible,
+.record-card textarea:focus-visible { outline-color: var(--focus-on-color); }
 .skip-link { position: fixed; left: 1rem; top: -5rem; z-index: 100; padding: .7rem 1rem; background: var(--ink); color: white; border-radius: 99px; }
 .skip-link:focus { top: 1rem; }
 .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
@@ -375,7 +380,7 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
   pointer-events: none;
 }
 .check-paw .paw-print { transform: scale(.5); }
-.event-check input:focus-visible + .check-paw { outline: 3px solid var(--sun); outline-offset: 2px; }
+.event-check input:focus-visible + .check-paw { outline: 3px solid var(--focus); outline-offset: 2px; }
 .event-check input:checked + .check-paw { background: var(--foam); color: #3d8870; border-color: #72bba3; transform: rotate(-8deg) scale(1.06); }
 .event-card > time { padding-top: 14px; color: #c15f50; font-family: ui-monospace, monospace; font-size: .72rem; font-weight: 900; }
 .event-body {
@@ -432,7 +437,7 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
 .record-head { position: relative; z-index: 1; display: flex; flex-direction: column; gap: .65rem; margin-bottom: .8rem; }
 .record-head > span, .record-card label { font-size: .74rem; font-weight: 800; }
 .energy-control { display: flex; gap: .35rem; }
-.energy-control button { flex: 1; padding: .4rem; border: 1px solid rgba(255,255,255,.3); border-radius: 99px; color: white; background: transparent; font-size: .67rem; }
+.energy-control button { flex: 1; min-width: 44px; min-height: 44px; padding: .4rem; border: 1px solid rgba(255,255,255,.3); border-radius: 99px; color: white; background: transparent; font-size: .67rem; }
 .energy-control button[aria-pressed="true"] { background: var(--sun); color: var(--ink); border-color: var(--sun); }
 .record-card textarea { position: relative; z-index: 1; width: 100%; margin-top: .4rem; padding: .72rem; border: 0; border-radius: 13px; resize: vertical; background: var(--paper); color: var(--ink); }
 

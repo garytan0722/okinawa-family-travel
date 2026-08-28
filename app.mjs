@@ -59,8 +59,17 @@ function renderHome() {
     const current = document.querySelector('[aria-current="date"]');
     const strip = current?.closest('.date-strip');
     if (!strip) return;
+    const stripBounds = strip.getBoundingClientRect();
+    const currentBounds = current.getBoundingClientRect();
     strip.scrollTo({
-      left: centeredScrollLeft(strip.clientWidth, strip.scrollWidth, current.offsetLeft, current.offsetWidth),
+      left: centeredScrollLeft(
+        strip.clientWidth,
+        strip.scrollWidth,
+        strip.scrollLeft,
+        stripBounds.left,
+        currentBounds.left,
+        currentBounds.width,
+      ),
       behavior: 'instant',
     });
   });

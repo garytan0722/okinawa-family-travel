@@ -1,3 +1,4 @@
+const CACHE_PREFIX = 'okinawa-road-book-';
 const CACHE = 'okinawa-road-book-v3';
 const CORE = [
   './', './index.html', './styles.css', './app.mjs', './manifest.json', './icons/icon.svg',
@@ -12,7 +13,7 @@ self.addEventListener('install', (event) => {
 });
 
 self.addEventListener('activate', (event) => {
-  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)))).then(() => self.clients.claim()));
+  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key.startsWith(CACHE_PREFIX) && key !== CACHE).map((key) => caches.delete(key)))).then(() => self.clients.claim()));
 });
 
 self.addEventListener('fetch', (event) => {
