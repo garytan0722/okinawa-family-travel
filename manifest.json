@@ -1,0 +1,14 @@
+{
+  "name": "沖繩遛小孩｜2026 親子自駕",
+  "short_name": "沖繩遛小孩",
+  "description": "沖繩親子自駕 A・B・C 行程手帳",
+  "lang": "zh-TW",
+  "start_url": "./#/",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#fff9ee",
+  "theme_color": "#123b4a",
+  "icons": [
+    { "src": "./icons/icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
