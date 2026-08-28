@@ -6,6 +6,11 @@ const TYPE_ICONS = {
   view: '🌊', walk: '👟', cafe: '☕',
 };
 
+export function centeredScrollLeft(containerWidth, scrollWidth, itemOffset, itemWidth) {
+  const centered = itemOffset + (itemWidth / 2) - (containerWidth / 2);
+  return Math.max(0, Math.min(scrollWidth - containerWidth, centered));
+}
+
 export function escapeHtml(value = '') {
   return String(value)
     .replaceAll('&', '&amp;')
@@ -36,9 +41,10 @@ function renderEvent(trip, event, completed) {
   const isDone = completed[event.id] === true;
   return `
     <li class="event-card${isDone ? ' is-complete' : ''}" data-event-id="${escapeHtml(event.id)}">
-      <span class="route-dot" aria-hidden="true"></span>
+      <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
+        <span class="check-paw" aria-hidden="true"><span class="paw-print"></span></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -58,7 +64,7 @@ function renderEvent(trip, event, completed) {
 export function renderVariantTabs(trip, selected) {
   const tabs = Object.entries(trip.variants).map(([id, variant]) => `
     <button type="button" role="tab" data-variant="${id}" aria-selected="${id === selected}" class="variant-tab${id === selected ? ' is-active' : ''}">
-      <span class="variant-letter">${id}</span>
+      <span class="variant-letter">${id}<span class="variant-paw paw-print" aria-hidden="true"></span></span>
       <span><strong>${escapeHtml(variant.name)}</strong><small>${escapeHtml(variant.tagline)}</small></span>
     </button>`).join('');
   return `<div class="variant-tabs" role="tablist" aria-label="選擇行程節奏">${tabs}</div>`;

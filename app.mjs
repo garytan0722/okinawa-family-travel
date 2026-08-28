@@ -1,5 +1,5 @@
 import { getVariantDay, mapUrl, nextFixedEvent } from './src/trip-domain.mjs';
-import { renderDay, renderSources, renderVariantTabs, escapeHtml } from './src/render.mjs';
+import { centeredScrollLeft, renderDay, renderSources, renderVariantTabs, escapeHtml } from './src/render.mjs';
 import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs';
 
 const app = document.querySelector('#app');
@@ -22,7 +22,23 @@ function routeName() {
 
 function renderHero() {
   return `<section class="trip-hero">
-    <div><p class="eyebrow">OKINAWA · FAMILY ROAD BOOK</p><h1>海島自駕，<br><em>孩子的速度。</em></h1></div>
+    <div class="hero-copy"><p class="eyebrow">OKINAWA · PAW PAW ROAD BOOK</p><h1>踩著小腳印，<br><em>去沖繩玩。</em></h1><p class="hero-note">汪汪與喵喵，陪你挑一個今天剛剛好的速度。</p></div>
+    <div class="pet-pals" aria-hidden="true">
+      <svg class="pet-face pet-face--dog" viewBox="0 0 120 112">
+        <path class="pet-ear" d="M27 39C5 24 4 58 16 75c7 9 19 2 22-9zM93 39c22-15 23 19 11 36-7 9-19 2-22-9z"/>
+        <path class="pet-head" d="M24 55C24 22 42 10 60 10s36 12 36 45v18c0 24-16 35-36 35S24 97 24 73z"/>
+        <circle class="pet-eye" cx="46" cy="58" r="4"/><circle class="pet-eye" cx="74" cy="58" r="4"/>
+        <ellipse class="pet-muzzle" cx="60" cy="75" rx="20" ry="16"/><path class="pet-nose" d="M54 70q6-6 12 0-1 8-6 8t-6-8"/>
+      </svg>
+      <svg class="pet-face pet-face--cat" viewBox="0 0 120 112">
+        <path class="pet-head" d="M22 41 27 9l25 17q8-3 16 0L93 9l5 32v34c0 23-16 33-38 33S22 98 22 75z"/>
+        <path class="pet-ear-inner" d="m30 20 5 18 12-8zM90 20l-5 18-12-8z"/>
+        <path class="pet-eye-line" d="M40 58q7 7 14 0M66 58q7 7 14 0"/>
+        <path class="pet-nose" d="M55 68q5-5 10 0-1 7-5 7t-5-7"/>
+        <path class="pet-whisker" d="M48 75 24 70m24 12-25 5m49-12 24-5M72 82l25 5"/>
+      </svg>
+      <span>汪喵帶路中</span>
+    </div>
     <div class="hero-facts"><span><strong>9/24</strong>抵達</span><span><strong>9/30</strong>六人會合</span><span><strong>10/4</strong>旅程結束</span></div>
   </section>`;
 }
@@ -39,7 +55,15 @@ function renderHome() {
   if (!days.some((day) => day.date === state.selectedDate)) state.selectedDate = days[0].date;
   const day = getVariantDay(trip, state.selectedVariant, state.selectedDate);
   app.innerHTML = `${renderHero()}${renderVariantTabs(trip, state.selectedVariant)}${renderDateStrip(days)}${renderDay(trip, day, state.variants[state.selectedVariant])}`;
-  queueMicrotask(() => document.querySelector('[aria-current="date"]')?.scrollIntoView({ inline: 'center', block: 'nearest' }));
+  queueMicrotask(() => {
+    const current = document.querySelector('[aria-current="date"]');
+    const strip = current?.closest('.date-strip');
+    if (!strip) return;
+    strip.scrollTo({
+      left: centeredScrollLeft(strip.clientWidth, strip.scrollWidth, current.offsetLeft, current.offsetWidth),
+      behavior: 'instant',
+    });
+  });
 }
 
 function renderLogistics() {

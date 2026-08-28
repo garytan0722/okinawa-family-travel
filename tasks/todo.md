@@ -26,3 +26,12 @@
 - Verified the live mobile layout, A/B/C plan persistence, offline reload, and service-worker cache.
 - Verified all public HTML, JavaScript, CSS, manifest, trip data, and generated PDFs return HTTP 200.
 - Scanned the published artifacts for the removed private accommodation name; no matches remain.
+
+## Cute visual redesign
+
+- [x] Add failing tests for the paw-print itinerary and refreshed offline cache
+- [x] Implement the cream travel-journal palette, pet guides, paw trail, and cute controls
+- [x] Preserve mobile accessibility, local records, privacy, and offline behavior
+- [x] Run automated tests and build verification
+- [x] Inspect mobile and desktop screenshots and refine visual issues
+- [ ] Push to `main` and verify the updated GitHub Pages deployment

@@ -28,7 +28,7 @@ test('manifest uses the GitHub Pages subpath-safe start URL', () => {
 
 test('service worker rotates the cache after privacy-sensitive content changes', () => {
   const worker = readFileSync(new URL('sw.js', root), 'utf8');
-  assert.match(worker, /okinawa-road-book-v2/);
+  assert.match(worker, /okinawa-road-book-v3/);
   assert.match(worker, /key !== CACHE/);
 });
 

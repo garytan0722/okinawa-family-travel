@@ -1,4 +1,4 @@
-const CACHE = 'okinawa-road-book-v2';
+const CACHE = 'okinawa-road-book-v3';
 const CORE = [
   './', './index.html', './styles.css', './app.mjs', './manifest.json', './icons/icon.svg',
   './content/trip.json', './src/trip-domain.mjs', './src/render.mjs', './src/storage.mjs',
