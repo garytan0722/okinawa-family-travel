@@ -17,14 +17,14 @@ test('an existing controlled page reloads once when the new worker takes control
   let updates = 0;
   let registrationArgs;
   const serviceWorker = {
-    controller: { scriptURL: 'https://example.test/sw.js?v=4' },
+    controller: { scriptURL: 'https://example.test/sw.js?v=5' },
     addEventListener: (name, handler) => { if (name === 'controllerchange') controllerChange = handler; },
     register: async (...args) => { registrationArgs = args; return { update: async () => { updates += 1; } }; },
   };
   await installPwaUpdate(serviceWorker, () => { reloads += 1; });
   controllerChange();
   controllerChange();
-  assert.deepEqual(registrationArgs, ['./sw.js?v=5', { updateViaCache: 'none' }]);
+  assert.deepEqual(registrationArgs, ['./sw.js?v=6', { updateViaCache: 'none' }]);
   assert.equal(updates, 1);
   assert.equal(reloads, 1);
 });

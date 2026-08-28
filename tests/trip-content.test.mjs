@@ -1,4 +1,5 @@
 import assert from 'node:assert/strict';
+import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import test from 'node:test';
@@ -21,6 +22,84 @@ test('all variants cover each trip date exactly once', () => {
   for (const id of ['A', 'B', 'C']) {
     assert.deepEqual(trip.days[id].map((day) => day.date), expected);
   }
+});
+
+test('the frozen September 30 through October 4 itinerary stays byte-for-byte equivalent', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const expectedHashes = {
+    A: '104c0fd09a1246339035bbb51b3de077813b66ecabc37840afd86667ef25668f',
+    B: '881390e8d96dc7765a2e72e69eebb95b45ff7b4679f1ab10d3a1f638f533a500',
+    C: '957505b5ccd1b62d49b3262c0a318c3951b14c0a6ab2aa64c31aa265f3a469c2',
+  };
+
+  for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
+    const frozenDays = trip.days[variantId].filter((day) => day.date >= '2026-09-30');
+    const actualHash = createHash('sha256').update(JSON.stringify(frozenDays)).digest('hex');
+    assert.equal(actualHash, expectedHash, `${variantId} late itinerary must remain unchanged`);
+  }
+});
+
+test('September 24 through 29 use the approved northern plan without late-itinerary attractions', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const forbiddenLateAttractions = [
+    '美麗海', '美國村', 'BANTA', '港川', '普天滿', '來客夢', 'Rycom',
+    '首里城', '沖繩世界', '玉泉洞', 'DMM', '瀨長島', '波上宮', 'PARCO',
+    '國際通', '牧志市場', 'Ashibinaa',
+  ];
+
+  for (const variantId of ['A', 'B', 'C']) {
+    const earlyDays = trip.days[variantId].filter((day) => day.date <= '2026-09-29');
+    const earlyText = JSON.stringify(earlyDays);
+    for (const place of forbiddenLateAttractions) {
+      assert.equal(earlyText.includes(place), false, `${variantId} repeats late attraction: ${place}`);
+    }
+    for (const required of ['部瀨名', '名護鳳梨園', '古宇利', '沖繩兒童王國', '琉球村', '萬座毛']) {
+      assert.match(earlyText, new RegExp(required), `${variantId} must include ${required}`);
+    }
+  }
+  for (const variantId of ['A', 'B']) {
+    const earlyText = JSON.stringify(trip.days[variantId].filter((day) => day.date <= '2026-09-29'));
+    assert.match(earlyText, /Neo Park Okinawa/);
+    assert.match(earlyText, /東南植物樂園/);
+  }
+});
+
+test('relaxed plan keeps September 28 to one main attraction', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const day = trip.days.C.find((item) => item.date === '2026-09-28');
+  const mainEvents = day.events.filter((event) => ['activity', 'culture'].includes(event.type));
+  assert.deepEqual(mainEvents.map((event) => event.title), ['沖繩兒童王國']);
+});
+
+test('flight summary includes only confirmed times and known flight identifiers', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  assert.deepEqual(trip.flights, [
+    { date: '2026-09-24', party: '一家四口', departure: '08:00', arrival: '10:45', flightNumber: null, route: null },
+    { date: '2026-09-30', party: '兩位大人', departure: '06:50', arrival: '09:20', flightNumber: 'IT230', route: 'TPE → OKA' },
+    { date: '2026-10-03', party: '一家四口', departure: '15:50', arrival: '16:25', flightNumber: null, route: null },
+    { date: '2026-10-04', party: '兩位大人', departure: '20:20', arrival: '20:55', flightNumber: 'BR185', route: 'OKA → TPE T2' },
+  ]);
+});
+
+test('OTS roadside support keeps official daytime and vehicle-specific after-hours guidance', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  assert.deepEqual(trip.roadsideAssistance, {
+    provider: 'OTS 租車',
+    dayHours: '08:00–19:00',
+    dayPhone: '0120-34-3732',
+    afterHours: '19:01–07:59',
+    afterHoursNote: '查看車內「事故・故障時の連絡先」貼紙；夜間窗口依車輛不同。',
+    beforeCalling: ['車牌號碼或預約編號', '目前地址／定位', '車輛狀況'],
+    sourceIds: ['ots-road-service', 'ots-insurance'],
+  });
+  assert.equal(
+    trip.sources.find((source) => source.id === 'ots-road-service')?.url,
+    'https://www.otsinternational.jp/otsrentacar/guide/road-service/',
+  );
+  assert.equal(
+    trip.sources.find((source) => source.id === 'ots-insurance')?.url,
+    'https://www.otsinternational.jp/otsrentacar/rule/menseki/',
+  );
 });
 
 test('fixed logistics preserve the confirmed car handoff and departures', () => {

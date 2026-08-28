@@ -58,3 +58,11 @@ test('energy controls provide a 44 pixel touch target', () => {
   const size = Number(rule('.energy-control button').match(/min-height:\s*([\d.]+)px/)?.[1]);
   assert.ok(size >= 44);
 });
+
+test('dog-paw completion stamp keeps a 44 pixel target and visible checked state', () => {
+  const target = rule('.event-check');
+  assert.match(target, /width:\s*44px/);
+  assert.match(target, /height:\s*44px/);
+  assert.match(rule('.dog-paw-stamp'), /opacity:\s*0/);
+  assert.match(rule('.event-check input:checked + .check-paw .dog-paw-stamp'), /opacity:\s*1/);
+});

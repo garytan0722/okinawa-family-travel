@@ -29,8 +29,8 @@ test('stay lookup keeps private navigation out of public output', () => {
 });
 
 test('variant day lookup returns the selected pace only', () => {
-  assert.equal(getVariantDay(trip, 'A', '2026-09-25').title, '玻璃船看海・午後回飯店');
-  assert.equal(getVariantDay(trip, 'B', '2026-09-25').title, '部瀨名・古宇利・鳳梨三站');
+  assert.equal(getVariantDay(trip, 'A', '2026-09-25').title, '玻璃船看海・森林海灘玩沙');
+  assert.equal(getVariantDay(trip, 'B', '2026-09-25').title, '部瀨名玻璃船・名護海灘');
 });
 
 test('next fixed event respects local date and time ordering', () => {

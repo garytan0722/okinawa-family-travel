@@ -1,4 +1,4 @@
-import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=5';
+import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=6';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -45,7 +45,7 @@ function renderEvent(trip, event, completed) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><span class="paw-print"></span></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=6" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -110,4 +110,40 @@ export function renderSources(trip) {
       <p>營業時間、海況與臨時休館可能變動，請在 <strong>${escapeHtml(trip.recheckBy)}</strong> 再確認。</p>
       <ul>${items}</ul>
     </section>`;
+}
+
+export function renderFlightSummary(trip) {
+  const flights = trip.flights.map((flight) => `
+    <article class="flight-card">
+      <span class="card-number">${shortDate(flight.date)} · ${escapeHtml(flight.party)}</span>
+      <div class="flight-times"><time>${escapeHtml(flight.departure)}</time><span aria-hidden="true">✈</span><time>${escapeHtml(flight.arrival)}</time></div>
+      <h3>${escapeHtml(flight.flightNumber || '班號未提供')}</h3>
+      <p>${escapeHtml(flight.route || '航線未提供')}</p>
+    </article>`).join('');
+  return `<section class="flight-summary" aria-labelledby="flight-summary-title"><p class="eyebrow">FLIGHT BOARD</p><h2 id="flight-summary-title">班機時間</h2><p>只列已確認資料；未提供的班號與航線不推測。</p><div class="flight-grid">${flights}</div></section>`;
+}
+
+export function renderEmergencyView(trip) {
+  const roadside = trip.roadsideAssistance;
+  const roadsideSources = roadside.sourceIds
+    .map((id) => trip.sources.find((item) => item.id === id))
+    .filter(Boolean);
+  const emergencyCards = trip.emergency.map((item) => `
+    <a class="emergency-card" href="tel:${escapeHtml(item.phone)}">
+      <span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.phone)}</strong><small>${escapeHtml(item.note)}</small>
+    </a>`).join('');
+  const checklist = roadside.beforeCalling.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+
+  return `<section class="tool-view emergency-view">
+    <p class="eyebrow">KEEP CALM</p><h1>緊急聯絡</h1>
+    <p class="lede">發生事故不分大小先報警；有傷病或火災再叫救護／消防。</p>
+    <div class="emergency-grid">${emergencyCards}</div>
+    <article class="ots-support-card">
+      <span class="card-number">OTS ACCIDENT &amp; BREAKDOWN</span><h2>${escapeHtml(roadside.provider)}事故／故障窗口</h2>
+      <a class="ots-phone" href="tel:${escapeHtml(roadside.dayPhone)}"><span>${escapeHtml(roadside.dayHours)}</span><strong>${escapeHtml(roadside.dayPhone)}</strong><small>OTS 租車預約中心</small></a>
+      <div class="ots-support-grid"><section><h3>打電話前準備</h3><ul>${checklist}</ul></section><section><h3>夜間 ${escapeHtml(roadside.afterHours)}</h3><p>${escapeHtml(roadside.afterHoursNote)}</p></section></div>
+      <div class="official-links">${roadsideSources.map((source) => `<a class="official-link" href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a>`).join('')}</div>
+    </article>
+    <article class="accident-steps"><span>🚙 發生車禍</span><p>先確保人員安全；事故不分大小先撥 110，傷病或火災再撥 119；接著聯絡 OTS；不要私下和解。</p></article>
+  </section>`;
 }

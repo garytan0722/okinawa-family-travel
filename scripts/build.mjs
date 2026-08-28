@@ -3,6 +3,7 @@ import { constants } from 'node:fs';
 
 const required = [
   'index.html', 'app.mjs', 'styles.css', 'manifest.json', 'sw.js', 'icons/icon.svg',
+  'icons/dog-paw-stamp.svg',
   'content/trip.json', 'src/trip-domain.mjs', 'src/render.mjs', 'src/storage.mjs',
   'src/pwa-update.mjs',
   'output/pdf/okinawa-family-trip-A-balanced.pdf',

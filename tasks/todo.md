@@ -77,3 +77,19 @@
 - Verified all three deployed PDF hashes match the inspected local artifacts and CI reads their extracted itinerary content.
 - Kept the meeting point, participant list, equipment details, and child eligibility in the private operator messages rather than guessing or publishing them.
 - Independent review found no remaining Critical or Important issues after PDF release URLs and CI verification were fixed.
+
+## Front itinerary refresh and travel-tool update
+
+- [x] Add regression tests that lock every 9/30–10/4 day object in A/B/C
+- [x] Replace 9/24–9/29 with the approved non-duplicating A/B/C plans
+- [x] Add a confirmed-flight summary without guessing missing flight details
+- [x] Add the official OTS accident/breakdown contact and after-hours guidance
+- [x] Replace the completion mark with an accessible dog-paw stamp
+- [x] Rotate all web, service-worker, and PDF URLs to release v6
+- [x] Regenerate and visually inspect all three PDFs
+- [ ] Verify mobile, persistence, offline upgrade, privacy, and production deployment
+
+### Front itinerary refresh review
+
+- Local checks cover the full test/build suite, all three 17-page PDFs, 320/390/1440px layouts, native checkbox persistence, offline reload, and a real v5-to-v6 service-worker upgrade.
+- Production deployment and live-origin verification remain pending.

@@ -10,7 +10,7 @@ export async function installPwaUpdate(serviceWorker, reload) {
     });
   }
 
-  const registration = await serviceWorker.register('./sw.js?v=5', { updateViaCache: 'none' });
+  const registration = await serviceWorker.register('./sw.js?v=6', { updateViaCache: 'none' });
   await registration.update();
   return registration;
 }

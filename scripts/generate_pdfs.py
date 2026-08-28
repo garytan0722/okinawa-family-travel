@@ -130,28 +130,122 @@ def cover(pdf, trip, variant_id, variant, page_number):
 
 
 def logistics_page(pdf, trip, variant_id, page_number):
-    page_header(pdf, "FIXED LOGISTICS", "不能移動的時間", variant_id, page_number)
-    y = PAGE_H - 112
-    for event in trip["fixedEvents"]:
-        pdf.setFillColor(FOAM)
-        pdf.roundRect(42, y - 49, PAGE_W - 84, 58, 9, stroke=0, fill=1)
-        pdf.setFillColor(ROAD)
-        pdf.setFont(FONT, 10)
-        pdf.drawString(54, y - 11, f"{event['date'][5:].replace('-', '/')}  {event['time']}{'–' + event['end'] if event.get('end') else ''}")
-        pdf.setFillColor(INK)
-        pdf.setFont(FONT, 12)
-        pdf.drawString(166, y - 11, event["title"])
-        pdf.setFont(FONT, 8.5)
-        pdf.setFillColor(MUTED)
-        pdf.drawString(166, y - 31, event["place"])
-        y -= 68
+    page_header(pdf, "FIXED LOGISTICS", "班機時間與不能移動的行程", variant_id, page_number)
+    y = PAGE_H - 110
     pdf.setFillColor(INK)
     pdf.setFont(FONT, 10)
-    pdf.drawString(42, 118, "住宿")
+    pdf.drawString(42, y, "班機時間")
+    pdf.setFillColor(MUTED)
+    pdf.setFont(FONT, 7.5)
+    pdf.drawRightString(PAGE_W - 42, y, "未提供的班號與航線不推測")
+    y -= 22
+    for flight in trip["flights"]:
+        pdf.setFillColor(FOAM)
+        pdf.roundRect(42, y - 39, PAGE_W - 84, 47, 9, stroke=0, fill=1)
+        pdf.setFillColor(ROAD)
+        pdf.setFont(FONT, 9)
+        pdf.drawString(54, y - 10, f"{flight['date'][5:].replace('-', '/')}  {flight['party']}")
+        pdf.setFillColor(INK)
+        pdf.setFont(FONT, 11)
+        pdf.drawString(166, y - 10, f"{flight['departure']}  →  {flight['arrival']}")
+        pdf.setFont(FONT, 8.5)
+        pdf.setFillColor(MUTED)
+        detail = f"{flight.get('flightNumber') or '班號未提供'}  ·  {flight.get('route') or '航線未提供'}"
+        pdf.drawString(166, y - 28, detail)
+        y -= 55
+
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT, 10)
+    pdf.drawString(42, y - 2, "租車與已預約活動")
+    y -= 23
+    for event in (item for item in trip["fixedEvents"] if not item["kind"].startswith("flight")):
+        pdf.setFillColor(colors.white)
+        pdf.roundRect(42, y - 35, PAGE_W - 84, 43, 8, stroke=0, fill=1)
+        pdf.setFillColor(ROAD)
+        pdf.setFont(FONT, 8.5)
+        pdf.drawString(54, y - 9, f"{event['date'][5:].replace('-', '/')}  {event['time']}")
+        pdf.setFillColor(INK)
+        pdf.setFont(FONT, 9.5)
+        pdf.drawString(152, y - 9, event["title"])
+        pdf.setFillColor(MUTED)
+        pdf.setFont(FONT, 7.5)
+        pdf.drawString(152, y - 26, event["place"])
+        y -= 49
+
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT, 10)
+    pdf.drawString(42, y - 2, "住宿")
     pdf.setFillColor(MUTED)
     pdf.setFont(FONT, 8.5)
-    pdf.drawString(42, 98, "9/24–9/29  沖繩嘉利吉海灘海洋溫泉度假村")
-    pdf.drawString(42, 81, "9/30–10/4  那霸私人住宿（地址與入住資料請使用私人訂房訊息）")
+    pdf.drawString(42, y - 22, "9/24–9/29  沖繩嘉利吉海灘海洋溫泉度假村")
+    pdf.drawString(42, y - 39, "9/30–10/4  那霸私人住宿（地址與入住資料請使用私人訂房訊息）")
+    pdf.showPage()
+
+
+def emergency_page(pdf, trip, variant_id, page_number):
+    page_header(pdf, "KEEP CALM", "事故、故障與緊急聯絡", variant_id, page_number)
+    y = PAGE_H - 112
+    for index, item in enumerate(trip["emergency"][:2]):
+        x = 42 + index * ((PAGE_W - 96) / 2)
+        width = (PAGE_W - 110) / 2
+        pdf.setFillColor(INK)
+        pdf.roundRect(x, y - 82, width, 88, 12, stroke=0, fill=1)
+        pdf.setFillColor(PINK)
+        pdf.setFont(FONT, 9)
+        pdf.drawString(x + 14, y - 18, item["label"])
+        pdf.setFillColor(colors.white)
+        pdf.setFont(FONT, 25)
+        pdf.drawString(x + 14, y - 49, item["phone"])
+        draw_lines(pdf, item["note"], x + 14, y - 68, 7.5, width - 28, colors.white, 10, 1)
+
+    roadside = trip["roadsideAssistance"]
+    y -= 116
+    pdf.setFillColor(SEA)
+    pdf.roundRect(42, y - 158, PAGE_W - 84, 166, 14, stroke=0, fill=1)
+    pdf.setFillColor(IVORY)
+    pdf.setFont(FONT, 14)
+    pdf.drawString(58, y - 24, "OTS 租車事故／故障窗口")
+    pdf.setFillColor(colors.white)
+    pdf.setFont(FONT, 9)
+    pdf.drawString(58, y - 45, f"白天 {roadside['dayHours']}  OTS 租車預約中心")
+    pdf.setFillColor(PINK)
+    pdf.setFont(FONT, 23)
+    pdf.drawString(58, y - 74, roadside["dayPhone"])
+    pdf.setFillColor(colors.white)
+    pdf.setFont(FONT, 9)
+    pdf.drawString(58, y - 99, "打電話前準備")
+    pdf.setFont(FONT, 8)
+    pdf.drawString(58, y - 117, "・" + "  ・".join(roadside["beforeCalling"]))
+    pdf.setFillColor(IVORY)
+    pdf.setFont(FONT, 9)
+    pdf.drawString(58, y - 139, f"夜間 {roadside['afterHours']}")
+    draw_lines(pdf, roadside["afterHoursNote"], 158, y - 139, 8.2, PAGE_W - 216, IVORY, 11, 2)
+
+    y -= 196
+    pdf.setFillColor(colors.HexColor("#FFF0E9"))
+    pdf.roundRect(42, y - 116, PAGE_W - 84, 124, 12, stroke=0, fill=1)
+    pdf.setFillColor(ROAD)
+    pdf.setFont(FONT, 12)
+    pdf.drawString(58, y - 20, "車禍處理順序")
+    steps = [
+        "1  先確保人員安全並移到安全位置",
+        "2  事故不分大小先撥 110",
+        "3  傷病或火災再撥 119",
+        "4  接著聯絡 OTS；不要私下和解",
+    ]
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT, 9)
+    for line_index, step in enumerate(steps):
+        pdf.drawString(58, y - 43 - (line_index * 18), step)
+
+    pdf.setFillColor(MUTED)
+    pdf.setFont(FONT, 7)
+    roadside_sources = [
+        next(source for source in trip["sources"] if source["id"] == source_id)
+        for source_id in roadside["sourceIds"]
+    ]
+    for source_index, source in enumerate(roadside_sources):
+        pdf.drawString(42, 92 - (source_index * 13), f"{source['label']}：{source['url']}")
     pdf.showPage()
 
 
@@ -238,6 +332,8 @@ def generate(trip, variant_id):
     cover(pdf, trip, variant_id, trip["variants"][variant_id], page)
     page += 1
     logistics_page(pdf, trip, variant_id, page)
+    page += 1
+    emergency_page(pdf, trip, variant_id, page)
     page += 1
     for index, day in enumerate(trip["days"][variant_id], start=1):
         day_page(pdf, day, trip, variant_id, index, page)

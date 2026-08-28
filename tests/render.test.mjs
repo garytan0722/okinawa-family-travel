@@ -38,6 +38,44 @@ test('day timeline keeps chronological order and map links', () => {
   assert.equal(html.match(/class="paw-print" aria-hidden="true"/g)?.length, day.events.length);
 });
 
+test('event completion keeps a native checkbox and shows a dog-paw image stamp', () => {
+  const day = trip.days.A[0];
+  const eventId = day.events[0].id;
+  const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
+  assert.match(html, /type="checkbox"[^>]*checked/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=6" alt=""/);
+  assert.match(html, /class="sr-only">完成/);
+});
+
+test('flight summary clearly labels missing details instead of guessing them', () => {
+  assert.equal(typeof renderModule.renderFlightSummary, 'function');
+  if (typeof renderModule.renderFlightSummary !== 'function') return;
+  const html = renderModule.renderFlightSummary(trip);
+  assert.match(html, /9\/24/);
+  assert.match(html, /08:00.*10:45/s);
+  assert.match(html, /班號未提供/);
+  assert.match(html, /航線未提供/);
+  assert.match(html, /IT230/);
+  assert.match(html, /TPE → OKA/);
+  assert.match(html, /BR185/);
+  assert.match(html, /OKA → TPE T2/);
+});
+
+test('emergency view puts 110 and 119 first and provides actionable OTS instructions', () => {
+  assert.equal(typeof renderModule.renderEmergencyView, 'function');
+  if (typeof renderModule.renderEmergencyView !== 'function') return;
+  const html = renderModule.renderEmergencyView(trip);
+  assert.ok(html.indexOf('tel:110') < html.indexOf('tel:119'));
+  assert.ok(html.indexOf('tel:119') < html.indexOf('tel:0120-34-3732'));
+  assert.match(html, /08:00–19:00/);
+  assert.match(html, /19:01–07:59/);
+  assert.match(html, /車牌號碼或預約編號/);
+  assert.match(html, /事故・故障時の連絡先/);
+  assert.match(html, /事故不分大小先撥 110.*傷病或火災再撥 119.*聯絡 OTS.*不要私下和解/s);
+  assert.match(html, /https:\/\/www\.otsinternational\.jp\/otsrentacar\/guide\/road-service\//);
+  assert.match(html, /https:\/\/www\.otsinternational\.jp\/otsrentacar\/rule\/menseki\//);
+});
+
 test('private accommodation renders generic guidance without a public map link', () => {
   const day = trip.days.C.find((item) => item.date === '2026-10-03');
   const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {} });
