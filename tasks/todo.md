@@ -116,8 +116,15 @@
 
 ## Larger cat-paw completion stamp
 
-- [ ] Add a failing visual-style test for a substantially larger completion stamp
-- [ ] Increase the stamp and tap target without covering itinerary text
-- [ ] Rotate the PWA shell and offline cache to release v8
-- [ ] Verify checked and unchecked states at 320px, 390px, and desktop widths
-- [ ] Deploy GitHub Pages and confirm the live v8 stamp
+- [x] Add a failing visual-style test for a substantially larger completion stamp
+- [x] Increase the stamp and tap target without covering itinerary text
+- [x] Rotate the PWA shell and offline cache to release v8
+- [x] Verify checked and unchecked states at 320px, 390px, and desktop widths
+- [x] Deploy GitHub Pages and confirm the live v8 stamp
+
+### Larger stamp review
+
+- Increased the visible paw art from 36px to 50px and the tap target from 44px to 56px; the checked parent transform presents the stamp at about 62px.
+- Increased itinerary-card right padding so the larger mark remains separate from long titles.
+- Verified checked and unchecked states at 320px, 390px, and 1440px with no title overlap or horizontal overflow.
+- Deployed release v8 from commit `e506ed8` through GitHub Actions run `33181625775` and confirmed the live CSS and cache revision.
