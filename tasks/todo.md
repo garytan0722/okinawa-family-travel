@@ -152,4 +152,12 @@
 - [x] Update website data, A/B/C itinerary copy, and documentation without changing logistics
 - [x] Rotate the PWA shell and offline cache to release v10
 - [x] Regenerate and visually inspect all three PDFs
-- [ ] Run full verification, deploy GitHub Pages, and confirm the live correction
+- [x] Run full verification, deploy GitHub Pages, and confirm the live correction
+
+### Corrected couple label review
+
+- Deployed release v10 from commit `1d25d71` through GitHub Actions run `33186779210`.
+- Replaced the typo 曾羅佳 with the exact user-provided label 曾蘿情侶 across the website, A/B/C copy, documentation, and PDFs without changing logistics.
+- Verified 50/50 tests, the static privacy-safe build, and all three regenerated 17-page PDFs.
+- Visually inspected each PDF's cover, flight summary, October 3, and October 4 pages; the longer label is legible and unclipped.
+- Confirmed the live v10 JSON and service worker, absence of the old typo, and exact local-to-live PDF hashes.
