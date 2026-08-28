@@ -37,13 +37,13 @@
     }
   ],
   "flights": [
-    { "date": "2026-09-24", "party": "一家四口", "departure": "08:00", "arrival": "10:45", "flightNumber": null, "route": null },
-    { "date": "2026-09-30", "party": "兩位大人", "departure": "06:50", "arrival": "09:20", "flightNumber": "IT230", "route": "TPE → OKA" },
-    { "date": "2026-10-03", "party": "一家四口", "departure": "15:50", "arrival": "16:25", "flightNumber": null, "route": null },
-    { "date": "2026-10-04", "party": "兩位大人", "departure": "20:20", "arrival": "20:55", "flightNumber": "BR185", "route": "OKA → TPE T2" }
+    { "date": "2026-09-24", "party": "一家四口", "departure": "08:00", "arrival": "10:45", "airline": "華航", "flightNumber": "CI120", "route": null },
+    { "date": "2026-09-30", "party": "兩位大人", "departure": "06:50", "arrival": "09:20", "airline": null, "flightNumber": "IT230", "route": "TPE → OKA" },
+    { "date": "2026-10-03", "party": "一家四口", "departure": "15:50", "arrival": "16:25", "airline": null, "flightNumber": null, "route": null },
+    { "date": "2026-10-04", "party": "兩位大人", "departure": "15:50", "arrival": null, "airline": "星宇航空", "flightNumber": "JX871", "route": "OKA → TPE T2" }
   ],
   "fixedEvents": [
-    { "id": "f-0924-flight", "date": "2026-09-24", "time": "08:00", "end": "10:45", "kind": "flight-arrival", "title": "一家四口飛往沖繩", "place": "那覇空港", "note": "航空公司與班號未提供。" },
+    { "id": "f-0924-flight", "date": "2026-09-24", "time": "08:00", "end": "10:45", "kind": "flight-arrival", "title": "華航 CI120 一家四口飛往沖繩", "place": "那覇空港", "note": "08:00 起飛，10:45 抵達。" },
     { "id": "f-0924-car", "date": "2026-09-24", "time": "12:00", "kind": "car-pickup", "title": "OTS 取第一台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-0930-flight", "date": "2026-09-30", "time": "09:20", "kind": "flight-arrival", "title": "IT230 抵達 OKA", "place": "那覇空港", "note": "06:50 TPE 起飛，兩位大人加入。" },
     { "id": "f-0930-car2", "date": "2026-09-30", "time": "11:30", "kind": "car-pickup", "title": "OTS 取第二台六人用車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
@@ -51,7 +51,7 @@
     { "id": "f-1002-snorkeling", "date": "2026-10-02", "time": "09:00", "kind": "snorkeling", "title": "Pink Mermaid Okinawa 浮潛", "place": "集合地點依業者預約訊息", "note": "已確認固定行程；參加名單、集合時間、裝備與幼兒規定依業者預約訊息確認。", "sourceIds": ["pinkmermaid"] },
     { "id": "f-1003-flight", "date": "2026-10-03", "time": "15:50", "end": "16:25", "kind": "flight-departure", "title": "一家四口返回台灣", "place": "那覇空港", "note": "航空公司與班號未提供；13:30 前抵達機場。" },
     { "id": "f-1004-car-return", "date": "2026-10-04", "time": "12:30", "kind": "car-return", "title": "OTS 還第二台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
-    { "id": "f-1004-flight", "date": "2026-10-04", "time": "20:20", "end": "20:55", "kind": "flight-departure", "title": "BR185 返回台灣", "place": "那覇空港", "note": "OKA → TPE T2，兩位大人。" }
+    { "id": "f-1004-flight", "date": "2026-10-04", "time": "15:50", "kind": "flight-departure", "title": "星宇航空 JX871 返回台灣", "place": "那覇空港", "note": "OKA → TPE T2，抵達時間未提供，兩位大人。" }
   ],
   "sources": [
     { "id": "kariyushi", "label": "嘉利吉海灘度假村官方網站", "url": "https://kariyushi-oceanspa.jp/", "checkedAt": "2026-08-28" },
@@ -95,7 +95,7 @@
       {
         "date": "2026-09-24", "title": "抵達・把第一天留給適應", "area": "豐崎 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "約 60–75 分，視那霸交通", "rainPlan": "取車後直接到飯店；用室內泳池或房內休息取代海灘。",
         "events": [
-          { "id": "A-0924-1", "time": "10:45", "type": "flight", "title": "抵達那覇、入境與領行李", "place": "那覇空港", "mapQuery": "那覇空港", "note": "替孩子先補水、上洗手間。" },
+          { "id": "A-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛；入境領行李後替孩子補水、上洗手間。" },
           { "id": "A-0924-2", "time": "12:00", "type": "car", "title": "OTS 取第一台車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "確認兩張兒童座椅、ETC與行李空間。", "sourceIds": ["ots"] },
           { "id": "A-0924-3", "time": "13:00", "type": "meal", "title": "豐崎簡單午餐＋補給", "place": "iias沖繩豐崎周邊", "mapQuery": "イーアス沖縄豊崎", "note": "第一餐不排隊，超市補水與早餐。" },
           { "id": "A-0924-4", "time": "15:30", "type": "stay", "title": "飯店入住、泳池或海邊散步", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "不再加景點，讓孩子調整。", "sourceIds": ["kariyushi"] }
@@ -186,18 +186,18 @@
         ]
       },
       {
-        "date": "2026-10-04", "title": "DMM水族館・還車・晚班機", "area": "豐見城 → 那覇空港", "stay": "機上", "drive": "各段約 10–20 分", "rainPlan": "全日皆可室內進行。",
+        "date": "2026-10-04", "title": "DMM水族館・還車・下午班機", "area": "豐見城 → 那覇空港", "stay": "機上", "drive": "各段約 10–20 分", "rainPlan": "全日皆可室內進行。",
         "events": [
           { "id": "A-1004-1", "time": "09:00", "type": "activity", "title": "DMM Kariyushi水族館", "place": "DMMかりゆし水族館", "mapQuery": "DMMかりゆし水族館", "note": "只留兩小時，11:15離開準備加油。", "sourceIds": ["dmm"] },
           { "id": "A-1004-2", "time": "12:30", "type": "car", "title": "OTS 還第二台車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "搭接駁回機場；之後不再安排需開車景點。", "sourceIds": ["ots"] },
-          { "id": "A-1004-3", "time": "14:00", "type": "rest", "title": "機場寄放行李、午餐與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "有精神可搭單軌短逛國際通，17:30前回機場。" },
-          { "id": "A-1004-4", "time": "18:20", "type": "flight", "title": "BR185報到", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "20:20起飛，OKA → TPE T2。" }
+          { "id": "A-1004-3", "time": "13:15", "type": "rest", "title": "機場午餐、JX871 報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛，不再離開機場。" },
+          { "id": "A-1004-4", "time": "15:50", "type": "flight", "title": "JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "星宇航空，OKA → TPE T2；抵達時間未提供。" }
         ]
       }
     ],
     "B": [
       { "date": "2026-09-24", "title": "抵達・豐崎補給・恩納入住", "area": "豐崎 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "約 60–75 分", "rainPlan": "取車後直接入住。", "events": [
-        { "id": "B-0924-1", "time": "10:45", "type": "flight", "title": "抵達、入境與領行李", "place": "那覇空港", "mapQuery": "那覇空港" },
+        { "id": "B-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達、入境與領行李", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛，10:45 抵達。" },
         { "id": "B-0924-2", "time": "12:00", "type": "car", "title": "OTS取車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "確認兒童座椅。", "sourceIds": ["ots"] },
         { "id": "B-0924-3", "time": "13:00", "type": "meal", "title": "iias豐崎午餐與補給", "place": "イーアス沖縄豊崎", "mapQuery": "イーアス沖縄豊崎" },
         { "id": "B-0924-4", "time": "16:00", "type": "stay", "title": "入住、飯店巡禮", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
@@ -263,17 +263,17 @@
         { "id": "B-1003-4", "time": "13:20", "type": "flight", "title": "送一家四口到機場", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50起飛。" },
         { "id": "B-1003-5", "time": "15:00", "type": "shopping", "title": "兩位大人：PARCO CITY", "place": "サンエー浦添西海岸 PARCO CITY", "mapQuery": "サンエー浦添西海岸 PARCO CITY" }
       ]},
-      { "date": "2026-10-04", "title": "DMM・Outlet・還車・國際通", "area": "豐見城 → 那霸", "stay": "機上", "drive": "上午約 30–45 分", "rainPlan": "全日可室內。", "events": [
+      { "date": "2026-10-04", "title": "DMM・Outlet・還車・下午班機", "area": "豐見城 → 那霸", "stay": "機上", "drive": "上午約 30–45 分", "rainPlan": "全日可室內。", "events": [
         { "id": "B-1004-1", "time": "08:45", "type": "activity", "title": "DMM Kariyushi水族館", "place": "DMMかりゆし水族館", "mapQuery": "DMMかりゆし水族館", "sourceIds": ["dmm"] },
         { "id": "B-1004-2", "time": "10:45", "type": "shopping", "title": "Ashibinaa快速採買", "place": "沖縄アウトレットモール あしびなー", "mapQuery": "沖縄アウトレットモール あしびなー", "note": "次要項；11:30硬離開加油。" },
         { "id": "B-1004-3", "time": "12:30", "type": "car", "title": "OTS還車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
-        { "id": "B-1004-4", "time": "14:00", "type": "walk", "title": "機場寄物後單軌往國際通", "place": "国際通り", "mapQuery": "国際通り", "note": "17:30前返回機場。" },
-        { "id": "B-1004-5", "time": "18:20", "type": "flight", "title": "BR185報到", "place": "那覇空港", "mapQuery": "那覇空港 国際線" }
+        { "id": "B-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、JX871 報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛，不再前往國際通。" },
+        { "id": "B-1004-5", "time": "15:50", "type": "flight", "title": "JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "星宇航空，OKA → TPE T2；抵達時間未提供。" }
       ]}
     ],
     "C": [
       { "date": "2026-09-24", "title": "抵達・只做入住", "area": "豐崎 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "約 60–75 分", "rainPlan": "直接入住與休息。", "events": [
-        { "id": "C-0924-1", "time": "10:45", "type": "flight", "title": "抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港" },
+        { "id": "C-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛，10:45 抵達。" },
         { "id": "C-0924-2", "time": "12:00", "type": "car", "title": "OTS取車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
         { "id": "C-0924-3", "time": "13:00", "type": "meal", "title": "不排隊的午餐與補給", "place": "豊崎", "mapQuery": "イーアス沖縄豊崎" },
         { "id": "C-0924-4", "time": "15:30", "type": "stay", "title": "入住、泡澡、早睡", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
@@ -332,12 +332,12 @@
         { "id": "C-1003-3", "time": "13:15", "type": "flight", "title": "送一家四口到機場", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50起飛。" },
         { "id": "C-1003-4", "time": "14:30", "type": "rest", "title": "兩位大人自由時間", "place": "那霸", "mapQuery": "那覇市", "note": "可回住宿或PARCO CITY。" }
       ]},
-      { "date": "2026-10-04", "title": "水族館・還車・機場慢慢等", "area": "豐見城 → 機場", "stay": "機上", "drive": "各段約 10–20 分", "rainPlan": "全日室內。", "events": [
+      { "date": "2026-10-04", "title": "水族館・還車・下午班機", "area": "豐見城 → 機場", "stay": "機上", "drive": "各段約 10–20 分", "rainPlan": "全日室內。", "events": [
         { "id": "C-1004-1", "time": "09:15", "type": "activity", "title": "DMM Kariyushi水族館", "place": "DMMかりゆし水族館", "mapQuery": "DMMかりゆし水族館", "sourceIds": ["dmm"] },
         { "id": "C-1004-2", "time": "11:15", "type": "meal", "title": "豐崎早午餐與加油", "place": "豊崎", "mapQuery": "豊崎 ランチ" },
         { "id": "C-1004-3", "time": "12:30", "type": "car", "title": "OTS還車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
-        { "id": "C-1004-4", "time": "14:00", "type": "rest", "title": "機場寄物、午餐、伴手禮與休息", "place": "那覇空港", "mapQuery": "那覇空港" },
-        { "id": "C-1004-5", "time": "18:20", "type": "flight", "title": "BR185報到", "place": "那覇空港", "mapQuery": "那覇空港 国際線" }
+        { "id": "C-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、JX871 報到與伴手禮", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛，不再離開機場。" },
+        { "id": "C-1004-5", "time": "15:50", "type": "flight", "title": "JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "星宇航空，OKA → TPE T2；抵達時間未提供。" }
       ]}
     ]
   }

@@ -113,7 +113,7 @@ def cover(pdf, trip, variant_id, variant, page_number):
     pdf.setFont(FONT, 11)
     pdf.drawString(68, PAGE_H - 365, variant["tagline"])
 
-    facts = [("9/24", "一家四口抵達"), ("9/30", "四大兩小會合／換車"), ("10/4", "還車與晚班機")]
+    facts = [("9/24", "CI120 一家四口抵達"), ("9/30", "四大兩小會合／換車"), ("10/4", "還車與 JX871 下午班機")]
     y = PAGE_H - 470
     for date, detail in facts:
         pdf.setFillColor(ROAD)
@@ -137,7 +137,7 @@ def logistics_page(pdf, trip, variant_id, page_number):
     pdf.drawString(42, y, "班機時間")
     pdf.setFillColor(MUTED)
     pdf.setFont(FONT, 7.5)
-    pdf.drawRightString(PAGE_W - 42, y, "未提供的班號與航線不推測")
+    pdf.drawRightString(PAGE_W - 42, y, "未提供的抵達時間、班號與航線不推測")
     y -= 22
     for flight in trip["flights"]:
         pdf.setFillColor(FOAM)
@@ -147,10 +147,12 @@ def logistics_page(pdf, trip, variant_id, page_number):
         pdf.drawString(54, y - 10, f"{flight['date'][5:].replace('-', '/')}  {flight['party']}")
         pdf.setFillColor(INK)
         pdf.setFont(FONT, 11)
-        pdf.drawString(166, y - 10, f"{flight['departure']}  →  {flight['arrival']}")
+        arrival = flight.get("arrival") or "抵達時間未提供"
+        pdf.drawString(166, y - 10, f"{flight['departure']}  →  {arrival}")
         pdf.setFont(FONT, 8.5)
         pdf.setFillColor(MUTED)
-        detail = f"{flight.get('flightNumber') or '班號未提供'}  ·  {flight.get('route') or '航線未提供'}"
+        flight_label = " ".join(item for item in [flight.get("airline"), flight.get("flightNumber")] if item) or "班號未提供"
+        detail = f"{flight_label}  ·  {flight.get('route') or '航線未提供'}"
         pdf.drawString(166, y - 28, detail)
         y -= 55
 

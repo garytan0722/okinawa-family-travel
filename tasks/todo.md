@@ -96,3 +96,12 @@
 - Confirmed the 9/30–10/4 A/B/C hashes are unchanged; early plans do not repeat late attractions, and C 9/28 keeps one main attraction.
 - Verified the live 320/390/1440px layouts, checkbox persistence, v5-to-v6 takeover, offline reload, OTS guidance, dog-paw stamp, and exact deployed PDF hashes.
 - Independent review found no remaining Critical or Important issues after mandatory 110 guidance and paw-asset packaging were corrected.
+
+## Confirmed flight correction
+
+- [ ] Lock the corrected 9/24 China Airlines CI120 flight in tests
+- [ ] Lock the corrected 10/4 STARLUX JX871 15:50 departure without inventing an arrival time
+- [ ] Reconcile all 10/4 A/B/C events with the earlier departure while preserving the rest of the late itinerary
+- [ ] Rotate the PWA shell and offline cache to release v7
+- [ ] Regenerate and visually inspect all three PDFs
+- [ ] Run full verification, deploy GitHub Pages, and confirm the live flight data

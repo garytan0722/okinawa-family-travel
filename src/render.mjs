@@ -1,4 +1,4 @@
-import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=6';
+import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=7';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -45,7 +45,7 @@ function renderEvent(trip, event, completed) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=6" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=7" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -113,14 +113,18 @@ export function renderSources(trip) {
 }
 
 export function renderFlightSummary(trip) {
-  const flights = trip.flights.map((flight) => `
+  const flights = trip.flights.map((flight) => {
+    const flightLabel = [flight.airline, flight.flightNumber].filter(Boolean).join(' ') || '班號未提供';
+    const arrival = flight.arrival || '抵達時間未提供';
+    return `
     <article class="flight-card">
       <span class="card-number">${shortDate(flight.date)} · ${escapeHtml(flight.party)}</span>
-      <div class="flight-times"><time>${escapeHtml(flight.departure)}</time><span aria-hidden="true">✈</span><time>${escapeHtml(flight.arrival)}</time></div>
-      <h3>${escapeHtml(flight.flightNumber || '班號未提供')}</h3>
+      <div class="flight-times"><time>${escapeHtml(flight.departure)}</time><span aria-hidden="true">✈</span><time>${escapeHtml(arrival)}</time></div>
+      <h3>${escapeHtml(flightLabel)}</h3>
       <p>${escapeHtml(flight.route || '航線未提供')}</p>
-    </article>`).join('');
-  return `<section class="flight-summary" aria-labelledby="flight-summary-title"><p class="eyebrow">FLIGHT BOARD</p><h2 id="flight-summary-title">班機時間</h2><p>只列已確認資料；未提供的班號與航線不推測。</p><div class="flight-grid">${flights}</div></section>`;
+    </article>`;
+  }).join('');
+  return `<section class="flight-summary" aria-labelledby="flight-summary-title"><p class="eyebrow">FLIGHT BOARD</p><h2 id="flight-summary-title">班機時間</h2><p>只列已確認資料；未提供的抵達時間、班號與航線不推測。</p><div class="flight-grid">${flights}</div></section>`;
 }
 
 export function renderEmergencyView(trip) {

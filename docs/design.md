@@ -16,7 +16,7 @@ Tokyo-only modules such as the 3D globe, fandom, reels, coupons, and cashback.
 
 ## Fixed logistics
 
-- 09/24 08:00–10:45: family of four flies to Okinawa.
+- 09/24 08:00–10:45: family of four flies to Okinawa on China Airlines CI120.
 - 09/24 12:00: first car pickup at OTS 臨空豐崎營業所.
 - 09/24–09/30: two adults and two children stay at Okinawa Kariyushi Beach
   Resort Ocean Spa.
@@ -27,7 +27,7 @@ Tokyo-only modules such as the 3D globe, fandom, reels, coupons, and cashback.
 - 10/03 15:50–16:25: the family of four returns to Taiwan.
 - 10/03–10/04: two adults remain at the private accommodation.
 - 10/04 12:30: second car return at OTS 臨空豐崎營業所.
-- 10/04 20:20–20:55: two adults take EVA Air BR185, OKA → TPE T2.
+- 10/04 15:50: two adults take STARLUX JX871, OKA → TPE T2; arrival time was not provided.
 
 The deployed repository must never include the source PDF's private check-in
 URL, check-in code, PIN, or user-entered travel notes.

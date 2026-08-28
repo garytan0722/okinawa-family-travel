@@ -27,9 +27,9 @@ test('all variants cover each trip date exactly once', () => {
 test('the frozen September 30 through October 4 itinerary stays byte-for-byte equivalent', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const expectedHashes = {
-    A: '104c0fd09a1246339035bbb51b3de077813b66ecabc37840afd86667ef25668f',
-    B: '881390e8d96dc7765a2e72e69eebb95b45ff7b4679f1ab10d3a1f638f533a500',
-    C: '957505b5ccd1b62d49b3262c0a318c3951b14c0a6ab2aa64c31aa265f3a469c2',
+    A: '33d6948f6fba683b36251b35c547be9ad710b888ed3850276d7313279c315378',
+    B: '0e2b2457fedb780df2b4069e80e66d0130307487dbd96dbb062cabc0b94546ed',
+    C: '97a3d458b6b08972d0f92ce6b864f0f9e36148342e5b83d8e4f0c5f2410e3ddc',
   };
 
   for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
@@ -74,11 +74,25 @@ test('relaxed plan keeps September 28 to one main attraction', () => {
 test('flight summary includes only confirmed times and known flight identifiers', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   assert.deepEqual(trip.flights, [
-    { date: '2026-09-24', party: '一家四口', departure: '08:00', arrival: '10:45', flightNumber: null, route: null },
-    { date: '2026-09-30', party: '兩位大人', departure: '06:50', arrival: '09:20', flightNumber: 'IT230', route: 'TPE → OKA' },
-    { date: '2026-10-03', party: '一家四口', departure: '15:50', arrival: '16:25', flightNumber: null, route: null },
-    { date: '2026-10-04', party: '兩位大人', departure: '20:20', arrival: '20:55', flightNumber: 'BR185', route: 'OKA → TPE T2' },
+    { date: '2026-09-24', party: '一家四口', departure: '08:00', arrival: '10:45', airline: '華航', flightNumber: 'CI120', route: null },
+    { date: '2026-09-30', party: '兩位大人', departure: '06:50', arrival: '09:20', airline: null, flightNumber: 'IT230', route: 'TPE → OKA' },
+    { date: '2026-10-03', party: '一家四口', departure: '15:50', arrival: '16:25', airline: null, flightNumber: null, route: null },
+    { date: '2026-10-04', party: '兩位大人', departure: '15:50', arrival: null, airline: '星宇航空', flightNumber: 'JX871', route: 'OKA → TPE T2' },
   ]);
+});
+
+test('October 4 plans finish at the corrected JX871 departure', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+
+  for (const variantId of ['A', 'B', 'C']) {
+    const day = trip.days[variantId].find((item) => item.date === '2026-10-04');
+    const departure = day.events.at(-1);
+    assert.deepEqual(
+      { time: departure.time, type: departure.type, title: departure.title },
+      { time: '15:50', type: 'flight', title: 'JX871 起飛' },
+      `${variantId} must end with the corrected flight`,
+    );
+  }
 });
 
 test('OTS roadside support keeps official daytime and vehicle-specific after-hours guidance', () => {
@@ -113,6 +127,7 @@ test('fixed logistics preserve the confirmed car handoff and departures', () => 
   ]);
   assert.ok(fixed.some((event) => event.date === '2026-10-03' && event.time === '15:50' && event.kind === 'flight-departure'));
   assert.ok(fixed.some((event) => event.date === '2026-10-04' && event.time === '12:30' && event.kind === 'car-return'));
+  assert.ok(fixed.some((event) => event.date === '2026-10-04' && event.time === '15:50' && event.kind === 'flight-departure'));
 });
 
 test('all itineraries preserve the confirmed October 2 snorkeling booking', () => {

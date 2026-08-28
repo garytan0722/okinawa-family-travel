@@ -43,7 +43,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=6" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=7" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -53,11 +53,13 @@ test('flight summary clearly labels missing details instead of guessing them', (
   const html = renderModule.renderFlightSummary(trip);
   assert.match(html, /9\/24/);
   assert.match(html, /08:00.*10:45/s);
+  assert.match(html, /華航 CI120/);
   assert.match(html, /班號未提供/);
   assert.match(html, /航線未提供/);
   assert.match(html, /IT230/);
   assert.match(html, /TPE → OKA/);
-  assert.match(html, /BR185/);
+  assert.match(html, /星宇航空 JX871/);
+  assert.match(html, /15:50.*抵達時間未提供/s);
   assert.match(html, /OKA → TPE T2/);
 });
 
