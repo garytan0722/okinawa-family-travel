@@ -43,3 +43,12 @@
 - Verified date centering, 44px touch targets, keyboard focus contrast, local-state restoration, cache v3, and offline reload.
 - Independent review found no remaining Critical or Important issues after accessibility and cache-scope fixes.
 - Verified the live app shell, data, icon, service worker, and all three PDFs return HTTP 200 with a clean privacy scan.
+
+## Existing-client update recovery
+
+- [x] Confirm the GitHub Pages CDN serves the redesigned release
+- [x] Reproduce an old service worker continuing to show the previous UI
+- [x] Add failing tests for revisioned assets, network-first navigation, and client takeover
+- [x] Implement the durable v4 update protocol
+- [x] Verify a real previous-version browser upgrades automatically and still works offline
+- [ ] Deploy and verify the canonical and cache-busting URLs

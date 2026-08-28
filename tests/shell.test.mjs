@@ -17,7 +17,16 @@ test('HTML shell has mobile metadata, product landmarks, and module entry', () =
   assert.match(html, /沖繩親子自駕/);
   assert.match(html, /<main id="app"/);
   assert.match(html, /<nav class="bottom-nav"/);
-  assert.match(html, /src="\.\/app\.mjs" type="module"/);
+  assert.match(html, /src="\.\/app\.mjs\?v=([^"]+)" type="module"/);
+});
+
+test('browser shell resources share one release revision', () => {
+  const files = ['index.html', 'app.mjs', 'src/render.mjs', 'manifest.json'];
+  const text = files.map((path) => readFileSync(new URL(path, root), 'utf8')).join('\n');
+  const revisions = [...text.matchAll(/(?:styles\.css|app\.mjs|manifest\.json|icon\.svg|trip\.json|trip-domain\.mjs|render\.mjs|storage\.mjs|pwa-update\.mjs)\?v=([\w.-]+)/g)]
+    .map((match) => match[1]);
+  assert.ok(revisions.length >= 10, 'all browser shell resources must be revisioned');
+  assert.deepEqual([...new Set(revisions)], ['4']);
 });
 
 test('manifest uses the GitHub Pages subpath-safe start URL', () => {
@@ -29,7 +38,7 @@ test('manifest uses the GitHub Pages subpath-safe start URL', () => {
 
 test('service worker rotates the cache after privacy-sensitive content changes', () => {
   const worker = readFileSync(new URL('sw.js', root), 'utf8');
-  assert.match(worker, /okinawa-road-book-v3/);
+  assert.match(worker, /okinawa-road-book-v4/);
   assert.match(worker, /key !== CACHE/);
 });
 
@@ -39,19 +48,68 @@ test('service worker only removes old caches owned by this app', async () => {
   const handlers = {};
   const context = {
     caches: {
-      keys: async () => ['okinawa-road-book-v2', 'another-pages-app-v1', 'okinawa-road-book-v3'],
+      keys: async () => ['okinawa-road-book-v3', 'another-pages-app-v1', 'okinawa-road-book-v4'],
       delete: async (key) => { deleted.push(key); },
     },
     self: {
       addEventListener: (name, handler) => { handlers[name] = handler; },
-      clients: { claim: async () => {} },
+      clients: { claim: async () => {}, matchAll: async () => [] },
     },
   };
   vm.runInNewContext(worker, context);
   let activation;
   handlers.activate({ waitUntil: (promise) => { activation = promise; } });
   await activation;
-  assert.deepEqual(deleted, ['okinawa-road-book-v2']);
+  assert.deepEqual(deleted, ['okinawa-road-book-v3']);
+});
+
+test('service worker prefers the network for online navigations', async () => {
+  const worker = readFileSync(new URL('sw.js', root), 'utf8');
+  const handlers = {};
+  const cached = { marker: 'cached' };
+  const fresh = { marker: 'fresh', ok: true, clone: () => fresh };
+  let fetches = 0;
+  const context = {
+    URL,
+    fetch: async () => { fetches += 1; return fresh; },
+    caches: {
+      match: async () => cached,
+      open: async () => ({ put: async () => {} }),
+    },
+    self: {
+      location: { origin: 'https://example.test' },
+      addEventListener: (name, handler) => { handlers[name] = handler; },
+    },
+  };
+  vm.runInNewContext(worker, context);
+  let response;
+  handlers.fetch({
+    request: { method: 'GET', mode: 'navigate', url: 'https://example.test/' },
+    respondWith: (promise) => { response = promise; },
+  });
+  assert.equal((await response).marker, 'fresh');
+  assert.equal(fetches, 1);
+});
+
+test('activating a new worker claims clients without forcing navigation', async () => {
+  const worker = readFileSync(new URL('sw.js', root), 'utf8');
+  const handlers = {};
+  const navigated = [];
+  const context = {
+    caches: { keys: async () => [], delete: async () => {} },
+    self: {
+      addEventListener: (name, handler) => { handlers[name] = handler; },
+      clients: {
+        claim: async () => {},
+        matchAll: async () => [{ url: 'https://example.test/trip/#/', navigate: async (url) => { navigated.push(url); } }],
+      },
+    },
+  };
+  vm.runInNewContext(worker, context);
+  let activation;
+  handlers.activate({ waitUntil: (promise) => { activation = promise; } });
+  await activation;
+  assert.deepEqual(navigated, []);
 });
 
 test('date navigation only captures date buttons, not clicks inside the day view', () => {

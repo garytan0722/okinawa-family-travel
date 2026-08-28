@@ -1,6 +1,7 @@
-import { getVariantDay, mapUrl, nextFixedEvent } from './src/trip-domain.mjs';
-import { centeredScrollLeft, renderDay, renderSources, renderVariantTabs, escapeHtml } from './src/render.mjs';
-import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs';
+import { getVariantDay, mapUrl, nextFixedEvent } from './src/trip-domain.mjs?v=4';
+import { centeredScrollLeft, renderDay, renderSources, renderVariantTabs, escapeHtml } from './src/render.mjs?v=4';
+import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=4';
+import { installPwaUpdate } from './src/pwa-update.mjs?v=4';
 
 const app = document.querySelector('#app');
 const quickPanel = document.querySelector('#quick-panel-content');
@@ -166,7 +167,7 @@ function updateNetworkStatus() {
 
 async function boot() {
   try {
-    const response = await fetch('./content/trip.json');
+    const response = await fetch('./content/trip.json?v=4');
     if (!response.ok) throw new Error('行程資料載入失敗');
     trip = await response.json();
     renderRoute();
@@ -174,7 +175,9 @@ async function boot() {
     window.addEventListener('online', updateNetworkStatus);
     window.addEventListener('offline', updateNetworkStatus);
     updateNetworkStatus();
-    if ('serviceWorker' in navigator) navigator.serviceWorker.register('./sw.js');
+    if ('serviceWorker' in navigator) {
+      installPwaUpdate(navigator.serviceWorker, () => location.reload()).catch(() => {});
+    }
   } catch (error) {
     app.innerHTML = `<section class="error-card"><h1>暫時打不開行程</h1><p>${escapeHtml(error.message)}</p><button onclick="location.reload()">再試一次</button></section>`;
   }
