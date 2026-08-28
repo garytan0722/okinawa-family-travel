@@ -136,4 +136,12 @@
 - [x] Assign 10/4 STARLUX JX871 to 譚家 and leave 曾羅佳's later transport unspecified
 - [x] Rotate the PWA shell and offline cache to release v9
 - [x] Regenerate and visually inspect all three PDFs
-- [ ] Run full verification, deploy GitHub Pages, and confirm the live correction
+- [x] Run full verification, deploy GitHub Pages, and confirm the live correction
+
+### Corrected group split review
+
+- Deployed release v9 from commit `c4d480a` through GitHub Actions run `33184540635`.
+- Verified 49/49 tests, the static build, and all three regenerated 17-page PDFs.
+- Confirmed the live trip data has no 10/3 flight or airport split, keeps all six travelers together through 10/4, and assigns STARLUX JX871 to 譚家.
+- Published the user-provided group labels 譚家 and 曾羅佳 while keeping the private accommodation address and booking credentials out of the repository.
+- Verified the live app shell and service worker use v9, and the three deployed PDF hashes exactly match the inspected local artifacts.
