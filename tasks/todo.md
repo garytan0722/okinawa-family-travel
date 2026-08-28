@@ -17,7 +17,7 @@
 - [x] Audit public assets, PDFs, local Git objects, and remote refs
 - [x] Replace the private accommodation name with a generic public label
 - [x] Regenerate and inspect all PDFs
-- [ ] Rewrite and verify clean local and remote Git history
+- [x] Rewrite and verify clean local and remote Git history
 
 ## Review
 
