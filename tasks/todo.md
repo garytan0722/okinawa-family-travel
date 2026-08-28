@@ -9,8 +9,8 @@
 - [x] Build the responsive PWA
 - [x] Add offline support and Pages workflow
 - [x] Generate and inspect A/B/C PDFs
-- [ ] Run final privacy, mobile, offline, and build verification
-- [ ] Merge, push, enable Pages, and verify deployment
+- [x] Run final privacy, mobile, offline, and build verification
+- [x] Merge, push, enable Pages, and verify deployment
 
 ## Privacy remediation
 
@@ -21,4 +21,8 @@
 
 ## Review
 
-Implementation is in progress.
+- Published with GitHub Pages at `https://garytan0722.github.io/okinawa-family-travel/`.
+- GitHub Actions completed the test, build, and deployment workflow successfully.
+- Verified the live mobile layout, A/B/C plan persistence, offline reload, and service-worker cache.
+- Verified all public HTML, JavaScript, CSS, manifest, trip data, and generated PDFs return HTTP 200.
+- Scanned the published artifacts for the removed private accommodation name; no matches remain.
