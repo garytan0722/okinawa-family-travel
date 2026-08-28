@@ -68,4 +68,12 @@
 - [x] Add the canonical operator source without Instagram tracking parameters
 - [x] Rotate the PWA release so existing phones receive the itinerary update
 - [x] Regenerate and inspect all three PDFs
-- [ ] Deploy and verify the live website, offline cache, and downloadable PDFs
+- [x] Deploy and verify the live website, offline cache, and downloadable PDFs
+
+### Snorkeling update review
+
+- Deployed the fixed 2026-10-02 09:00 Pink Mermaid Okinawa snorkeling booking through GitHub Actions run `33162354478`.
+- Verified A/B/C, the fixed-logistics view, the canonical Instagram link, v5 cache takeover, and offline reload on the live GitHub Pages origin.
+- Verified all three deployed PDF hashes match the inspected local artifacts and CI reads their extracted itinerary content.
+- Kept the meeting point, participant list, equipment details, and child eligibility in the private operator messages rather than guessing or publishing them.
+- Independent review found no remaining Critical or Important issues after PDF release URLs and CI verification were fixed.
