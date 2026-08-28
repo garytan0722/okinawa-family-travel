@@ -99,9 +99,17 @@
 
 ## Confirmed flight correction
 
-- [ ] Lock the corrected 9/24 China Airlines CI120 flight in tests
-- [ ] Lock the corrected 10/4 STARLUX JX871 15:50 departure without inventing an arrival time
-- [ ] Reconcile all 10/4 A/B/C events with the earlier departure while preserving the rest of the late itinerary
-- [ ] Rotate the PWA shell and offline cache to release v7
-- [ ] Regenerate and visually inspect all three PDFs
-- [ ] Run full verification, deploy GitHub Pages, and confirm the live flight data
+- [x] Lock the corrected 9/24 China Airlines CI120 flight in tests
+- [x] Lock the corrected 10/4 STARLUX JX871 15:50 departure without inventing an arrival time
+- [x] Reconcile all 10/4 A/B/C events with the earlier departure while preserving the rest of the late itinerary
+- [x] Rotate the PWA shell and offline cache to release v7
+- [x] Regenerate and visually inspect all three PDFs
+- [x] Run full verification, deploy GitHub Pages, and confirm the live flight data
+
+### Flight correction review
+
+- Deployed release v7 from commit `d78b580` through GitHub Actions run `33171862918`.
+- Verified the live app shell and service worker use v7 and the public trip data contains China Airlines CI120 plus STARLUX JX871 at 15:50.
+- Removed the superseded BR185/20:20 details and labels JX871's unprovided arrival time explicitly instead of guessing it.
+- Preserved all unrelated 9/30–10/4 activities; only the 10/4 post-return airport timeline changed to fit the earlier departure.
+- Verified 48/48 tests, privacy checks, three visually inspected 17-page PDFs, and exact local-to-live PDF hashes.
