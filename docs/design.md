@@ -20,14 +20,14 @@ Tokyo-only modules such as the 3D globe, fandom, reels, coupons, and cashback.
 - 09/24 12:00: first car pickup at OTS 臨空豐崎營業所.
 - 09/24–09/30: two adults and two children stay at Okinawa Kariyushi Beach
   Resort Ocean Spa.
-- 09/30 06:50–09:20: Zeng-Luo-Jia, two adults, arrive on Tigerair IT230, TPE → OKA.
+- 09/30 06:50–09:20: 曾蘿情侶, two adults, arrive on Tigerair IT230, TPE → OKA.
 - 09/30 11:30: second car pickup at OTS 臨空豐崎營業所.
 - 09/30 12:00: first car return at the same branch.
-- 09/30–10/04: the Tan family and Zeng-Luo-Jia, four adults and two children in total, stay at private accommodation in Naha.
+- 09/30–10/04: the Tan family and 曾蘿情侶, four adults and two children in total, stay at private accommodation in Naha.
 - 10/03: all six travelers remain together; there is no flight or airport split.
 - 10/04 12:30: second car return at OTS 臨空豐崎營業所.
 - 10/04 15:50: the Tan family of four takes STARLUX JX871, OKA → TPE T2; arrival time was not provided.
-- Zeng-Luo-Jia's transport after the 10/04 car return was not provided and is not inferred.
+- 曾蘿情侶's transport after the 10/04 car return was not provided and is not inferred.
 
 The deployed repository must never include the source PDF's private check-in
 URL, check-in code, PIN, or user-entered travel notes.

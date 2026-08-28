@@ -27,9 +27,9 @@ test('all variants cover each trip date exactly once', () => {
 test('the approved September 30 through October 4 itinerary stays byte-for-byte equivalent', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const expectedHashes = {
-    A: 'd6e8faac2b294b3814b12df293499df9aa96701e802540599615a41c830e829c',
-    B: '7c01a6aa938628d35fe850616403fc2176cc5d6658f1cbba001c94e0a27cc8a8',
-    C: 'fecfdca59b16c582020c3b70623ca9ea9ab681ba3e30b3c1f1fcd13978fda95b',
+    A: '1e076c1741a54cfe2ab6c1e39367c615f375c2240d3d65342d67f096a155f947',
+    B: '47814f3b41cc80feeede6b23ac75b3c716a46eb01f44e1309fe710ab23d7182c',
+    C: '48cdb389f886c9f731f99f161cc7dde11e4e6639683f9cc629ce6cb8c4487f08',
   };
 
   for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
@@ -75,7 +75,7 @@ test('flight summary includes only confirmed times and known flight identifiers'
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   assert.deepEqual(trip.flights, [
     { date: '2026-09-24', party: '譚家', departure: '08:00', arrival: '10:45', airline: '華航', flightNumber: 'CI120', route: null },
-    { date: '2026-09-30', party: '曾羅佳', departure: '06:50', arrival: '09:20', airline: null, flightNumber: 'IT230', route: 'TPE → OKA' },
+    { date: '2026-09-30', party: '曾蘿情侶', departure: '06:50', arrival: '09:20', airline: null, flightNumber: 'IT230', route: 'TPE → OKA' },
     { date: '2026-10-04', party: '譚家', departure: '15:50', arrival: null, airline: '星宇航空', flightNumber: 'JX871', route: 'OKA → TPE T2' },
   ]);
 });
@@ -93,6 +93,12 @@ test('October 3 has no flight or airport split and keeps all six travelers toget
     assert.doesNotMatch(serialized, /flight|機場|那覇空港|兩位大人|一家四口先回台|機場分流/);
     assert.match(serialized, /六人/);
   }
+});
+
+test('public trip content uses the corrected 曾蘿情侶 label everywhere', () => {
+  const serialized = readFileSync(tripPath, 'utf8');
+  assert.match(serialized, /曾蘿情侶/);
+  assert.doesNotMatch(serialized, /曾羅佳/);
 });
 
 test('October 4 plans finish at the corrected JX871 departure', () => {
