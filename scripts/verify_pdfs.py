@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from pathlib import Path
+import re
 
 from pypdf import PdfReader
 
@@ -16,6 +17,10 @@ for variant, path in PDFS.items():
     assert f"{variant}版" in text, f"{path.name}: missing variant footer"
     for date in ("2026-09-24", "2026-09-30", "2026-10-03", "2026-10-04"):
         assert date in text, f"{path.name}: missing {date}"
+    assert re.search(r"10/02\s+09:00", text), f"{path.name}: missing fixed snorkeling time"
+    assert "Pink Mermaid Okinawa 浮潛（固定）" in text, f"{path.name}: missing fixed snorkeling activity"
+    assert "https://www.instagram.com/pinkmermaid_okinawa/" in text, f"{path.name}: missing snorkeling source"
+    assert "成人藍洞" not in text, f"{path.name}: contains superseded October 2 plan"
     assert "那霸私人住宿" in text, f"{path.name}: missing generic accommodation label"
     assert "地址與入住資料請使用私人訂房訊息" in text, f"{path.name}: missing private navigation guidance"
     assert all(len((page.extract_text() or "").strip()) > 20 for page in reader.pages), f"{path.name}: blank page"

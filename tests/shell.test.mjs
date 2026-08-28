@@ -23,10 +23,21 @@ test('HTML shell has mobile metadata, product landmarks, and module entry', () =
 test('browser shell resources share one release revision', () => {
   const files = ['index.html', 'app.mjs', 'src/render.mjs', 'manifest.json', 'sw.js'];
   const text = files.map((path) => readFileSync(new URL(path, root), 'utf8')).join('\n');
-  const revisions = [...text.matchAll(/(?:index\.html|styles\.css|app\.mjs|manifest\.json|icon\.svg|trip\.json|trip-domain\.mjs|render\.mjs|storage\.mjs|pwa-update\.mjs)\?v=([\w.-]+)/g)]
+  const revisions = [...text.matchAll(/(?:index\.html|styles\.css|app\.mjs|manifest\.json|icon\.svg|trip\.json|trip-domain\.mjs|render\.mjs|storage\.mjs|pwa-update\.mjs|okinawa-family-trip-(?:A-balanced|B-active|C-relaxed)\.pdf)\?v=([\w.-]+)/g)]
     .map((match) => match[1]);
-  assert.ok(revisions.length >= 11, 'all browser shell resources must be revisioned');
+  assert.ok(revisions.length >= 14, 'all browser shell resources must be revisioned');
   assert.deepEqual([...new Set(revisions)], ['5']);
+});
+
+test('downloadable PDFs use the current release revision in the app and offline cache', () => {
+  const shell = ['app.mjs', 'sw.js']
+    .map((path) => readFileSync(new URL(path, root), 'utf8'))
+    .join('\n');
+  const urls = [...shell.matchAll(/okinawa-family-trip-(?:A-balanced|B-active|C-relaxed)\.pdf(?:\?v=[\w.-]+)?/g)]
+    .map((match) => match[0]);
+
+  assert.equal(urls.length, 6);
+  assert.ok(urls.every((url) => url.endsWith('?v=5')));
 });
 
 test('manifest uses the GitHub Pages subpath-safe start URL', () => {

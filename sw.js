@@ -3,9 +3,9 @@ const CACHE = 'okinawa-road-book-v5';
 const CORE = [
   './index.html?v=5', './styles.css?v=5', './app.mjs?v=5', './manifest.json?v=5', './icons/icon.svg?v=5',
   './content/trip.json?v=5', './src/trip-domain.mjs?v=5', './src/render.mjs?v=5', './src/storage.mjs?v=5', './src/pwa-update.mjs?v=5',
-  './output/pdf/okinawa-family-trip-A-balanced.pdf',
-  './output/pdf/okinawa-family-trip-B-active.pdf',
-  './output/pdf/okinawa-family-trip-C-relaxed.pdf',
+  './output/pdf/okinawa-family-trip-A-balanced.pdf?v=5',
+  './output/pdf/okinawa-family-trip-B-active.pdf?v=5',
+  './output/pdf/okinawa-family-trip-C-relaxed.pdf?v=5',
 ];
 
 self.addEventListener('install', (event) => {
