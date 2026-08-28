@@ -12,12 +12,15 @@ import {
 
 const trip = JSON.parse(readFileSync(new URL('../content/trip.json', import.meta.url), 'utf8'));
 
-test('party changes after the family flies home', () => {
+test('party labels identify both groups while all six stay together through October 4', () => {
+  assert.deepEqual(getPartyForDate(trip, '2026-09-24'), {
+    adults: 2, children: 2, label: '譚家',
+  });
   assert.deepEqual(getPartyForDate(trip, '2026-09-30'), {
-    adults: 4, children: 2, label: '四大兩小',
+    adults: 4, children: 2, label: '譚家＋曾羅佳',
   });
   assert.deepEqual(getPartyForDate(trip, '2026-10-04'), {
-    adults: 2, children: 0, label: '兩位大人',
+    adults: 4, children: 2, label: '譚家＋曾羅佳',
   });
 });
 

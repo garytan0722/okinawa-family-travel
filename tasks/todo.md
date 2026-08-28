@@ -128,3 +128,12 @@
 - Increased itinerary-card right padding so the larger mark remains separate from long titles.
 - Verified checked and unchecked states at 320px, 390px, and 1440px with no title overlap or horizontal overflow.
 - Deployed release v8 from commit `e506ed8` through GitHub Actions run `33181625775` and confirmed the live CSS and cache revision.
+
+## Corrected October 3–4 group split
+
+- [x] Add regression tests for the named groups and the absence of a 10/3 flight
+- [x] Keep all six travelers together on 10/3 in A/B/C
+- [x] Assign 10/4 STARLUX JX871 to 譚家 and leave 曾羅佳's later transport unspecified
+- [x] Rotate the PWA shell and offline cache to release v9
+- [x] Regenerate and visually inspect all three PDFs
+- [ ] Run full verification, deploy GitHub Pages, and confirm the live correction

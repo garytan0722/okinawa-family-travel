@@ -43,22 +43,24 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=8" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=9" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
-test('flight summary clearly labels missing details instead of guessing them', () => {
+test('flight summary shows the named groups and labels only genuinely missing details', () => {
   assert.equal(typeof renderModule.renderFlightSummary, 'function');
   if (typeof renderModule.renderFlightSummary !== 'function') return;
   const html = renderModule.renderFlightSummary(trip);
   assert.match(html, /9\/24/);
   assert.match(html, /08:00.*10:45/s);
   assert.match(html, /華航 CI120/);
-  assert.match(html, /班號未提供/);
+  assert.doesNotMatch(html, /班號未提供/);
   assert.match(html, /航線未提供/);
   assert.match(html, /IT230/);
   assert.match(html, /TPE → OKA/);
   assert.match(html, /星宇航空 JX871/);
+  assert.match(html, /譚家/);
+  assert.match(html, /曾羅佳/);
   assert.match(html, /15:50.*抵達時間未提供/s);
   assert.match(html, /OKA → TPE T2/);
 });
@@ -81,8 +83,8 @@ test('emergency view puts 110 and 119 first and provides actionable OTS instruct
 test('private accommodation renders generic guidance without a public map link', () => {
   const day = trip.days.C.find((item) => item.date === '2026-10-03');
   const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {} });
-  assert.match(html, /那霸私人住宿（兩位大人）/);
-  assert.doesNotMatch(html, /<strong>那霸私人住宿（兩位大人）<\/strong><a /);
+  assert.match(html, /那霸私人住宿（譚家＋曾羅佳）/);
+  assert.doesNotMatch(html, /<strong>那霸私人住宿（譚家＋曾羅佳）<\/strong><a /);
 });
 
 test('user-controlled notes are escaped', () => {
