@@ -87,9 +87,12 @@
 - [x] Replace the completion mark with an accessible dog-paw stamp
 - [x] Rotate all web, service-worker, and PDF URLs to release v6
 - [x] Regenerate and visually inspect all three PDFs
-- [ ] Verify mobile, persistence, offline upgrade, privacy, and production deployment
+- [x] Verify mobile, persistence, offline upgrade, privacy, and production deployment
 
 ### Front itinerary refresh review
 
-- Local checks cover the full test/build suite, all three 17-page PDFs, 320/390/1440px layouts, native checkbox persistence, offline reload, and a real v5-to-v6 service-worker upgrade.
-- Production deployment and live-origin verification remain pending.
+- Deployed release v6 from commit `d5d7f61` through GitHub Actions run `33168570409`.
+- Verified 47/47 tests, all 15 required public assets, and three visually inspected 17-page PDFs.
+- Confirmed the 9/30–10/4 A/B/C hashes are unchanged; early plans do not repeat late attractions, and C 9/28 keeps one main attraction.
+- Verified the live 320/390/1440px layouts, checkbox persistence, v5-to-v6 takeover, offline reload, OTS guidance, dog-paw stamp, and exact deployed PDF hashes.
+- Independent review found no remaining Critical or Important issues after mandatory 110 guidance and paw-asset packaging were corrected.
