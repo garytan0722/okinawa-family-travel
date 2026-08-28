@@ -21,11 +21,11 @@ test('HTML shell has mobile metadata, product landmarks, and module entry', () =
 });
 
 test('browser shell resources share one release revision', () => {
-  const files = ['index.html', 'app.mjs', 'src/render.mjs', 'manifest.json'];
+  const files = ['index.html', 'app.mjs', 'src/render.mjs', 'manifest.json', 'sw.js'];
   const text = files.map((path) => readFileSync(new URL(path, root), 'utf8')).join('\n');
-  const revisions = [...text.matchAll(/(?:styles\.css|app\.mjs|manifest\.json|icon\.svg|trip\.json|trip-domain\.mjs|render\.mjs|storage\.mjs|pwa-update\.mjs)\?v=([\w.-]+)/g)]
+  const revisions = [...text.matchAll(/(?:index\.html|styles\.css|app\.mjs|manifest\.json|icon\.svg|trip\.json|trip-domain\.mjs|render\.mjs|storage\.mjs|pwa-update\.mjs)\?v=([\w.-]+)/g)]
     .map((match) => match[1]);
-  assert.ok(revisions.length >= 10, 'all browser shell resources must be revisioned');
+  assert.ok(revisions.length >= 11, 'all browser shell resources must be revisioned');
   assert.deepEqual([...new Set(revisions)], ['4']);
 });
 
@@ -89,6 +89,33 @@ test('service worker prefers the network for online navigations', async () => {
   });
   assert.equal((await response).marker, 'fresh');
   assert.equal(fetches, 1);
+});
+
+test('offline navigation falls back to the revisioned HTML shell', async () => {
+  const worker = readFileSync(new URL('sw.js', root), 'utf8');
+  const handlers = {};
+  const matched = [];
+  const cached = { marker: 'revisioned-shell' };
+  const context = {
+    URL,
+    fetch: async () => { throw new Error('offline'); },
+    caches: {
+      match: async (request) => { matched.push(request); return cached; },
+      open: async () => ({ put: async () => {} }),
+    },
+    self: {
+      location: { origin: 'https://example.test' },
+      addEventListener: (name, handler) => { handlers[name] = handler; },
+    },
+  };
+  vm.runInNewContext(worker, context);
+  let response;
+  handlers.fetch({
+    request: { method: 'GET', mode: 'navigate', url: 'https://example.test/' },
+    respondWith: (promise) => { response = promise; },
+  });
+  assert.equal((await response).marker, 'revisioned-shell');
+  assert.deepEqual(matched, ['./index.html?v=4']);
 });
 
 test('activating a new worker claims clients without forcing navigation', async () => {
