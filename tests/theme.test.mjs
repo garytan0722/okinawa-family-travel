@@ -59,10 +59,15 @@ test('energy controls provide a 44 pixel touch target', () => {
   assert.ok(size >= 44);
 });
 
-test('dog-paw completion stamp keeps a 44 pixel target and visible checked state', () => {
+test('cat-paw completion stamp is prominent, tappable, and visible when checked', () => {
   const target = rule('.event-check');
-  assert.match(target, /width:\s*44px/);
-  assert.match(target, /height:\s*44px/);
-  assert.match(rule('.dog-paw-stamp'), /opacity:\s*0/);
+  const stamp = rule('.dog-paw-stamp');
+  const targetWidth = Number(target.match(/width:\s*([\d.]+)px/)?.[1]);
+  const targetHeight = Number(target.match(/height:\s*([\d.]+)px/)?.[1]);
+  const stampWidth = Number(stamp.match(/width:\s*([\d.]+)px/)?.[1]);
+  const stampHeight = Number(stamp.match(/height:\s*([\d.]+)px/)?.[1]);
+  assert.ok(targetWidth >= 52 && targetHeight >= 52, 'stamp target must grow beyond the former 44px control');
+  assert.ok(stampWidth >= 48 && stampHeight >= 48, 'visible paw stamp must be substantially larger than 36px');
+  assert.match(stamp, /opacity:\s*0/);
   assert.match(rule('.event-check input:checked + .check-paw .dog-paw-stamp'), /opacity:\s*1/);
 });

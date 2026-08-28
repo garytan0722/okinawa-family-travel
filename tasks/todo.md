@@ -113,3 +113,11 @@
 - Removed the superseded BR185/20:20 details and labels JX871's unprovided arrival time explicitly instead of guessing it.
 - Preserved all unrelated 9/30–10/4 activities; only the 10/4 post-return airport timeline changed to fit the earlier departure.
 - Verified 48/48 tests, privacy checks, three visually inspected 17-page PDFs, and exact local-to-live PDF hashes.
+
+## Larger cat-paw completion stamp
+
+- [ ] Add a failing visual-style test for a substantially larger completion stamp
+- [ ] Increase the stamp and tap target without covering itinerary text
+- [ ] Rotate the PWA shell and offline cache to release v8
+- [ ] Verify checked and unchecked states at 320px, 390px, and desktop widths
+- [ ] Deploy GitHub Pages and confirm the live v8 stamp
