@@ -51,4 +51,12 @@
 - [x] Add failing tests for revisioned assets, network-first navigation, and client takeover
 - [x] Implement the durable v4 update protocol
 - [x] Verify a real previous-version browser upgrades automatically and still works offline
-- [ ] Deploy and verify the canonical and cache-busting URLs
+- [x] Deploy and verify the canonical and cache-busting URLs
+
+### Update recovery review
+
+- Deployed the v4 release through GitHub Actions run `33161204292`.
+- Verified the recovery URL and canonical URL both render the paw-print redesign on the live GitHub Pages origin.
+- Verified a browser controlled by the previous service worker upgrades to v4, keeps only the v4 cache, and reloads offline.
+- Verified the live 390px layout has zero horizontal overflow and public assets remain free of private booking credentials.
+- Independent review found no Critical or Important issues after the revisioned offline-shell fix.
