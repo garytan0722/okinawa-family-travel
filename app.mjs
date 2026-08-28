@@ -1,7 +1,7 @@
-import { getVariantDay, mapUrl, nextFixedEvent } from './src/trip-domain.mjs?v=4';
-import { centeredScrollLeft, renderDay, renderSources, renderVariantTabs, escapeHtml } from './src/render.mjs?v=4';
-import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=4';
-import { installPwaUpdate } from './src/pwa-update.mjs?v=4';
+import { getVariantDay, mapUrl, nextFixedEvent } from './src/trip-domain.mjs?v=5';
+import { centeredScrollLeft, renderDay, renderSources, renderVariantTabs, escapeHtml } from './src/render.mjs?v=5';
+import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=5';
+import { installPwaUpdate } from './src/pwa-update.mjs?v=5';
 
 const app = document.querySelector('#app');
 const quickPanel = document.querySelector('#quick-panel-content');
@@ -79,7 +79,7 @@ function renderHome() {
 function renderLogistics() {
   const events = [...trip.fixedEvents].sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`));
   const stays = trip.stays.map((stay) => `<article class="tool-card"><span class="card-number">STAY</span><h3>${escapeHtml(stay.name)}</h3><p>${escapeHtml(stay.from)} — ${escapeHtml(stay.to)}</p>${stay.privateNavigation ? '<small>地址與入住資料留在私人訂房訊息，不公開在此網站。</small>' : `<a href="${mapUrl(stay.mapQuery)}" target="_blank" rel="noopener noreferrer">開啟導航</a>`}</article>`).join('');
-  app.innerHTML = `<section class="tool-view"><p class="eyebrow">FIXED LOGISTICS</p><h1>班機、換車與住宿</h1><p class="lede">這些是不能移動的時間；其餘景點都應讓位給它們。</p><div class="tool-grid">${stays}</div><ol class="fixed-list">${events.map((event) => `<li><time>${dateLabel(event.date)}<strong>${event.time}${event.end ? `–${event.end}` : ''}</strong></time><div><h3>${escapeHtml(event.title)}</h3><p>${escapeHtml(event.place)}</p>${event.note ? `<small>${escapeHtml(event.note)}</small>` : ''}</div></li>`).join('')}</ol></section>`;
+  app.innerHTML = `<section class="tool-view"><p class="eyebrow">FIXED LOGISTICS</p><h1>固定行程與住宿</h1><p class="lede">這些是不能移動的時間；其餘景點都應讓位給它們。</p><div class="tool-grid">${stays}</div><ol class="fixed-list">${events.map((event) => `<li><time>${dateLabel(event.date)}<strong>${event.time}${event.end ? `–${event.end}` : ''}</strong></time><div><h3>${escapeHtml(event.title)}</h3><p>${escapeHtml(event.place)}</p>${event.note ? `<small>${escapeHtml(event.note)}</small>` : ''}</div></li>`).join('')}</ol></section>`;
 }
 
 function renderEmergency() {
@@ -167,7 +167,7 @@ function updateNetworkStatus() {
 
 async function boot() {
   try {
-    const response = await fetch('./content/trip.json?v=4');
+    const response = await fetch('./content/trip.json?v=5');
     if (!response.ok) throw new Error('行程資料載入失敗');
     trip = await response.json();
     renderRoute();

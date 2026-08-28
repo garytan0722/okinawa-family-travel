@@ -26,7 +26,7 @@ test('browser shell resources share one release revision', () => {
   const revisions = [...text.matchAll(/(?:index\.html|styles\.css|app\.mjs|manifest\.json|icon\.svg|trip\.json|trip-domain\.mjs|render\.mjs|storage\.mjs|pwa-update\.mjs)\?v=([\w.-]+)/g)]
     .map((match) => match[1]);
   assert.ok(revisions.length >= 11, 'all browser shell resources must be revisioned');
-  assert.deepEqual([...new Set(revisions)], ['4']);
+  assert.deepEqual([...new Set(revisions)], ['5']);
 });
 
 test('manifest uses the GitHub Pages subpath-safe start URL', () => {
@@ -38,7 +38,7 @@ test('manifest uses the GitHub Pages subpath-safe start URL', () => {
 
 test('service worker rotates the cache after privacy-sensitive content changes', () => {
   const worker = readFileSync(new URL('sw.js', root), 'utf8');
-  assert.match(worker, /okinawa-road-book-v4/);
+  assert.match(worker, /okinawa-road-book-v5/);
   assert.match(worker, /key !== CACHE/);
 });
 
@@ -48,7 +48,7 @@ test('service worker only removes old caches owned by this app', async () => {
   const handlers = {};
   const context = {
     caches: {
-      keys: async () => ['okinawa-road-book-v3', 'another-pages-app-v1', 'okinawa-road-book-v4'],
+      keys: async () => ['okinawa-road-book-v4', 'another-pages-app-v1', 'okinawa-road-book-v5'],
       delete: async (key) => { deleted.push(key); },
     },
     self: {
@@ -60,7 +60,7 @@ test('service worker only removes old caches owned by this app', async () => {
   let activation;
   handlers.activate({ waitUntil: (promise) => { activation = promise; } });
   await activation;
-  assert.deepEqual(deleted, ['okinawa-road-book-v3']);
+  assert.deepEqual(deleted, ['okinawa-road-book-v4']);
 });
 
 test('service worker prefers the network for online navigations', async () => {
@@ -115,7 +115,7 @@ test('offline navigation falls back to the revisioned HTML shell', async () => {
     respondWith: (promise) => { response = promise; },
   });
   assert.equal((await response).marker, 'revisioned-shell');
-  assert.deepEqual(matched, ['./index.html?v=4']);
+  assert.deepEqual(matched, ['./index.html?v=5']);
 });
 
 test('activating a new worker claims clients without forcing navigation', async () => {

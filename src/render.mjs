@@ -1,4 +1,4 @@
-import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=4';
+import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=5';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',

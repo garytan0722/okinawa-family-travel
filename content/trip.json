@@ -42,6 +42,7 @@
     { "id": "f-0930-flight", "date": "2026-09-30", "time": "09:20", "kind": "flight-arrival", "title": "IT230 抵達 OKA", "place": "那覇空港", "note": "06:50 TPE 起飛，兩位大人加入。" },
     { "id": "f-0930-car2", "date": "2026-09-30", "time": "11:30", "kind": "car-pickup", "title": "OTS 取第二台六人用車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-0930-car1-return", "date": "2026-09-30", "time": "12:00", "kind": "car-return", "title": "OTS 還第一台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
+    { "id": "f-1002-snorkeling", "date": "2026-10-02", "time": "09:00", "kind": "snorkeling", "title": "Pink Mermaid Okinawa 浮潛", "place": "集合地點依業者預約訊息", "note": "已確認固定行程；參加名單、集合時間、裝備與幼兒規定依業者預約訊息確認。", "sourceIds": ["pinkmermaid"] },
     { "id": "f-1003-flight", "date": "2026-10-03", "time": "15:50", "end": "16:25", "kind": "flight-departure", "title": "一家四口返回台灣", "place": "那覇空港", "note": "航空公司與班號未提供；13:30 前抵達機場。" },
     { "id": "f-1004-car-return", "date": "2026-10-04", "time": "12:30", "kind": "car-return", "title": "OTS 還第二台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-1004-flight", "date": "2026-10-04", "time": "20:20", "end": "20:55", "kind": "flight-departure", "title": "BR185 返回台灣", "place": "那覇空港", "note": "OKA → TPE T2，兩位大人。" }
@@ -61,7 +62,8 @@
     { "id": "okinawaworld", "label": "沖繩世界官方網站", "url": "https://www.gyokusendo.co.jp/okinawaworld/", "checkedAt": "2026-08-28" },
     { "id": "dmm", "label": "DMM Kariyushi水族館官方網站", "url": "https://kariyushi-aquarium.com/", "checkedAt": "2026-08-28" },
     { "id": "ots", "label": "OTS租車官方網站", "url": "https://www.otsinternational.jp/otsrentacar/", "checkedAt": "2026-08-28" },
-    { "id": "onna", "label": "恩納村觀光協會", "url": "https://www.onnanavi.com/", "checkedAt": "2026-08-28" }
+    { "id": "onna", "label": "恩納村觀光協會", "url": "https://www.onnanavi.com/", "checkedAt": "2026-08-28" },
+    { "id": "pinkmermaid", "label": "Pink Mermaid Okinawa Instagram", "url": "https://www.instagram.com/pinkmermaid_okinawa/", "checkedAt": "2026-08-28" }
   ],
   "emergency": [
     { "label": "警察", "phone": "110", "note": "事故、遺失或人身安全" },
@@ -142,11 +144,11 @@
         ]
       },
       {
-        "date": "2026-10-02", "title": "成人藍洞・孩子Bios之丘", "area": "恩納 → 沖繩市", "stay": "那霸私人住宿", "drive": "那霸到恩納約 55–75 分", "rainPlan": "海況取消時六人一起改Bios之丘或AEON Rycom。",
+        "date": "2026-10-02", "title": "Pink Mermaid 浮潛・午後室內放鬆", "area": "恩納 → 沖繩市", "stay": "那霸私人住宿", "drive": "那霸到恩納約 55–75 分", "rainPlan": "海況取消時依業者通知；備案改Bios之丘或AEON Rycom。",
         "events": [
-          { "id": "A-1002-1", "time": "08:00", "type": "drive", "title": "前往恩納、成人與親子組分流", "place": "真栄田岬／ビオスの丘", "mapQuery": "真栄田岬", "note": "水肺活動只排已預約成人；至少一位大人全程陪孩子。", "sourceIds": ["onna"] },
-          { "id": "A-1002-2", "time": "09:00", "type": "activity", "title": "成人：藍洞潛水／親子：Bios之丘", "place": "真栄田岬／ビオスの丘", "mapQuery": "ビオスの丘", "note": "4–5歲不假設可參加水肺；親子組搭湖水觀賞舟。", "sourceIds": ["bios", "onna"] },
-          { "id": "A-1002-3", "time": "12:30", "type": "meal", "title": "恩納會合午餐", "place": "恩納村", "mapQuery": "恩納村 子連れ ランチ", "note": "潛水結束時間可能受海況影響，午餐保留彈性。" },
+          { "id": "A-1002-1", "time": "07:30", "type": "drive", "title": "從那霸前往浮潛集合地點", "place": "恩納村（依業者預約訊息）", "mapQuery": "", "note": "預留塞車、換裝與報到時間；不要使用公開網站猜測集合地址。", "sourceIds": ["pinkmermaid"] },
+          { "id": "A-1002-2", "time": "09:00", "type": "activity", "title": "Pink Mermaid Okinawa 浮潛（固定）", "place": "集合地點依業者預約訊息", "mapQuery": "", "note": "已預約；參加名單、集合時間、裝備與4–5歲幼兒規定依業者確認。", "sourceIds": ["pinkmermaid"] },
+          { "id": "A-1002-3", "time": "12:30", "type": "meal", "title": "恩納午餐", "place": "恩納村", "mapQuery": "恩納村 子連れ ランチ", "note": "浮潛結束時間可能受海況影響，午餐保留彈性。" },
           { "id": "A-1002-4", "time": "15:30", "type": "shopping", "title": "AEON Mall沖繩來客夢晚餐與補給", "place": "イオンモール沖縄ライカム", "mapQuery": "イオンモール沖縄ライカム", "note": "親子友善室內收尾；累了直接回那霸住宿。" }
         ]
       },
@@ -221,8 +223,8 @@
         { "id": "B-1001-4", "time": "18:00", "type": "meal", "title": "美國村晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ" },
         { "id": "B-1001-5", "time": "20:30", "type": "drive", "title": "回那霸住宿", "place": "那霸", "mapQuery": "那覇市" }
       ]},
-      { "date": "2026-10-02", "title": "藍洞・港川・普天滿・Rycom", "area": "恩納 → 浦添 → 宜野灣", "stay": "那霸私人住宿", "drive": "全日約 120–160 分", "rainPlan": "海況取消改Bios之丘＋AEON Rycom。", "events": [
-        { "id": "B-1002-1", "time": "09:00", "type": "activity", "title": "成人藍洞／親子Bios之丘", "place": "真栄田岬／ビオスの丘", "mapQuery": "ビオスの丘", "note": "幼兒不參加水肺。", "sourceIds": ["bios", "onna"] },
+      { "date": "2026-10-02", "title": "Pink Mermaid 浮潛・港川・普天滿・Rycom", "area": "恩納 → 浦添 → 宜野灣", "stay": "那霸私人住宿", "drive": "全日約 120–160 分", "rainPlan": "海況取消時依業者通知；備案改Bios之丘＋AEON Rycom。", "events": [
+        { "id": "B-1002-1", "time": "09:00", "type": "activity", "title": "Pink Mermaid Okinawa 浮潛（固定）", "place": "集合地點依業者預約訊息", "mapQuery": "", "note": "已預約；參加名單、集合時間、裝備與4–5歲幼兒規定依業者確認。", "sourceIds": ["pinkmermaid"] },
         { "id": "B-1002-2", "time": "13:30", "type": "walk", "title": "港川外人住宅", "place": "港川ステイツサイドタウン", "mapQuery": "港川ステイツサイドタウン", "note": "次要項；停車困難或孩子累就刪除。" },
         { "id": "B-1002-3", "time": "15:00", "type": "culture", "title": "普天滿宮", "place": "普天満宮", "mapQuery": "普天満宮", "note": "洞穴參拜時間行前確認。" },
         { "id": "B-1002-4", "time": "16:30", "type": "shopping", "title": "AEON Rycom晚餐", "place": "イオンモール沖縄ライカム", "mapQuery": "イオンモール沖縄ライカム" }
@@ -291,8 +293,8 @@
         { "id": "C-1001-3", "time": "13:30", "type": "meal", "title": "園區午餐後返程", "place": "海洋博公園", "mapQuery": "海洋博公園" },
         { "id": "C-1001-4", "time": "17:00", "type": "rest", "title": "回住宿休息與外帶晚餐", "place": "那霸", "mapQuery": "那覇 テイクアウト" }
       ]},
-      { "date": "2026-10-02", "title": "成人選玩藍洞・全家美國村", "area": "恩納 → 北谷", "stay": "那霸私人住宿", "drive": "全日約 110–140 分", "rainPlan": "海況取消後睡到自然醒，下午AEON或美國村室內。", "events": [
-        { "id": "C-1002-1", "time": "09:30", "type": "activity", "title": "成人藍洞／親子飯店或Bios之丘", "place": "真栄田岬／ビオスの丘", "mapQuery": "ビオスの丘", "note": "成人潛水是可選項；孩子不參加水肺。", "sourceIds": ["bios", "onna"] },
+      { "date": "2026-10-02", "title": "Pink Mermaid 浮潛・全家美國村", "area": "恩納 → 北谷", "stay": "那霸私人住宿", "drive": "全日約 110–140 分", "rainPlan": "海況取消時依業者通知；下午改AEON或美國村室內。", "events": [
+        { "id": "C-1002-1", "time": "09:00", "type": "activity", "title": "Pink Mermaid Okinawa 浮潛（固定）", "place": "集合地點依業者預約訊息", "mapQuery": "", "note": "已預約；參加名單、集合時間、裝備與4–5歲幼兒規定依業者確認。", "sourceIds": ["pinkmermaid"] },
         { "id": "C-1002-2", "time": "13:00", "type": "meal", "title": "六人會合午餐", "place": "恩納村", "mapQuery": "恩納村 子連れ ランチ" },
         { "id": "C-1002-3", "time": "16:00", "type": "walk", "title": "美國村夕陽與早晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ" },
         { "id": "C-1002-4", "time": "19:00", "type": "drive", "title": "提早回那霸住宿", "place": "那霸", "mapQuery": "那覇市" }

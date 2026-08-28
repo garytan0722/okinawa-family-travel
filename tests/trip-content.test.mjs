@@ -36,6 +36,29 @@ test('fixed logistics preserve the confirmed car handoff and departures', () => 
   assert.ok(fixed.some((event) => event.date === '2026-10-04' && event.time === '12:30' && event.kind === 'car-return'));
 });
 
+test('all itineraries preserve the confirmed October 2 snorkeling booking', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const booking = trip.fixedEvents.find((event) => event.id === 'f-1002-snorkeling');
+
+  assert.deepEqual(
+    booking && { date: booking.date, time: booking.time, kind: booking.kind, sourceIds: booking.sourceIds },
+    { date: '2026-10-02', time: '09:00', kind: 'snorkeling', sourceIds: ['pinkmermaid'] },
+  );
+  assert.equal(
+    trip.sources.find((source) => source.id === 'pinkmermaid')?.url,
+    'https://www.instagram.com/pinkmermaid_okinawa/',
+  );
+
+  for (const variantId of ['A', 'B', 'C']) {
+    const day = trip.days[variantId].find((item) => item.date === '2026-10-02');
+    assert.ok(day.events.some((event) => (
+      event.time === '09:00'
+      && event.title.includes('Pink Mermaid Okinawa')
+      && event.sourceIds?.includes('pinkmermaid')
+    )), `${variantId} must include the fixed snorkeling booking`);
+  }
+});
+
 test('deployed content uses a generic label for private accommodation', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const stay = trip.stays.find((item) => item.privateNavigation === true);

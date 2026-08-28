@@ -1,8 +1,8 @@
 const CACHE_PREFIX = 'okinawa-road-book-';
-const CACHE = 'okinawa-road-book-v4';
+const CACHE = 'okinawa-road-book-v5';
 const CORE = [
-  './index.html?v=4', './styles.css?v=4', './app.mjs?v=4', './manifest.json?v=4', './icons/icon.svg?v=4',
-  './content/trip.json?v=4', './src/trip-domain.mjs?v=4', './src/render.mjs?v=4', './src/storage.mjs?v=4', './src/pwa-update.mjs?v=4',
+  './index.html?v=5', './styles.css?v=5', './app.mjs?v=5', './manifest.json?v=5', './icons/icon.svg?v=5',
+  './content/trip.json?v=5', './src/trip-domain.mjs?v=5', './src/render.mjs?v=5', './src/storage.mjs?v=5', './src/pwa-update.mjs?v=5',
   './output/pdf/okinawa-family-trip-A-balanced.pdf',
   './output/pdf/okinawa-family-trip-B-active.pdf',
   './output/pdf/okinawa-family-trip-C-relaxed.pdf',
@@ -30,7 +30,7 @@ self.addEventListener('fetch', (event) => {
     return response;
   });
   if (event.request.mode === 'navigate') {
-    event.respondWith(fromNetwork().catch(() => caches.match('./index.html?v=4')));
+    event.respondWith(fromNetwork().catch(() => caches.match('./index.html?v=5')));
     return;
   }
   event.respondWith(caches.match(event.request).then((cached) => cached || fromNetwork()));

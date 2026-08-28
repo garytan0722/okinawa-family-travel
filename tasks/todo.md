@@ -60,3 +60,12 @@
 - Verified a browser controlled by the previous service worker upgrades to v4, keeps only the v4 cache, and reloads offline.
 - Verified the live 390px layout has zero horizontal overflow and public assets remain free of private booking credentials.
 - Independent review found no Critical or Important issues after the revisioned offline-shell fix.
+
+## October 2 snorkeling booking
+
+- [x] Add a fixed 2026-10-02 09:00 Pink Mermaid Okinawa snorkeling event
+- [x] Replace conflicting October 2 activities in A/B/C with the confirmed booking
+- [x] Add the canonical operator source without Instagram tracking parameters
+- [x] Rotate the PWA release so existing phones receive the itinerary update
+- [x] Regenerate and inspect all three PDFs
+- [ ] Deploy and verify the live website, offline cache, and downloadable PDFs
