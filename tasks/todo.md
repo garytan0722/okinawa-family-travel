@@ -169,7 +169,7 @@
 - [x] 以測試鎖定青潛集合資訊、付費景點票價與 v11 離線更新
 - [x] 實作網站行程卡的集合／注意事項與門票資訊
 - [x] 重建並視覺檢查 A／B／C PDF
-- [ ] 完整驗證、部署 GitHub Pages 並確認線上版本
+- [x] 完整驗證、部署 GitHub Pages 並確認線上版本
 
 ### 青潛與門票 review
 
@@ -177,3 +177,5 @@
 - 只修正 10/2 與青潛預約直接相關的資訊；9/30、10/1、10/3、10/4 行程內容未變更。
 - 為 A／B／C 行程內 15 個付費活動／景點加入官方票價、年齡區間、備註與官方查價連結，票價查核日為 2026-08-29。
 - Verified 53/53 tests, the privacy-safe static build, and three visually inspected 20-page PDFs.
+- Deployed release v11 from commit `dea3c26` through GitHub Actions run `33239104995`.
+- Confirmed the live JSON contains the 08:00 meeting／09:00 activity split and all 15 ticket records, the live service worker uses v11, and all three deployed PDF hashes exactly match the inspected local artifacts.
