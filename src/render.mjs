@@ -1,4 +1,4 @@
-import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=10';
+import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=11';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -37,6 +37,49 @@ function sourceLinks(trip, ids = []) {
   return links.length ? `<span class="source-links">${links.join(' · ')}</span>` : '';
 }
 
+function ticketForEvent(trip, event) {
+  const sourceIds = event.sourceIds ?? [];
+  return trip.ticketInfo?.find((ticket) => sourceIds.includes(ticket.id));
+}
+
+function renderTicketInfo(trip, event) {
+  const ticket = ticketForEvent(trip, event);
+  if (!ticket) return '';
+  const source = trip.sources.find((item) => item.id === ticket.sourceId);
+  const heading = ticket.kind === 'activity' ? '活動費' : '門票';
+  return `<aside class="ticket-info" aria-label="${escapeHtml(ticket.label)}${heading}資訊">
+    <span>🎟 ${heading} · 查核 ${escapeHtml(ticket.checkedAt)}</span>
+    <strong>${escapeHtml(ticket.price)}</strong>
+    <p>${escapeHtml(ticket.note)}</p>
+    ${source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">查看官方${heading === '門票' ? '票價' : heading}</a>` : ''}
+  </aside>`;
+}
+
+function renderBookingInfo(trip, event) {
+  const booking = event.bookingId ? trip.activityBookings?.[event.bookingId] : null;
+  if (!booking) return '';
+  const sources = booking.sourceIds
+    .map((id) => trip.sources.find((source) => source.id === id))
+    .filter(Boolean);
+  return `<details class="booking-info" open>
+    <summary>🌊 ${escapeHtml(booking.activityTime)} 活動 · ${escapeHtml(booking.meetingTime)} 集合</summary>
+    <div class="booking-facts">
+      <p><span>建議出發</span><strong>${escapeHtml(booking.recommendedDeparture)} 從那霸離開</strong></p>
+      <p><span>集合地點</span><strong>${escapeHtml(booking.meetingPlace)}</strong></p>
+      <p><span>地址</span><strong>${escapeHtml(booking.address)}</strong></p>
+      <p><span>MapCode</span><strong>${escapeHtml(booking.mapCode)}</strong></p>
+    </div>
+    <p class="booking-parking">🚙 ${escapeHtml(booking.parking)}</p>
+    <p class="booking-kit"><strong>自備：</strong>${booking.bring.map(escapeHtml).join('、')}<br><strong>店家提供：</strong>${booking.included.map(escapeHtml).join('、')}</p>
+    <ul>${booking.precautions.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul>
+    <div class="booking-actions">
+      <a href="${escapeHtml(booking.navigationUrl)}" target="_blank" rel="noopener noreferrer">📍 官方集合導航</a>
+      <a href="tel:${escapeHtml(booking.phone)}">☎ ${escapeHtml(booking.phone)}</a>
+      ${sources.map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">${escapeHtml(source.label)}</a>`).join('')}
+    </div>
+  </details>`;
+}
+
 function renderEvent(trip, event, completed) {
   const maps = mapUrl(event.mapQuery);
   const isDone = completed[event.id] === true;
@@ -45,7 +88,7 @@ function renderEvent(trip, event, completed) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=10" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=11" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -54,6 +97,8 @@ function renderEvent(trip, event, completed) {
         <h3>${escapeHtml(event.title)}</h3>
         <p class="event-place">${escapeHtml(event.place)}</p>
         ${event.note ? `<p class="event-note">${escapeHtml(event.note)}</p>` : ''}
+        ${renderBookingInfo(trip, event)}
+        ${renderTicketInfo(trip, event)}
         <div class="event-actions">
           ${maps ? `<a href="${escapeHtml(maps)}" target="_blank" rel="noopener noreferrer">📍 Google Maps</a>` : ''}
           ${sourceLinks(trip, event.sourceIds)}

@@ -161,3 +161,19 @@
 - Verified 50/50 tests, the static privacy-safe build, and all three regenerated 17-page PDFs.
 - Visually inspected each PDF's cover, flight summary, October 3, and October 4 pages; the longer label is legible and unclipped.
 - Confirmed the live v10 JSON and service worker, absence of the old typo, and exact local-to-live PDF hashes.
+
+## 青潛集合資訊與官方門票
+
+- [x] 查核青潛官方集合地點、活動流程、限制與 09:00 時段的集合時間
+- [x] 盤點 A／B／C 行程內所有付費景點並查核官方票價
+- [x] 以測試鎖定青潛集合資訊、付費景點票價與 v11 離線更新
+- [x] 實作網站行程卡的集合／注意事項與門票資訊
+- [x] 重建並視覺檢查 A／B／C PDF
+- [ ] 完整驗證、部署 GitHub Pages 並確認線上版本
+
+### 青潛與門票 review
+
+- 依青潛 BEST DIVE OKINAWA 官網，保留 10/2 09:00 活動並明列 08:00 集合、青潛免費停車場（裝備區）、MapCode、停車格、攜帶物與健康／遲到限制。
+- 只修正 10/2 與青潛預約直接相關的資訊；9/30、10/1、10/3、10/4 行程內容未變更。
+- 為 A／B／C 行程內 15 個付費活動／景點加入官方票價、年齡區間、備註與官方查價連結，票價查核日為 2026-08-29。
+- Verified 53/53 tests, the privacy-safe static build, and three visually inspected 20-page PDFs.

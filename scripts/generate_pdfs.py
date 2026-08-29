@@ -184,6 +184,103 @@ def logistics_page(pdf, trip, variant_id, page_number):
     pdf.showPage()
 
 
+def snorkeling_page(pdf, trip, variant_id, page_number):
+    booking = trip["activityBookings"]["bestdive-snorkeling"]
+    page_header(pdf, "SNORKELING BOOKING", "青潛浮潛：集合與注意事項", variant_id, page_number)
+    y = PAGE_H - 112
+
+    pdf.setFillColor(SEA)
+    pdf.roundRect(42, y - 86, PAGE_W - 84, 94, 14, stroke=0, fill=1)
+    pdf.setFillColor(IVORY)
+    pdf.setFont(FONT, 15)
+    pdf.drawString(58, y - 25, "09:00 活動／08:00 集合")
+    pdf.setFillColor(PINK)
+    pdf.setFont(FONT, 11)
+    pdf.drawString(58, y - 51, "建議 06:30 從那霸出發")
+    pdf.setFillColor(colors.white)
+    pdf.setFont(FONT, 8.5)
+    pdf.drawString(58, y - 73, booking["duration"])
+
+    y -= 116
+    pdf.setFillColor(colors.white)
+    pdf.roundRect(42, y - 128, PAGE_W - 84, 136, 12, stroke=0, fill=1)
+    pdf.setFillColor(ROAD)
+    pdf.setFont(FONT, 11)
+    pdf.drawString(56, y - 18, booking["operator"])
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT, 9)
+    pdf.drawString(56, y - 42, booking["meetingPlace"])
+    pdf.setFillColor(MUTED)
+    pdf.setFont(FONT, 8)
+    pdf.drawString(56, y - 61, booking["address"])
+    pdf.drawString(56, y - 79, f"MapCode  {booking['mapCode']}")
+    draw_lines(pdf, booking["parking"], 56, y - 99, 8, PAGE_W - 112, MUTED, 11, 2)
+
+    y -= 157
+    pdf.setFillColor(FOAM)
+    pdf.roundRect(42, y - 86, PAGE_W - 84, 94, 12, stroke=0, fill=1)
+    pdf.setFillColor(SEA)
+    pdf.setFont(FONT, 10)
+    pdf.drawString(56, y - 18, "自備與店家提供")
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT, 8)
+    draw_lines(pdf, "自備：" + "、".join(booking["bring"]), 56, y - 39, 8, PAGE_W - 112, INK, 11, 2)
+    draw_lines(pdf, "店家提供：" + "、".join(booking["included"]), 56, y - 66, 8, PAGE_W - 112, INK, 11, 2)
+
+    y -= 118
+    pdf.setFillColor(INK)
+    pdf.setFont(FONT, 11)
+    pdf.drawString(42, y, "重要注意事項")
+    y -= 24
+    for item in booking["precautions"]:
+        lines = wrap(item, 8.1, PAGE_W - 118)[:2]
+        card_h = 23 + len(lines) * 11
+        pdf.setFillColor(colors.white)
+        pdf.roundRect(42, y - card_h + 6, PAGE_W - 84, card_h, 8, stroke=0, fill=1)
+        pdf.setFillColor(PINK)
+        pdf.circle(57, y - 10, 3.5, stroke=0, fill=1)
+        draw_lines(pdf, item, 70, y - 9, 8.1, PAGE_W - 118, INK, 11, 2)
+        y -= card_h + 7
+
+    pdf.setFillColor(MUTED)
+    pdf.setFont(FONT, 6.6)
+    sources = [next(source for source in trip["sources"] if source["id"] == source_id) for source_id in booking["sourceIds"]]
+    for source_index, source in enumerate(sources):
+        shown = source["url"] if len(source["url"]) < 85 else source["url"][:82] + "…"
+        pdf.drawString(42, 78 - (source_index * 11), shown)
+    pdf.showPage()
+
+
+def ticket_pages(pdf, trip, variant_id, page_number):
+    tickets = trip["ticketInfo"]
+    chunks = [tickets[i:i + 8] for i in range(0, len(tickets), 8)]
+    for index, chunk in enumerate(chunks):
+        title = "門票與活動費" if index == 0 else "門票與活動費（續）"
+        page_header(pdf, "TICKET NOTES", title, variant_id, page_number + index)
+        y = PAGE_H - 112
+        if index == 0:
+            pdf.setFillColor(MUTED)
+            pdf.setFont(FONT, 8.5)
+            pdf.drawString(42, y, "票價查核日 2026-08-29；DMM 採浮動票價，所有價格請於購票前再確認。")
+            y -= 28
+        for ticket in chunk:
+            pdf.setFillColor(colors.white)
+            pdf.roundRect(42, y - 63, PAGE_W - 84, 69, 10, stroke=0, fill=1)
+            pdf.setFillColor(ROAD if ticket["kind"] == "ticket" else SEA)
+            pdf.setFont(FONT, 9.5)
+            pdf.drawString(55, y - 16, ticket["label"])
+            pdf.setFillColor(INK)
+            draw_lines(pdf, ticket["price"], 55, y - 35, 8.1, PAGE_W - 110, INK, 10.5, 2)
+            pdf.setFillColor(MUTED)
+            pdf.setFont(FONT, 6.8)
+            note = ticket["note"]
+            shown = note if len(note) < 64 else note[:61] + "…"
+            pdf.drawString(55, y - 55, shown)
+            y -= 77
+        pdf.showPage()
+    return len(chunks)
+
+
 def emergency_page(pdf, trip, variant_id, page_number):
     page_header(pdf, "KEEP CALM", "事故、故障與緊急聯絡", variant_id, page_number)
     y = PAGE_H - 112
@@ -335,6 +432,9 @@ def generate(trip, variant_id):
     page += 1
     logistics_page(pdf, trip, variant_id, page)
     page += 1
+    snorkeling_page(pdf, trip, variant_id, page)
+    page += 1
+    page += ticket_pages(pdf, trip, variant_id, page)
     emergency_page(pdf, trip, variant_id, page)
     page += 1
     for index, day in enumerate(trip["days"][variant_id], start=1):

@@ -409,6 +409,39 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
 .event-note { color: var(--muted); }
 .event-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .55rem; }
 .event-actions a { color: #397f8b; font-size: .67rem; font-weight: 900; }
+.ticket-info, .booking-info {
+  margin: .75rem -3.3rem 0 0;
+  border-radius: 14px;
+}
+.ticket-info {
+  padding: .7rem .75rem;
+  border: 1.5px dashed #e1a44a;
+  background: #fff8e6;
+}
+.ticket-info span, .ticket-info strong, .ticket-info p { display: block; }
+.ticket-info span { color: #9a5b28; font-size: .62rem; font-weight: 900; }
+.ticket-info strong { margin-top: .3rem; font-size: .75rem; line-height: 1.45; }
+.ticket-info p { margin: .3rem 0; color: var(--muted); font-size: .66rem; line-height: 1.45; }
+.ticket-info a { color: #397f8b; font-size: .66rem; font-weight: 900; }
+.booking-info { overflow: hidden; border: 1.5px solid #86bdc7; background: #f1fbfc; }
+.booking-info summary {
+  min-height: 44px;
+  padding: .72rem 2rem .65rem .75rem;
+  color: #286b76;
+  font-size: .72rem;
+  font-weight: 900;
+  cursor: pointer;
+}
+.booking-info summary:focus-visible { outline: 3px solid var(--focus); outline-offset: -3px; }
+.booking-facts { display: grid; grid-template-columns: 1fr 1fr; gap: .45rem; padding: 0 .75rem; }
+.booking-facts p { min-width: 0; margin: 0; }
+.booking-facts span, .booking-facts strong { display: block; }
+.booking-facts span { color: var(--muted); font-size: .57rem; }
+.booking-facts strong { margin-top: .12rem; font-size: .67rem; line-height: 1.4; overflow-wrap: anywhere; }
+.booking-parking, .booking-kit { margin: .55rem .75rem 0; font-size: .65rem; line-height: 1.5; }
+.booking-info ul { margin: .55rem .75rem 0; padding-left: 1rem; color: var(--muted); font-size: .64rem; line-height: 1.5; }
+.booking-actions { display: flex; flex-wrap: wrap; gap: .4rem .65rem; padding: .65rem .75rem .75rem; }
+.booking-actions a { color: #286b76; font-size: .62rem; font-weight: 900; overflow-wrap: anywhere; }
 .event-card.is-complete { opacity: .62; }
 .event-card.is-complete .route-dot { color: #54a88b; }
 .event-card.is-complete h3 { text-decoration: line-through; text-decoration-color: var(--road); text-decoration-thickness: 2px; }

@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-28",
+  "updatedAt": "2026-08-29",
   "recheckBy": "2026-09-17",
   "meta": {
     "title": "沖繩遛小孩",
@@ -46,32 +46,77 @@
     { "id": "f-0930-flight", "date": "2026-09-30", "time": "09:20", "kind": "flight-arrival", "title": "曾蘿情侶搭 IT230 抵達 OKA", "place": "那覇空港", "note": "06:50 TPE 起飛，曾蘿情侶兩位大人加入。" },
     { "id": "f-0930-car2", "date": "2026-09-30", "time": "11:30", "kind": "car-pickup", "title": "OTS 取第二台六人用車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-0930-car1-return", "date": "2026-09-30", "time": "12:00", "kind": "car-return", "title": "OTS 還第一台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
-    { "id": "f-1002-snorkeling", "date": "2026-10-02", "time": "09:00", "kind": "snorkeling", "title": "Pink Mermaid Okinawa 浮潛", "place": "集合地點依業者預約訊息", "note": "已確認固定行程；參加名單、集合時間、裝備與幼兒規定依業者預約訊息確認。", "sourceIds": ["pinkmermaid"] },
+    { "id": "f-1002-snorkeling", "date": "2026-10-02", "time": "09:00", "kind": "snorkeling", "title": "青潛 BEST DIVE OKINAWA 青洞浮潛（固定）", "place": "青潛免費停車場《裝備區》", "note": "09:00 活動時段；青潛官網要求 08:00 集合，最後以預約確認訊息為準。", "bookingId": "bestdive-snorkeling", "sourceIds": ["bestdive"] },
     { "id": "f-1004-car-return", "date": "2026-10-04", "time": "12:30", "kind": "car-return", "title": "OTS 還第二台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-1004-flight", "date": "2026-10-04", "time": "15:50", "kind": "flight-departure", "title": "星宇航空 JX871 譚家返回台灣", "place": "那覇空港", "note": "OKA → TPE T2，抵達時間未提供；譚家一家四口。曾蘿情侶後續交通未提供。" }
   ],
+  "activityBookings": {
+    "bestdive-snorkeling": {
+      "operator": "青潛 BEST DIVE OKINAWA",
+      "activityTime": "09:00",
+      "meetingTime": "08:00",
+      "recommendedDeparture": "06:30",
+      "duration": "集合到解散約 2～2.5 小時，09:00 時段預計 10:30 解散",
+      "meetingPlace": "青潛免費停車場《裝備區》",
+      "address": "〒904-0415 沖縄県国頭郡恩納村字仲泊94番地",
+      "navigationUrl": "https://goo.gl/maps/3tW6KhLeoWA63FyE7",
+      "mapCode": "206 066 043*58",
+      "parking": "停 7～17、47～51 號，或 18 號左邊三個無編號車位；勿停其他鄰居車位。",
+      "phone": "+81-70-3124-7160",
+      "bring": ["泳衣（建議先穿好）", "浴巾", "乾衣", "瓶裝水", "拖鞋（可選）"],
+      "included": ["面鏡與呼吸管", "防寒衣", "套鞋", "蛙鞋", "救生衣", "活動保險"],
+      "precautions": [
+        "09:00 活動時段須於 08:00 集合；08:20 後到場可能直接取消並收取 100% 活動費。",
+        "每2位小朋友至少要有1位大人陪同；有兒童會自動安排為私人組別。",
+        "患氣喘（哮喘）者不可參加；懷孕或計畫懷孕者不可參加。服藥、行動不便或特殊疾病請先聯絡青潛確認是否需要醫生證明。",
+        "海況不佳可能改到山田珊瑚農場；若必須更改集合地點，依青潛通知決定改期或取消。",
+        "貴重物品鎖車內並把車鑰匙交店員保管；回店只可沖海水，不可使用洗髮精或沐浴乳。"
+      ],
+      "sourceIds": ["bestdive", "bestdive-meeting", "bestdive-flow", "bestdive-terms"]
+    }
+  },
+  "ticketInfo": [
+    { "id": "bestdive", "kind": "activity", "label": "青潛青洞浮潛", "price": "成人（16～65歲）¥6,000／兒童（4～14歲）¥9,000", "note": "兒童自動安排私人組別；費用含基本裝備與活動保險，實際預約內容以確認訊息為準。", "sourceId": "bestdive", "checkedAt": "2026-08-29" },
+    { "id": "busena", "kind": "ticket", "label": "部瀨名海中公園", "price": "展望塔＋玻璃底船套票：成人 ¥2,100／4歲～中學生 ¥1,050", "note": "單買展望塔成人 ¥1,050／兒童 ¥530；玻璃底船成人 ¥1,560／兒童 ¥780。海況可能停航。", "sourceId": "busena", "checkedAt": "2026-08-29" },
+    { "id": "pineapple", "kind": "ticket", "label": "名護鳳梨園", "price": "成人（16歲以上）¥1,500／兒童（4～15歲）¥800／未滿4歲免費", "note": "官網設施資訊頁所列現場入園料金；特殊體驗可能另收費。", "sourceId": "pineapple", "checkedAt": "2026-08-29" },
+    { "id": "neopark", "kind": "ticket", "label": "Neo Park Okinawa", "price": "9/26 季節票：成人（13歲以上）¥1,800／兒童（4～12歲）¥1,000／未滿4歲免費", "note": "季節票適用至 9/27；沖繩輕便鐵道另購成人 ¥1,000／兒童 ¥800。", "sourceId": "neopark", "checkedAt": "2026-08-29" },
+    { "id": "kouri", "kind": "ticket", "label": "古宇利海洋塔", "price": "成人（16歲以上）¥1,000／兒童（6～15歲）¥500／未滿6歲免費", "note": "官方預售票自參加日起 30 日有效；購買確認後不可取消。", "sourceId": "kouri", "checkedAt": "2026-08-29" },
+    { "id": "fruitsland", "kind": "ticket", "label": "沖繩水果樂園", "price": "成人（高中生以上）¥1,200／兒童（4歲以上）¥600", "note": "水果咖啡、商店與餐廳區可免入園費使用。", "sourceId": "fruitsland", "checkedAt": "2026-08-29" },
+    { "id": "nakijin", "kind": "ticket", "label": "今歸仁城跡", "price": "成人 ¥1,000／中高生 ¥500／小學生以下免費", "note": "歷史文化中心免費；城跡石階多，推車較不方便。", "sourceId": "nakijin", "checkedAt": "2026-08-29" },
+    { "id": "ryukyumura", "kind": "ticket", "label": "琉球村", "price": "成人（16歲以上）¥2,000／高校生 ¥1,500／兒童（6～15歲）¥800／未滿6歲免費", "note": "高校生票需出示學生證；官網另有較優惠的 WEB 預售票。", "sourceId": "ryukyumura", "checkedAt": "2026-08-29" },
+    { "id": "zoo", "kind": "ticket", "label": "沖繩兒童王國＋Wonder Museum", "price": "16歲以上 ¥1,000／15歲以下免費；Wonder Museum 全年齡免費", "note": "Wonder Museum 位於園內，仍須先通過沖繩兒童王國入口。", "sourceId": "zoo", "checkedAt": "2026-08-29" },
+    { "id": "botanical", "kind": "ticket", "label": "東南植物樂園（日間）", "price": "成人（15歲以上）¥2,000／兒童（4～14歲）¥800／3歲以下免費", "note": "本行程為日間入園；夜間活動與餐食套票價格不同。", "sourceId": "botanical", "checkedAt": "2026-08-29" },
+    { "id": "manzamo", "kind": "ticket", "label": "萬座毛觀覽區", "price": "每人 ¥100／未就學兒童免費", "note": "周邊設施與停車場免費，觀覽步道需購票。", "sourceId": "manzamo", "checkedAt": "2026-08-29" },
+    { "id": "churaumi", "kind": "ticket", "label": "沖繩美麗海水族館", "price": "成人 ¥2,180／高校生 ¥1,440／小中學生 ¥710／未滿6歲免費", "note": "均為含稅一般票；館外海洋博公園部分設施免費。", "sourceId": "churaumi", "checkedAt": "2026-08-29" },
+    { "id": "shurijo", "kind": "ticket", "label": "首里城公園有料區", "price": "成人 ¥400／高校生 ¥300／小中學生 ¥160／未滿6歲免費", "note": "適用本次 10/3 行程；免費區散步不需票。新票價要到 2026/11/23 才生效。", "sourceId": "shurijo", "checkedAt": "2026-08-29" },
+    { "id": "okinawaworld", "kind": "ticket", "label": "沖繩世界・玉泉洞", "price": "成人（15歲以上）¥2,000／兒童（4～14歲）¥1,000", "note": "園內入場需購票，入口由玉泉洞進入。", "sourceId": "okinawaworld", "checkedAt": "2026-08-29" },
+    { "id": "dmm", "kind": "ticket", "label": "DMM Kariyushi水族館", "price": "依日期浮動：成人 ¥2,800～¥3,200／13～17歲 ¥2,200～¥2,600／4～12歲 ¥1,700～¥2,100／3歲以下免費", "note": "10/4 適用級距須查看官方營運日曆；官網預售票可能有早鳥折扣。", "sourceId": "dmm", "checkedAt": "2026-08-29" }
+  ],
   "sources": [
     { "id": "kariyushi", "label": "嘉利吉海灘度假村官方網站", "url": "https://kariyushi-oceanspa.jp/", "checkedAt": "2026-08-28" },
-    { "id": "churaumi", "label": "沖繩美麗海水族館官方網站", "url": "https://churaumi.okinawa/", "checkedAt": "2026-08-28" },
-    { "id": "busena", "label": "部瀨名海中公園官方網站", "url": "https://www.busena-marinepark.com/", "checkedAt": "2026-08-28" },
-    { "id": "pineapple", "label": "名護鳳梨園官方網站", "url": "https://www.nagopine.com/", "checkedAt": "2026-08-28" },
-    { "id": "neopark", "label": "Neo Park Okinawa 官方網站", "url": "https://www.neopark.co.jp/", "checkedAt": "2026-08-28" },
-    { "id": "kouri", "label": "古宇利海洋塔官方網站", "url": "https://www.kouri-oceantower.com/", "checkedAt": "2026-08-28" },
-    { "id": "fruitsland", "label": "沖繩水果樂園官方網站", "url": "https://www.okinawa-fruitsland.jp/", "checkedAt": "2026-08-28" },
-    { "id": "nakijin", "label": "今歸仁城跡官方網站", "url": "https://www.nakijinjoseki-osi.jp/", "checkedAt": "2026-08-28" },
-    { "id": "ryukyumura", "label": "琉球村官方網站", "url": "https://www.ryukyumura.co.jp/", "checkedAt": "2026-08-28" },
+    { "id": "churaumi", "label": "沖繩美麗海水族館官方票價", "url": "https://churaumi.okinawa/guide/info/", "checkedAt": "2026-08-29" },
+    { "id": "busena", "label": "部瀨名海中公園官方票價", "url": "https://www.busena-marinepark.com/charge.html", "checkedAt": "2026-08-29" },
+    { "id": "pineapple", "label": "名護鳳梨園設施與官方票價", "url": "https://www.nagopine.com/access.html", "checkedAt": "2026-08-29" },
+    { "id": "neopark", "label": "Neo Park Okinawa 官方票價", "url": "https://www.neopark.co.jp/contact/", "checkedAt": "2026-08-29" },
+    { "id": "kouri", "label": "古宇利海洋塔官方票價", "url": "https://book.kouri-oceantower.com/top/products/9af01932-2173-5780-a982-442ec27d6b84?lng=ja-JP", "checkedAt": "2026-08-29" },
+    { "id": "fruitsland", "label": "沖繩水果樂園官方票價", "url": "https://www.okinawa-fruitsland.jp/", "checkedAt": "2026-08-29" },
+    { "id": "nakijin", "label": "今歸仁城跡官方票價", "url": "https://www.nakijinjoseki-osi.jp/information.php", "checkedAt": "2026-08-29" },
+    { "id": "ryukyumura", "label": "琉球村官方票價", "url": "https://www.ryukyumura.co.jp/information/", "checkedAt": "2026-08-29" },
     { "id": "bios", "label": "Bios之丘官方網站", "url": "https://www.bios-hill.co.jp/", "checkedAt": "2026-08-28" },
-    { "id": "zoo", "label": "沖繩兒童王國官方網站", "url": "https://www.okzm.jp/", "checkedAt": "2026-08-28" },
-    { "id": "botanical", "label": "東南植物樂園官方網站", "url": "https://www.southeast-botanical.jp/", "checkedAt": "2026-08-28" },
-    { "id": "manzamo", "label": "萬座毛官方網站", "url": "https://www.manzamo.jp/", "checkedAt": "2026-08-28" },
-    { "id": "shurijo", "label": "首里城公園官方網站", "url": "https://oki-park.jp/shurijo/", "checkedAt": "2026-08-28" },
-    { "id": "okinawaworld", "label": "沖繩世界官方網站", "url": "https://www.gyokusendo.co.jp/okinawaworld/", "checkedAt": "2026-08-28" },
-    { "id": "dmm", "label": "DMM Kariyushi水族館官方網站", "url": "https://kariyushi-aquarium.com/", "checkedAt": "2026-08-28" },
+    { "id": "zoo", "label": "沖繩兒童王國官方票價", "url": "https://www.okzm.jp/information-en/", "checkedAt": "2026-08-29" },
+    { "id": "botanical", "label": "東南植物樂園官方票價", "url": "https://www.southeast-botanical.jp/information/", "checkedAt": "2026-08-29" },
+    { "id": "manzamo", "label": "萬座毛官方觀覽費", "url": "https://www.manzamo.jp/contact.php", "checkedAt": "2026-08-29" },
+    { "id": "shurijo", "label": "首里城公園官方票價", "url": "https://oki-park.jp/shurijo/info/14?vm=r", "checkedAt": "2026-08-29" },
+    { "id": "okinawaworld", "label": "沖繩世界官方票價", "url": "https://www.gyokusendo.co.jp/okinawaworld/fee/", "checkedAt": "2026-08-29" },
+    { "id": "dmm", "label": "DMM Kariyushi水族館官方票價", "url": "https://kariyushi-aquarium.com/fee-ticket/", "checkedAt": "2026-08-29" },
     { "id": "ots", "label": "OTS租車官方網站", "url": "https://www.otsinternational.jp/otsrentacar/", "checkedAt": "2026-08-28" },
     { "id": "ots-road-service", "label": "OTS道路救援與補償說明", "url": "https://www.otsinternational.jp/otsrentacar/guide/road-service/", "checkedAt": "2026-08-28" },
     { "id": "ots-insurance", "label": "OTS保險與補償說明", "url": "https://www.otsinternational.jp/otsrentacar/rule/menseki/", "checkedAt": "2026-08-28" },
     { "id": "onna", "label": "恩納村觀光協會", "url": "https://www.onnanavi.com/", "checkedAt": "2026-08-28" },
-    { "id": "pinkmermaid", "label": "Pink Mermaid Okinawa Instagram", "url": "https://www.instagram.com/pinkmermaid_okinawa/", "checkedAt": "2026-08-28" }
+    { "id": "bestdive", "label": "青潛青洞浮潛活動與費用", "url": "https://www.bestdiveokinawa.com/template/bluecave.php", "checkedAt": "2026-08-29" },
+    { "id": "bestdive-meeting", "label": "青潛官方集合地點", "url": "https://www.bestdiveokinawa.com/meeting-point/", "checkedAt": "2026-08-29" },
+    { "id": "bestdive-flow", "label": "青潛官方活動流程", "url": "https://www.bestdiveokinawa.com/flow/", "checkedAt": "2026-08-29" },
+    { "id": "bestdive-terms", "label": "青潛活動限制與取消政策", "url": "https://www.bestdiveokinawa.com/terms/", "checkedAt": "2026-08-29" }
   ],
   "emergency": [
     { "label": "警察", "phone": "110", "note": "事故、遺失或人身安全" },
@@ -165,10 +210,10 @@
         ]
       },
       {
-        "date": "2026-10-02", "title": "Pink Mermaid 浮潛・午後室內放鬆", "area": "恩納 → 沖繩市", "stay": "那霸私人住宿", "drive": "那霸到恩納約 55–75 分", "rainPlan": "海況取消時依業者通知；備案改Bios之丘或AEON Rycom。",
+        "date": "2026-10-02", "title": "青潛青洞浮潛・午後室內放鬆", "area": "恩納 → 沖繩市", "stay": "那霸私人住宿", "drive": "那霸到恩納約 55–75 分", "rainPlan": "海況取消或更換潛點時依青潛通知；備案改Bios之丘或AEON Rycom。",
         "events": [
-          { "id": "A-1002-1", "time": "07:30", "type": "drive", "title": "從那霸前往浮潛集合地點", "place": "恩納村（依業者預約訊息）", "mapQuery": "", "note": "預留塞車、換裝與報到時間；不要使用公開網站猜測集合地址。", "sourceIds": ["pinkmermaid"] },
-          { "id": "A-1002-2", "time": "09:00", "type": "activity", "title": "Pink Mermaid Okinawa 浮潛（固定）", "place": "集合地點依業者預約訊息", "mapQuery": "", "note": "已預約；參加名單、集合時間、裝備與4–5歲幼兒規定依業者確認。", "sourceIds": ["pinkmermaid"] },
+          { "id": "A-1002-1", "time": "06:30", "type": "drive", "title": "從那霸前往青潛集合地點", "place": "青潛免費停車場《裝備區》", "mapQuery": "青潛 BEST DIVE OKINAWA", "note": "08:00 集合；預留 55～75 分車程、停車、換裝與報到時間。", "sourceIds": ["bestdive-meeting"] },
+          { "id": "A-1002-2", "time": "09:00", "type": "activity", "title": "青潛 BEST DIVE OKINAWA 青洞浮潛（固定）", "place": "青潛免費停車場《裝備區》", "mapQuery": "青潛 BEST DIVE OKINAWA", "note": "09:00 活動時段、08:00 集合；參加名單與最終活動內容以預約確認訊息為準。", "bookingId": "bestdive-snorkeling", "sourceIds": ["bestdive"] },
           { "id": "A-1002-3", "time": "12:30", "type": "meal", "title": "恩納午餐", "place": "恩納村", "mapQuery": "恩納村 子連れ ランチ", "note": "浮潛結束時間可能受海況影響，午餐保留彈性。" },
           { "id": "A-1002-4", "time": "15:30", "type": "shopping", "title": "AEON Mall沖繩來客夢晚餐與補給", "place": "イオンモール沖縄ライカム", "mapQuery": "イオンモール沖縄ライカム", "note": "親子友善室內收尾；累了直接回那霸住宿。" }
         ]
@@ -247,8 +292,8 @@
         { "id": "B-1001-4", "time": "18:00", "type": "meal", "title": "美國村晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ" },
         { "id": "B-1001-5", "time": "20:30", "type": "drive", "title": "回那霸住宿", "place": "那霸", "mapQuery": "那覇市" }
       ]},
-      { "date": "2026-10-02", "title": "Pink Mermaid 浮潛・港川・普天滿・Rycom", "area": "恩納 → 浦添 → 宜野灣", "stay": "那霸私人住宿", "drive": "全日約 120–160 分", "rainPlan": "海況取消時依業者通知；備案改Bios之丘＋AEON Rycom。", "events": [
-        { "id": "B-1002-1", "time": "09:00", "type": "activity", "title": "Pink Mermaid Okinawa 浮潛（固定）", "place": "集合地點依業者預約訊息", "mapQuery": "", "note": "已預約；參加名單、集合時間、裝備與4–5歲幼兒規定依業者確認。", "sourceIds": ["pinkmermaid"] },
+      { "date": "2026-10-02", "title": "青潛青洞浮潛・港川・普天滿・Rycom", "area": "恩納 → 浦添 → 宜野灣", "stay": "那霸私人住宿", "drive": "全日約 120–160 分", "rainPlan": "海況取消或更換潛點時依青潛通知；備案改Bios之丘＋AEON Rycom。", "events": [
+        { "id": "B-1002-1", "time": "09:00", "type": "activity", "title": "青潛 BEST DIVE OKINAWA 青洞浮潛（固定）", "place": "青潛免費停車場《裝備區》", "mapQuery": "青潛 BEST DIVE OKINAWA", "note": "09:00 活動時段、08:00 集合；建議 06:30 從那霸出發，最終內容以預約確認訊息為準。", "bookingId": "bestdive-snorkeling", "sourceIds": ["bestdive"] },
         { "id": "B-1002-2", "time": "13:30", "type": "walk", "title": "港川外人住宅", "place": "港川ステイツサイドタウン", "mapQuery": "港川ステイツサイドタウン", "note": "次要項；停車困難或孩子累就刪除。" },
         { "id": "B-1002-3", "time": "15:00", "type": "culture", "title": "普天滿宮", "place": "普天満宮", "mapQuery": "普天満宮", "note": "洞穴參拜時間行前確認。" },
         { "id": "B-1002-4", "time": "16:30", "type": "shopping", "title": "AEON Rycom晚餐", "place": "イオンモール沖縄ライカム", "mapQuery": "イオンモール沖縄ライカム" }
@@ -317,8 +362,8 @@
         { "id": "C-1001-3", "time": "13:30", "type": "meal", "title": "園區午餐後返程", "place": "海洋博公園", "mapQuery": "海洋博公園" },
         { "id": "C-1001-4", "time": "17:00", "type": "rest", "title": "回住宿休息與外帶晚餐", "place": "那霸", "mapQuery": "那覇 テイクアウト" }
       ]},
-      { "date": "2026-10-02", "title": "Pink Mermaid 浮潛・全家美國村", "area": "恩納 → 北谷", "stay": "那霸私人住宿", "drive": "全日約 110–140 分", "rainPlan": "海況取消時依業者通知；下午改AEON或美國村室內。", "events": [
-        { "id": "C-1002-1", "time": "09:00", "type": "activity", "title": "Pink Mermaid Okinawa 浮潛（固定）", "place": "集合地點依業者預約訊息", "mapQuery": "", "note": "已預約；參加名單、集合時間、裝備與4–5歲幼兒規定依業者確認。", "sourceIds": ["pinkmermaid"] },
+      { "date": "2026-10-02", "title": "青潛青洞浮潛・全家美國村", "area": "恩納 → 北谷", "stay": "那霸私人住宿", "drive": "全日約 110–140 分", "rainPlan": "海況取消或更換潛點時依青潛通知；下午改AEON或美國村室內。", "events": [
+        { "id": "C-1002-1", "time": "09:00", "type": "activity", "title": "青潛 BEST DIVE OKINAWA 青洞浮潛（固定）", "place": "青潛免費停車場《裝備區》", "mapQuery": "青潛 BEST DIVE OKINAWA", "note": "09:00 活動時段、08:00 集合；建議 06:30 從那霸出發，最終內容以預約確認訊息為準。", "bookingId": "bestdive-snorkeling", "sourceIds": ["bestdive"] },
         { "id": "C-1002-2", "time": "13:00", "type": "meal", "title": "六人會合午餐", "place": "恩納村", "mapQuery": "恩納村 子連れ ランチ" },
         { "id": "C-1002-3", "time": "16:00", "type": "walk", "title": "美國村夕陽與早晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ" },
         { "id": "C-1002-4", "time": "19:00", "type": "drive", "title": "提早回那霸住宿", "place": "那霸", "mapQuery": "那覇市" }

@@ -43,8 +43,34 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=10" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=11" alt=""/);
   assert.match(html, /class="sr-only">完成/);
+});
+
+test('paid attraction cards show official ticket prices next to the itinerary stop', () => {
+  const day = trip.days.A.find((item) => item.date === '2026-09-25');
+  const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {} });
+  assert.match(html, /class="ticket-info"/);
+  assert.match(html, /門票/);
+  assert.match(html, /成人 ¥2,100/);
+  assert.match(html, /4歲～中學生 ¥1,050/);
+  assert.match(html, /查核 2026-08-29/);
+  assert.match(html, /查看官方票價/);
+});
+
+test('snorkeling card makes the earlier meeting time, location, and safety notes actionable', () => {
+  const day = trip.days.A.find((item) => item.date === '2026-10-02');
+  const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {} });
+  assert.match(html, /青潛 BEST DIVE OKINAWA/);
+  assert.match(html, /09:00 活動 · 08:00 集合/);
+  assert.match(html, /青潛免費停車場《裝備區》/);
+  assert.match(html, /沖縄県国頭郡恩納村字仲泊94番地/);
+  assert.match(html, /206 066 043\*58/);
+  assert.match(html, /08:20/);
+  assert.match(html, /氣喘/);
+  assert.match(html, /浴巾/);
+  assert.match(html, /tel:\+81-70-3124-7160/);
+  assert.match(html, /goo\.gl\/maps\/3tW6KhLeoWA63FyE7/);
 });
 
 test('flight summary shows the named groups and labels only genuinely missing details', () => {
@@ -100,7 +126,7 @@ test('user-controlled notes are escaped', () => {
 
 test('source ledger renders official links and recheck date', () => {
   const html = renderSources(trip);
-  assert.match(html, /沖繩美麗海水族館官方網站/);
+  assert.match(html, /沖繩美麗海水族館官方票價/);
   assert.match(html, /2026-09-17/);
   assert.equal(trip.sources.some((source) => source.id === 'private-stay'), false);
 });
