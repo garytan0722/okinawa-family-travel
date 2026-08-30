@@ -261,7 +261,7 @@ def ticket_pages(pdf, trip, variant_id, page_number):
         if index == 0:
             pdf.setFillColor(MUTED)
             pdf.setFont(FONT, 8.5)
-            pdf.drawString(42, y, "票價查核日 2026-08-29；DMM 採浮動票價，所有價格請於購票前再確認。")
+            pdf.drawString(42, y, "各票價查核日期見項目資料；DMM 採浮動票價，所有價格請於購票前再確認。")
             y -= 28
         for ticket in chunk:
             pdf.setFillColor(colors.white)

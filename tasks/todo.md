@@ -179,3 +179,19 @@
 - Verified 53/53 tests, the privacy-safe static build, and three visually inspected 20-page PDFs.
 - Deployed release v11 from commit `dea3c26` through GitHub Actions run `33239104995`.
 - Confirmed the live JSON contains the 08:00 meeting／09:00 activity split and all 15 ticket records, the live service worker uses v11, and all three deployed PDF hashes exactly match the inspected local artifacts.
+
+## 新增北部親子景點與 AEON 名護
+
+- [x] 以失敗測試鎖定兩個使用者 Maps 連結、9/27／9/28 動線與 v12
+- [x] 9/27 加入やんばる森のおもちゃ美術館與 AEON 名護，移除今歸仁
+- [x] 9/28 加入釣って見つけるぼうけんの国，移除東南植物樂園
+- [x] 加入兩處官方票價、營業／維護時間、停車與官方來源
+- [x] 重建並視覺檢查 A／B／C PDF
+- [ ] 完整驗證、部署 GitHub Pages 並確認線上版本
+
+### 北部親子景點 review
+
+- 9/27 A／B／C 均採古宇利海洋塔 → やんばる森のおもちゃ美術館 → AEON名護，並使用使用者提供的玩具美術館 Maps 連結。
+- 9/28 A／B 保留兒童王國上午、下午改釣魚尋寶冒險；C 只留冒險王國一個主景點，使用使用者提供的 Maps 連結。
+- 移除不再使用的今歸仁與東南植物樂園票價，改加入兩個新景點的官方票價、營業／維護時間、停車與預約提示。
+- Verified 54/54 tests, privacy-safe static build, frozen 9/30–10/4 hashes, and three visually inspected 21-page PDFs.

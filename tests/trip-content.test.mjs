@@ -53,22 +53,39 @@ test('September 24 through 29 use the approved northern plan without late-itiner
     for (const place of forbiddenLateAttractions) {
       assert.equal(earlyText.includes(place), false, `${variantId} repeats late attraction: ${place}`);
     }
-    for (const required of ['部瀨名', '名護鳳梨園', '古宇利', '沖繩兒童王國', '琉球村', '萬座毛']) {
+    for (const required of ['部瀨名', '名護鳳梨園', '古宇利', 'やんばる森のおもちゃ美術館', '釣って見つけるぼうけんの国', '琉球村', '萬座毛']) {
       assert.match(earlyText, new RegExp(required), `${variantId} must include ${required}`);
     }
   }
   for (const variantId of ['A', 'B']) {
     const earlyText = JSON.stringify(trip.days[variantId].filter((day) => day.date <= '2026-09-29'));
     assert.match(earlyText, /Neo Park Okinawa/);
-    assert.match(earlyText, /東南植物樂園/);
+    assert.match(earlyText, /沖繩兒童王國/);
   }
 });
 
-test('relaxed plan keeps September 28 to one main attraction', () => {
+test('new family attractions replace the approved northern stops without touching the frozen segment', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
-  const day = trip.days.C.find((item) => item.date === '2026-09-28');
-  const mainEvents = day.events.filter((event) => ['activity', 'culture'].includes(event.type));
-  assert.deepEqual(mainEvents.map((event) => event.title), ['沖繩兒童王國']);
+  const toyMap = 'https://maps.app.goo.gl/x5uAXns3p6EgxshAA?g_st=il';
+  const adventureMap = 'https://maps.app.goo.gl/ZqBSD95bMudWB7G9A?g_st=il';
+
+  for (const variantId of ['A', 'B', 'C']) {
+    const september27 = trip.days[variantId].find((item) => item.date === '2026-09-27');
+    const september28 = trip.days[variantId].find((item) => item.date === '2026-09-28');
+    assert.ok(september27.events.some((event) => event.title.includes('やんばる森のおもちゃ美術館') && event.navigationUrl === toyMap));
+    assert.ok(september27.events.some((event) => event.title.includes('AEON 名護')));
+    assert.doesNotMatch(JSON.stringify(september27), /今歸仁|今帰仁/);
+    assert.ok(september28.events.some((event) => event.title.includes('釣って見つけるぼうけんの国') && event.navigationUrl === adventureMap));
+    assert.doesNotMatch(JSON.stringify(september28), /東南植物樂園|東南植物楽園/);
+  }
+
+  for (const variantId of ['A', 'B']) {
+    const day = trip.days[variantId].find((item) => item.date === '2026-09-28');
+    assert.ok(day.events.some((event) => event.title.includes('沖繩兒童王國')));
+  }
+  const relaxedDay = trip.days.C.find((item) => item.date === '2026-09-28');
+  const relaxedMainEvents = relaxedDay.events.filter((event) => ['activity', 'culture'].includes(event.type));
+  assert.deepEqual(relaxedMainEvents.map((event) => event.title), ['釣って見つけるぼうけんの国 沖縄']);
 });
 
 test('flight summary includes only confirmed times and known flight identifiers', () => {
@@ -202,18 +219,22 @@ test('all itineraries preserve the confirmed October 2 snorkeling booking', () =
 test('every paid itinerary attraction resolves to current official ticket information', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const expectedTicketIds = [
-    'bestdive', 'botanical', 'busena', 'churaumi', 'dmm', 'fruitsland', 'kouri',
-    'manzamo', 'nakijin', 'neopark', 'okinawaworld', 'pineapple', 'ryukyumura',
-    'shurijo', 'zoo',
+    'adventure-okinawa', 'bestdive', 'busena', 'churaumi', 'dmm', 'fruitsland',
+    'kouri', 'manzamo', 'neopark', 'okinawaworld', 'pineapple', 'ryukyumura',
+    'shurijo', 'toy-museum', 'zoo',
   ];
   assert.deepEqual(trip.ticketInfo.map((item) => item.id).sort(), expectedTicketIds);
 
   const tickets = new Map(trip.ticketInfo.map((item) => [item.id, item]));
   for (const ticket of tickets.values()) {
     assert.ok(ticket.price.length > 0, `${ticket.id} must include a price summary`);
-    assert.equal(ticket.checkedAt, '2026-08-29');
+    assert.match(ticket.checkedAt, /^2026-08-(29|30)$/);
     assert.ok(trip.sources.some((source) => source.id === ticket.sourceId), `${ticket.id} must resolve an official source`);
   }
+  assert.match(tickets.get('toy-museum').price, /成人.*¥1,400.*1歲以上小學生.*¥1,000/);
+  assert.match(tickets.get('adventure-okinawa').price, /成人.*¥2,670.*3歲以上未就學兒童.*¥1,860/);
+  assert.equal(tickets.get('toy-museum').checkedAt, '2026-08-30');
+  assert.equal(tickets.get('adventure-okinawa').checkedAt, '2026-08-30');
   assert.match(tickets.get('busena').price, /成人 ¥2,100.*4歲～中學生 ¥1,050/);
   assert.match(tickets.get('neopark').price, /¥1,800.*¥1,000/);
   assert.match(tickets.get('churaumi').price, /成人 ¥2,180.*未滿6歲免費/);

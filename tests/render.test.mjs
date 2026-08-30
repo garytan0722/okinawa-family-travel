@@ -43,8 +43,17 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=11" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=12" alt=""/);
   assert.match(html, /class="sr-only">完成/);
+});
+
+test('user-supplied Google Maps links are preserved for the two new attractions', () => {
+  const september27 = trip.days.A.find((item) => item.date === '2026-09-27');
+  const september28 = trip.days.A.find((item) => item.date === '2026-09-28');
+  const toyHtml = renderDay(trip, september27, { completed: {}, notes: {}, energy: {} });
+  const adventureHtml = renderDay(trip, september28, { completed: {}, notes: {}, energy: {} });
+  assert.match(toyHtml, /https:\/\/maps\.app\.goo\.gl\/x5uAXns3p6EgxshAA\?g_st=il/);
+  assert.match(adventureHtml, /https:\/\/maps\.app\.goo\.gl\/ZqBSD95bMudWB7G9A\?g_st=il/);
 });
 
 test('paid attraction cards show official ticket prices next to the itinerary stop', () => {

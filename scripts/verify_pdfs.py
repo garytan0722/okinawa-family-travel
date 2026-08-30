@@ -28,6 +28,10 @@ for variant, path in PDFS.items():
     assert "門票與活動費" in text, f"{path.name}: missing ticket ledger"
     assert "部瀨名海中公園" in text and "成人 ¥2,100" in text, f"{path.name}: missing Busena ticket price"
     assert "DMM Kariyushi水族館" in text and "成人 ¥2,800～¥3,200" in text, f"{path.name}: missing DMM ticket range"
+    assert "やんばる森のおもちゃ美術館" in text and "成人（中學生以上）¥1,400" in text, f"{path.name}: missing toy museum plan or price"
+    assert "釣って見つけるぼうけんの国 沖縄" in text and "成人（中學生以上）¥2,670" in text, f"{path.name}: missing adventure park plan or price"
+    assert "AEON 名護購物、晚餐與補給" in text, f"{path.name}: missing AEON Nago replacement"
+    assert "今歸仁" not in text and "今帰仁" not in text, f"{path.name}: contains replaced Nakijin stop"
     assert "班機時間" in text, f"{path.name}: missing flight summary"
     assert "班號未提供" not in text, f"{path.name}: contains removed October 3 flight placeholder"
     assert "華航 CI120" in text, f"{path.name}: missing corrected September 24 flight"
@@ -45,11 +49,11 @@ for variant, path in PDFS.items():
     assert "事故・故障時の連絡先" in text, f"{path.name}: missing in-vehicle sticker guidance"
     assert "事故不分大小先撥 110" in text, f"{path.name}: police report must be mandatory"
     assert "傷病或火災再撥 119" in text, f"{path.name}: 119 must remain conditional"
-    for required in ("部瀨名", "名護鳳梨園", "古宇利", "沖繩兒童王國", "琉球村", "萬座毛"):
+    for required in ("部瀨名", "名護鳳梨園", "古宇利", "やんばる森のおもちゃ美術館", "釣って見つけるぼうけんの国", "琉球村", "萬座毛"):
         assert required in text, f"{path.name}: missing early-plan place {required}"
     if variant in ("A", "B"):
         assert "Neo Park Okinawa" in text, f"{path.name}: missing active-plan Neo Park"
-        assert "東南植物樂園" in text, f"{path.name}: missing active-plan botanical garden"
+        assert "沖繩兒童王國" in text, f"{path.name}: missing active-plan children zoo"
     early_text = "\n".join((page.extract_text() or "") for page in reader.pages if re.search(r"2026-09-2[4-9]", page.extract_text() or ""))
     for forbidden in ("美麗海", "美國村", "BANTA", "港川", "普天滿", "Rycom", "首里城", "沖繩世界", "DMM", "瀨長島", "波上宮", "PARCO", "國際通"):
         assert forbidden not in early_text, f"{path.name}: early segment repeats late attraction {forbidden}"
