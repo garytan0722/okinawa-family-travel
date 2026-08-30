@@ -1,7 +1,7 @@
-import { getVariantDay, mapUrl, nextFixedEvent } from './src/trip-domain.mjs?v=13';
-import { centeredScrollLeft, renderDay, renderEmergencyView, renderFlightSummary, renderSources, renderVariantTabs, escapeHtml } from './src/render.mjs?v=13';
-import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=13';
-import { installPwaUpdate } from './src/pwa-update.mjs?v=13';
+import { getVariantDay, mapUrl, nextFixedEvent } from './src/trip-domain.mjs?v=14';
+import { centeredScrollLeft, renderDay, renderEmergencyView, renderFlightSummary, renderRainyDayView, renderSources, renderVariantTabs, escapeHtml } from './src/render.mjs?v=14';
+import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=14';
+import { installPwaUpdate } from './src/pwa-update.mjs?v=14';
 
 const app = document.querySelector('#app');
 const quickPanel = document.querySelector('#quick-panel-content');
@@ -86,15 +86,16 @@ function renderRecords() {
   const variant = state.variants[state.selectedVariant];
   const completed = Object.values(variant.completed).filter(Boolean).length;
   const noted = Object.values(variant.notes).filter(Boolean).length;
-  app.innerHTML = `<section class="tool-view"><p class="eyebrow">YOUR FIELD NOTES</p><h1>記錄與備份</h1><p class="lede">記錄只保存在這台裝置的瀏覽器；換手機前請先匯出。</p><div class="record-summary"><div><strong>${completed}</strong><span>完成行程</span></div><div><strong>${noted}</strong><span>天有筆記</span></div><div><strong>${state.selectedVariant}</strong><span>目前版本</span></div></div><div class="action-stack"><button type="button" data-action="export-backup">下載 JSON 備份</button><label class="file-button">從備份還原<input type="file" accept="application/json" data-action="import-backup"></label><button type="button" class="danger-button" data-action="clear-records">清除本機記錄</button></div><section class="pdf-box"><p class="eyebrow">PRINT EDITIONS</p><h2>A・B・C 三版 PDF</h2><div class="pdf-links"><a href="./output/pdf/okinawa-family-trip-A-balanced.pdf?v=13" download>A 親子平衡</a><a href="./output/pdf/okinawa-family-trip-B-active.pdf?v=13" download>B 景點豐富</a><a href="./output/pdf/okinawa-family-trip-C-relaxed.pdf?v=13" download>C 度假放鬆</a></div></section></section>`;
+  app.innerHTML = `<section class="tool-view"><p class="eyebrow">YOUR FIELD NOTES</p><h1>記錄與備份</h1><p class="lede">記錄只保存在這台裝置的瀏覽器；換手機前請先匯出。</p><div class="record-summary"><div><strong>${completed}</strong><span>完成行程</span></div><div><strong>${noted}</strong><span>天有筆記</span></div><div><strong>${state.selectedVariant}</strong><span>目前版本</span></div></div><div class="action-stack"><button type="button" data-action="export-backup">下載 JSON 備份</button><label class="file-button">從備份還原<input type="file" accept="application/json" data-action="import-backup"></label><button type="button" class="danger-button" data-action="clear-records">清除本機記錄</button></div><section class="pdf-box"><p class="eyebrow">PRINT EDITIONS</p><h2>A・B・C 三版 PDF</h2><div class="pdf-links"><a href="./output/pdf/okinawa-family-trip-A-balanced.pdf?v=14" download>A 親子平衡</a><a href="./output/pdf/okinawa-family-trip-B-active.pdf?v=14" download>B 景點豐富</a><a href="./output/pdf/okinawa-family-trip-C-relaxed.pdf?v=14" download>C 度假放鬆</a></div></section></section>`;
 }
 
 function renderRoute() {
   const route = routeName();
-  document.querySelectorAll('.bottom-nav a').forEach((link) => link.classList.toggle('is-active', link.dataset.route === route || (route === 'home' && link.dataset.route === 'home')));
+  document.querySelectorAll('.bottom-nav a').forEach((link) => link.classList.toggle('is-active', link.dataset.route === route || (route === 'rainy' && link.dataset.route === 'sources') || (route === 'home' && link.dataset.route === 'home')));
   if (route === 'logistics') renderLogistics();
   else if (route === 'emergency') app.innerHTML = renderEmergencyView(trip);
   else if (route === 'records') renderRecords();
+  else if (route === 'rainy') app.innerHTML = renderRainyDayView(trip);
   else if (route === 'sources') app.innerHTML = renderSources(trip);
   else renderHome();
   renderQuickPanel();
@@ -163,7 +164,7 @@ function updateNetworkStatus() {
 
 async function boot() {
   try {
-    const response = await fetch('./content/trip.json?v=13');
+    const response = await fetch('./content/trip.json?v=14');
     if (!response.ok) throw new Error('行程資料載入失敗');
     trip = await response.json();
     renderRoute();

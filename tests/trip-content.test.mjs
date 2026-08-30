@@ -24,6 +24,28 @@ test('all variants cover each trip date exactly once', () => {
   }
 });
 
+test('rainy-day catalog contains 24 verified, correctly separated venues', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  assert.equal(trip.rainyDayOptions?.length, 24);
+  assert.deepEqual(
+    Object.fromEntries(trip.rainyDayCategories.map((category) => [
+      category.id,
+      trip.rainyDayOptions.filter((item) => item.category === category.id).length,
+    ])),
+    { family: 8, art: 3, nature: 3, industry: 3, malls: 3, shopping: 3, special: 1 },
+  );
+  const serialized = JSON.stringify(trip.rainyDayOptions);
+  for (const required of ['やんばる森のおもちゃ美術館', '南城美術館', '普天満宮', 'ナゴパイナップルパーク', 'iias沖縄豊崎', 'マンガ倉庫 那覇店']) {
+    assert.match(serialized, new RegExp(required));
+  }
+  assert.doesNotMatch(serialized, /博物館藝術|美術館自然|普天滿宮產業|鳳梨園百貨|IIAS精品|漫畫倉庫特別/);
+  for (const item of trip.rainyDayOptions) {
+    assert.equal(item.checkedAt, '2026-08-30');
+    for (const key of ['area', 'weatherFit', 'duration', 'familyNote', 'mapQuery', 'officialUrl']) assert.ok(item[key], `${item.id} needs ${key}`);
+    assert.match(item.officialUrl, /^https:\/\//);
+  }
+});
+
 test('the approved September 30 through October 4 itinerary stays byte-for-byte equivalent', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const expectedHashes = {

@@ -32,3 +32,41 @@ export function mapUrl(query) {
   if (!query) return '';
   return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(query)}`;
 }
+
+const GENERIC_ROUTE_QUERY = /(?:子連れ|周邊|附近|テイクアウト|ブランチ|ランチ$|ディナー$)/i;
+
+function routeStops(day) {
+  const seen = new Set();
+  return (day?.events ?? []).flatMap((event) => {
+    const query = event.mapQuery?.trim();
+    if (!query || event.type === 'walk' || GENERIC_ROUTE_QUERY.test(query) || seen.has(query)) return [];
+    seen.add(query);
+    return [query];
+  });
+}
+
+export function directionsUrl(stops) {
+  if (!Array.isArray(stops) || stops.length < 2) return '';
+  const params = new URLSearchParams({
+    api: '1',
+    origin: stops[0],
+    destination: stops.at(-1),
+    travelmode: 'driving',
+    dir_action: 'navigate',
+  });
+  if (stops.length > 2) params.set('waypoints', stops.slice(1, -1).join('|'));
+  return `https://www.google.com/maps/dir/?${params.toString()}`;
+}
+
+export function dayRouteSegments(day, maxPoints = 5) {
+  const stops = routeStops(day);
+  if (stops.length < 2) return [];
+  const safeMax = Math.max(2, maxPoints);
+  const segments = [];
+  for (let index = 0; index < stops.length - 1; index += safeMax - 1) {
+    const segmentStops = stops.slice(index, index + safeMax);
+    if (segmentStops.length < 2) break;
+    segments.push({ stops: segmentStops, url: directionsUrl(segmentStops) });
+  }
+  return segments;
+}

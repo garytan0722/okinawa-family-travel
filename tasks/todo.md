@@ -214,3 +214,12 @@
 - 發現 なかむらそば 會越過萬座毛後折返，最終改為 58 號沿線的恩菜食房 ぴぱら，確保備選也順路。
 - Verified 58/58 tests, privacy-safe static build, 390px live layout with zero horizontal overflow, and three visually inspected 24-page PDFs.
 - Deployed release v13 from commit `13672c6` through GitHub Actions run `33306901023`; live app, JSON, service worker, and PDFs all return HTTP 200, and deployed PDF hashes exactly match local artifacts.
+
+## 每日 Google Maps 路線與雨天備案庫
+
+- [x] 以測試鎖定每日多站導航、5 點分段、去重與模糊地點排除
+- [x] 加入 24 個分類雨天備案、官方連結與行程內標示
+- [x] 在每日行程與「更多」頁加入雨天備案入口
+- [x] 保持 9/30–10/4 A／B／C day objects 雜湊完全不變
+- [x] 輪替 v14 離線快取並驗證手機、離線、隱私與公開資產
+- [ ] 部署 GitHub Pages 並確認線上版本

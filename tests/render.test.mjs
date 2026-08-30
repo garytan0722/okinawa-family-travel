@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import {
   renderDay,
+  renderRainyDayView,
   renderSources,
   renderVariantTabs,
 } from '../src/render.mjs';
@@ -38,12 +39,32 @@ test('day timeline keeps chronological order and map links', () => {
   assert.equal(html.match(/class="paw-print" aria-hidden="true"/g)?.length, day.events.length);
 });
 
+test('day view offers one-tap multi-stop navigation and the rainy catalog', () => {
+  const day = trip.days.A.find((item) => item.date === '2026-09-28');
+  const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {} });
+  assert.match(html, /開啟全日路線/);
+  assert.match(html, /https:\/\/www\.google\.com\/maps\/dir\/\?api=1&amp;origin=/);
+  assert.match(html, /href="#\/rainy"/);
+  assert.match(html, /24 個雨天備案/);
+});
+
+test('rainy-day view groups all 24 venues with official and map actions', () => {
+  const html = renderRainyDayView(trip);
+  assert.equal((html.match(/class="rainy-option-card/g) ?? []).length, 24);
+  assert.match(html, /親子放電/);
+  assert.match(html, /室內美術/);
+  assert.match(html, /自然探索/);
+  assert.match(html, /已在行程/);
+  assert.match(html, /直接導航/);
+  assert.match(html, /官方資料/);
+});
+
 test('event completion keeps a native checkbox and shows a dog-paw image stamp', () => {
   const day = trip.days.A[0];
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=13" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=14" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -151,4 +172,5 @@ test('source ledger renders official links and recheck date', () => {
   assert.match(html, /沖繩美麗海水族館官方票價/);
   assert.match(html, /2026-09-17/);
   assert.equal(trip.sources.some((source) => source.id === 'private-stay'), false);
+  assert.match(html, /href="#\/rainy"/);
 });

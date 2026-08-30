@@ -1,4 +1,4 @@
-import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=13';
+import { dayRouteSegments, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=14';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -110,7 +110,7 @@ function renderEvent(trip, event, completed) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=13" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=14" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -146,6 +146,11 @@ export function renderDay(trip, day, variantState) {
   const energy = variantState.energy?.[day.date] ?? 'okay';
   const events = day.events.map((event) => renderEvent(trip, event, variantState.completed ?? {})).join('');
   const stayMaps = stay && !stay.privateNavigation ? mapUrl(stay.mapQuery) : '';
+  const routeSegments = dayRouteSegments(day);
+  const routeActions = routeSegments.map((segment, index) => {
+    const label = routeSegments.length === 1 ? '開啟全日路線' : `${index === 0 ? '上午' : index === 1 ? '下午' : `第 ${index + 1} 段`}路線`;
+    return `<a href="${escapeHtml(segment.url)}" target="_blank" rel="noopener noreferrer">🗺 ${label}<small>${segment.stops.length} 個停靠點</small></a>`;
+  }).join('');
 
   return `
     <article class="day-view" data-date="${day.date}">
@@ -157,8 +162,9 @@ export function renderDay(trip, day, variantState) {
         <section><span>今晚住</span><strong>${escapeHtml(day.stay)}</strong>${stayMaps ? `<a href="${escapeHtml(stayMaps)}" target="_blank" rel="noopener noreferrer">導航</a>` : `<small>${stay?.privateNavigation ? '使用私人訂房資料導航' : ''}</small>`}</section>
         <section><span>今日車程</span><strong>${escapeHtml(day.drive)}</strong></section>
       </div>
+      ${routeActions ? `<section class="day-route-card" aria-label="今日 Google Maps 多站導航"><div><span>GOOGLE MAPS ROUTE</span><strong>今天照順序一路開</strong></div><div class="day-route-actions">${routeActions}</div></section>` : ''}
       <ol class="event-list">${events}</ol>
-      <section class="rain-card"><span>☔ 雨天／疲累備案</span><p>${escapeHtml(day.rainPlan)}</p></section>
+      <section class="rain-card"><span>☔ 雨天／疲累備案</span><p>${escapeHtml(day.rainPlan)}</p><a href="#/rainy">查看 24 個雨天備案 →</a></section>
       <section class="record-card">
         <div class="record-head"><span>今天孩子的電量</span><div class="energy-control" role="group" aria-label="孩子體力">
           ${[['great','滿格'],['okay','普通'],['tired','累了']].map(([value,label]) => `<button type="button" data-action="set-energy" data-energy="${value}" aria-pressed="${energy === value}">${label}</button>`).join('')}
@@ -176,8 +182,33 @@ export function renderSources(trip) {
       <span class="section-kicker">FIELD NOTES</span>
       <h2>官方資料與行前複核</h2>
       <p>營業時間、海況與臨時休館可能變動，請在 <strong>${escapeHtml(trip.recheckBy)}</strong> 再確認。</p>
+      <a class="rainy-portal" href="#/rainy"><span aria-hidden="true">☔🐾</span><div><strong>打開雨天備案庫</strong><small>24 個室內、遮雨與親子地點，依類型挑選</small></div><b aria-hidden="true">→</b></a>
       <ul>${items}</ul>
     </section>`;
+}
+
+export function renderRainyDayView(trip) {
+  const groups = trip.rainyDayCategories.map((category) => {
+    const options = trip.rainyDayOptions.filter((item) => item.category === category.id);
+    return `<section class="rainy-category" id="rainy-${escapeHtml(category.id)}">
+      <header><span aria-hidden="true">${escapeHtml(category.icon)}</span><div><h2>${escapeHtml(category.label)}</h2><small>${options.length} 個選擇</small></div></header>
+      <div class="rainy-grid">${options.map((item) => `<article class="rainy-option-card${item.inItinerary ? ' is-planned' : ''}">
+        <div class="rainy-card-top"><span>${escapeHtml(item.area)}</span>${item.inItinerary ? '<b>已在行程</b>' : ''}</div>
+        <h3>${escapeHtml(item.name)}</h3>
+        <div class="rainy-tags"><span>${escapeHtml(item.weatherFit)}</span><span>${escapeHtml(item.duration)}</span></div>
+        <p>${escapeHtml(item.familyNote)}</p>
+        <div class="rainy-actions"><a href="${escapeHtml(mapUrl(item.mapQuery))}" target="_blank" rel="noopener noreferrer">📍 直接導航</a><a href="${escapeHtml(item.officialUrl)}" target="_blank" rel="noopener noreferrer">官方資料</a></div>
+      </article>`).join('')}</div>
+    </section>`;
+  }).join('');
+  const categoryNav = trip.rainyDayCategories.map((category) => `<span>${escapeHtml(category.icon)} ${escapeHtml(category.label)}</span>`).join('');
+  return `<section class="tool-view rainy-view">
+    <p class="eyebrow">RAINY DAY PAW PLAN</p><h1>下雨也有地方玩</h1>
+    <p class="lede">依當天所在區域挑最近的備案；「部分遮雨」遇強風豪雨時仍優先換成全室內場館。</p>
+    <div class="rainy-category-nav" aria-label="雨天備案分類">${categoryNav}</div>
+    ${groups}
+    <aside class="rainy-source-note"><strong>資料怎麼整理？</strong><p>${escapeHtml(trip.rainyDaySource.note)} 各場館狀態查核於 2026-08-30，出發前仍請複核。</p><a href="${escapeHtml(trip.rainyDaySource.url)}" target="_blank" rel="noopener noreferrer">查看原始分享</a></aside>
+  </section>`;
 }
 
 export function renderFlightSummary(trip) {

@@ -214,6 +214,52 @@
     { "id": "bestdive-flow", "label": "青潛官方活動流程", "url": "https://www.bestdiveokinawa.com/flow/", "checkedAt": "2026-08-29" },
     { "id": "bestdive-terms", "label": "青潛活動限制與取消政策", "url": "https://www.bestdiveokinawa.com/terms/", "checkedAt": "2026-08-29" }
   ],
+  "rainyDaySource": {
+    "label": "沖繩在地親子分享清單",
+    "url": "https://www.threads.com/@taiwaneseinokinawa/post/DcoGcX0k93f",
+    "note": "清單作為靈感起點；地點名稱與連結另以各場館官方資料查核。"
+  },
+  "rainyDayCategories": [
+    { "id": "family", "label": "親子放電", "icon": "🐾" },
+    { "id": "art", "label": "室內美術", "icon": "🎨" },
+    { "id": "nature", "label": "自然探索", "icon": "🪨" },
+    { "id": "industry", "label": "產業體驗", "icon": "🧂" },
+    { "id": "malls", "label": "百貨商場", "icon": "🛍" },
+    { "id": "shopping", "label": "購物補給", "icon": "🧺" },
+    { "id": "special", "label": "特別參觀", "icon": "🔬" }
+  ],
+  "rainyDayOptions": [
+    { "id": "round1-ginowan", "name": "Round1 Stadium 沖繩宜野灣店", "category": "family", "area": "宜野灣", "weatherFit": "全室內", "duration": "2–4 小時", "familyNote": "保齡球、遊戲與 Spo-Cha 可讓 4–5 歲孩子放電；先確認各設施年齡限制。", "mapQuery": "ROUND1 STADIUM 沖縄・宜野湾店", "officialUrl": "https://www.round1.co.jp/shop/tenpo/okinawa-ginowan-chn.html", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "teamlab-okinawa", "name": "teamLab Future Park 沖繩", "category": "family", "area": "那霸・DFS 3F", "weatherFit": "全室內", "duration": "1.5–2.5 小時", "familyNote": "互動光影適合幼兒；熱門時段建議先買票並確認休館日。", "mapQuery": "teamLab Future Park 沖縄", "officialUrl": "https://art.team-lab.cn/jp/e/futurepark-okinawa/", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "dmm-aquarium", "name": "DMM Kariyushi 水族館", "category": "family", "area": "豐崎", "weatherFit": "全室內", "duration": "2–3 小時", "familyNote": "離機場近、推車好走，適合抵達日或離境日前的雨天。", "mapQuery": "DMMかりゆし水族館", "officialUrl": "https://kariyushi-aquarium.com/", "checkedAt": "2026-08-30", "inItinerary": true },
+    { "id": "murasaki-mura", "name": "體驗王國むら咲むら", "category": "family", "area": "讀谷", "weatherFit": "部分室內", "duration": "2–4 小時", "familyNote": "多種手作體驗可避雨，但園區移動仍會經過戶外；先選可預約課程。", "mapQuery": "体験王国むら咲むら", "officialUrl": "https://murasakimura.com/", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "sango-batake", "name": "さんご畑 珊瑚農場", "category": "family", "area": "讀谷", "weatherFit": "部分遮雨", "duration": "1–1.5 小時", "familyNote": "可認識珊瑚復育；強風或大雨時仍先向場館確認開放狀況。", "mapQuery": "さんご畑 読谷", "officialUrl": "https://www.okinawastory.jp/feature/ethical_travel/coral_farm", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "adventure-okinawa", "name": "釣って見つけるぼうけんの国 沖縄", "category": "family", "area": "恩納・石川", "weatherFit": "多數室內", "duration": "2–3 小時", "familyNote": "釣魚與尋寶活動適合親子；留意部分區域維護時段並建議預約。", "mapQuery": "釣って見つけるぼうけんの国 沖縄", "officialUrl": "https://boukennokuni.com/okinawa/", "checkedAt": "2026-08-30", "inItinerary": true },
+    { "id": "kuina-forest", "name": "山原秧雞生態展示學習設施 クイナの森", "category": "family", "area": "國頭", "weatherFit": "多數室內", "duration": "1–1.5 小時", "familyNote": "北部很遠，適合原本就在山原的輕雨日；出發前確認道路與開館。", "mapQuery": "ヤンバルクイナ生態展示学習施設 クイナの森", "officialUrl": "https://www.env.go.jp/park/yambaru/access/", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "yambaru-toy-museum", "name": "やんばる森のおもちゃ美術館", "category": "family", "area": "國頭", "weatherFit": "全室內", "duration": "1.5–2.5 小時", "familyNote": "木製玩具和角色扮演很適合 4–5 歲；北部日可直接替換戶外景點。", "mapQuery": "やんばる森のおもちゃ美術館", "officialUrl": "https://art-play.or.jp/ytm/info/", "checkedAt": "2026-08-30", "inItinerary": true },
+
+    { "id": "okimu", "name": "沖縄県立博物館・美術館", "category": "art", "area": "那霸・新都心", "weatherFit": "全室內", "duration": "2–3 小時", "familyNote": "博物館常設展較適合親子；週一與展覽更換期先查官網。", "mapQuery": "沖縄県立博物館・美術館", "officialUrl": "https://okimu.jp/", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "urasoe-art", "name": "浦添市美術館", "category": "art", "area": "浦添", "weatherFit": "全室內", "duration": "1–2 小時", "familyNote": "建築和漆藝展較安靜，適合需要慢節奏的雨天下午。", "mapQuery": "浦添市美術館", "officialUrl": "https://urasoe-artmuseum.jp/", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "nanjo-art", "name": "南城美術館", "category": "art", "area": "南城", "weatherFit": "多數室內", "duration": "1–2 小時", "familyNote": "規模較小，適合搭配南部行程；先確認當期展覽與兒童接受度。", "mapQuery": "南城美術館", "officialUrl": "https://nanjoart.com/", "checkedAt": "2026-08-30", "inItinerary": false },
+
+    { "id": "cave-okinawa", "name": "CAVE OKINAWA 鍾乳洞", "category": "nature", "area": "宇流麻", "weatherFit": "洞穴・部分戶外", "duration": "1–1.5 小時", "familyNote": "洞內可避雨但地面可能濕滑，幼兒需牽手並穿防滑鞋。", "mapQuery": "CAVE OKINAWA", "officialUrl": "https://www.cave.okinawa/", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "okinawa-world", "name": "沖繩世界・玉泉洞", "category": "nature", "area": "南城", "weatherFit": "洞穴・部分戶外", "duration": "2.5–4 小時", "familyNote": "玉泉洞可避雨，園區與表演移動仍有戶外路段；雨大就縮短停留。", "mapQuery": "おきなわワールド 玉泉洞", "officialUrl": "https://www.gyokusendo.co.jp/okinawaworld/", "checkedAt": "2026-08-30", "inItinerary": true },
+    { "id": "futenma-shrine", "name": "普天満宮", "category": "nature", "area": "宜野灣", "weatherFit": "部分遮雨", "duration": "45–75 分", "familyNote": "本殿可參拜，洞穴是否能進入依現場安排；不是整段室內行程。", "mapQuery": "普天満宮", "officialUrl": "https://www.jinjacho.naminouegu.jp/", "checkedAt": "2026-08-30", "inItinerary": true },
+
+    { "id": "nuchimasu", "name": "ぬちまーす觀光製鹽工廠", "category": "industry", "area": "宮城島", "weatherFit": "多數室內", "duration": "1–1.5 小時", "familyNote": "工廠參觀可避雨，但宮城島車程較長；大雨先看海中道路路況。", "mapQuery": "ぬちまーす観光製塩ファクトリー", "officialUrl": "https://nuchima-su.co.jp/tour/", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "ryukyu-glass", "name": "琉球玻璃村", "category": "industry", "area": "糸滿", "weatherFit": "多數室內", "duration": "1.5–2.5 小時", "familyNote": "可看工房或選合齡手作；先確認 4–5 歲可參加的體驗。", "mapQuery": "琉球ガラス村", "officialUrl": "https://www.ryukyu-glass.co.jp/?category_id=6", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "nago-pineapple", "name": "ナゴパイナップルパーク", "category": "industry", "area": "名護", "weatherFit": "多數遮雨", "duration": "2–3 小時", "familyNote": "園區車和室內展示適合幼兒；上下車與部分步道仍可能淋雨。", "mapQuery": "ナゴパイナップルパーク", "officialUrl": "https://www.nagopine.com/access.html", "checkedAt": "2026-08-30", "inItinerary": true },
+
+    { "id": "parco-city", "name": "SAN-A 浦添西海岸 PARCO CITY", "category": "malls", "area": "浦添", "weatherFit": "全室內", "duration": "2–4 小時", "familyNote": "餐廳、親子用品與採買集中，適合那霸西側整段大雨。", "mapQuery": "サンエー浦添西海岸 PARCO CITY", "officialUrl": "https://www.parcocity.jp/facilities/", "checkedAt": "2026-08-30", "inItinerary": true },
+    { "id": "aeon-rycom", "name": "AEON MALL 沖繩來客夢", "category": "malls", "area": "北中城", "weatherFit": "全室內", "duration": "2–4 小時", "familyNote": "中部最大型雨天備案之一，吃飯、採買與休息都方便。", "mapQuery": "イオンモール沖縄ライカム", "officialUrl": "https://okinawarycom.aeonmall.jp/", "checkedAt": "2026-08-30", "inItinerary": true },
+    { "id": "iias-toyosaki", "name": "iias沖縄豊崎", "category": "malls", "area": "豐崎", "weatherFit": "全室內", "duration": "2–4 小時", "familyNote": "可和 DMM 水族館串在同一棟，適合機場附近雨天。", "mapQuery": "イーアス沖縄豊崎", "officialUrl": "https://toyosaki.iias.jp/?hl=ja", "checkedAt": "2026-08-30", "inItinerary": true },
+
+    { "id": "dfs-okinawa", "name": "T Galleria 沖繩 by DFS", "category": "shopping", "area": "那霸・新都心", "weatherFit": "全室內", "duration": "1.5–3 小時", "familyNote": "與 teamLab 同館，可把大人購物與孩子互動展拆開輪流。", "mapQuery": "T ギャラリア 沖縄 by DFS", "officialUrl": "https://www.dfs.com/jp/okinawa", "checkedAt": "2026-08-30", "inItinerary": false },
+    { "id": "ashibinaa", "name": "沖繩 Outlet Mall ASHIBINAA", "category": "shopping", "area": "豐崎", "weatherFit": "部分遮雨", "duration": "1.5–3 小時", "familyNote": "開放式 Outlet 並非全室內；小雨可逛，大風豪雨優先改 iias。", "mapQuery": "沖縄アウトレットモール あしびなー", "officialUrl": "https://www.ashibinaa.com/", "checkedAt": "2026-08-30", "inItinerary": true },
+    { "id": "manga-souko-naha", "name": "マンガ倉庫 那覇店", "category": "shopping", "area": "那霸", "weatherFit": "全室內", "duration": "1–2 小時", "familyNote": "二手玩具與雜貨可挖寶；商品密集，幼兒需牽好並設定預算。", "mapQuery": "マンガ倉庫 那覇店", "officialUrl": "https://mangasouko-okinawa.com/naha/", "checkedAt": "2026-08-30", "inItinerary": false },
+
+    { "id": "oist-tour", "name": "沖繩科學技術大學院大學 OIST", "category": "special", "area": "恩納", "weatherFit": "多數室內", "duration": "1–2 小時", "familyNote": "校園導覽需依官方開放與預約規則，不當作臨時闖入型景點。", "mapQuery": "沖縄科学技術大学院大学 OIST", "officialUrl": "https://www.oist.jp/ja/guided-campus-tour", "checkedAt": "2026-08-30", "inItinerary": false }
+  ],
   "emergency": [
     { "label": "警察", "phone": "110", "note": "事故、遺失或人身安全" },
     { "label": "消防／救護車", "phone": "119", "note": "火災、急救與緊急醫療" },
