@@ -205,8 +205,12 @@
 - [x] 為 9/24–9/29 模糊用餐事件加入首選／備選餐廳及直接導航
 - [x] 調整 9/28 與 9/29 的順路時間軸並保留 9/30–10/4 原始內容
 - [x] 在網站與 A／B／C PDF 顯示親子餐廳指南
-- [ ] 更新離線版本，完成測試、手機、PDF、隱私與部署驗證
+- [x] 更新離線版本，完成測試、手機、PDF、隱私與部署驗證
 
 ### 順路親子餐廳 review
 
-- 待實作完成後補上。
+- 9/24–9/29 的 A／B／C 用餐點都改為具名首選與備選，並提供直接導航與不繞路理由；9/30–10/4 的完整 day objects 雜湊未變。
+- 9/28 採沖繩市／石川 → 冒險王國 → サンエー大湾シティ → 西岸飯店，保留使用者提供的大灣 Maps 連結；9/29 B 版改為殘波岬 → 琉球村 → 恩納午餐 → 萬座毛 → 飯店。
+- 發現 なかむらそば 會越過萬座毛後折返，最終改為 58 號沿線的恩菜食房 ぴぱら，確保備選也順路。
+- Verified 58/58 tests, privacy-safe static build, 390px live layout with zero horizontal overflow, and three visually inspected 24-page PDFs.
+- Deployed release v13 from commit `13672c6` through GitHub Actions run `33306901023`; live app, JSON, service worker, and PDFs all return HTTP 200, and deployed PDF hashes exactly match local artifacts.
