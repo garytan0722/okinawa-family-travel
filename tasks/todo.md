@@ -187,7 +187,7 @@
 - [x] 9/28 加入釣って見つけるぼうけんの国，移除東南植物樂園
 - [x] 加入兩處官方票價、營業／維護時間、停車與官方來源
 - [x] 重建並視覺檢查 A／B／C PDF
-- [ ] 完整驗證、部署 GitHub Pages 並確認線上版本
+- [x] 完整驗證、部署 GitHub Pages 並確認線上版本
 
 ### 北部親子景點 review
 
@@ -195,3 +195,5 @@
 - 9/28 A／B 保留兒童王國上午、下午改釣魚尋寶冒險；C 只留冒險王國一個主景點，使用使用者提供的 Maps 連結。
 - 移除不再使用的今歸仁與東南植物樂園票價，改加入兩個新景點的官方票價、營業／維護時間、停車與預約提示。
 - Verified 54/54 tests, privacy-safe static build, frozen 9/30–10/4 hashes, and three visually inspected 21-page PDFs.
+- Deployed release v12 from commit `ff3d6a9` through GitHub Actions run `33305830823`.
+- Confirmed the live JSON contains both original Maps links, the two new ticket records, the AEON名護 replacement, no removed stops, and exact local-to-live PDF hashes.
