@@ -222,4 +222,12 @@
 - [x] 在每日行程與「更多」頁加入雨天備案入口
 - [x] 保持 9/30–10/4 A／B／C day objects 雜湊完全不變
 - [x] 輪替 v14 離線快取並驗證手機、離線、隱私與公開資產
-- [ ] 部署 GitHub Pages 並確認線上版本
+- [x] 部署 GitHub Pages 並確認線上版本
+
+### 每日導航與雨天備案 review
+
+- Deployed release v14 from commit `429b357` through GitHub Actions run `33319899843`.
+- 每一天會依行程順序產生 Google Maps 多站導航；重複與模糊用餐搜尋會排除，超過手機 5 點上限則以前後重疊點分段。
+- 新增 24 個雨天備案，依親子、藝術、自然、產業、商場、購物與特別參觀分類，並提供區域、遮雨程度、停留時間、親子提醒、官方資料及直接導航。
+- Verified 65/65 tests, privacy-safe static build, v14 offline reload, 320／390／1440px zero-overflow layouts, and the live 9/28 five-stop route.
+- Confirmed the frozen 9/30–10/4 A／B／C hashes remain unchanged and public route URLs contain no private accommodation label.
