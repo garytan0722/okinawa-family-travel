@@ -43,7 +43,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=12" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=13" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -54,6 +54,19 @@ test('user-supplied Google Maps links are preserved for the two new attractions'
   const adventureHtml = renderDay(trip, september28, { completed: {}, notes: {}, energy: {} });
   assert.match(toyHtml, /https:\/\/maps\.app\.goo\.gl\/x5uAXns3p6EgxshAA\?g_st=il/);
   assert.match(adventureHtml, /https:\/\/maps\.app\.goo\.gl\/ZqBSD95bMudWB7G9A\?g_st=il/);
+});
+
+test('meal cards render concrete primary and backup restaurants with direct navigation', () => {
+  const day = trip.days.A.find((item) => item.date === '2026-09-28');
+  const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {} });
+  assert.match(html, /class="dining-guide"/);
+  assert.match(html, /汪喵順路選餐/);
+  assert.match(html, /和風亭 大湾シティ店/);
+  assert.match(html, /大阪王将 大湾シティ店/);
+  assert.match(html, /首選/);
+  assert.match(html, /備選/);
+  assert.match(html, /https:\/\/www\.google\.com\/maps\/search\/\?api=1&amp;query=/);
+  assert.match(html, /不繞路理由/);
 });
 
 test('paid attraction cards show official ticket prices next to the itinerary stop', () => {

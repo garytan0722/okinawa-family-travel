@@ -88,6 +88,68 @@ test('new family attractions replace the approved northern stops without touchin
   assert.deepEqual(relaxedMainEvents.map((event) => event.title), ['釣って見つけるぼうけんの国 沖縄']);
 });
 
+test('September 24 through 29 meals resolve to concrete route-aware family dining guides', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const requiredGuides = [
+    'toyosaki-lunch', 'nago-coast-lunch', 'busena-lunch', 'nago-attractions-lunch', 'kouri-lunch',
+    'aeon-nago-dinner', 'ishikawa-lunch', 'owan-dinner', 'onna-lunch',
+  ];
+
+  assert.deepEqual(Object.keys(trip.diningGuides ?? {}).sort(), requiredGuides.sort());
+  for (const [guideId, guide] of Object.entries(trip.diningGuides)) {
+    assert.match(guide.checkedAt, /^2026-08-30$/);
+    assert.ok(guide.routeNote.length > 12, `${guideId} must explain why it is on route`);
+    assert.equal(guide.options.length, 2, `${guideId} must offer a primary and backup restaurant`);
+    assert.deepEqual(guide.options.map((option) => option.rank), ['首選', '備選']);
+    for (const option of guide.options) {
+      assert.ok(option.name.length > 2);
+      assert.ok(option.familyNote.length > 8);
+      assert.doesNotMatch(option.mapQuery, /子連れ|周邊|附近|ランチ$/);
+    }
+  }
+
+  for (const variantId of ['A', 'B', 'C']) {
+    const earlyMeals = trip.days[variantId]
+      .filter((day) => day.date >= '2026-09-24' && day.date <= '2026-09-29')
+      .flatMap((day) => day.events)
+      .filter((event) => event.type === 'meal');
+    for (const event of earlyMeals) {
+      assert.ok(event.diningGuideId, `${event.id} must not remain a generic restaurant search`);
+      assert.ok(trip.diningGuides[event.diningGuideId], `${event.id} must resolve dining guide ${event.diningGuideId}`);
+      assert.doesNotMatch(event.mapQuery ?? '', /子連れ|周邊|附近|ランチ$/);
+    }
+  }
+});
+
+test('September 28 follows one direction from the attractions to the supplied Owan City dinner', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const owanMap = 'https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i';
+  assert.deepEqual(
+    trip.diningGuides?.['owan-dinner']?.options.map((option) => option.name),
+    ['和風亭 大湾シティ店', '大阪王将 大湾シティ店'],
+  );
+
+  for (const variantId of ['A', 'B', 'C']) {
+    const day = trip.days[variantId].find((item) => item.date === '2026-09-28');
+    const adventureIndex = day.events.findIndex((event) => event.title.includes('釣って見つけるぼうけんの国'));
+    const lunchIndex = day.events.findIndex((event) => event.diningGuideId === 'ishikawa-lunch');
+    const dinnerIndex = day.events.findIndex((event) => event.diningGuideId === 'owan-dinner');
+    const dinner = day.events[dinnerIndex];
+    assert.ok(lunchIndex >= 0 && adventureIndex >= 0 && dinnerIndex > adventureIndex);
+    assert.equal(dinner.navigationUrl, owanMap);
+    assert.match(dinner.title, /サンエー大湾シティ/);
+    assert.ok(day.events.slice(dinnerIndex + 1).every((event) => event.type === 'drive' || event.type === 'stay'));
+  }
+});
+
+test('September 29 active plan runs west-to-north without returning to Cape Zanpa', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const day = trip.days.B.find((item) => item.date === '2026-09-29');
+  const titles = day.events.map((event) => event.title).join(' → ');
+  assert.match(titles, /^殘波岬.*琉球村.*親子午餐.*萬座毛.*回飯店整理行李$/);
+  assert.equal(day.events.filter((event) => event.diningGuideId === 'onna-lunch').length, 1);
+});
+
 test('flight summary includes only confirmed times and known flight identifiers', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   assert.deepEqual(trip.flights, [

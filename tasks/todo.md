@@ -197,3 +197,16 @@
 - Verified 54/54 tests, privacy-safe static build, frozen 9/30–10/4 hashes, and three visually inspected 21-page PDFs.
 - Deployed release v12 from commit `ff3d6a9` through GitHub Actions run `33305830823`.
 - Confirmed the live JSON contains both original Maps links, the two new ticket records, the AEON名護 replacement, no removed stops, and exact local-to-live PDF hashes.
+
+## 9/24–9/30 順路親子餐廳
+
+- [x] 查核 9/24–9/30 A／B／C 的景點與用餐方向，不為餐廳繞回頭路
+- [x] 以失敗測試鎖定 9/28 サンエー大湾シティ、具名餐廳與 9/30 凍結資料
+- [x] 為 9/24–9/29 模糊用餐事件加入首選／備選餐廳及直接導航
+- [x] 調整 9/28 與 9/29 的順路時間軸並保留 9/30–10/4 原始內容
+- [x] 在網站與 A／B／C PDF 顯示親子餐廳指南
+- [ ] 更新離線版本，完成測試、手機、PDF、隱私與部署驗證
+
+### 順路親子餐廳 review
+
+- 待實作完成後補上。

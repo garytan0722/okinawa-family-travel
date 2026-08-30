@@ -75,6 +75,89 @@
       "sourceIds": ["bestdive", "bestdive-meeting", "bestdive-flow", "bestdive-terms"]
     }
   },
+  "diningGuides": {
+    "toyosaki-lunch": {
+      "title": "豐崎快速親子午餐",
+      "routeNote": "OTS 取車後到同區 iias 吃飯與補給，再直接沿西岸北上恩納，不回那霸市區。",
+      "checkedAt": "2026-08-30",
+      "options": [
+        { "rank": "首選", "name": "A&W iias 沖繩豐崎店", "food": "漢堡・兒童套餐", "familyNote": "同館停車、官方有 Kids & Family Set，取車後最快。", "mapQuery": "A&W イーアス沖縄豊崎店", "sourceId": "aw-toyosaki" },
+        { "rank": "備選", "name": "はなまるうどん iias 沖繩豐崎店", "food": "烏龍麵", "familyNote": "出餐快、份量容易調整，孩子方便分食。", "mapQuery": "はなまるうどん イーアス沖縄豊崎店", "sourceId": "iias-gourmet" }
+      ]
+    },
+    "nago-coast-lunch": {
+      "title": "名護海岸線親子午餐",
+      "routeNote": "部瀨名沿 58 號北上，先吃午餐再到 21 世紀之森；兩間都不用穿越名護內陸。",
+      "checkedAt": "2026-08-30",
+      "options": [
+        { "rank": "首選", "name": "A&W 名護店", "food": "漢堡・兒童套餐", "familyNote": "155 席、全席禁菸、有得來速，接著前往海灘方便。", "mapQuery": "A&W 名護店", "sourceId": "aw-nago" },
+        { "rank": "備選", "name": "宮里そば", "food": "沖繩麵・白飯", "familyNote": "靠近 21 世紀之森，餐點單純、適合快速吃完再玩沙。", "mapQuery": "宮里そば 名護" }
+      ]
+    },
+    "busena-lunch": {
+      "title": "部瀨名附近不繞路午餐",
+      "routeNote": "玻璃船結束後留在幸喜／喜瀨一帶吃飯，再沿 58 號短程返回飯店。",
+      "checkedAt": "2026-08-30",
+      "options": [
+        { "rank": "首選", "name": "美ら花 別邸", "food": "沖繩料理・定食", "familyNote": "國道 58 號旁、有停車，從部瀨名回飯店順路。", "mapQuery": "美ら花 別邸 名護" },
+        { "rank": "備選", "name": "かふぅ 瀬良垣店", "food": "沖繩麵・定食", "familyNote": "孩子想吃簡單麵飯時好選，吃完直接沿西岸回飯店。", "mapQuery": "かふぅ 瀬良垣店" }
+      ]
+    },
+    "nago-attractions-lunch": {
+      "title": "鳳梨園到 Neo Park 順路午餐",
+      "routeNote": "從鳳梨園往名護市區與 Neo Park 移動；不繞去海岸或古宇利方向。",
+      "checkedAt": "2026-08-30",
+      "options": [
+        { "rank": "首選", "name": "我部祖河食堂 名護店", "food": "沖繩麵・定食", "familyNote": "位於為又、在鳳梨園往市區方向，有停車且可帶孩子。", "mapQuery": "我部祖河食堂 名護店" },
+        { "rank": "備選", "name": "Neo Park しましましっぽ Cafe", "food": "炒麵・丼飯・輕食", "familyNote": "若前站拖延，直接到下一景點用餐，不再增加停靠點。", "mapQuery": "ネオパークオキナワ", "sourceId": "neopark-cafe" }
+      ]
+    },
+    "kouri-lunch": {
+      "title": "古宇利島上直接午餐",
+      "routeNote": "午餐留在古宇利島，12:30 前直接往國頭玩具美術館，不下橋後再找店。",
+      "checkedAt": "2026-08-30",
+      "options": [
+        { "rank": "首選", "name": "Ocean Blue 古宇利海洋塔", "food": "窯烤披薩・義式料理", "familyNote": "就在上午景點內，完全不用移車，披薩方便親子分享。", "mapQuery": "Ocean Blue 古宇利オーシャンタワー", "sourceId": "kouri-restaurant" },
+        { "rank": "備選", "name": "KOURI SHRIMP", "food": "蒜香蝦飯・外帶", "familyNote": "島上約 5 分車程，可先手機點餐；座位不合適就外帶。", "mapQuery": "KOURI SHRIMP", "sourceId": "kouri-shrimp" }
+      ]
+    },
+    "aeon-nago-dinner": {
+      "title": "AEON 名護親子晚餐",
+      "routeNote": "玩具美術館南下後在 AEON 名護一次完成晚餐與補給，再沿 58 號回飯店。",
+      "checkedAt": "2026-08-30",
+      "options": [
+        { "rank": "首選", "name": "五穀 AEON 名護店", "food": "日式定食・釜飯", "familyNote": "白飯、魚肉與定食選擇完整，四人可各自選餐。", "mapQuery": "五穀 イオン名護店", "sourceId": "aeon-nago" },
+        { "rank": "備選", "name": "はなまるうどん AEON 名護店", "food": "烏龍麵", "familyNote": "孩子累時出餐快、份量可調整，吃完就能補給。", "mapQuery": "はなまるうどん イオン名護店", "sourceId": "aeon-nago" }
+      ]
+    },
+    "ishikawa-lunch": {
+      "title": "石川室內親子午餐",
+      "routeNote": "安排在サンエー石川シティ，位於兒童王國／飯店前往冒險王國的石川區段，不南下找餐廳。",
+      "checkedAt": "2026-08-30",
+      "options": [
+        { "rank": "首選", "name": "和風亭 石川シティ店", "food": "壽司・烏龍麵・兒童餐", "familyNote": "和食選擇多，官方品牌提供兒童餐，商場共用停車。", "mapQuery": "和風亭 石川シティ店", "sourceId": "san-a-wafutei" },
+        { "rank": "備選", "name": "大阪王将 石川シティ店", "food": "餃子・炒飯・麵", "familyNote": "餐點容易共享，官方列有 1,000 個共用停車位。", "mapQuery": "大阪王将 石川シティ店", "sourceId": "osaka-ohsho-ishikawa" }
+      ]
+    },
+    "owan-dinner": {
+      "title": "サンエー大湾シティ晚餐",
+      "routeNote": "冒險王國後往西到讀谷用餐，再沿西岸北上飯店；不回沖繩市，也不折返石川。",
+      "checkedAt": "2026-08-30",
+      "options": [
+        { "rank": "首選", "name": "和風亭 大湾シティ店", "food": "壽司・天婦羅・烏龍麵・兒童餐", "familyNote": "日式選擇最多，幼兒可吃烏龍麵或兒童餐，商場停車方便。", "mapQuery": "和風亭 大湾シティ店", "sourceId": "san-a-wafutei" },
+        { "rank": "備選", "name": "大阪王将 大湾シティ店", "food": "餃子・炒飯・麵", "familyNote": "共享餐點容易，孩子想快速吃飯時較有彈性。", "mapQuery": "大阪王将 大湾シティ店", "sourceId": "osaka-ohsho" }
+      ]
+    },
+    "onna-lunch": {
+      "title": "恩納西岸順路親子午餐",
+      "routeNote": "琉球村後沿 58 號北上用餐，再到萬座毛與飯店；不穿越內陸、不回頭。",
+      "checkedAt": "2026-08-30",
+      "options": [
+        { "rank": "首選", "name": "シーサイドドライブイン", "food": "和洋中・湯品・三明治", "familyNote": "在琉球村往萬座毛的 58 號線上，有停車且菜色跨度大。", "mapQuery": "シーサイドドライブイン 恩納村", "sourceId": "seaside-drivein" },
+        { "rank": "備選", "name": "恩菜食房 ぴぱら（おんなの駅）", "food": "沖繩麵・沖繩料理", "familyNote": "琉球村北側的58號沿線美食街，有共用座位與停車，不必越過萬座毛再折返。", "mapQuery": "恩菜食房 ぴぱら おんなの駅", "sourceId": "onna-no-eki" }
+      ]
+    }
+  },
   "ticketInfo": [
     { "id": "bestdive", "kind": "activity", "label": "青潛青洞浮潛", "price": "成人（16～65歲）¥6,000／兒童（4～14歲）¥9,000", "note": "兒童自動安排私人組別；費用含基本裝備與活動保險，實際預約內容以確認訊息為準。", "sourceId": "bestdive", "checkedAt": "2026-08-29" },
     { "id": "busena", "kind": "ticket", "label": "部瀨名海中公園", "price": "展望塔＋玻璃底船套票：成人 ¥2,100／4歲～中學生 ¥1,050", "note": "單買展望塔成人 ¥1,050／兒童 ¥530；玻璃底船成人 ¥1,560／兒童 ¥780。海況可能停航。", "sourceId": "busena", "checkedAt": "2026-08-29" },
@@ -107,6 +190,17 @@
     { "id": "adventure-okinawa", "label": "釣って見つけるぼうけんの国沖縄官方票價與預約", "url": "https://boukennokuni.com/reservation_okinawa/", "checkedAt": "2026-08-30" },
     { "id": "adventure-okinawa-info", "label": "釣って見つけるぼうけんの国沖縄官方設施資訊", "url": "https://boukennokuni.com/okinawa/", "checkedAt": "2026-08-30" },
     { "id": "aeon-nago", "label": "AEON名護店官方店舖資訊", "url": "https://www.aeon-ryukyu.jp/store/aeon/aeon_nago/", "checkedAt": "2026-08-30" },
+    { "id": "iias-gourmet", "label": "iias沖繩豐崎官方美食指南", "url": "https://toyosaki.iias.jp/shopsearch/gourmet", "checkedAt": "2026-08-30" },
+    { "id": "aw-toyosaki", "label": "A&W iias沖繩豐崎店官方資訊", "url": "https://www.awok.co.jp/shopsearch/searchbyarea/", "checkedAt": "2026-08-30" },
+    { "id": "aw-nago", "label": "A&W名護店官方資訊", "url": "https://www.awok.co.jp/shopsearch/nago/", "checkedAt": "2026-08-30" },
+    { "id": "neopark-cafe", "label": "Neo Park餐廳官方資訊", "url": "https://www.neopark.co.jp/cafe-shop/", "checkedAt": "2026-08-30" },
+    { "id": "kouri-restaurant", "label": "古宇利海洋塔餐廳官方資訊", "url": "https://www.kouri-oceantower.com/_restaurant.html", "checkedAt": "2026-08-30" },
+    { "id": "kouri-shrimp", "label": "KOURI SHRIMP官方網站", "url": "https://lovesokinawa.co.jp/archives/category/information", "checkedAt": "2026-08-30" },
+    { "id": "san-a-wafutei", "label": "サンエー和風亭官方餐飲資訊", "url": "https://blog-nahamainplace.san-a.co.jp/shoplist/detail/?cd=000134", "checkedAt": "2026-08-30" },
+    { "id": "osaka-ohsho-ishikawa", "label": "大阪王将石川シティ店官方資訊", "url": "https://www.osaka-ohsho.com/store/store_detail.php?shop_id=525", "checkedAt": "2026-08-30" },
+    { "id": "osaka-ohsho", "label": "大阪王将官方店舖搜尋", "url": "https://www.osaka-ohsho.com/store/", "checkedAt": "2026-08-30" },
+    { "id": "seaside-drivein", "label": "シーサイドドライブイン官方資訊", "url": "https://seaside-drivein.jp/access/", "checkedAt": "2026-08-30" },
+    { "id": "onna-no-eki", "label": "おんなの駅官方餐飲與設施資訊", "url": "https://onnanoeki.com/eat/", "checkedAt": "2026-08-30" },
     { "id": "manzamo", "label": "萬座毛官方觀覽費", "url": "https://www.manzamo.jp/contact.php", "checkedAt": "2026-08-29" },
     { "id": "shurijo", "label": "首里城公園官方票價", "url": "https://oki-park.jp/shurijo/info/14?vm=r", "checkedAt": "2026-08-29" },
     { "id": "okinawaworld", "label": "沖繩世界官方票價", "url": "https://www.gyokusendo.co.jp/okinawaworld/fee/", "checkedAt": "2026-08-29" },
@@ -141,7 +235,7 @@
         "events": [
           { "id": "A-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛；入境領行李後替孩子補水、上洗手間。" },
           { "id": "A-0924-2", "time": "12:00", "type": "car", "title": "OTS 取第一台車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "確認兩張兒童座椅、ETC與行李空間。", "sourceIds": ["ots"] },
-          { "id": "A-0924-3", "time": "13:00", "type": "meal", "title": "豐崎簡單午餐＋補給", "place": "iias沖繩豐崎周邊", "mapQuery": "イーアス沖縄豊崎", "note": "第一餐不排隊，超市補水與早餐。" },
+          { "id": "A-0924-3", "time": "13:00", "type": "meal", "title": "iias 豐崎快速親子午餐＋補給", "place": "イーアス沖縄豊崎", "mapQuery": "A&W イーアス沖縄豊崎店", "note": "同館吃飯與補給後直接北上恩納，不回那霸市區。", "diningGuideId": "toyosaki-lunch" },
           { "id": "A-0924-4", "time": "15:30", "type": "stay", "title": "飯店入住、泳池或海邊散步", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "不再加景點，讓孩子調整。", "sourceIds": ["kariyushi"] }
         ]
       },
@@ -150,7 +244,7 @@
         "events": [
           { "id": "A-0925-1", "time": "09:30", "type": "activity", "title": "部瀨名海中公園玻璃底船", "place": "ブセナ海中公園", "mapQuery": "ブセナ海中公園", "note": "先查海況與航班；幼兒穿救生衣。", "sourceIds": ["busena"] },
           { "id": "A-0925-2", "time": "11:00", "type": "walk", "title": "海中展望塔與海岸散步", "place": "ブセナ海中展望塔", "mapQuery": "ブセナ海中展望塔", "note": "樓梯較多，孩子累就只走沙灘。", "sourceIds": ["busena"] },
-          { "id": "A-0925-3", "time": "12:15", "type": "meal", "title": "名護午餐", "place": "名護市區", "mapQuery": "名護市 子連れ ランチ", "note": "選有停車與兒童椅的店。" },
+          { "id": "A-0925-3", "time": "12:15", "type": "meal", "title": "名護海岸線親子午餐", "place": "名護東江 → 21世紀之森", "mapQuery": "A&W 名護店", "note": "沿58號北上用餐，接著再去21世紀之森，不穿越內陸。", "diningGuideId": "nago-coast-lunch" },
           { "id": "A-0925-4", "time": "14:00", "type": "play", "title": "21世紀之森海灘玩沙", "place": "21世紀の森ビーチ", "mapQuery": "21世紀の森ビーチ", "note": "控制在一小時；太熱或孩子累就回飯店。" },
           { "id": "A-0925-5", "time": "16:00", "type": "rest", "title": "回飯店休息", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
         ]
@@ -159,7 +253,7 @@
         "date": "2026-09-26", "title": "鳳梨小火車・Neo Park 動物日", "area": "名護", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 70–95 分", "rainPlan": "大雨只留名護鳳梨園；Neo Park 改飯店休息。",
         "events": [
           { "id": "A-0926-1", "time": "09:30", "type": "activity", "title": "名護鳳梨園", "place": "ナゴパイナップルパーク", "mapQuery": "ナゴパイナップルパーク", "note": "先搭園內車，保留鳳梨點心時間。", "sourceIds": ["pineapple"] },
-          { "id": "A-0926-2", "time": "12:00", "type": "meal", "title": "名護午餐", "place": "名護市區", "mapQuery": "名護市 子連れ ランチ", "note": "午餐後讓孩子在車上小睡。" },
+          { "id": "A-0926-2", "time": "12:00", "type": "meal", "title": "鳳梨園到 Neo Park 順路午餐", "place": "名護・為又", "mapQuery": "我部祖河食堂 名護店", "note": "往Neo Park方向吃飯；若前站拖延就直接到園內Cafe。", "diningGuideId": "nago-attractions-lunch" },
           { "id": "A-0926-3", "time": "14:00", "type": "activity", "title": "Neo Park Okinawa", "place": "ネオパークオキナワ", "mapQuery": "ネオパークオキナワ", "note": "先搭沖繩輕便鐵道，再依體力走動物區。", "sourceIds": ["neopark"] },
           { "id": "A-0926-4", "time": "16:30", "type": "rest", "title": "回飯店休息", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "晚餐留飯店或附近。", "sourceIds": ["kariyushi"] }
         ]
@@ -168,28 +262,30 @@
         "date": "2026-09-27", "title": "古宇利海洋塔・森林玩具・AEON名護", "area": "古宇利 → 國頭 → 名護", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 155–190 分", "rainPlan": "兩個主景點皆有室內區；山區道路受天候影響時取消玩具美術館，直接到AEON名護。",
         "events": [
           { "id": "A-0927-1", "time": "09:30", "type": "activity", "title": "古宇利海洋塔", "place": "古宇利オーシャンタワー", "mapQuery": "古宇利オーシャンタワー", "note": "搭園內車上塔看古宇利大橋；遇強風依現場調整。", "sourceIds": ["kouri"] },
-          { "id": "A-0927-2", "time": "11:30", "type": "meal", "title": "古宇利／名護午餐", "place": "古宇利島", "mapQuery": "古宇利島 子連れ ランチ", "note": "12:30前離開，預留前往國頭山區的車程。" },
+          { "id": "A-0927-2", "time": "11:30", "type": "meal", "title": "古宇利島上直接午餐", "place": "古宇利島", "mapQuery": "Ocean Blue 古宇利オーシャンタワー", "note": "12:30前離開，直接往國頭山區，不下橋後再找店。", "diningGuideId": "kouri-lunch" },
           { "id": "A-0927-3", "time": "13:30", "type": "activity", "title": "やんばる森のおもちゃ美術館", "place": "やんばる森のおもちゃ美術館", "mapQuery": "やんばる森のおもちゃ美術館", "navigationUrl": "https://maps.app.goo.gl/x5uAXns3p6EgxshAA?g_st=il", "note": "週日可能採2小時入館制；16:00閉館、最晚15:30入館。", "sourceIds": ["toy-museum"] },
-          { "id": "A-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "有兒童用品、食品與餐廳，停車位約1,400個。", "sourceIds": ["aeon-nago"] },
+          { "id": "A-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、親子晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "南下後一次完成晚餐與補給，再沿58號回飯店。", "diningGuideId": "aeon-nago-dinner", "sourceIds": ["aeon-nago"] },
           { "id": "A-0927-5", "time": "18:00", "type": "drive", "title": "返回飯店", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
         ]
       },
       {
-        "date": "2026-09-28", "title": "兒童王國・室內釣魚尋寶", "area": "沖繩市 → 石川", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 95–125 分", "rainPlan": "冒險王國為全天候型設施；大雨時縮短兒童王國戶外區。",
+        "date": "2026-09-28", "title": "兒童王國・釣魚尋寶・大灣晚餐", "area": "沖繩市 → 石川 → 讀谷 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "順時針西返約 120–155 分", "rainPlan": "冒險王國與大灣City皆有室內區；大雨時縮短兒童王國戶外區。",
         "events": [
           { "id": "A-0928-1", "time": "09:00", "type": "drive", "title": "南下沖繩市", "place": "沖縄こどもの国", "mapQuery": "沖縄こどもの国", "note": "週一安排，避開官方週二休園。" },
           { "id": "A-0928-2", "time": "10:00", "type": "activity", "title": "沖繩兒童王國＋Wonder Museum", "place": "沖縄こどもの国", "mapQuery": "沖縄こどもの国", "note": "戶外動物與室內探索各抓一段。", "sourceIds": ["zoo"] },
-          { "id": "A-0928-3", "time": "13:00", "type": "meal", "title": "沖繩市簡單午餐", "place": "沖繩市", "mapQuery": "沖縄市 子連れ ランチ", "note": "不排長候位，餐後讓孩子休息。" },
+          { "id": "A-0928-3", "time": "13:00", "type": "meal", "title": "サンエー石川シティ親子午餐", "place": "サンエー石川シティ", "mapQuery": "和風亭 石川シティ店", "note": "一路北上到石川吃飯，再進冒險王國，不回沖繩市找餐廳。", "diningGuideId": "ishikawa-lunch" },
           { "id": "A-0928-4", "time": "14:30", "type": "activity", "title": "釣って見つけるぼうけんの国 沖縄", "place": "釣って見つけるぼうけんの国 沖縄", "mapQuery": "釣って見つけるぼうけんの国 沖縄", "navigationUrl": "https://maps.app.goo.gl/ZqBSD95bMudWB7G9A?g_st=il", "note": "13:30～14:00部分區域維護；建議事先預約，免費停車100台但額滿可能限制入場。", "sourceIds": ["adventure-okinawa", "adventure-okinawa-info"] },
-          { "id": "A-0928-5", "time": "17:30", "type": "drive", "title": "返回飯店", "place": "恩納村", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "18:00閉館前離開，晚餐回恩納簡單處理。" }
+          { "id": "A-0928-5", "time": "18:15", "type": "meal", "title": "サンエー大湾シティ親子晚餐", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "冒險王國後往西到讀谷吃飯，再沿西岸北上飯店。", "diningGuideId": "owan-dinner" },
+          { "id": "A-0928-6", "time": "19:30", "type": "drive", "title": "沿西岸返回飯店", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "晚餐後只剩北上，不再折返石川。", "sourceIds": ["kariyushi"] }
         ]
       },
       {
         "date": "2026-09-29", "title": "琉球村・萬座毛・整理行李", "area": "恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "各段約 15–30 分", "rainPlan": "大雨只留琉球村可遮蔽區，午後回飯店整理。",
         "events": [
           { "id": "A-0929-1", "time": "09:30", "type": "culture", "title": "琉球村", "place": "琉球村", "mapQuery": "琉球村", "note": "看表演、老屋與簡單手作；活動時間行前確認。", "sourceIds": ["ryukyumura"] },
-          { "id": "A-0929-2", "time": "13:00", "type": "view", "title": "萬座毛短停", "place": "万座毛", "mapQuery": "万座毛", "note": "步道短但曝曬；強風或孩子累就跳過。", "sourceIds": ["manzamo"] },
-          { "id": "A-0929-3", "time": "15:00", "type": "rest", "title": "飯店最後一個下午＋整理行李", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "先把隔日換車需要的行李分區。" }
+          { "id": "A-0929-2", "time": "12:15", "type": "meal", "title": "恩納西岸順路親子午餐", "place": "シーサイドドライブイン", "mapQuery": "シーサイドドライブイン 恩納村", "note": "琉球村後沿58號北上用餐，再往萬座毛與飯店。", "diningGuideId": "onna-lunch" },
+          { "id": "A-0929-3", "time": "13:45", "type": "view", "title": "萬座毛短停", "place": "万座毛", "mapQuery": "万座毛", "note": "步道短但曝曬；強風或孩子累就跳過。", "sourceIds": ["manzamo"] },
+          { "id": "A-0929-4", "time": "15:00", "type": "rest", "title": "飯店最後一個下午＋整理行李", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "先把隔日換車需要的行李分區。" }
         ]
       },
       {
@@ -244,41 +340,43 @@
       { "date": "2026-09-24", "title": "抵達・豐崎補給・恩納入住", "area": "豐崎 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "約 60–75 分", "rainPlan": "取車後直接入住。", "events": [
         { "id": "B-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達、入境與領行李", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛，10:45 抵達。" },
         { "id": "B-0924-2", "time": "12:00", "type": "car", "title": "OTS取車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "確認兒童座椅。", "sourceIds": ["ots"] },
-        { "id": "B-0924-3", "time": "13:00", "type": "meal", "title": "iias豐崎午餐與補給", "place": "イーアス沖縄豊崎", "mapQuery": "イーアス沖縄豊崎" },
+        { "id": "B-0924-3", "time": "13:00", "type": "meal", "title": "iias豐崎快速親子午餐與補給", "place": "イーアス沖縄豊崎", "mapQuery": "A&W イーアス沖縄豊崎店", "note": "同館吃飯、補給後直接北上恩納。", "diningGuideId": "toyosaki-lunch" },
         { "id": "B-0924-4", "time": "16:00", "type": "stay", "title": "入住、飯店巡禮", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-25", "title": "部瀨名玻璃船・名護海灘", "area": "部瀨名 → 名護", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 60–85 分", "rainPlan": "海況停航就取消玻璃船；海灘改飯店室內設施。", "events": [
         { "id": "B-0925-1", "time": "09:00", "type": "activity", "title": "部瀨名玻璃底船", "place": "ブセナ海中公園", "mapQuery": "ブセナ海中公園", "note": "先查海況與航班。", "sourceIds": ["busena"] },
         { "id": "B-0925-2", "time": "10:30", "type": "view", "title": "海中展望塔", "place": "ブセナ海中展望塔", "mapQuery": "ブセナ海中展望塔", "note": "次要項；樓梯多，孩子累就刪。", "sourceIds": ["busena"] },
-        { "id": "B-0925-3", "time": "12:15", "type": "meal", "title": "名護市區午餐", "place": "名護市", "mapQuery": "名護市 子連れ ランチ" },
+        { "id": "B-0925-3", "time": "12:15", "type": "meal", "title": "名護海岸線親子午餐", "place": "名護東江 → 21世紀之森", "mapQuery": "A&W 名護店", "note": "沿58號北上吃飯，再往21世紀之森。", "diningGuideId": "nago-coast-lunch" },
         { "id": "B-0925-4", "time": "14:00", "type": "play", "title": "21世紀之森海灘與公園", "place": "21世紀の森ビーチ", "mapQuery": "21世紀の森ビーチ", "note": "次要項；太熱就提早回飯店。" },
         { "id": "B-0925-5", "time": "16:30", "type": "stay", "title": "回飯店晚餐", "place": "恩納村", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-26", "title": "鳳梨・水果・動物三站", "area": "名護", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 80–110 分", "rainPlan": "大雨保留鳳梨園與水果樂園，刪 Neo Park。", "events": [
         { "id": "B-0926-1", "time": "09:15", "type": "activity", "title": "名護鳳梨園", "place": "ナゴパイナップルパーク", "mapQuery": "ナゴパイナップルパーク", "sourceIds": ["pineapple"] },
         { "id": "B-0926-2", "time": "11:30", "type": "activity", "title": "沖繩水果樂園", "place": "OKINAWAフルーツらんど", "mapQuery": "OKINAWAフルーツらんど", "note": "次要項；和鳳梨園二選一也可以。", "sourceIds": ["fruitsland"] },
-        { "id": "B-0926-3", "time": "13:00", "type": "meal", "title": "名護午餐", "place": "名護市", "mapQuery": "名護市 子連れ ランチ" },
+        { "id": "B-0926-3", "time": "13:00", "type": "meal", "title": "鳳梨園到 Neo Park 順路午餐", "place": "名護・為又", "mapQuery": "我部祖河食堂 名護店", "note": "往Neo Park方向吃飯，避免繞到海岸。", "diningGuideId": "nago-attractions-lunch" },
         { "id": "B-0926-4", "time": "14:30", "type": "activity", "title": "Neo Park Okinawa", "place": "ネオパークオキナワ", "mapQuery": "ネオパークオキナワ", "note": "先搭小火車；孩子累就只走短區。", "sourceIds": ["neopark"] },
         { "id": "B-0926-5", "time": "17:00", "type": "drive", "title": "返回恩納", "place": "恩納村", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ" }
       ]},
       { "date": "2026-09-27", "title": "古宇利・森林玩具・AEON名護", "area": "古宇利 → 國頭 → 名護", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 155–190 分", "rainPlan": "山區道路受天候影響時取消玩具美術館，直接到AEON名護。", "events": [
         { "id": "B-0927-1", "time": "09:15", "type": "activity", "title": "古宇利海洋塔", "place": "古宇利オーシャンタワー", "mapQuery": "古宇利オーシャンタワー", "sourceIds": ["kouri"] },
-        { "id": "B-0927-2", "time": "11:30", "type": "meal", "title": "古宇利／名護午餐", "place": "古宇利島", "mapQuery": "古宇利島 子連れ ランチ", "note": "12:30前離開。" },
+        { "id": "B-0927-2", "time": "11:30", "type": "meal", "title": "古宇利島上直接午餐", "place": "古宇利島", "mapQuery": "Ocean Blue 古宇利オーシャンタワー", "note": "12:30前直接往國頭，不下橋後再找店。", "diningGuideId": "kouri-lunch" },
         { "id": "B-0927-3", "time": "13:30", "type": "activity", "title": "やんばる森のおもちゃ美術館", "place": "やんばる森のおもちゃ美術館", "mapQuery": "やんばる森のおもちゃ美術館", "navigationUrl": "https://maps.app.goo.gl/x5uAXns3p6EgxshAA?g_st=il", "note": "週日可能採2小時入館制；16:00閉館、最晚15:30入館。", "sourceIds": ["toy-museum"] },
-        { "id": "B-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "依使用者指定排入；停車位約1,400個。", "sourceIds": ["aeon-nago"] },
+        { "id": "B-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、親子晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "南下後一次完成晚餐與補給，再沿58號回飯店。", "diningGuideId": "aeon-nago-dinner", "sourceIds": ["aeon-nago"] },
         { "id": "B-0927-5", "time": "18:00", "type": "drive", "title": "返回飯店", "place": "恩納村", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ" }
       ]},
-      { "date": "2026-09-28", "title": "兒童王國・釣魚尋寶冒險", "area": "沖繩市 → 石川", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 100–130 分", "rainPlan": "冒險王國為全天候型設施；大雨縮短兒童王國戶外區。", "events": [
+      { "date": "2026-09-28", "title": "兒童王國・釣魚尋寶・大灣晚餐", "area": "沖繩市 → 石川 → 讀谷 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "順時針西返約 125–160 分", "rainPlan": "冒險王國與大灣City皆有室內區；大雨縮短兒童王國戶外區。", "events": [
         { "id": "B-0928-1", "time": "09:30", "type": "activity", "title": "沖繩兒童王國", "place": "沖縄こどもの国", "mapQuery": "沖縄こどもの国", "note": "避開週二休園。", "sourceIds": ["zoo"] },
-        { "id": "B-0928-2", "time": "12:30", "type": "meal", "title": "石川方向簡單午餐", "place": "うるま市石川", "mapQuery": "うるま市石川 子連れ ランチ", "note": "避開13:30～14:00設施維護時段。" },
+        { "id": "B-0928-2", "time": "12:30", "type": "meal", "title": "サンエー石川シティ親子午餐", "place": "サンエー石川シティ", "mapQuery": "和風亭 石川シティ店", "note": "往北到石川吃飯後再進冒險王國，避開13:30～14:00維護時段。", "diningGuideId": "ishikawa-lunch" },
         { "id": "B-0928-3", "time": "14:00", "type": "activity", "title": "釣って見つけるぼうけんの国 沖縄", "place": "釣って見つけるぼうけんの国 沖縄", "mapQuery": "釣って見つけるぼうけんの国 沖縄", "navigationUrl": "https://maps.app.goo.gl/ZqBSD95bMudWB7G9A?g_st=il", "note": "建議事先預約；免費停車100台但額滿可能限制入場。", "sourceIds": ["adventure-okinawa", "adventure-okinawa-info"] },
-        { "id": "B-0928-4", "time": "17:30", "type": "drive", "title": "返回飯店", "place": "恩納村", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ" }
+        { "id": "B-0928-4", "time": "18:00", "type": "meal", "title": "サンエー大湾シティ親子晚餐", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "冒險王國後向西到讀谷，再沿西岸北上飯店。", "diningGuideId": "owan-dinner" },
+        { "id": "B-0928-5", "time": "19:15", "type": "drive", "title": "沿西岸返回飯店", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "晚餐後只剩北上，不折返石川。", "sourceIds": ["kariyushi"] }
       ]},
-      { "date": "2026-09-29", "title": "琉球村・萬座毛・殘波岬", "area": "西海岸", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 85–115 分", "rainPlan": "大雨只留琉球村可遮蔽區，午後回飯店。", "events": [
-        { "id": "B-0929-1", "time": "09:30", "type": "culture", "title": "琉球村", "place": "琉球村", "mapQuery": "琉球村", "sourceIds": ["ryukyumura"] },
-        { "id": "B-0929-2", "time": "12:30", "type": "view", "title": "萬座毛", "place": "万座毛", "mapQuery": "万座毛", "sourceIds": ["manzamo"] },
-        { "id": "B-0929-3", "time": "14:30", "type": "view", "title": "殘波岬", "place": "残波岬", "mapQuery": "残波岬", "note": "次要項；風大即取消。" },
-        { "id": "B-0929-4", "time": "16:30", "type": "rest", "title": "回飯店整理行李", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "把隔日換車行李分區。", "sourceIds": ["kariyushi"] }
+      { "date": "2026-09-29", "title": "殘波岬・琉球村・萬座毛一路北上", "area": "讀谷 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 80–105 分", "rainPlan": "大雨取消殘波岬，只留琉球村與順路午餐後回飯店。", "events": [
+        { "id": "B-0929-1", "time": "09:00", "type": "view", "title": "殘波岬", "place": "残波岬", "mapQuery": "残波岬", "note": "先走最南端；風大即取消。" },
+        { "id": "B-0929-2", "time": "10:15", "type": "culture", "title": "琉球村", "place": "琉球村", "mapQuery": "琉球村", "sourceIds": ["ryukyumura"] },
+        { "id": "B-0929-3", "time": "12:45", "type": "meal", "title": "恩納西岸順路親子午餐", "place": "シーサイドドライブイン", "mapQuery": "シーサイドドライブイン 恩納村", "note": "沿58號北上，吃完繼續往萬座毛。", "diningGuideId": "onna-lunch" },
+        { "id": "B-0929-4", "time": "14:30", "type": "view", "title": "萬座毛", "place": "万座毛", "mapQuery": "万座毛", "sourceIds": ["manzamo"] },
+        { "id": "B-0929-5", "time": "16:00", "type": "rest", "title": "回飯店整理行李", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "全程往北，把隔日換車行李分區。", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-30", "title": "換車・波上宮・國際通", "area": "恩納 → 豐崎 → 那霸", "stay": "那霸私人住宿", "drive": "恩納到豐崎約 70–95 分", "rainPlan": "換車後直接入住與商場晚餐。", "events": [
         { "id": "B-0930-1", "time": "08:40", "type": "drive", "title": "退房南下 OTS", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
@@ -320,35 +418,37 @@
       { "date": "2026-09-24", "title": "抵達・只做入住", "area": "豐崎 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "約 60–75 分", "rainPlan": "直接入住與休息。", "events": [
         { "id": "C-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛，10:45 抵達。" },
         { "id": "C-0924-2", "time": "12:00", "type": "car", "title": "OTS取車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
-        { "id": "C-0924-3", "time": "13:00", "type": "meal", "title": "不排隊的午餐與補給", "place": "豊崎", "mapQuery": "イーアス沖縄豊崎" },
+        { "id": "C-0924-3", "time": "13:00", "type": "meal", "title": "iias豐崎快速親子午餐與補給", "place": "イーアス沖縄豊崎", "mapQuery": "A&W イーアス沖縄豊崎店", "note": "同館吃飯與補給後直接北上恩納。", "diningGuideId": "toyosaki-lunch" },
         { "id": "C-0924-4", "time": "15:30", "type": "stay", "title": "入住、泡澡、早睡", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-25", "title": "部瀨名半日・午後慢慢玩", "area": "部瀨名", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "單程約 10–15 分", "rainPlan": "海況停航時全日留飯店。", "events": [
         { "id": "C-0925-1", "time": "09:30", "type": "activity", "title": "部瀨名玻璃底船", "place": "ブセナ海中公園", "mapQuery": "ブセナ海中公園", "note": "當天只排這個主景點；先查海況與航班。", "sourceIds": ["busena"] },
         { "id": "C-0925-2", "time": "11:00", "type": "view", "title": "海中展望塔或海岸散步", "place": "ブセナ海中展望塔", "mapQuery": "ブセナ海中展望塔", "note": "孩子累就不下塔，只走海邊。", "sourceIds": ["busena"] },
-        { "id": "C-0925-3", "time": "12:30", "type": "meal", "title": "附近早午餐", "place": "名護南部", "mapQuery": "名護 ブセナ 子連れ ランチ" },
+        { "id": "C-0925-3", "time": "12:30", "type": "meal", "title": "部瀨名附近不繞路午餐", "place": "幸喜／喜瀨", "mapQuery": "美ら花 別邸 名護", "note": "留在58號線附近吃飯，再短程返回飯店。", "diningGuideId": "busena-lunch" },
         { "id": "C-0925-4", "time": "14:00", "type": "rest", "title": "回飯店午睡與自由時間", "place": "飯店", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-26", "title": "名護鳳梨園・午後度假", "area": "名護", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "單程約 25–35 分", "rainPlan": "園內多處遮棚；雨大則縮短後回飯店。", "events": [
         { "id": "C-0926-1", "time": "10:00", "type": "activity", "title": "名護鳳梨園", "place": "ナゴパイナップルパーク", "mapQuery": "ナゴパイナップルパーク", "note": "當天唯一主景點，搭園內車與吃點心。", "sourceIds": ["pineapple"] },
-        { "id": "C-0926-2", "time": "12:30", "type": "meal", "title": "名護早午餐", "place": "名護市", "mapQuery": "名護市 子連れ ランチ" },
+        { "id": "C-0926-2", "time": "12:30", "type": "meal", "title": "鳳梨園回程親子午餐", "place": "名護・為又", "mapQuery": "我部祖河食堂 名護店", "note": "離開鳳梨園後往58號方向吃飯，再南下飯店。", "diningGuideId": "nago-attractions-lunch" },
         { "id": "C-0926-3", "time": "14:00", "type": "rest", "title": "回飯店午睡與泳池", "place": "飯店", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-27", "title": "古宇利・森林玩具・AEON名護", "area": "古宇利 → 國頭 → 名護", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 155–190 分", "rainPlan": "山區道路受天候影響時取消玩具美術館，直接到AEON名護。", "events": [
         { "id": "C-0927-1", "time": "09:30", "type": "activity", "title": "古宇利海洋塔", "place": "古宇利オーシャンタワー", "mapQuery": "古宇利オーシャンタワー", "note": "搭園內車上塔，11:15前離開。", "sourceIds": ["kouri"] },
-        { "id": "C-0927-2", "time": "11:30", "type": "meal", "title": "古宇利／名護午餐", "place": "古宇利島", "mapQuery": "古宇利島 子連れ ランチ", "note": "12:30前離開。" },
+        { "id": "C-0927-2", "time": "11:30", "type": "meal", "title": "古宇利島上直接午餐", "place": "古宇利島", "mapQuery": "Ocean Blue 古宇利オーシャンタワー", "note": "12:30前直接往國頭，不下橋後再找店。", "diningGuideId": "kouri-lunch" },
         { "id": "C-0927-3", "time": "13:30", "type": "activity", "title": "やんばる森のおもちゃ美術館", "place": "やんばる森のおもちゃ美術館", "mapQuery": "やんばる森のおもちゃ美術館", "navigationUrl": "https://maps.app.goo.gl/x5uAXns3p6EgxshAA?g_st=il", "note": "週日可能採2小時入館制；16:00閉館。", "sourceIds": ["toy-museum"] },
-        { "id": "C-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "用晚餐與補給作為收尾。", "sourceIds": ["aeon-nago"] },
+        { "id": "C-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、親子晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "南下後一次完成晚餐與補給，再沿58號回飯店。", "diningGuideId": "aeon-nago-dinner", "sourceIds": ["aeon-nago"] },
         { "id": "C-0927-5", "time": "18:00", "type": "drive", "title": "返回飯店", "place": "飯店", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},
-      { "date": "2026-09-28", "title": "室內釣魚尋寶・午後休息", "area": "石川", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "往返約 55–80 分", "rainPlan": "全天候型設施，遇雨照常；若孩子怕魚可縮短後回飯店。", "events": [
+      { "date": "2026-09-28", "title": "室內釣魚尋寶・大灣早晚餐", "area": "石川 → 讀谷 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "一路西返約 85–110 分", "rainPlan": "冒險王國與大灣City皆有室內區；若孩子怕魚就提早到大灣City休息。", "events": [
         { "id": "C-0928-1", "time": "10:00", "type": "activity", "title": "釣って見つけるぼうけんの国 沖縄", "place": "釣って見つけるぼうけんの国 沖縄", "mapQuery": "釣って見つけるぼうけんの国 沖縄", "navigationUrl": "https://maps.app.goo.gl/ZqBSD95bMudWB7G9A?g_st=il", "note": "當天唯一主景點；13:30前離開可避開部分區域維護。建議事先預約。", "sourceIds": ["adventure-okinawa", "adventure-okinawa-info"] },
-        { "id": "C-0928-2", "time": "13:15", "type": "meal", "title": "石川簡單午餐", "place": "うるま市石川", "mapQuery": "うるま市石川 子連れ ランチ" },
-        { "id": "C-0928-3", "time": "15:00", "type": "rest", "title": "回飯店午睡與溫泉", "place": "飯店", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "下午留白。", "sourceIds": ["kariyushi"] }
+        { "id": "C-0928-2", "time": "13:15", "type": "meal", "title": "サンエー石川シティ親子午餐", "place": "サンエー石川シティ", "mapQuery": "和風亭 石川シティ店", "note": "活動後留在石川吃飯，再一路往西到讀谷。", "diningGuideId": "ishikawa-lunch" },
+        { "id": "C-0928-3", "time": "15:15", "type": "rest", "title": "大湾City室內休息、買東西", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "孩子可在車上小睡；到商場後不上新景點。" },
+        { "id": "C-0928-4", "time": "17:00", "type": "meal", "title": "サンエー大湾シティ親子晚餐", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "早一點吃完，再沿西岸北上飯店。", "diningGuideId": "owan-dinner" },
+        { "id": "C-0928-5", "time": "18:15", "type": "drive", "title": "沿西岸返回飯店泡湯", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "不回石川、不增加晚間景點。", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-29", "title": "琉球村・萬座毛短停・收行李", "area": "恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "各段約 15–30 分", "rainPlan": "大雨只留琉球村可遮蔽區，午後回飯店。", "events": [
         { "id": "C-0929-1", "time": "09:30", "type": "culture", "title": "琉球村", "place": "琉球村", "mapQuery": "琉球村", "note": "當天唯一主景點；看一場表演與老屋。", "sourceIds": ["ryukyumura"] },
-        { "id": "C-0929-2", "time": "12:30", "type": "meal", "title": "恩納午餐", "place": "恩納村", "mapQuery": "恩納村 子連れ ランチ" },
+        { "id": "C-0929-2", "time": "12:30", "type": "meal", "title": "恩納西岸順路親子午餐", "place": "シーサイドドライブイン", "mapQuery": "シーサイドドライブイン 恩納村", "note": "琉球村後沿58號北上吃飯，再往萬座毛與飯店。", "diningGuideId": "onna-lunch" },
         { "id": "C-0929-3", "time": "13:45", "type": "view", "title": "萬座毛短停", "place": "万座毛", "mapQuery": "万座毛", "note": "30 分內離開；強風或孩子累就直接跳過。", "sourceIds": ["manzamo"] },
         { "id": "C-0929-4", "time": "15:00", "type": "rest", "title": "回飯店午睡與整理行李", "place": "飯店", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},

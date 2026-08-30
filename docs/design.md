@@ -81,3 +81,10 @@ motif; the remaining layout stays calm and operational.
 - Offline reload shows the itinerary after one online visit.
 - Three PDFs render Traditional Chinese without clipping or private credentials.
 - GitHub Pages publishes from `main` through Actions.
+# Route-aware dining guide (v13)
+
+The meal experience uses a separate `diningGuides` collection so a restaurant can be reused across A／B／C without duplicating descriptions. Early-trip meal events reference a guide by `diningGuideId`; frozen 9/30–10/4 day objects remain untouched. Each guide contains a short route rationale and two concrete, child-friendly options with a map query, current-source link where available, and a practical reason for families with 4–5-year-olds.
+
+On the website, the guide appears inside the matching meal card as a compact cream-and-mint “汪喵選餐” panel. The first restaurant is visually marked as the primary choice; both options have direct navigation controls. The existing paw-journal palette and typography stay unchanged so the feature reads as part of the travel tool rather than a separate directory.
+
+The PDF receives dedicated dining-guide pages listing the primary and backup options plus the route rationale. Day pages stay scannable and keep their current one-page-per-day rhythm.

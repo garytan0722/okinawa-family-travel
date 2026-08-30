@@ -281,6 +281,47 @@ def ticket_pages(pdf, trip, variant_id, page_number):
     return len(chunks)
 
 
+def dining_pages(pdf, trip, variant_id, page_number):
+    guides = list(trip["diningGuides"].values())
+    chunks = [guides[i:i + 5] for i in range(0, len(guides), 5)]
+    for index, chunk in enumerate(chunks):
+        title = "順路親子餐廳" if index == 0 else "順路親子餐廳（續）"
+        page_header(pdf, "PAW PAW DINING", title, variant_id, page_number + index)
+        y = PAGE_H - 112
+        if index == 0:
+            pdf.setFillColor(MUTED)
+            pdf.setFont(FONT, 8.5)
+            pdf.drawString(42, y, "每段列一間首選與一間備選；營業狀況請於出發前再次確認。")
+            y -= 27
+        for guide in chunk:
+            card_h = 116
+            pdf.setFillColor(colors.white)
+            pdf.roundRect(42, y - card_h + 7, PAGE_W - 84, card_h, 10, stroke=0, fill=1)
+            pdf.setFillColor(SEA)
+            pdf.setFont(FONT, 10.5)
+            pdf.drawString(55, y - 14, guide["title"])
+            pdf.setFillColor(MUTED)
+            pdf.setFont(FONT, 7)
+            pdf.drawRightString(PAGE_W - 55, y - 14, f"查核 {guide['checkedAt']}")
+            draw_lines(pdf, "不繞路理由：" + guide["routeNote"], 55, y - 32, 7.2, PAGE_W - 110, MUTED, 9.5, 2)
+            for option_index, option in enumerate(guide["options"]):
+                option_y = y - 68 - option_index * 24
+                pdf.setFillColor(ROAD if option_index == 0 else FOAM)
+                pdf.roundRect(55, option_y - 12, 35, 16, 7, stroke=0, fill=1)
+                pdf.setFillColor(colors.white if option_index == 0 else SEA)
+                pdf.setFont(FONT, 6.7)
+                pdf.drawCentredString(72.5, option_y - 7, option["rank"])
+                pdf.setFillColor(INK)
+                pdf.setFont(FONT, 8.2)
+                pdf.drawString(98, option_y - 7, option["name"])
+                pdf.setFillColor(MUTED)
+                pdf.setFont(FONT, 6.8)
+                pdf.drawRightString(PAGE_W - 55, option_y - 7, option["food"])
+            y -= card_h + 9
+        pdf.showPage()
+    return len(chunks)
+
+
 def emergency_page(pdf, trip, variant_id, page_number):
     page_header(pdf, "KEEP CALM", "事故、故障與緊急聯絡", variant_id, page_number)
     y = PAGE_H - 112
@@ -435,6 +476,7 @@ def generate(trip, variant_id):
     snorkeling_page(pdf, trip, variant_id, page)
     page += 1
     page += ticket_pages(pdf, trip, variant_id, page)
+    page += dining_pages(pdf, trip, variant_id, page)
     emergency_page(pdf, trip, variant_id, page)
     page += 1
     for index, day in enumerate(trip["days"][variant_id], start=1):

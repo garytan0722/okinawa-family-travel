@@ -409,10 +409,35 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
 .event-note { color: var(--muted); }
 .event-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .55rem; }
 .event-actions a { color: #397f8b; font-size: .67rem; font-weight: 900; }
-.ticket-info, .booking-info {
+.ticket-info, .booking-info, .dining-guide {
   margin: .75rem -3.3rem 0 0;
   border-radius: 14px;
 }
+.dining-guide {
+  padding: .78rem;
+  border: 1.5px solid #78b39f;
+  background: linear-gradient(145deg, #f1fbf6, #fffaf0);
+  box-shadow: 3px 4px 0 rgba(93, 143, 123, .16);
+}
+.dining-heading { display: flex; gap: .55rem; align-items: center; }
+.dining-heading > span { display: grid; flex: none; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: var(--sun); transform: rotate(-8deg); }
+.dining-heading small, .dining-heading strong { display: block; }
+.dining-heading small { color: #397f6d; font-size: .56rem; font-weight: 900; }
+.dining-heading strong { margin-top: .1rem; font-size: .76rem; line-height: 1.35; }
+.dining-route { margin: .55rem 0; color: var(--muted); font-size: .64rem; line-height: 1.5; }
+.dining-route strong { color: #356f5d; }
+.dining-options { display: grid; gap: .48rem; }
+.dining-option { position: relative; padding: .62rem; border: 1px solid rgba(75, 61, 57, .14); border-radius: 12px; background: rgba(255,255,255,.76); }
+.dining-option.is-primary { border-color: #e3ad35; background: #fff9df; }
+.dining-rank { position: absolute; right: .55rem; top: .55rem; padding: .15rem .42rem; border-radius: 99px; background: var(--foam); color: #356f5d; font-size: .53rem; font-weight: 900; }
+.dining-option.is-primary .dining-rank { background: var(--sun); color: var(--ink); }
+.dining-option > div:first-of-type { padding-right: 2.7rem; }
+.dining-option strong, .dining-option small { display: block; }
+.dining-option strong { font-size: .7rem; line-height: 1.4; }
+.dining-option small { margin-top: .08rem; color: #397f8b; font-size: .56rem; font-weight: 800; }
+.dining-option p { margin: .35rem 0 0; color: var(--muted); font-size: .6rem; line-height: 1.45; }
+.dining-actions { display: flex; flex-wrap: wrap; gap: .2rem .6rem; margin-top: .3rem; }
+.dining-actions a { display: inline-flex; min-height: 44px; align-items: center; color: #286b76; font-size: .6rem; font-weight: 900; }
 .ticket-info {
   padding: .7rem .75rem;
   border: 1.5px dashed #e1a44a;
@@ -597,6 +622,7 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
   .tool-grid, .emergency-grid { grid-template-columns: 1fr 1fr; }
   .flight-grid { grid-template-columns: 1fr 1fr; }
   .ots-support-grid { grid-template-columns: 1fr 1fr; }
+  .dining-options { grid-template-columns: 1fr 1fr; }
 }
 
 @media (min-width: 1180px) {

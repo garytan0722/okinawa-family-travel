@@ -1,4 +1,4 @@
-import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=12';
+import { getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=13';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -80,6 +80,28 @@ function renderBookingInfo(trip, event) {
   </details>`;
 }
 
+function renderDiningGuide(trip, event) {
+  const guide = event.diningGuideId ? trip.diningGuides?.[event.diningGuideId] : null;
+  if (!guide) return '';
+  const options = guide.options.map((option) => {
+    const source = option.sourceId ? trip.sources.find((item) => item.id === option.sourceId) : null;
+    return `<article class="dining-option${option.rank === '首選' ? ' is-primary' : ''}">
+      <span class="dining-rank">${escapeHtml(option.rank)}</span>
+      <div><strong>${escapeHtml(option.name)}</strong><small>${escapeHtml(option.food)}</small></div>
+      <p>${escapeHtml(option.familyNote)}</p>
+      <div class="dining-actions">
+        <a href="${escapeHtml(mapUrl(option.mapQuery))}" target="_blank" rel="noopener noreferrer">📍 直接導航</a>
+        ${source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">官方資料</a>` : ''}
+      </div>
+    </article>`;
+  }).join('');
+  return `<aside class="dining-guide" aria-label="${escapeHtml(guide.title)}">
+    <div class="dining-heading"><span aria-hidden="true">🐾</span><div><small>汪喵順路選餐 · 查核 ${escapeHtml(guide.checkedAt)}</small><strong>${escapeHtml(guide.title)}</strong></div></div>
+    <p class="dining-route"><strong>不繞路理由：</strong>${escapeHtml(guide.routeNote)}</p>
+    <div class="dining-options">${options}</div>
+  </aside>`;
+}
+
 function renderEvent(trip, event, completed) {
   const maps = event.navigationUrl || mapUrl(event.mapQuery);
   const isDone = completed[event.id] === true;
@@ -88,7 +110,7 @@ function renderEvent(trip, event, completed) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=12" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=13" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -97,6 +119,7 @@ function renderEvent(trip, event, completed) {
         <h3>${escapeHtml(event.title)}</h3>
         <p class="event-place">${escapeHtml(event.place)}</p>
         ${event.note ? `<p class="event-note">${escapeHtml(event.note)}</p>` : ''}
+        ${renderDiningGuide(trip, event)}
         ${renderBookingInfo(trip, event)}
         ${renderTicketInfo(trip, event)}
         <div class="event-actions">
