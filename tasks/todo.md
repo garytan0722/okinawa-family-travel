@@ -301,4 +301,10 @@
 - [x] 同步行程資料、固定事件、首頁、文件與 A／B／C 行程文字
 - [x] 重建並視覺檢查三版 PDF
 - [x] 輪替離線版本，完成測試、隱私與手機驗證
-- [ ] 部署 GitHub Pages 並確認正式內容
+- [x] 部署 GitHub Pages 並確認正式內容
+
+### 旅伴團體名稱 review
+
+- 公開內容統一使用「譚家四口」與「小倆口」，六人同行期間則顯示「譚家四口＋小倆口」；舊名稱與重複人數字樣均已移除。
+- Verified 73/73 tests, privacy-safe 18-asset build, three visually inspected 24-page PDFs, and a 390px browser check with no console, request, or overflow errors.
+- Deployed release v19 from commit `5d29173` through GitHub Actions run `33381841847`; the live website and all three PDF hashes match the verified local artifacts.
