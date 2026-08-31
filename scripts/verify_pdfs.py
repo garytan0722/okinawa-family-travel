@@ -61,7 +61,8 @@ for variant, path in PDFS.items():
     for forbidden in ("美麗海", "美國村", "BANTA", "港川", "普天滿", "Rycom", "首里城", "沖繩世界", "DMM", "瀨長島", "波上宮", "PARCO", "國際通"):
         assert forbidden not in early_text, f"{path.name}: early segment repeats late attraction {forbidden}"
     assert "成人藍洞" not in text, f"{path.name}: contains superseded October 2 plan"
-    assert "那霸私人住宿" in text, f"{path.name}: missing generic accommodation label"
-    assert "地址與入住資料請使用私人訂房訊息" in text, f"{path.name}: missing private navigation guidance"
+    assert "恩納村私人住宿" in text, f"{path.name}: missing corrected generic accommodation label"
+    assert "那霸私人住宿" not in text, f"{path.name}: stale Naha accommodation label"
+    assert "精確地址請使用私人訂房訊息" in text, f"{path.name}: missing private navigation guidance"
     assert all(len((page.extract_text() or "").strip()) > 20 for page in reader.pages), f"{path.name}: blank page"
     print(f"verified {path.name}: {len(reader.pages)} pages, {path.stat().st_size} bytes")

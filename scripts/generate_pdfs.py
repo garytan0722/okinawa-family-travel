@@ -180,7 +180,7 @@ def logistics_page(pdf, trip, variant_id, page_number):
     pdf.setFillColor(MUTED)
     pdf.setFont(FONT, 8.5)
     pdf.drawString(42, y - 22, "9/24–9/29  沖繩嘉利吉海灘海洋溫泉度假村")
-    pdf.drawString(42, y - 39, "9/30–10/4  那霸私人住宿（地址與入住資料請使用私人訂房訊息）")
+    pdf.drawString(42, y - 39, "9/30–10/4  恩納村私人住宿（精確地址請使用私人訂房訊息）")
     pdf.showPage()
 
 
@@ -196,7 +196,7 @@ def snorkeling_page(pdf, trip, variant_id, page_number):
     pdf.drawString(58, y - 25, "09:00 活動／08:00 集合")
     pdf.setFillColor(PINK)
     pdf.setFont(FONT, 11)
-    pdf.drawString(58, y - 51, "建議 06:30 從那霸出發")
+    pdf.drawString(58, y - 51, "建議 07:00 從恩納村希望丘一帶出發")
     pdf.setFillColor(colors.white)
     pdf.setFont(FONT, 8.5)
     pdf.drawString(58, y - 73, booking["duration"])

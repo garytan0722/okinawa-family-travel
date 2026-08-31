@@ -1,4 +1,4 @@
-import { dayRouteSegments, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=16';
+import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=17';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -110,7 +110,7 @@ function renderEvent(trip, event, completed) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=16" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=17" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -146,11 +146,15 @@ export function renderDay(trip, day, variantState) {
   const energy = variantState.energy?.[day.date] ?? 'okay';
   const events = day.events.map((event) => renderEvent(trip, event, variantState.completed ?? {})).join('');
   const stayMaps = stay && !stay.privateNavigation ? mapUrl(stay.mapQuery) : '';
-  const routeSegments = dayRouteSegments(day);
+  const routePlan = dayRoutePlan(trip, day);
+  const routeSegments = routePlan.segments;
   const routeActions = routeSegments.map((segment, index) => {
-    const label = routeSegments.length === 1 ? '開啟全日路線' : `${index === 0 ? '上午' : index === 1 ? '下午' : `第 ${index + 1} 段`}路線`;
-    return `<a href="${escapeHtml(segment.url)}" target="_blank" rel="noopener noreferrer">🗺 ${label}<small>${segment.stops.length} 個停靠點</small></a>`;
+    const start = index * 4 + 1;
+    const end = start + segment.stops.length - 1;
+    const label = routeSegments.length === 1 ? '開啟完整路線' : `開啟第 ${index + 1} 段`;
+    return `<a href="${escapeHtml(segment.url)}" target="_blank" rel="noopener noreferrer">🗺 ${label}<small>第 ${start} → ${end} 站</small></a>`;
   }).join('');
+  const routeStops = routePlan.points.map((point, index) => `<li><span>${index + 1}</span>${escapeHtml(point.label)}</li>`).join('');
 
   return `
     <article class="day-view" data-date="${day.date}">
@@ -162,7 +166,7 @@ export function renderDay(trip, day, variantState) {
         <section><span>今晚住</span><strong>${escapeHtml(day.stay)}</strong>${stayMaps ? `<a href="${escapeHtml(stayMaps)}" target="_blank" rel="noopener noreferrer">導航</a>` : `<small>${stay?.privateNavigation ? '使用私人訂房資料導航' : ''}</small>`}</section>
         <section><span>今日車程</span><strong>${escapeHtml(day.drive)}</strong></section>
       </div>
-      ${routeActions ? `<section class="day-route-card" aria-label="今日 Google Maps 多站導航"><div><span>GOOGLE MAPS ROUTE</span><strong>今天照順序一路開</strong></div><div class="day-route-actions">${routeActions}</div></section>` : ''}
+      ${routeActions ? `<section class="day-route-card" aria-label="今日 Google Maps 多站導航"><div><span>GOOGLE MAPS ROUTE</span><strong>完整順序 · ${routePlan.points.length} 個停靠點</strong><small>手機版有途經點上限，請照段數依序開啟；每段會重疊上一段終點。</small></div><ol class="day-route-stops">${routeStops}</ol><div class="day-route-actions">${routeActions}</div></section>` : ''}
       <ol class="event-list">${events}</ol>
       <section class="rain-card"><span>☔ 雨天／疲累備案</span><p>${escapeHtml(day.rainPlan)}</p><a href="#/rainy">查看 24 個雨天備案 →</a></section>
       <section class="record-card">

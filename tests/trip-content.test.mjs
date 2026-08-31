@@ -46,18 +46,35 @@ test('rainy-day catalog contains 24 verified, correctly separated venues', () =>
   }
 });
 
-test('the approved September 30 through October 4 itinerary stays byte-for-byte equivalent', () => {
+test('the approved September 30 through October 4 itinerary stays locked after the accommodation correction', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const expectedHashes = {
-    A: '7f8548371bdcddda9ede039d8d3f8fd51aadbb2f4a8f710ac0dd26257d354db3',
-    B: '530e784e85b6e419b8a4523e014f5eb490cbb8e54deeb4e2a007794d2dd19502',
-    C: 'bbd5dfd851b4e746aff1fc6bb90764c2f0dfb99a8f7650ffe4d3421428ae0b79',
+    A: '6afbaa108d8bb54f7c6bba68e061c509560c14b836fffd72671f464933c19ba4',
+    B: '529addfa0e838b4d93034ee807cac88b02f41eebf24b33f42705fef227db50e4',
+    C: 'b9af6dbc8b73796252ad016106734b475d3305bde127299deac1581371d85b05',
   };
 
   for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
     const frozenDays = trip.days[variantId].filter((day) => day.date >= '2026-09-30');
     const actualHash = createHash('sha256').update(JSON.stringify(frozenDays)).digest('hex');
     assert.equal(actualHash, expectedHash, `${variantId} late itinerary must remain unchanged`);
+  }
+});
+
+test('the corrected accommodation geography does not change the late itinerary schedule', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const expectedHashes = {
+    A: '97f54110ca802c5d4b87558358e5ce0ec228a2793ba9ad8cdbc0949714940825',
+    B: '139d6db412a6d13eeb340fa3618b3558eef153f18ecc0db5516e8971183c6477',
+    C: '15f7aa93f664fbf176953346f80738e3223e7926a18e2f74fe1ecafee1d9ab37',
+  };
+
+  for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
+    const schedule = trip.days[variantId]
+      .filter((day) => day.date >= '2026-09-30')
+      .map((day) => ({ date: day.date, events: day.events.map(({ id, time }) => ({ id, time })) }));
+    const actualHash = createHash('sha256').update(JSON.stringify(schedule)).digest('hex');
+    assert.equal(actualHash, expectedHash, `${variantId} late itinerary IDs, times, and order must remain unchanged`);
   }
 });
 
@@ -359,10 +376,12 @@ test('every paid itinerary attraction resolves to current official ticket inform
 test('deployed content uses a generic label for private accommodation', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const stay = trip.stays.find((item) => item.privateNavigation === true);
-  assert.equal(stay.name, '那霸私人住宿');
+  assert.equal(stay.name, '恩納村私人住宿');
   assert.equal(stay.nameJa, '非公開');
   assert.equal(stay.privateNavigation, true);
   assert.equal(stay.mapQuery, '');
+  assert.equal(stay.routeQuery, '恩納村希望ヶ丘');
   const serialized = JSON.stringify(trip);
+  assert.doesNotMatch(serialized, /airbnb\.com/);
   assert.doesNotMatch(serialized, /"[^"\n]*(?:password|credential|checkinUrl|accessCode|doorCode|accessPin)[^"\n]*"\s*:/i);
 });

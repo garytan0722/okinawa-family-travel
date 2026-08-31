@@ -482,6 +482,10 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
 .day-route-card > div:first-child span, .day-route-card > div:first-child strong { display: block; }
 .day-route-card > div:first-child span { color: #397f8b; font-family: ui-monospace, monospace; font-size: .57rem; font-weight: 900; letter-spacing: .08em; }
 .day-route-card > div:first-child strong { margin-top: .15rem; font-size: .82rem; }
+.day-route-card > div:first-child small { display: block; margin-top: .35rem; color: var(--muted); font-size: .63rem; line-height: 1.45; }
+.day-route-stops { display: grid; gap: .38rem; margin: 0; padding: 0; list-style: none; }
+.day-route-stops li { display: flex; align-items: center; gap: .5rem; color: var(--muted); font-size: .72rem; line-height: 1.35; }
+.day-route-stops li span { flex: 0 0 1.45rem; display: grid; place-items: center; width: 1.45rem; height: 1.45rem; border: 1.5px solid var(--cocoa); border-radius: 50%; background: var(--paper); color: var(--ink); font-family: ui-monospace, monospace; font-size: .62rem; font-weight: 900; }
 .day-route-actions { display: grid; gap: .45rem; }
 .day-route-actions a { display: flex; min-height: 48px; align-items: center; justify-content: space-between; gap: .5rem; padding: .65rem .8rem; border-radius: 13px; background: var(--sea); color: white; font-size: .72rem; font-weight: 900; text-decoration: none; box-shadow: 3px 3px 0 var(--sun); }
 .day-route-actions small { color: rgba(255,255,255,.8); font-size: .56rem; }
@@ -682,7 +686,8 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
   .flight-grid { grid-template-columns: 1fr 1fr; }
   .ots-support-grid { grid-template-columns: 1fr 1fr; }
   .dining-options { grid-template-columns: 1fr 1fr; }
-  .day-route-card { grid-template-columns: minmax(160px, .7fr) 1.3fr; align-items: center; }
+  .day-route-card { grid-template-columns: minmax(220px, .9fr) 1.1fr; align-items: center; }
+  .day-route-card > div:first-child { grid-column: 1 / -1; }
   .rainy-grid { grid-template-columns: 1fr 1fr; }
 }
 

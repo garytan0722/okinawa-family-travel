@@ -24,7 +24,7 @@ test('an existing controlled page reloads once when the new worker takes control
   await installPwaUpdate(serviceWorker, () => { reloads += 1; });
   controllerChange();
   controllerChange();
-  assert.deepEqual(registrationArgs, ['./sw.js?v=16', { updateViaCache: 'none' }]);
+  assert.deepEqual(registrationArgs, ['./sw.js?v=17', { updateViaCache: 'none' }]);
   assert.equal(updates, 1);
   assert.equal(reloads, 1);
 });

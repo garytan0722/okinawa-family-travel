@@ -263,3 +263,19 @@
 - 主程式若持續載入超過 8 秒，會顯示「修復網站後重開」；獨立修復頁完成後自動返回行程。
 - Verified 70/70 tests, privacy-safe 18-asset build, 390px recovery, stale-cache removal, local-record preservation, v16 worker takeover, and offline reload.
 - Deployed release v16 from commit `289a08b` through GitHub Actions run `33363736154`; the main site, recovery page, recovery modules, and v16 service worker all return HTTP 200.
+
+## 完整每日 Google Maps 路線與恩納住宿修正
+
+- [x] 確認 Google Maps 手機瀏覽器途經點上限與目前漏點原因
+- [x] 以失敗測試鎖定住宿起終點、步行景點、完整順序與分段銜接
+- [x] 將 9/30–10/4 私人住宿的一般區域從那霸修正為恩納村
+- [x] 在每日卡片顯示全部停靠點與依序開啟的導航分段
+- [x] 保持 9/30–10/4 活動 ID、時間與順序不變，完成隱私與手機驗證
+- [ ] 輪替離線版本、部署 GitHub Pages 並確認正式路線
+
+### 完整每日路線 review
+
+- 每日路線從前一晚住宿出發、依時間軸保留具體景點與步行停靠點，最後回到當晚住宿；搭機日則以機場結束。
+- 手機版每段使用 3 個以內的中途點，超過時以前一段終點作為下一段起點；卡片同步列出完整站序，避免只看其中一段誤以為漏點。
+- 9/30–10/4 私人住宿只公開「恩納村希望丘」一般區域；房源連結、房源編號、精確地址與座標都沒有寫入公開內容。
+- Fresh verification: 73/73 tests, privacy-safe 18-asset build, three verified 24-page PDFs, and 390px browser checks for 9/30、10/2、10/4 with no console, request, or overflow errors.

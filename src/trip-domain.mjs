@@ -35,14 +35,39 @@ export function mapUrl(query) {
 
 const GENERIC_ROUTE_QUERY = /(?:子連れ|周邊|附近|テイクアウト|ブランチ|ランチ$|ディナー$)/i;
 
-function routeStops(day) {
-  const seen = new Set();
-  return (day?.events ?? []).flatMap((event) => {
+function routePoints(day) {
+  const points = [];
+  for (const event of day?.events ?? []) {
     const query = event.mapQuery?.trim();
-    if (!query || event.type === 'walk' || GENERIC_ROUTE_QUERY.test(query) || seen.has(query)) return [];
-    seen.add(query);
-    return [query];
-  });
+    if (!query || GENERIC_ROUTE_QUERY.test(query) || points.at(-1)?.query === query) continue;
+    points.push({ query, label: event.place || event.title || query });
+  }
+  return points;
+}
+
+function routeStops(day) {
+  return routePoints(day).map((point) => point.query);
+}
+
+function previousDate(date) {
+  const value = new Date(`${date}T00:00:00Z`);
+  value.setUTCDate(value.getUTCDate() - 1);
+  return value.toISOString().slice(0, 10);
+}
+
+function stayPoint(stay) {
+  const query = stay?.routeQuery || stay?.mapQuery;
+  if (!query) return null;
+  return { query, label: stay.privateNavigation ? `${stay.name}附近` : stay.name };
+}
+
+function appendPoint(points, point, replaceMatchingLabel = false) {
+  if (!point) return;
+  if (points.at(-1)?.query === point.query) {
+    if (replaceMatchingLabel) points[points.length - 1] = point;
+    return;
+  }
+  points.push(point);
 }
 
 export function directionsUrl(stops) {
@@ -69,4 +94,17 @@ export function dayRouteSegments(day, maxPoints = 5) {
     segments.push({ stops: segmentStops, url: directionsUrl(segmentStops) });
   }
   return segments;
+}
+
+export function dayRoutePlan(trip, day, maxPoints = 5) {
+  const points = [];
+  appendPoint(points, stayPoint(getStayForDate(trip, previousDate(day.date))));
+  for (const point of routePoints(day)) appendPoint(points, point);
+
+  const finishesAtAirport = day.events.at(-1)?.type === 'flight';
+  if (!finishesAtAirport) appendPoint(points, stayPoint(getStayForDate(trip, day.date)), true);
+
+  const stops = points.map((point) => point.query);
+  const routeDay = { events: stops.map((mapQuery) => ({ mapQuery })) };
+  return { points, stops, segments: dayRouteSegments(routeDay, maxPoints) };
 }

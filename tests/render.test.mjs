@@ -35,14 +35,19 @@ test('day timeline keeps chronological order and map links', () => {
   assert.ok(html.indexOf('08:45') < html.indexOf('11:30'));
   assert.ok(html.indexOf('11:30') < html.indexOf('12:00'));
   assert.match(html, /Google Maps/);
-  assert.match(html, /換車・會合・搬到那霸/);
+  assert.match(html, /換車・會合・回恩納住宿/);
   assert.equal(html.match(/class="paw-print" aria-hidden="true"/g)?.length, day.events.length);
 });
 
 test('day view offers one-tap multi-stop navigation and the rainy catalog', () => {
   const day = trip.days.A.find((item) => item.date === '2026-09-28');
   const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {} });
-  assert.match(html, /開啟全日路線/);
+  assert.match(html, /完整順序 · 6 個停靠點/);
+  assert.match(html, /1.*沖繩嘉利吉海灘海洋溫泉度假村/s);
+  assert.match(html, /2.*沖繩兒童王國/s);
+  assert.match(html, /6.*沖繩嘉利吉海灘海洋溫泉度假村/s);
+  assert.match(html, /開啟第 1 段/);
+  assert.match(html, /開啟第 2 段/);
   assert.match(html, /https:\/\/www\.google\.com\/maps\/dir\/\?api=1&amp;origin=/);
   assert.match(html, /href="#\/rainy"/);
   assert.match(html, /24 個雨天備案/);
@@ -64,7 +69,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=16" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=17" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -166,8 +171,8 @@ test('emergency view presents OHDr after 119 as non-emergency Chinese medical ba
 test('private accommodation renders generic guidance without a public map link', () => {
   const day = trip.days.C.find((item) => item.date === '2026-10-03');
   const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {} });
-  assert.match(html, /那霸私人住宿（譚家＋曾蘿情侶）/);
-  assert.doesNotMatch(html, /<strong>那霸私人住宿（譚家＋曾蘿情侶）<\/strong><a /);
+  assert.match(html, /恩納村私人住宿（譚家＋曾蘿情侶）/);
+  assert.doesNotMatch(html, /<strong>恩納村私人住宿（譚家＋曾蘿情侶）<\/strong><a /);
 });
 
 test('user-controlled notes are escaped', () => {
