@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-30",
+  "updatedAt": "2026-08-31",
   "recheckBy": "2026-09-17",
   "meta": {
     "title": "沖繩遛小孩",
@@ -212,7 +212,9 @@
     { "id": "bestdive", "label": "青潛青洞浮潛活動與費用", "url": "https://www.bestdiveokinawa.com/template/bluecave.php", "checkedAt": "2026-08-29" },
     { "id": "bestdive-meeting", "label": "青潛官方集合地點", "url": "https://www.bestdiveokinawa.com/meeting-point/", "checkedAt": "2026-08-29" },
     { "id": "bestdive-flow", "label": "青潛官方活動流程", "url": "https://www.bestdiveokinawa.com/flow/", "checkedAt": "2026-08-29" },
-    { "id": "bestdive-terms", "label": "青潛活動限制與取消政策", "url": "https://www.bestdiveokinawa.com/terms/", "checkedAt": "2026-08-29" }
+    { "id": "bestdive-terms", "label": "青潛活動限制與取消政策", "url": "https://www.bestdiveokinawa.com/terms/", "checkedAt": "2026-08-29" },
+    { "id": "ohdr-traveler", "label": "OHDr. 台灣旅客訪日醫療支援方案", "url": "https://oh-doctor.com/zh-tw/oh-traveler-dr-tw/", "checkedAt": "2026-08-31" },
+    { "id": "okinawa-medical-hotline", "label": "沖繩縣外國旅客醫療支援", "url": "https://www.pref.okinawa.lg.jp/iryokenko/iryo/1005807/1006345/1006367.html", "checkedAt": "2026-08-31" }
   ],
   "rainyDaySource": {
     "label": "沖繩在地親子分享清單",
@@ -263,8 +265,24 @@
   "emergency": [
     { "label": "警察", "phone": "110", "note": "事故、遺失或人身安全" },
     { "label": "消防／救護車", "phone": "119", "note": "火災、急救與緊急醫療" },
+    { "label": "沖繩多語言醫療諮詢", "phone": "0570-050-235", "hours": "24 小時・全年無休", "note": "外國旅客生病時的就醫諮詢；危急狀況仍先撥 119。", "sourceId": "okinawa-medical-hotline" },
     { "label": "Japan Visitor Hotline", "phone": "+81-50-3816-2787", "note": "JNTO 旅客支援，行前再確認" }
   ],
+  "medicalSupport": {
+    "provider": "OHDr. for Traveler",
+    "role": "非緊急中文線上門診",
+    "hours": "09:00–22:00",
+    "checkedAt": "2026-08-31",
+    "preTripPlan": "8–15 日個人方案 ¥1,100；方案內看診 ¥4,200／次",
+    "groupRule": "團體最多 3 人，需同班機、同住宿並由 1 人聯絡。",
+    "childrenNote": "幼兒可由家長申請為同行者；兒童糖漿可能需等待 7–8 小時或前往較遠藥局。",
+    "okinawaMedicine": "沖繩不在快速送藥城市名單；優先請 OHDr. 安排附近調劑藥局領取。",
+    "priceWarning": "官方頁面價格可能調整且目前不同頁面顯示不一致；付款前由繁中官方頁確認。",
+    "emergencyRule": "呼吸困難、意識異常、嚴重過敏、持續抽搐或重大外傷直接撥 119。",
+    "planUrl": "https://oh-doctor.com/zh-tw/oh-traveler-dr-tw/",
+    "bookingUrl": "https://oh-doctor.com/zh-tw/start-spot-tw/",
+    "sourceIds": ["ohdr-traveler"]
+  },
   "roadsideAssistance": {
     "provider": "OTS 租車",
     "dayHours": "08:00–19:00",

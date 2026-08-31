@@ -554,8 +554,29 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
   color: white;
   box-shadow: 5px 6px 0 var(--pink);
 }
-.emergency-card span, .emergency-card strong, .emergency-card small { display: block; }
+.emergency-card span, .emergency-card strong, .emergency-card b, .emergency-card small { display: block; }
 .emergency-card strong { color: var(--sun); font-size: 1.65rem; }
+.emergency-card b { margin: .12rem 0; color: var(--sky); font-size: .64rem; }
+.medical-support-card { margin: 1.5rem 0; padding: 1.1rem; border: 2px solid var(--ink); border-radius: 24px 18px 26px 20px; background: linear-gradient(145deg, #eefbfd, #fffaf0); box-shadow: 6px 7px 0 var(--sun); }
+.medical-heading { display: flex; align-items: center; gap: .7rem; }
+.medical-heading > span { display: grid; flex: none; width: 48px; height: 48px; place-items: center; border-radius: 50%; background: var(--sea); font-size: 1.25rem; transform: rotate(-5deg); }
+.medical-heading small, .medical-heading strong { display: block; }
+.medical-heading small { color: #9e3d2d; font-size: .58rem; font-weight: 900; }
+.medical-heading h2 { margin: .12rem 0; font-family: var(--display); font-size: 1.35rem; }
+.medical-heading strong { color: #286b76; font-size: .7rem; }
+.medical-emergency { margin: .85rem 0; padding: .75rem; border: 1.5px solid #d66d5e; border-radius: 14px; background: #fff0e9; color: #78362b; font-size: .72rem; line-height: 1.5; }
+.medical-facts { display: grid; gap: .55rem; }
+.medical-facts section { padding: .8rem; border-radius: 15px; background: rgba(255,255,255,.78); border: 1px solid rgba(75,61,57,.12); }
+.medical-facts span, .medical-facts strong { display: block; }
+.medical-facts span { color: var(--muted); font-size: .57rem; font-weight: 800; }
+.medical-facts strong { margin-top: .18rem; font-size: .72rem; line-height: 1.45; }
+.medical-facts p, .medical-child, .medical-warning { font-size: .65rem; line-height: 1.5; }
+.medical-facts p { margin: .35rem 0 0; color: var(--muted); }
+.medical-child { margin: .65rem 0 0; padding: .65rem; border-radius: 12px; background: var(--foam); }
+.medical-warning { margin: .55rem 0 0; color: #8b5a1f; }
+.medical-actions { display: grid; gap: .45rem; margin-top: .8rem; }
+.medical-actions a { display: flex; min-height: 46px; align-items: center; justify-content: center; padding: .6rem .75rem; border: 1.5px solid var(--sea); border-radius: 13px; background: var(--sea); color: white; font-size: .68rem; font-weight: 900; text-align: center; text-decoration: none; }
+.medical-actions a:last-child { background: var(--paper); color: #286b76; }
 .ots-support-card { margin: 1.5rem 0 1rem; padding: 1.1rem; border: 2px solid var(--ink); border-radius: 24px 18px 25px 20px; background: var(--paper); box-shadow: 6px 7px 0 var(--sky); }
 .ots-support-card h2 { margin: .2rem 0 .85rem; font-family: var(--display); font-size: 1.35rem; }
 .ots-phone { display: grid; min-height: 72px; padding: .8rem 1rem; border-radius: 17px; background: var(--sea); color: white; text-decoration: none; }
@@ -655,7 +676,7 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
   .variant-tab small { display: block; margin-top: .1rem; font-size: .59rem; opacity: .78; }
   .context-grid { grid-template-columns: 1.45fr 1fr; }
   .record-head { flex-direction: row; justify-content: space-between; align-items: center; }
-  .tool-grid, .emergency-grid { grid-template-columns: 1fr 1fr; }
+  .tool-grid, .emergency-grid, .medical-facts, .medical-actions { grid-template-columns: 1fr 1fr; }
   .flight-grid { grid-template-columns: 1fr 1fr; }
   .ots-support-grid { grid-template-columns: 1fr 1fr; }
   .dining-options { grid-template-columns: 1fr 1fr; }

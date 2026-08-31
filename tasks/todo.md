@@ -231,3 +231,11 @@
 - 新增 24 個雨天備案，依親子、藝術、自然、產業、商場、購物與特別參觀分類，並提供區域、遮雨程度、停留時間、親子提醒、官方資料及直接導航。
 - Verified 65/65 tests, privacy-safe static build, v14 offline reload, 320／390／1440px zero-overflow layouts, and the live 9/28 five-stop route.
 - Confirmed the frozen 9/30–10/4 A／B／C hashes remain unchanged and public route URLs contain no private accommodation label.
+
+## OHDr. 緊急頁醫療備援
+
+- [x] 以測試鎖定 OHDr. 非緊急定位、服務時間、沖繩領藥限制與官方來源
+- [x] 將沖繩 24 小時多語言醫療諮詢加入 119 後方
+- [x] 在緊急頁加入 OHDr. 中文線上門診卡片與使用順序
+- [x] 輪替 v15 離線快取且保持所有 A／B／C 行程資料不變
+- [ ] 驗證測試、手機、離線、隱私後部署 GitHub Pages

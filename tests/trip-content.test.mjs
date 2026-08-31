@@ -237,6 +237,27 @@ test('OTS roadside support keeps official daytime and vehicle-specific after-hou
   );
 });
 
+test('OHDr is stored as non-emergency Okinawa medical backup with verified limitations', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  assert.deepEqual(trip.medicalSupport, {
+    provider: 'OHDr. for Traveler',
+    role: '非緊急中文線上門診',
+    hours: '09:00–22:00',
+    checkedAt: '2026-08-31',
+    preTripPlan: '8–15 日個人方案 ¥1,100；方案內看診 ¥4,200／次',
+    groupRule: '團體最多 3 人，需同班機、同住宿並由 1 人聯絡。',
+    childrenNote: '幼兒可由家長申請為同行者；兒童糖漿可能需等待 7–8 小時或前往較遠藥局。',
+    okinawaMedicine: '沖繩不在快速送藥城市名單；優先請 OHDr. 安排附近調劑藥局領取。',
+    priceWarning: '官方頁面價格可能調整且目前不同頁面顯示不一致；付款前由繁中官方頁確認。',
+    emergencyRule: '呼吸困難、意識異常、嚴重過敏、持續抽搐或重大外傷直接撥 119。',
+    planUrl: 'https://oh-doctor.com/zh-tw/oh-traveler-dr-tw/',
+    bookingUrl: 'https://oh-doctor.com/zh-tw/start-spot-tw/',
+    sourceIds: ['ohdr-traveler'],
+  });
+  assert.ok(trip.emergency.some((item) => item.phone === '0570-050-235' && item.hours === '24 小時・全年無休'));
+  assert.equal(trip.sources.find((item) => item.id === 'okinawa-medical-hotline')?.url, 'https://www.pref.okinawa.lg.jp/iryokenko/iryo/1005807/1006345/1006367.html');
+});
+
 test('fixed logistics preserve the confirmed car handoff and departures', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const fixed = trip.fixedEvents.map(({ date, time, kind }) => ({ date, time, kind }));

@@ -64,7 +64,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=14" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=15" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -147,6 +147,20 @@ test('emergency view puts 110 and 119 first and provides actionable OTS instruct
   assert.match(html, /事故不分大小先撥 110.*傷病或火災再撥 119.*聯絡 OTS.*不要私下和解/s);
   assert.match(html, /https:\/\/www\.otsinternational\.jp\/otsrentacar\/guide\/road-service\//);
   assert.match(html, /https:\/\/www\.otsinternational\.jp\/otsrentacar\/rule\/menseki\//);
+});
+
+test('emergency view presents OHDr after 119 as non-emergency Chinese medical backup', () => {
+  const html = renderModule.renderEmergencyView(trip);
+  assert.ok(html.indexOf('tel:119') < html.indexOf('OHDr. for Traveler'));
+  assert.match(html, /非緊急中文線上門診/);
+  assert.match(html, /09:00–22:00/);
+  assert.match(html, /不是 24 小時急診/);
+  assert.match(html, /沖繩不在快速送藥城市名單/);
+  assert.match(html, /兒童糖漿可能需等待 7–8 小時/);
+  assert.match(html, /付款前由繁中官方頁確認/);
+  assert.match(html, /tel:0570-050-235/);
+  assert.match(html, /https:\/\/oh-doctor\.com\/zh-tw\/oh-traveler-dr-tw\//);
+  assert.match(html, /https:\/\/oh-doctor\.com\/zh-tw\/start-spot-tw\//);
 });
 
 test('private accommodation renders generic guidance without a public map link', () => {

@@ -1,4 +1,4 @@
-import { dayRouteSegments, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=14';
+import { dayRouteSegments, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=15';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -110,7 +110,7 @@ function renderEvent(trip, event, completed) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=14" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=15" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -228,12 +228,13 @@ export function renderFlightSummary(trip) {
 
 export function renderEmergencyView(trip) {
   const roadside = trip.roadsideAssistance;
+  const medical = trip.medicalSupport;
   const roadsideSources = roadside.sourceIds
     .map((id) => trip.sources.find((item) => item.id === id))
     .filter(Boolean);
   const emergencyCards = trip.emergency.map((item) => `
     <a class="emergency-card" href="tel:${escapeHtml(item.phone)}">
-      <span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.phone)}</strong><small>${escapeHtml(item.note)}</small>
+      <span>${escapeHtml(item.label)}</span><strong>${escapeHtml(item.phone)}</strong>${item.hours ? `<b>${escapeHtml(item.hours)}</b>` : ''}<small>${escapeHtml(item.note)}</small>
     </a>`).join('');
   const checklist = roadside.beforeCalling.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
 
@@ -241,6 +242,14 @@ export function renderEmergencyView(trip) {
     <p class="eyebrow">KEEP CALM</p><h1>緊急聯絡</h1>
     <p class="lede">發生事故不分大小先報警；有傷病或火災再叫救護／消防。</p>
     <div class="emergency-grid">${emergencyCards}</div>
+    <article class="medical-support-card">
+      <div class="medical-heading"><span aria-hidden="true">🩺</span><div><small>不是 24 小時急診 · 查核 ${escapeHtml(medical.checkedAt)}</small><h2>${escapeHtml(medical.provider)}</h2><strong>${escapeHtml(medical.role)} · ${escapeHtml(medical.hours)}</strong></div></div>
+      <p class="medical-emergency"><strong>危急先撥 119：</strong>${escapeHtml(medical.emergencyRule)}</p>
+      <div class="medical-facts"><section><span>這趟行程適用</span><strong>${escapeHtml(medical.preTripPlan)}</strong><p>${escapeHtml(medical.groupRule)}</p></section><section><span>沖繩領藥</span><strong>以調劑藥局領取為主</strong><p>${escapeHtml(medical.okinawaMedicine)}</p></section></div>
+      <p class="medical-child">👧 ${escapeHtml(medical.childrenNote)}</p>
+      <p class="medical-warning">⚠ ${escapeHtml(medical.priceWarning)}</p>
+      <div class="medical-actions"><a href="${escapeHtml(medical.planUrl)}" target="_blank" rel="noopener noreferrer">出發前方案與官方 LINE</a><a href="${escapeHtml(medical.bookingUrl)}" target="_blank" rel="noopener noreferrer">已在日本直接預約</a></div>
+    </article>
     <article class="ots-support-card">
       <span class="card-number">OTS ACCIDENT &amp; BREAKDOWN</span><h2>${escapeHtml(roadside.provider)}事故／故障窗口</h2>
       <a class="ots-phone" href="tel:${escapeHtml(roadside.dayPhone)}"><span>${escapeHtml(roadside.dayHours)}</span><strong>${escapeHtml(roadside.dayPhone)}</strong><small>OTS 租車預約中心</small></a>
