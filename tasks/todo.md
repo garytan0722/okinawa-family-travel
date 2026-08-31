@@ -254,4 +254,12 @@
 - [x] 以失敗測試鎖定只清除網站快取、不刪除行程記錄的修復流程
 - [x] 加入不依賴主程式的修復頁與載入逾時入口
 - [x] 驗證舊 Service Worker、手機畫面、離線與既有行程資料
-- [ ] 部署並確認正式網址及修復網址
+- [x] 部署並確認正式網址及修復網址
+
+### 網站載入修復 review
+
+- 根因範圍確認為使用者端舊 PWA 快取／Service Worker：GitHub Pages、正式資產與乾淨手機瀏覽器皆正常，故提供可從卡住畫面直接進入的同源修復路徑。
+- 修復只刪除 `okinawa-road-book-*` 快取並註銷本站 Service Worker；不觸碰 localStorage，因此保留行程勾選與筆記。
+- 主程式若持續載入超過 8 秒，會顯示「修復網站後重開」；獨立修復頁完成後自動返回行程。
+- Verified 70/70 tests, privacy-safe 18-asset build, 390px recovery, stale-cache removal, local-record preservation, v16 worker takeover, and offline reload.
+- Deployed release v16 from commit `289a08b` through GitHub Actions run `33363736154`; the main site, recovery page, recovery modules, and v16 service worker all return HTTP 200.
