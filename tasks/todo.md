@@ -271,7 +271,7 @@
 - [x] 將 9/30–10/4 私人住宿的一般區域從那霸修正為恩納村
 - [x] 在每日卡片顯示全部停靠點與依序開啟的導航分段
 - [x] 保持 9/30–10/4 活動 ID、時間與順序不變，完成隱私與手機驗證
-- [ ] 輪替離線版本、部署 GitHub Pages 並確認正式路線
+- [x] 輪替離線版本、部署 GitHub Pages 並確認正式路線
 
 ### 完整每日路線 review
 
@@ -279,3 +279,4 @@
 - 手機版每段使用 3 個以內的中途點，超過時以前一段終點作為下一段起點；卡片同步列出完整站序，避免只看其中一段誤以為漏點。
 - 9/30–10/4 私人住宿只公開「恩納村希望丘」一般區域；房源連結、房源編號、精確地址與座標都沒有寫入公開內容。
 - Fresh verification: 73/73 tests, privacy-safe 18-asset build, three verified 24-page PDFs, and 390px browser checks for 9/30、10/2、10/4 with no console, request, or overflow errors.
+- Deployed release v17 from commit `ebc64fd` through GitHub Actions run `33379856729`; live A／B／C routes on 9/30、10/2、10/4 preserve every ordered stop, use mobile-safe segments, and all three deployed PDF hashes match the local artifacts.
