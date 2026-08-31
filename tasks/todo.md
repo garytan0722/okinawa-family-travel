@@ -280,3 +280,11 @@
 - 9/30–10/4 私人住宿只公開「恩納村希望丘」一般區域；房源連結、房源編號、精確地址與座標都沒有寫入公開內容。
 - Fresh verification: 73/73 tests, privacy-safe 18-asset build, three verified 24-page PDFs, and 390px browser checks for 9/30、10/2、10/4 with no console, request, or overflow errors.
 - Deployed release v17 from commit `ebc64fd` through GitHub Actions run `33379856729`; live A／B／C routes on 9/30、10/2、10/4 preserve every ordered stop, use mobile-safe segments, and all three deployed PDF hashes match the local artifacts.
+
+## JX871 回程抵達時間修正
+
+- [x] 以失敗測試鎖定 10/4 JX871 15:50 起飛、16:25 抵達台灣
+- [x] 同步航班摘要、固定行程與 A／B／C 10/4 行程備註
+- [x] 重建並視覺檢查三版 PDF
+- [x] 輪替離線版本，完成測試、隱私與手機驗證
+- [ ] 部署 GitHub Pages 並確認正式內容

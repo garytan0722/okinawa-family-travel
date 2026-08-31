@@ -1,4 +1,4 @@
-import { recoverApp } from './recovery.mjs?v=17';
+import { recoverApp } from './recovery.mjs?v=18';
 
 const status = document.querySelector('#recovery-status');
 const retry = document.querySelector('#recovery-retry');
@@ -14,7 +14,7 @@ async function runRecovery() {
       appScopeUrl,
     });
     status.textContent = '修復完成，正在重新開啟行程…';
-    setTimeout(() => location.replace('./?recovered=17#/'), 350);
+    setTimeout(() => location.replace('./?recovered=18#/'), 350);
   } catch (error) {
     status.textContent = `自動修復未完成：${error.message}`;
     retry.hidden = false;

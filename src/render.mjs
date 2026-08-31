@@ -1,4 +1,4 @@
-import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=17';
+import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=18';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -110,7 +110,7 @@ function renderEvent(trip, event, completed) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=17" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=18" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -227,7 +227,7 @@ export function renderFlightSummary(trip) {
       <p>${escapeHtml(flight.route || '航線未提供')}</p>
     </article>`;
   }).join('');
-  return `<section class="flight-summary" aria-labelledby="flight-summary-title"><p class="eyebrow">FLIGHT BOARD</p><h2 id="flight-summary-title">班機時間</h2><p>只列已確認資料；未提供的抵達時間、班號與航線不推測。</p><div class="flight-grid">${flights}</div></section>`;
+  return `<section class="flight-summary" aria-labelledby="flight-summary-title"><p class="eyebrow">FLIGHT BOARD</p><h2 id="flight-summary-title">班機時間</h2><p>只列已確認資料；未提供的班號與航線不推測。</p><div class="flight-grid">${flights}</div></section>`;
 }
 
 export function renderEmergencyView(trip) {

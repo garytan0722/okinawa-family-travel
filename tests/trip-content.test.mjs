@@ -49,9 +49,9 @@ test('rainy-day catalog contains 24 verified, correctly separated venues', () =>
 test('the approved September 30 through October 4 itinerary stays locked after the accommodation correction', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const expectedHashes = {
-    A: '6afbaa108d8bb54f7c6bba68e061c509560c14b836fffd72671f464933c19ba4',
-    B: '529addfa0e838b4d93034ee807cac88b02f41eebf24b33f42705fef227db50e4',
-    C: 'b9af6dbc8b73796252ad016106734b475d3305bde127299deac1581371d85b05',
+    A: '97d73cf9137e6260e707e78b032e791d03594ed9a60cfe8170cbdd3f3b160057',
+    B: '29a3d935a1b67dd812ca17c80b3788f643cba5954c0cfbf84ade6ba25f33b4d3',
+    C: '94f3bcdba945c9f32bba62bcb5bd71b07f1542d4017d0eb5da7c4fb4835f2681',
   };
 
   for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
@@ -194,7 +194,7 @@ test('flight summary includes only confirmed times and known flight identifiers'
   assert.deepEqual(trip.flights, [
     { date: '2026-09-24', party: '譚家', departure: '08:00', arrival: '10:45', airline: '華航', flightNumber: 'CI120', route: null },
     { date: '2026-09-30', party: '曾蘿情侶', departure: '06:50', arrival: '09:20', airline: null, flightNumber: 'IT230', route: 'TPE → OKA' },
-    { date: '2026-10-04', party: '譚家', departure: '15:50', arrival: null, airline: '星宇航空', flightNumber: 'JX871', route: 'OKA → TPE T2' },
+    { date: '2026-10-04', party: '譚家', departure: '15:50', arrival: '16:25', airline: '星宇航空', flightNumber: 'JX871', route: 'OKA → TPE T2' },
   ]);
 });
 
@@ -221,6 +221,9 @@ test('public trip content uses the corrected 曾蘿情侶 label everywhere', () 
 
 test('October 4 plans finish at the corrected JX871 departure', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const fixedFlight = trip.fixedEvents.find((event) => event.id === 'f-1004-flight');
+  assert.equal(fixedFlight.end, '16:25');
+  assert.match(fixedFlight.note, /16:25.*抵達台灣/);
 
   for (const variantId of ['A', 'B', 'C']) {
     const day = trip.days[variantId].find((item) => item.date === '2026-10-04');
@@ -230,6 +233,8 @@ test('October 4 plans finish at the corrected JX871 departure', () => {
       { time: '15:50', type: 'flight', title: '譚家 JX871 起飛' },
       `${variantId} must end with the corrected flight`,
     );
+    assert.match(departure.note, /16:25.*抵達台灣/);
+    assert.doesNotMatch(departure.note, /抵達時間未提供/);
   }
 });
 

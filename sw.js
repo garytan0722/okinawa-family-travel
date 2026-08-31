@@ -1,11 +1,11 @@
 const CACHE_PREFIX = 'okinawa-road-book-';
-const CACHE = 'okinawa-road-book-v17';
+const CACHE = 'okinawa-road-book-v18';
 const CORE = [
-  './index.html?v=17', './recovery.html?v=17', './styles.css?v=17', './app.mjs?v=17', './manifest.json?v=17', './icons/icon.svg?v=17', './icons/dog-paw-stamp.svg?v=17',
-  './content/trip.json?v=17', './src/trip-domain.mjs?v=17', './src/render.mjs?v=17', './src/storage.mjs?v=17', './src/pwa-update.mjs?v=17', './src/recovery.mjs?v=17', './src/recovery-page.mjs?v=17',
-  './output/pdf/okinawa-family-trip-A-balanced.pdf?v=17',
-  './output/pdf/okinawa-family-trip-B-active.pdf?v=17',
-  './output/pdf/okinawa-family-trip-C-relaxed.pdf?v=17',
+  './index.html?v=18', './recovery.html?v=18', './styles.css?v=18', './app.mjs?v=18', './manifest.json?v=18', './icons/icon.svg?v=18', './icons/dog-paw-stamp.svg?v=18',
+  './content/trip.json?v=18', './src/trip-domain.mjs?v=18', './src/render.mjs?v=18', './src/storage.mjs?v=18', './src/pwa-update.mjs?v=18', './src/recovery.mjs?v=18', './src/recovery-page.mjs?v=18',
+  './output/pdf/okinawa-family-trip-A-balanced.pdf?v=18',
+  './output/pdf/okinawa-family-trip-B-active.pdf?v=18',
+  './output/pdf/okinawa-family-trip-C-relaxed.pdf?v=18',
 ];
 
 self.addEventListener('install', (event) => {
@@ -30,7 +30,7 @@ self.addEventListener('fetch', (event) => {
     return response;
   });
   if (event.request.mode === 'navigate') {
-    event.respondWith(fromNetwork().catch(() => caches.match('./index.html?v=17')));
+    event.respondWith(fromNetwork().catch(() => caches.match('./index.html?v=18')));
     return;
   }
   event.respondWith(caches.match(event.request).then((cached) => cached || fromNetwork()));

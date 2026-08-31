@@ -137,7 +137,7 @@ def logistics_page(pdf, trip, variant_id, page_number):
     pdf.drawString(42, y, "班機時間")
     pdf.setFillColor(MUTED)
     pdf.setFont(FONT, 7.5)
-    pdf.drawRightString(PAGE_W - 42, y, "未提供的抵達時間、班號與航線不推測")
+    pdf.drawRightString(PAGE_W - 42, y, "未提供的班號與航線不推測")
     y -= 22
     for flight in trip["flights"]:
         pdf.setFillColor(FOAM)
