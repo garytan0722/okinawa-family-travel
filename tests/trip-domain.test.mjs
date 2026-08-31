@@ -14,15 +14,15 @@ import {
 
 const trip = JSON.parse(readFileSync(new URL('../content/trip.json', import.meta.url), 'utf8'));
 
-test('party labels identify 譚家 and 曾蘿情侶 while all six stay together through October 4', () => {
+test('party labels identify 譚家四口 and 小倆口 while all six stay together through October 4', () => {
   assert.deepEqual(getPartyForDate(trip, '2026-09-24'), {
-    adults: 2, children: 2, label: '譚家',
+    adults: 2, children: 2, label: '譚家四口',
   });
   assert.deepEqual(getPartyForDate(trip, '2026-09-30'), {
-    adults: 4, children: 2, label: '譚家＋曾蘿情侶',
+    adults: 4, children: 2, label: '譚家四口＋小倆口',
   });
   assert.deepEqual(getPartyForDate(trip, '2026-10-04'), {
-    adults: 4, children: 2, label: '譚家＋曾蘿情侶',
+    adults: 4, children: 2, label: '譚家四口＋小倆口',
   });
 });
 

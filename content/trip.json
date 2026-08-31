@@ -15,8 +15,8 @@
     "C": { "name": "度假放鬆", "tagline": "飯店與海邊優先，兩天最多一個長途重點", "color": "#5D8F7B" }
   },
   "partyPeriods": [
-    { "from": "2026-09-24", "to": "2026-09-29", "adults": 2, "children": 2, "label": "譚家" },
-    { "from": "2026-09-30", "to": "2026-10-04", "adults": 4, "children": 2, "label": "譚家＋曾蘿情侶" }
+    { "from": "2026-09-24", "to": "2026-09-29", "adults": 2, "children": 2, "label": "譚家四口" },
+    { "from": "2026-09-30", "to": "2026-10-04", "adults": 4, "children": 2, "label": "譚家四口＋小倆口" }
   ],
   "stays": [
     {
@@ -37,19 +37,19 @@
     }
   ],
   "flights": [
-    { "date": "2026-09-24", "party": "譚家", "departure": "08:00", "arrival": "10:45", "airline": "華航", "flightNumber": "CI120", "route": null },
-    { "date": "2026-09-30", "party": "曾蘿情侶", "departure": "06:50", "arrival": "09:20", "airline": null, "flightNumber": "IT230", "route": "TPE → OKA" },
-    { "date": "2026-10-04", "party": "譚家", "departure": "15:50", "arrival": "16:25", "airline": "星宇航空", "flightNumber": "JX871", "route": "OKA → TPE T2" }
+    { "date": "2026-09-24", "party": "譚家四口", "departure": "08:00", "arrival": "10:45", "airline": "華航", "flightNumber": "CI120", "route": null },
+    { "date": "2026-09-30", "party": "小倆口", "departure": "06:50", "arrival": "09:20", "airline": null, "flightNumber": "IT230", "route": "TPE → OKA" },
+    { "date": "2026-10-04", "party": "譚家四口", "departure": "15:50", "arrival": "16:25", "airline": "星宇航空", "flightNumber": "JX871", "route": "OKA → TPE T2" }
   ],
   "fixedEvents": [
-    { "id": "f-0924-flight", "date": "2026-09-24", "time": "08:00", "end": "10:45", "kind": "flight-arrival", "title": "華航 CI120 譚家飛往沖繩", "place": "那覇空港", "note": "譚家一家四口；08:00 起飛，10:45 抵達。" },
+    { "id": "f-0924-flight", "date": "2026-09-24", "time": "08:00", "end": "10:45", "kind": "flight-arrival", "title": "華航 CI120 譚家四口飛往沖繩", "place": "那覇空港", "note": "譚家四口；08:00 起飛，10:45 抵達。" },
     { "id": "f-0924-car", "date": "2026-09-24", "time": "12:00", "kind": "car-pickup", "title": "OTS 取第一台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
-    { "id": "f-0930-flight", "date": "2026-09-30", "time": "09:20", "kind": "flight-arrival", "title": "曾蘿情侶搭 IT230 抵達 OKA", "place": "那覇空港", "note": "06:50 TPE 起飛，曾蘿情侶兩位大人加入。" },
+    { "id": "f-0930-flight", "date": "2026-09-30", "time": "09:20", "kind": "flight-arrival", "title": "小倆口搭 IT230 抵達 OKA", "place": "那覇空港", "note": "06:50 TPE 起飛，小倆口兩位大人加入。" },
     { "id": "f-0930-car2", "date": "2026-09-30", "time": "11:30", "kind": "car-pickup", "title": "OTS 取第二台六人用車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-0930-car1-return", "date": "2026-09-30", "time": "12:00", "kind": "car-return", "title": "OTS 還第一台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-1002-snorkeling", "date": "2026-10-02", "time": "09:00", "kind": "snorkeling", "title": "青潛 BEST DIVE OKINAWA 青洞浮潛（固定）", "place": "青潛免費停車場《裝備區》", "note": "09:00 活動時段；青潛官網要求 08:00 集合，最後以預約確認訊息為準。", "bookingId": "bestdive-snorkeling", "sourceIds": ["bestdive"] },
     { "id": "f-1004-car-return", "date": "2026-10-04", "time": "12:30", "kind": "car-return", "title": "OTS 還第二台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
-    { "id": "f-1004-flight", "date": "2026-10-04", "time": "15:50", "end": "16:25", "kind": "flight-departure", "title": "星宇航空 JX871 譚家返回台灣", "place": "那覇空港", "note": "OKA → TPE T2，預計 16:25 抵達台灣；譚家一家四口。曾蘿情侶後續交通未提供。" }
+    { "id": "f-1004-flight", "date": "2026-10-04", "time": "15:50", "end": "16:25", "kind": "flight-departure", "title": "星宇航空 JX871 譚家四口返回台灣", "place": "那覇空港", "note": "OKA → TPE T2，預計 16:25 抵達台灣；譚家四口。小倆口後續交通未提供。" }
   ],
   "activityBookings": {
     "bestdive-snorkeling": {
@@ -358,7 +358,7 @@
         "events": [
           { "id": "A-0930-1", "time": "08:45", "type": "drive", "title": "退房南下 OTS", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "加滿油並預留那霸塞車；目標11:15抵達。", "sourceIds": ["ots"] },
           { "id": "A-0930-2", "time": "11:30", "type": "car", "title": "取第二台車、安裝兒童座椅", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "六人行李先確認裝得下。", "sourceIds": ["ots"] },
-          { "id": "A-0930-3", "time": "12:00", "type": "car", "title": "還第一台車並完成六人會合", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "曾蘿情侶搭 IT230 於 09:20 抵達，帶行李會合。", "sourceIds": ["ots"] },
+          { "id": "A-0930-3", "time": "12:00", "type": "car", "title": "還第一台車並完成六人會合", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "小倆口搭 IT230 於 09:20 抵達，帶行李會合。", "sourceIds": ["ots"] },
           { "id": "A-0930-4", "time": "13:15", "type": "meal", "title": "豐崎午餐", "place": "沖縄アウトレットモール あしびなー周邊", "mapQuery": "沖縄アウトレットモール あしびなー", "note": "換車後先吃飯，不把午餐塞進機場。" },
           { "id": "A-0930-5", "time": "15:00", "type": "culture", "title": "波上宮＋海邊短停", "place": "波上宮", "mapQuery": "波上宮", "note": "只排60分鐘；若塞車直接入住。" },
           { "id": "A-0930-6", "time": "17:00", "type": "stay", "title": "私人住宿入住、國際通早晚餐", "place": "恩納村私人住宿／国際通り", "mapQuery": "国際通り", "note": "住宿導航用私人訂房資料。" }
@@ -367,7 +367,7 @@
       {
         "date": "2026-10-01", "title": "六人一起看鯨鯊・美國村晚餐", "area": "本部 → 北谷", "stay": "恩納村私人住宿", "drive": "恩納到本部約 70–90 分", "rainPlan": "水族館照常，刪除戶外海豚與夕陽。",
         "events": [
-          { "id": "A-1001-1", "time": "07:30", "type": "drive", "title": "提早北上美麗海", "place": "沖縄美ら海水族館", "mapQuery": "沖縄美ら海水族館", "note": "孩子會重訪，但可改玩兒童砦；曾蘿情侶看主館。" },
+          { "id": "A-1001-1", "time": "07:30", "type": "drive", "title": "提早北上美麗海", "place": "沖縄美ら海水族館", "mapQuery": "沖縄美ら海水族館", "note": "孩子會重訪，但可改玩兒童砦；小倆口看主館。" },
           { "id": "A-1001-2", "time": "09:30", "type": "activity", "title": "沖繩美麗海水族館／海洋博公園分流", "place": "沖縄美ら海水族館", "mapQuery": "沖縄美ら海水族館", "note": "四大兩小可彈性分成主館與公園組。", "sourceIds": ["churaumi"] },
           { "id": "A-1001-3", "time": "14:30", "type": "drive", "title": "南下北谷，中途休息一次", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ", "note": "不硬排BANTA；孩子睡車上。" },
           { "id": "A-1001-4", "time": "17:00", "type": "meal", "title": "美國村夕陽與晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ", "note": "20:00前離開，避免過晚回恩納住宿。" }
@@ -383,21 +383,21 @@
         ]
       },
       {
-        "date": "2026-10-03", "title": "首里半日・六人繼續同行", "area": "恩納 ↔ 首里／浦添", "stay": "恩納村私人住宿（譚家＋曾蘿情侶）", "drive": "恩納往返那霸／浦添，全日約 130–180 分", "rainPlan": "大雨改早午餐後回住宿；下午可逛PARCO CITY。",
+        "date": "2026-10-03", "title": "首里半日・六人繼續同行", "area": "恩納 ↔ 首里／浦添", "stay": "恩納村私人住宿（譚家四口＋小倆口）", "drive": "恩納往返那霸／浦添，全日約 130–180 分", "rainPlan": "大雨改早午餐後回住宿；下午可逛PARCO CITY。",
         "events": [
           { "id": "A-1003-1", "time": "08:30", "type": "culture", "title": "首里城公園早晨散步", "place": "首里城公園", "mapQuery": "首里城公園", "note": "只排核心區，10:45前離開。", "sourceIds": ["shurijo"] },
           { "id": "A-1003-2", "time": "11:15", "type": "meal", "title": "早午餐＋回住宿整理", "place": "那霸市", "mapQuery": "那覇 子連れ ランチ 駐車場", "note": "不排しむじょう長候位；選可停車替代。" },
-          { "id": "A-1003-3", "time": "13:15", "type": "rest", "title": "六人回住宿整理與休息", "place": "恩納村私人住宿", "mapQuery": "", "note": "10/3 沒有搭機，譚家與曾蘿情侶繼續同行。" },
+          { "id": "A-1003-3", "time": "13:15", "type": "rest", "title": "六人回住宿整理與休息", "place": "恩納村私人住宿", "mapQuery": "", "note": "10/3 沒有搭機，譚家四口與小倆口繼續同行。" },
           { "id": "A-1003-4", "time": "15:00", "type": "shopping", "title": "六人：PARCO CITY或住宿休息", "place": "サンエー浦添西海岸 PARCO CITY", "mapQuery": "サンエー浦添西海岸 PARCO CITY", "note": "不影響翌日12:30還車。" }
         ]
       },
       {
-        "date": "2026-10-04", "title": "DMM水族館・還車・下午班機", "area": "恩納 → 豐見城 → 那覇空港", "stay": "譚家機上；曾蘿情侶後續未提供", "drive": "恩納到豐見城約 60–85 分，再前往還車與機場", "rainPlan": "全日皆可室內進行。",
+        "date": "2026-10-04", "title": "DMM水族館・還車・下午班機", "area": "恩納 → 豐見城 → 那覇空港", "stay": "譚家四口機上；小倆口後續未提供", "drive": "恩納到豐見城約 60–85 分，再前往還車與機場", "rainPlan": "全日皆可室內進行。",
         "events": [
           { "id": "A-1004-1", "time": "09:00", "type": "activity", "title": "DMM Kariyushi水族館", "place": "DMMかりゆし水族館", "mapQuery": "DMMかりゆし水族館", "note": "只留兩小時，11:15離開準備加油。", "sourceIds": ["dmm"] },
           { "id": "A-1004-2", "time": "12:30", "type": "car", "title": "OTS 還第二台車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "搭接駁回機場；之後不再安排需開車景點。", "sourceIds": ["ots"] },
-          { "id": "A-1004-3", "time": "13:15", "type": "rest", "title": "機場午餐、譚家 JX871 報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛；曾蘿情侶後續交通尚未提供。" },
-          { "id": "A-1004-4", "time": "15:50", "type": "flight", "title": "譚家 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家一家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" }
+          { "id": "A-1004-3", "time": "13:15", "type": "rest", "title": "機場午餐、譚家四口 JX871 報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛；小倆口後續交通尚未提供。" },
+          { "id": "A-1004-4", "time": "15:50", "type": "flight", "title": "譚家四口 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" }
         ]
       }
     ],
@@ -464,19 +464,19 @@
         { "id": "B-1002-3", "time": "15:00", "type": "culture", "title": "普天滿宮", "place": "普天満宮", "mapQuery": "普天満宮", "note": "洞穴參拜時間行前確認。" },
         { "id": "B-1002-4", "time": "16:30", "type": "shopping", "title": "AEON Rycom晚餐", "place": "イオンモール沖縄ライカム", "mapQuery": "イオンモール沖縄ライカム" }
       ]},
-      { "date": "2026-10-03", "title": "首里城・玉泉洞・六人午後自由", "area": "恩納 → 首里 → 南城 → 恩納", "stay": "恩納村私人住宿（譚家＋曾蘿情侶）", "drive": "全日約 190–250 分", "rainPlan": "取消首里戶外，只留玉泉洞後回住宿。", "events": [
+      { "date": "2026-10-03", "title": "首里城・玉泉洞・六人午後自由", "area": "恩納 → 首里 → 南城 → 恩納", "stay": "恩納村私人住宿（譚家四口＋小倆口）", "drive": "全日約 190–250 分", "rainPlan": "取消首里戶外，只留玉泉洞後回住宿。", "events": [
         { "id": "B-1003-1", "time": "08:00", "type": "culture", "title": "首里城公園核心區", "place": "首里城公園", "mapQuery": "首里城公園", "sourceIds": ["shurijo"] },
         { "id": "B-1003-2", "time": "10:15", "type": "activity", "title": "沖繩世界・玉泉洞", "place": "おきなわワールド", "mapQuery": "おきなわワールド", "note": "12:00離開是硬截止；園內其他表演不追。", "sourceIds": ["okinawaworld"] },
         { "id": "B-1003-3", "time": "12:10", "type": "meal", "title": "南部快速午餐", "place": "南城市", "mapQuery": "南城市 子連れ ランチ", "note": "不排長候位。" },
-        { "id": "B-1003-4", "time": "13:30", "type": "rest", "title": "六人回恩納住宿整理", "place": "恩納村私人住宿", "mapQuery": "", "note": "10/3 沒有搭機，譚家與曾蘿情侶繼續同行。" },
+        { "id": "B-1003-4", "time": "13:30", "type": "rest", "title": "六人回恩納住宿整理", "place": "恩納村私人住宿", "mapQuery": "", "note": "10/3 沒有搭機，譚家四口與小倆口繼續同行。" },
         { "id": "B-1003-5", "time": "15:00", "type": "shopping", "title": "六人：PARCO CITY", "place": "サンエー浦添西海岸 PARCO CITY", "mapQuery": "サンエー浦添西海岸 PARCO CITY", "note": "孩子累就留在住宿休息。" }
       ]},
-      { "date": "2026-10-04", "title": "DMM・Outlet・還車・下午班機", "area": "恩納 → 豐見城 → 那霸", "stay": "譚家機上；曾蘿情侶後續未提供", "drive": "上午約 80–110 分", "rainPlan": "全日可室內。", "events": [
+      { "date": "2026-10-04", "title": "DMM・Outlet・還車・下午班機", "area": "恩納 → 豐見城 → 那霸", "stay": "譚家四口機上；小倆口後續未提供", "drive": "上午約 80–110 分", "rainPlan": "全日可室內。", "events": [
         { "id": "B-1004-1", "time": "08:45", "type": "activity", "title": "DMM Kariyushi水族館", "place": "DMMかりゆし水族館", "mapQuery": "DMMかりゆし水族館", "sourceIds": ["dmm"] },
         { "id": "B-1004-2", "time": "10:45", "type": "shopping", "title": "Ashibinaa快速採買", "place": "沖縄アウトレットモール あしびなー", "mapQuery": "沖縄アウトレットモール あしびなー", "note": "次要項；11:30硬離開加油。" },
         { "id": "B-1004-3", "time": "12:30", "type": "car", "title": "OTS還車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
-        { "id": "B-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、譚家 JX871 報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛；曾蘿情侶後續交通尚未提供。" },
-        { "id": "B-1004-5", "time": "15:50", "type": "flight", "title": "譚家 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家一家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" }
+        { "id": "B-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、譚家四口 JX871 報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛；小倆口後續交通尚未提供。" },
+        { "id": "B-1004-5", "time": "15:50", "type": "flight", "title": "譚家四口 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" }
       ]}
     ],
     "C": [
@@ -537,18 +537,18 @@
         { "id": "C-1002-3", "time": "16:00", "type": "walk", "title": "美國村夕陽與早晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ" },
         { "id": "C-1002-4", "time": "19:00", "type": "drive", "title": "提早回恩納住宿", "place": "恩納村私人住宿", "mapQuery": "恩納村希望ヶ丘" }
       ]},
-      { "date": "2026-10-03", "title": "慢早餐・六人那霸慢遊", "area": "恩納 ↔ 那霸", "stay": "恩納村私人住宿（譚家＋曾蘿情侶）", "drive": "恩納往返那霸約 120–170 分", "rainPlan": "全程可改室內。", "events": [
+      { "date": "2026-10-03", "title": "慢早餐・六人那霸慢遊", "area": "恩納 ↔ 那霸", "stay": "恩納村私人住宿（譚家四口＋小倆口）", "drive": "恩納往返那霸約 120–170 分", "rainPlan": "全程可改室內。", "events": [
         { "id": "C-1003-1", "time": "09:30", "type": "meal", "title": "六人慢早餐", "place": "那霸", "mapQuery": "那覇 ブランチ 子連れ" },
         { "id": "C-1003-2", "time": "11:30", "type": "walk", "title": "國際通慢慢採買", "place": "国際通り", "mapQuery": "国際通り", "note": "不設送機截止時間，依孩子體力彈性離開。" },
-        { "id": "C-1003-3", "time": "13:30", "type": "rest", "title": "六人午餐後回住宿休息", "place": "恩納村私人住宿", "mapQuery": "", "note": "10/3 沒有搭機，譚家與曾蘿情侶繼續同行。" },
+        { "id": "C-1003-3", "time": "13:30", "type": "rest", "title": "六人午餐後回住宿休息", "place": "恩納村私人住宿", "mapQuery": "", "note": "10/3 沒有搭機，譚家四口與小倆口繼續同行。" },
         { "id": "C-1003-4", "time": "15:30", "type": "rest", "title": "六人自由時間", "place": "那霸", "mapQuery": "那覇市", "note": "可留在住宿或一起前往PARCO CITY。" }
       ]},
-      { "date": "2026-10-04", "title": "水族館・還車・下午班機", "area": "恩納 → 豐見城 → 機場", "stay": "譚家機上；曾蘿情侶後續未提供", "drive": "上午約 80–110 分", "rainPlan": "全日室內。", "events": [
+      { "date": "2026-10-04", "title": "水族館・還車・下午班機", "area": "恩納 → 豐見城 → 機場", "stay": "譚家四口機上；小倆口後續未提供", "drive": "上午約 80–110 分", "rainPlan": "全日室內。", "events": [
         { "id": "C-1004-1", "time": "09:15", "type": "activity", "title": "DMM Kariyushi水族館", "place": "DMMかりゆし水族館", "mapQuery": "DMMかりゆし水族館", "sourceIds": ["dmm"] },
         { "id": "C-1004-2", "time": "11:15", "type": "meal", "title": "豐崎早午餐與加油", "place": "豊崎", "mapQuery": "豊崎 ランチ" },
         { "id": "C-1004-3", "time": "12:30", "type": "car", "title": "OTS還車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
-        { "id": "C-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、譚家 JX871 報到與伴手禮", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛；曾蘿情侶後續交通尚未提供。" },
-        { "id": "C-1004-5", "time": "15:50", "type": "flight", "title": "譚家 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家一家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" }
+        { "id": "C-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、譚家四口 JX871 報到與伴手禮", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛；小倆口後續交通尚未提供。" },
+        { "id": "C-1004-5", "time": "15:50", "type": "flight", "title": "譚家四口 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" }
       ]}
     ]
   }

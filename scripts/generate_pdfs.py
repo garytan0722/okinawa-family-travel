@@ -113,7 +113,7 @@ def cover(pdf, trip, variant_id, variant, page_number):
     pdf.setFont(FONT, 11)
     pdf.drawString(68, PAGE_H - 365, variant["tagline"])
 
-    facts = [("9/24", "譚家搭 CI120 抵達"), ("9/30", "曾蘿情侶加入／六人換車"), ("10/4", "譚家搭 JX871 返回台灣")]
+    facts = [("9/24", "譚家四口搭 CI120 抵達"), ("9/30", "小倆口加入／六人換車"), ("10/4", "譚家四口搭 JX871 返回台灣")]
     y = PAGE_H - 470
     for date, detail in facts:
         pdf.setFillColor(ROAD)

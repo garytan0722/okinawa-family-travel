@@ -294,3 +294,11 @@
 - 航班摘要、固定行程與 A／B／C 10/4 最後一站均顯示 JX871 15:50 從沖繩起飛、預計 16:25 抵達台灣；舊的未知抵達時間提示已移除。
 - Verified 73/73 tests, privacy-safe 18-asset build, three visually inspected 24-page PDFs, and a 390px browser check with no console, request, or overflow errors.
 - Deployed release v18 from commit `b2d9659` through GitHub Actions run `33380941109`; the live website and all three PDF hashes match the verified local artifacts.
+
+## 旅伴團體名稱修正
+
+- [x] 以失敗測試鎖定「譚家四口」與「小倆口」兩個公開名稱
+- [x] 同步行程資料、固定事件、首頁、文件與 A／B／C 行程文字
+- [x] 重建並視覺檢查三版 PDF
+- [x] 輪替離線版本，完成測試、隱私與手機驗證
+- [ ] 部署 GitHub Pages 並確認正式內容

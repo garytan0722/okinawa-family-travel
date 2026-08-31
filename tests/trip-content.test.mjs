@@ -49,9 +49,9 @@ test('rainy-day catalog contains 24 verified, correctly separated venues', () =>
 test('the approved September 30 through October 4 itinerary stays locked after the accommodation correction', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const expectedHashes = {
-    A: '97d73cf9137e6260e707e78b032e791d03594ed9a60cfe8170cbdd3f3b160057',
-    B: '29a3d935a1b67dd812ca17c80b3788f643cba5954c0cfbf84ade6ba25f33b4d3',
-    C: '94f3bcdba945c9f32bba62bcb5bd71b07f1542d4017d0eb5da7c4fb4835f2681',
+    A: '3cad0f950a59da4cc9cfbdccbae4af4ae00857db96b91c773dda6205249764c7',
+    B: '1191568163a14999c21c6775af09424612a58b95a9303b8e760b0b1530b7e037',
+    C: '0ac28ec78c63213889f216963922f8d3d5d1514620f65c573d37613af3f9e936',
   };
 
   for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
@@ -192,9 +192,9 @@ test('September 29 active plan runs west-to-north without returning to Cape Zanp
 test('flight summary includes only confirmed times and known flight identifiers', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   assert.deepEqual(trip.flights, [
-    { date: '2026-09-24', party: '譚家', departure: '08:00', arrival: '10:45', airline: '華航', flightNumber: 'CI120', route: null },
-    { date: '2026-09-30', party: '曾蘿情侶', departure: '06:50', arrival: '09:20', airline: null, flightNumber: 'IT230', route: 'TPE → OKA' },
-    { date: '2026-10-04', party: '譚家', departure: '15:50', arrival: '16:25', airline: '星宇航空', flightNumber: 'JX871', route: 'OKA → TPE T2' },
+    { date: '2026-09-24', party: '譚家四口', departure: '08:00', arrival: '10:45', airline: '華航', flightNumber: 'CI120', route: null },
+    { date: '2026-09-30', party: '小倆口', departure: '06:50', arrival: '09:20', airline: null, flightNumber: 'IT230', route: 'TPE → OKA' },
+    { date: '2026-10-04', party: '譚家四口', departure: '15:50', arrival: '16:25', airline: '星宇航空', flightNumber: 'JX871', route: 'OKA → TPE T2' },
   ]);
 });
 
@@ -213,10 +213,11 @@ test('October 3 has no flight or airport split and keeps all six travelers toget
   }
 });
 
-test('public trip content uses the corrected 曾蘿情侶 label everywhere', () => {
+test('public trip content uses only the corrected 譚家四口 and 小倆口 labels', () => {
   const serialized = readFileSync(tripPath, 'utf8');
-  assert.match(serialized, /曾蘿情侶/);
-  assert.doesNotMatch(serialized, /曾羅佳/);
+  assert.match(serialized, /譚家四口/);
+  assert.match(serialized, /小倆口/);
+  assert.doesNotMatch(serialized, /曾蘿情侶|曾羅佳|譚家(?!四口)/);
 });
 
 test('October 4 plans finish at the corrected JX871 departure', () => {
@@ -230,7 +231,7 @@ test('October 4 plans finish at the corrected JX871 departure', () => {
     const departure = day.events.at(-1);
     assert.deepEqual(
       { time: departure.time, type: departure.type, title: departure.title },
-      { time: '15:50', type: 'flight', title: '譚家 JX871 起飛' },
+      { time: '15:50', type: 'flight', title: '譚家四口 JX871 起飛' },
       `${variantId} must end with the corrected flight`,
     );
     assert.match(departure.note, /16:25.*抵達台灣/);
