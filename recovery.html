@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#fff8ec">
+  <title>修復沖繩遛小孩</title>
+  <style>
+    :root { color-scheme: light; font-family: ui-rounded, "Nunito", "PingFang TC", sans-serif; color: #3d342d; background: #fff8ec; }
+    * { box-sizing: border-box; }
+    body { min-height: 100svh; margin: 0; display: grid; place-items: center; padding: 24px; background: radial-gradient(circle at top, #fff 0, #fff8ec 52%, #f3dfc8 100%); }
+    main { width: min(100%, 420px); padding: 32px 24px; text-align: center; border: 2px solid #3d342d; border-radius: 28px; background: #fffdf7; box-shadow: 8px 9px 0 #e8b7a2; }
+    .paw { display: inline-grid; place-items: center; width: 72px; height: 72px; margin-bottom: 8px; border-radius: 50%; background: #f7c9bd; font-size: 38px; }
+    h1 { margin: 10px 0; font-size: 1.65rem; }
+    p { line-height: 1.7; }
+    small { display: block; margin-top: 16px; color: #6e6259; line-height: 1.55; }
+    button { min-height: 48px; margin-top: 12px; padding: 0 22px; border: 2px solid #3d342d; border-radius: 999px; background: #f7c9bd; color: inherit; font: inherit; font-weight: 800; }
+  </style>
+</head>
+<body>
+  <main>
+    <span class="paw" aria-hidden="true">🐾</span>
+    <h1>正在修復網站</h1>
+    <p id="recovery-status" role="status" aria-live="polite">準備清除舊版網站快取…</p>
+    <button id="recovery-retry" type="button" hidden>再試一次</button>
+    <small>這只會清除沖繩行程網站的舊快取，不會刪除你的行程勾選、筆記或備份記錄。</small>
+  </main>
+  <script src="./src/recovery-page.mjs?v=16" type="module"></script>
+</body>
+</html>

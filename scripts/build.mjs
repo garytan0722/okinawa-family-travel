@@ -2,10 +2,10 @@ import { access, readFile } from 'node:fs/promises';
 import { constants } from 'node:fs';
 
 const required = [
-  'index.html', 'app.mjs', 'styles.css', 'manifest.json', 'sw.js', 'icons/icon.svg',
+  'index.html', 'recovery.html', 'app.mjs', 'styles.css', 'manifest.json', 'sw.js', 'icons/icon.svg',
   'icons/dog-paw-stamp.svg',
   'content/trip.json', 'src/trip-domain.mjs', 'src/render.mjs', 'src/storage.mjs',
-  'src/pwa-update.mjs',
+  'src/pwa-update.mjs', 'src/recovery.mjs', 'src/recovery-page.mjs',
   'output/pdf/okinawa-family-trip-A-balanced.pdf',
   'output/pdf/okinawa-family-trip-B-active.pdf',
   'output/pdf/okinawa-family-trip-C-relaxed.pdf',

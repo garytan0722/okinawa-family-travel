@@ -247,3 +247,11 @@
 - OHDr. 卡片包含出發前方案、團體限制、幼兒與兒童糖漿等待提醒、沖繩無快速送藥提醒、官方繁中方案與抵日後預約入口。
 - Verified 67/67 tests, privacy-safe static build, unchanged frozen 9/30–10/4 hashes, v15 offline reload, and zero horizontal overflow at 320／390／1440px.
 - Confirmed the live 390px emergency page renders one OHDr. card, both official actions, the correct emergency order, and no horizontal overflow.
+
+## 手機網站載入修復
+
+- [x] 確認 GitHub Pages、正式資產與乾淨手機瀏覽器的實際狀態
+- [x] 以失敗測試鎖定只清除網站快取、不刪除行程記錄的修復流程
+- [x] 加入不依賴主程式的修復頁與載入逾時入口
+- [x] 驗證舊 Service Worker、手機畫面、離線與既有行程資料
+- [ ] 部署並確認正式網址及修復網址
