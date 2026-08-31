@@ -238,4 +238,12 @@
 - [x] 將沖繩 24 小時多語言醫療諮詢加入 119 後方
 - [x] 在緊急頁加入 OHDr. 中文線上門診卡片與使用順序
 - [x] 輪替 v15 離線快取且保持所有 A／B／C 行程資料不變
-- [ ] 驗證測試、手機、離線、隱私後部署 GitHub Pages
+- [x] 驗證測試、手機、離線、隱私後部署 GitHub Pages
+
+### OHDr. 緊急頁 review
+
+- Deployed release v15 from commit `17030c1` through GitHub Actions run `33355130271`.
+- 緊急頁依序保留 110、119，再加入沖繩縣 24 小時外國旅客醫療諮詢，OHDr. 則明確標示為 09:00–22:00 的非緊急中文線上門診。
+- OHDr. 卡片包含出發前方案、團體限制、幼兒與兒童糖漿等待提醒、沖繩無快速送藥提醒、官方繁中方案與抵日後預約入口。
+- Verified 67/67 tests, privacy-safe static build, unchanged frozen 9/30–10/4 hashes, v15 offline reload, and zero horizontal overflow at 320／390／1440px.
+- Confirmed the live 390px emergency page renders one OHDr. card, both official actions, the correct emergency order, and no horizontal overflow.
