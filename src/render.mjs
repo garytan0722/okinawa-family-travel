@@ -1,4 +1,4 @@
-import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=21';
+import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=22';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -102,15 +102,39 @@ function renderDiningGuide(trip, event) {
   </aside>`;
 }
 
-function renderEvent(trip, event, completed) {
+function renderRainPicker(trip, event, rainSelections = {}) {
+  const options = (event.rainBackupIds ?? [])
+    .map((id) => trip.rainyDayOptions.find((option) => option.id === id))
+    .filter(Boolean);
+  if (!options.length) return '';
+
+  const selectedId = rainSelections[event.id];
+  const selected = options.find((option) => option.id === selectedId);
+  const selection = selected ? `<aside class="event-rain-selection" aria-live="polite">
+    <span>☔ 已選雨備</span><strong>${escapeHtml(selected.name)}</strong>
+    <small>${escapeHtml(selected.area)} · ${escapeHtml(selected.weatherFit)} · ${escapeHtml(selected.duration)}</small>
+    <div><a href="${escapeHtml(mapUrl(selected.mapQuery))}" target="_blank" rel="noopener noreferrer">📍 直接導航</a><button type="button" data-action="clear-rain-backup" data-event-id="${escapeHtml(event.id)}">恢復原行程</button></div>
+  </aside>` : '';
+  const choices = options.map((option) => `<button type="button" data-action="select-rain-backup" data-event-id="${escapeHtml(event.id)}" data-rain-option-id="${escapeHtml(option.id)}" aria-pressed="${option.id === selectedId}">
+    <span>${escapeHtml(option.area)} · ${escapeHtml(option.duration)}</span><strong>${escapeHtml(option.name)}</strong><small>${escapeHtml(option.weatherFit)}</small>
+  </button>`).join('');
+
+  return `${selection}<details class="event-rain-picker"${selected ? ' open' : ''}>
+    <summary>☔ 這時段下雨 <small>附近 ${options.length} 個選擇</small></summary>
+    <div class="event-rain-options">${choices}</div>
+  </details>`;
+}
+
+function renderEvent(trip, event, completed, rainSelections) {
   const maps = event.navigationUrl || mapUrl(event.mapQuery);
   const isDone = completed[event.id] === true;
+  const hasRainSelection = Boolean(rainSelections?.[event.id]);
   return `
-    <li class="event-card${isDone ? ' is-complete' : ''}" data-event-id="${escapeHtml(event.id)}">
+    <li class="event-card${isDone ? ' is-complete' : ''}${hasRainSelection ? ' has-rain-selection' : ''}" data-event-id="${escapeHtml(event.id)}">
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=21" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=22" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -119,6 +143,7 @@ function renderEvent(trip, event, completed) {
         <h3>${escapeHtml(event.title)}</h3>
         <p class="event-place">${escapeHtml(event.place)}</p>
         ${event.note ? `<p class="event-note">${escapeHtml(event.note)}</p>` : ''}
+        ${renderRainPicker(trip, event, rainSelections)}
         ${renderDiningGuide(trip, event)}
         ${renderBookingInfo(trip, event)}
         ${renderTicketInfo(trip, event)}
@@ -158,8 +183,11 @@ export function renderDay(trip, day, variantState) {
   const stay = getStayForDate(trip, day.date);
   const note = variantState.notes?.[day.date] ?? '';
   const energy = variantState.energy?.[day.date] ?? 'okay';
-  const events = day.events.map((event) => renderEvent(trip, event, variantState.completed ?? {})).join('');
-  const routePlan = dayRoutePlan(trip, day);
+  const rainPlan = trip.rainPlans?.find((item) => item.date === day.date);
+  const isRainMode = variantState.rainMode?.[day.date] === true && Boolean(rainPlan);
+  const activeDay = isRainMode ? rainPlan : day;
+  const events = activeDay.events.map((event) => renderEvent(trip, event, variantState.completed ?? {}, variantState.rainSelections ?? {})).join('');
+  const routePlan = dayRoutePlan(trip, activeDay);
   const routeSegments = routePlan.segments;
   const routeActions = routeSegments.map((segment, index) => {
     const start = index * 4 + 1;
@@ -172,16 +200,20 @@ export function renderDay(trip, day, variantState) {
   return `
     <article class="day-view" data-date="${day.date}">
       <header class="day-heading">
-        <div><span class="day-kicker">${shortDate(day.date)} · ${escapeHtml(day.area)}</span><h2>${escapeHtml(day.title)}</h2></div>
+        <div><span class="day-kicker">${shortDate(day.date)} · ${escapeHtml(activeDay.area)}</span><h2>${escapeHtml(activeDay.title)}</h2></div>
         <span class="party-pill">${party ? `${party.adults}大 ${party.children}小` : '旅程日'}</span>
       </header>
+      <section class="rain-mode-switch${isRainMode ? ' is-active' : ''}" aria-label="整日雨天行程切換">
+        <div><span>${isRainMode ? '☔ 正在使用整日雨天版' : '🌤 目前使用原定行程'}</span><small>${isRainMode ? '固定班機、租車與預約活動仍保留' : '下整天雨時，可一次換成順路室內行程'}</small></div>
+        <button type="button" data-action="toggle-rain-day" data-rain-date="${escapeHtml(day.date)}" aria-pressed="${isRainMode}"${rainPlan ? '' : ' disabled'}>${isRainMode ? '恢復原行程' : '切換整日雨天版'}</button>
+      </section>
       <div class="context-grid">
-        <section><span>今晚住</span><strong>${escapeHtml(day.stay)}</strong>${renderStayAction(stay)}</section>
-        <section><span>今日車程</span><strong>${escapeHtml(day.drive)}</strong></section>
+        <section><span>今晚住</span><strong>${escapeHtml(activeDay.stay)}</strong>${renderStayAction(stay)}</section>
+        <section><span>今日車程</span><strong>${escapeHtml(activeDay.drive)}</strong></section>
       </div>
       ${routeActions ? `<section class="day-route-card" aria-label="今日 Google Maps 多站導航"><div><span>GOOGLE MAPS ROUTE</span><strong>完整順序 · ${routePlan.points.length} 個停靠點</strong><small>手機版有途經點上限，請照段數依序開啟；每段會重疊上一段終點。</small></div><ol class="day-route-stops">${routeStops}</ol><div class="day-route-actions">${routeActions}</div></section>` : ''}
       <ol class="event-list">${events}</ol>
-      <section class="rain-card"><span>☔ 雨天／疲累備案</span><p>${escapeHtml(day.rainPlan)}</p><a href="#/rainy">查看 24 個雨天備案 →</a></section>
+      <section class="rain-card"><span>${isRainMode ? '☔ 今日雨天路線' : '☔ 雨天／疲累備案'}</span><p>${escapeHtml(activeDay.rainPlan)}</p><a href="#/rainy">查看 24 個雨天備案 →</a></section>
       <section class="record-card">
         <div class="record-head"><span>今天孩子的電量</span><div class="energy-control" role="group" aria-label="孩子體力">
           ${[['great','滿格'],['okay','普通'],['tired','累了']].map(([value,label]) => `<button type="button" data-action="set-energy" data-energy="${value}" aria-pressed="${energy === value}">${label}</button>`).join('')}

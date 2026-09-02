@@ -389,48 +389,51 @@ def emergency_page(pdf, trip, variant_id, page_number):
     pdf.showPage()
 
 
-def day_page(pdf, day, trip, variant_id, day_index, page_number):
-    page_header(pdf, f"DAY {day_index:02d}  ·  {day['date']}", day["title"], variant_id, page_number)
+def day_page(pdf, day, trip, variant_id, day_index, page_number, rain=False):
+    page_label = "RAIN" if rain else "DAY"
+    page_header(pdf, f"{page_label} {day_index:02d}  ·  {day['date']}", day["title"], variant_id, page_number)
     y = PAGE_H - 108
     pdf.setFillColor(SEA)
     pdf.setFont(FONT, 9)
     pdf.drawString(42, y, day["area"])
     pdf.setFillColor(MUTED)
-    pdf.drawRightString(PAGE_W - 42, y, day["drive"])
+    pdf.drawRightString(PAGE_W - 42, y, "整日雨天版" if rain else day["drive"])
     y -= 32
 
+    compact = len(day["events"]) > 6
     for event in day["events"]:
-        note_lines = wrap(event.get("note", ""), 8.2, PAGE_W - 196)[:2]
-        card_h = 68 + max(0, len(note_lines) - 1) * 12
+        note_lines = [] if compact else wrap(event.get("note", ""), 8.2, PAGE_W - 196)[:2]
+        card_h = 54 if compact else 68 + max(0, len(note_lines) - 1) * 12
+        card_gap = 9 if compact else 13
         pdf.setFillColor(colors.white)
         pdf.roundRect(88, y - card_h + 8, PAGE_W - 130, card_h, 11, stroke=0, fill=1)
         pdf.setStrokeColor(colors.Color(0.07, 0.23, 0.29, alpha=0.15))
         pdf.roundRect(88, y - card_h + 8, PAGE_W - 130, card_h, 11, stroke=1, fill=0)
         pdf.setFillColor(ROAD)
-        pdf.circle(57, y - 9, 5, stroke=0, fill=1)
+        pdf.circle(57, y - 7 if compact else y - 9, 5, stroke=0, fill=1)
         pdf.setFont(FONT, 9.5)
-        pdf.drawString(42, y - 31, event["time"])
+        pdf.drawString(42, y - (26 if compact else 31), event["time"])
         pdf.setFillColor(MUTED)
         pdf.setFont(FONT, 7)
-        pdf.drawString(104, y - 9, event["type"].upper())
+        pdf.drawString(104, y - (7 if compact else 9), event["type"].upper())
         pdf.setFillColor(INK)
-        pdf.setFont(FONT, 12)
-        pdf.drawString(104, y - 29, event["title"])
+        pdf.setFont(FONT, 10.5 if compact else 12)
+        pdf.drawString(104, y - (24 if compact else 29), event["title"])
         pdf.setFillColor(SEA)
-        pdf.setFont(FONT, 8.5)
-        pdf.drawString(104, y - 45, event["place"])
+        pdf.setFont(FONT, 7.7 if compact else 8.5)
+        pdf.drawString(104, y - (41 if compact else 45), event["place"])
         if note_lines:
             draw_lines(pdf, event.get("note", ""), 104, y - 59, 8.2, PAGE_W - 196, MUTED, 11.5, 2)
         pdf.setStrokeColor(colors.Color(0.91, 0.47, 0.24, alpha=0.45))
-        pdf.line(57, y - 16, 57, y - card_h - 4)
-        y -= card_h + 13
+        pdf.line(57, y - 14, 57, y - card_h - 4)
+        y -= card_h + card_gap
 
     rain_y = max(79, y - 5)
     pdf.setFillColor(FOAM)
     pdf.roundRect(42, rain_y - 52, PAGE_W - 84, 54, 10, stroke=0, fill=1)
     pdf.setFillColor(SEA)
     pdf.setFont(FONT, 8.5)
-    pdf.drawString(54, rain_y - 16, "雨天／疲累備案")
+    pdf.drawString(54, rain_y - 16, "雨天執行提醒" if rain else "雨天／疲累備案")
     draw_lines(pdf, day["rainPlan"], 54, rain_y - 34, 8.3, PAGE_W - 108, INK, 11, 2)
     pdf.showPage()
 
@@ -479,8 +482,11 @@ def generate(trip, variant_id):
     page += dining_pages(pdf, trip, variant_id, page)
     emergency_page(pdf, trip, variant_id, page)
     page += 1
+    rain_by_date = {day["date"]: day for day in trip["rainPlans"]}
     for index, day in enumerate(trip["days"][variant_id], start=1):
         day_page(pdf, day, trip, variant_id, index, page)
+        page += 1
+        day_page(pdf, rain_by_date[day["date"]], trip, variant_id, index, page, rain=True)
         page += 1
     page += sources_pages(pdf, trip, variant_id, page)
     pdf.save()

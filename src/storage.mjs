@@ -2,12 +2,12 @@ const STORAGE_KEY = 'okinawa-family-travel:v1';
 const VARIANTS = ['A', 'B', 'C'];
 
 function emptyVariantState() {
-  return { completed: {}, notes: {}, energy: {} };
+  return { completed: {}, notes: {}, energy: {}, rainMode: {}, rainSelections: {} };
 }
 
 export function createEmptyState() {
   return {
-    schemaVersion: 1,
+    schemaVersion: 2,
     selectedVariant: 'A',
     selectedDate: '2026-09-24',
     variants: {
@@ -23,7 +23,7 @@ function isRecord(value) {
 }
 
 function validatedState(value) {
-  if (!isRecord(value) || value.schemaVersion !== 1 || !VARIANTS.includes(value.selectedVariant)) {
+  if (!isRecord(value) || ![1, 2].includes(value.schemaVersion) || !VARIANTS.includes(value.selectedVariant)) {
     throw new Error('備份檔案格式不正確');
   }
   if (typeof value.selectedDate !== 'string' || !isRecord(value.variants)) {
@@ -35,9 +35,17 @@ function validatedState(value) {
     if (!isRecord(variant) || !isRecord(variant.completed) || !isRecord(variant.notes) || !isRecord(variant.energy)) {
       throw new Error('備份檔案格式不正確');
     }
+    if (variant.rainMode !== undefined && !isRecord(variant.rainMode)) throw new Error('備份檔案格式不正確');
+    if (variant.rainSelections !== undefined && !isRecord(variant.rainSelections)) throw new Error('備份檔案格式不正確');
   }
 
-  return JSON.parse(JSON.stringify(value));
+  const migrated = JSON.parse(JSON.stringify(value));
+  migrated.schemaVersion = 2;
+  for (const id of VARIANTS) {
+    migrated.variants[id].rainMode ??= {};
+    migrated.variants[id].rainSelections ??= {};
+  }
+  return migrated;
 }
 
 export function exportBackup(state) {

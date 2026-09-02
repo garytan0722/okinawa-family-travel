@@ -1,5 +1,4 @@
 import assert from 'node:assert/strict';
-import { createHash } from 'node:crypto';
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import test from 'node:test';
@@ -46,35 +45,84 @@ test('rainy-day catalog contains 24 verified, correctly separated venues', () =>
   }
 });
 
-test('the approved late itinerary stays locked after the confirmed BR185 correction', () => {
+test('B follows the supplied September 30 through October 4 itinerary in route order', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
-  const expectedHashes = {
-    A: '4429a14125a9dbdbb980b30b20973e9fdb4226c46d00df96761d90a3bf72ad21',
-    B: 'd5a06c13256b4412f6fd3ba6b2edc6f1915d1ce0363b5ee30f73b84d941a4cca',
-    C: 'a9f9a3fb31b6559657fb1a58c7d827612ce69179993040106b1338b1561ed5db',
+  const expectedTitles = {
+    '2026-09-30': ['台灣虎航 IT230 抵達', 'A&W 那霸機場早餐', '取第二台車', '還第一台車、六人會合', 'C&C BREAKFAST 早午餐', '波上宮', '第一牧志公設市場與國際通', 'San-A Naha Main Place 晚餐'],
+    '2026-10-01': ['北上美麗海', '沖繩美麗海水族館', 'BANTA CAFE 看日落', '美國村晚餐與散步', '回恩納住宿'],
+    '2026-10-02': ['青潛 08:00 集合', '青潛 BEST DIVE OKINAWA 青洞浮潛（固定）', '港川外人住宅', '普天滿宮', 'AEON Rycom 晚餐'],
+    '2026-10-03': ['首里城公園', '達摩寺', '沖縄そばの店 しむじょう', '沖繩世界・玉泉洞', '六人：PARCO CITY 晚餐與採買'],
   };
 
-  for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
-    const frozenDays = trip.days[variantId].filter((day) => day.date >= '2026-09-30');
-    const actualHash = createHash('sha256').update(JSON.stringify(frozenDays)).digest('hex');
-    assert.equal(actualHash, expectedHash, `${variantId} late itinerary must remain unchanged`);
+  for (const [date, titles] of Object.entries(expectedTitles)) {
+    const day = trip.days.B.find((item) => item.date === date);
+    assert.deepEqual(day.events.map((event) => event.title), titles, `${date} must follow the supplied itinerary`);
+  }
+
+  const october4 = trip.days.B.find((item) => item.date === '2026-10-04');
+  assert.deepEqual(october4.events.map((event) => event.title), [
+    'DMM Kariyushi水族館',
+    'Ashibinaa快速採買',
+    'OTS還車',
+    '譚家四口機場報到；小倆口寄放行李',
+    '小倆口搭計程車往瀨長島',
+    '譚家四口 JX871 起飛',
+    '小倆口由瀨長島搭計程車回機場',
+    '小倆口 BR185 起飛',
+  ]);
+});
+
+test('rain plans cover every trip date exactly once and retain fixed logistics', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const expectedDates = [
+    '2026-09-24', '2026-09-25', '2026-09-26', '2026-09-27',
+    '2026-09-28', '2026-09-29', '2026-09-30', '2026-10-01',
+    '2026-10-02', '2026-10-03', '2026-10-04',
+  ];
+
+  assert.deepEqual(trip.rainPlans?.map((day) => day.date), expectedDates);
+  for (const plan of trip.rainPlans) {
+    for (const key of ['title', 'area', 'stay', 'drive', 'rainPlan']) assert.ok(plan[key], `${plan.date} needs ${key}`);
+    assert.ok(plan.events.length >= 3, `${plan.date} needs a usable full-day rain schedule`);
+    const expectedFixedIds = trip.fixedEvents.filter((event) => event.date === plan.date).map((event) => event.id);
+    const actualFixedIds = plan.events.filter((event) => event.fixedEventId).map((event) => event.fixedEventId);
+    assert.deepEqual(actualFixedIds, expectedFixedIds, `${plan.date} rain mode must retain every fixed logistic`);
   }
 });
 
-test('the late itinerary schedule includes only the approved BR185 addition', () => {
+test('October 1 rain mode retains the Churaumi indoor main hall before a southbound covered stop', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
-  const expectedHashes = {
-    A: '69b183f2837f87f52c4207a349d01932d04128715403dc36670ffd0b37b66174',
-    B: 'b30f894e6f62b4cafbffe822292f232b1ddb6877dca3507a70eedb17a42c5c37',
-    C: 'd521181971196944c163ff38b0f41bcf5e61c5cf6a6f9d3c316bc1de268b7a2b',
-  };
+  const plan = trip.rainPlans.find((day) => day.date === '2026-10-01');
+  const usefulStops = plan.events.filter((event) => event.type === 'activity');
 
-  for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
-    const schedule = trip.days[variantId]
-      .filter((day) => day.date >= '2026-09-30')
-      .map((day) => ({ date: day.date, events: day.events.map(({ id, time }) => ({ id, time })) }));
-    const actualHash = createHash('sha256').update(JSON.stringify(schedule)).digest('hex');
-    assert.equal(actualHash, expectedHash, `${variantId} late itinerary IDs, times, and order must remain unchanged`);
+  assert.deepEqual(usefulStops.map((event) => event.title), [
+    '沖繩美麗海水族館室內主館',
+    '名護鳳梨園',
+  ]);
+  assert.deepEqual(usefulStops.map((event) => event.mapQuery), [
+    '沖縄美ら海水族館',
+    'ナゴパイナップルパーク',
+  ]);
+});
+
+test('weather-sensitive events expose two or three valid nearby quick rain backups', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const optionIds = new Set(trip.rainyDayOptions.map((item) => item.id));
+  const weatherSensitiveTypes = new Set(['activity', 'culture', 'walk', 'view', 'play', 'cafe']);
+
+  for (const [variantId, days] of Object.entries(trip.days)) {
+    for (const day of days) {
+      const quickBackups = day.events.filter((event) => event.rainBackupIds);
+      assert.ok(quickBackups.length > 0 || day.events.every((event) => !weatherSensitiveTypes.has(event.type)), `${variantId} ${day.date} needs a quick rain choice`);
+      for (const event of day.events.filter((item) => weatherSensitiveTypes.has(item.type))) {
+        assert.ok(event.rainBackupIds, `${event.id} is weather-sensitive`);
+      }
+      for (const event of quickBackups) {
+        assert.ok(event.rainBackupIds.length >= 2 && event.rainBackupIds.length <= 3, `${event.id} needs 2-3 backups`);
+        assert.equal(new Set(event.rainBackupIds).size, event.rainBackupIds.length, `${event.id} backups must be unique`);
+        for (const id of event.rainBackupIds) assert.ok(optionIds.has(id), `${event.id} references missing backup ${id}`);
+      }
+    }
   }
 });
 
@@ -404,5 +452,11 @@ test('deployed content exposes only a tracking-free listing for private accommod
   assert.doesNotMatch(stay.listingUrl, /\?|source_impression_id/);
   const serialized = JSON.stringify(trip);
   assert.doesNotMatch(serialized, /source_impression_id/);
+  assert.doesNotMatch(serialized, /onestayapp|checkinCode|pinCode/i);
+  assert.equal(
+    Object.values(trip.days).flat().flatMap((day) => day.events).some((event) => /^\d{3}$/.test(event.note ?? '')),
+    false,
+    'three-digit private placeholder notes must not be copied from the attachment',
+  );
   assert.doesNotMatch(serialized, /"[^"\n]*(?:password|credential|checkinUrl|accessCode|doorCode|accessPin)[^"\n]*"\s*:/i);
 });

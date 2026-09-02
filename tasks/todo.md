@@ -339,3 +339,16 @@
 - Added confirmed 台灣虎航 IT230 and 長榮航空 BR185 details while preserving 譚家四口 JX871, and synchronized fixed events plus A／B／C final-day timelines.
 - Generated and visually inspected three 24-page PDFs; verified 73/73 tests, the static build, PDF text, privacy rules, v21 asset rotation, all multi-stop routes, and a 390px mobile browser with no errors or overflow.
 - Deployed release v21 from commit `7e6ede7` through GitHub Actions run `33599898508`; live curl and 390px Playwright checks confirmed the new boarding passes, four flights, v21 service worker, complete route segments, and no console, request, or overflow errors.
+
+## 附件後五日基底與全旅程雨備
+
+- [x] 解析附件並以安全公開資料重建 9/30–10/4 的 B 主行程與 A／C 節奏版
+- [x] 以失敗測試鎖定 9/24–10/4 共 11 天雨備與固定行程保留規則
+- [x] 為每天建立完整雨天版行程及戶外時段附近雨備
+- [x] 新增雨天模式、時段雨備選取、恢復及本機持久化
+- [x] 更新 A／B／C PDF 與 v22 離線快取
+- [ ] 完成本機／手機／隱私驗證並部署 GitHub Pages
+
+### 附件後五日基底與全旅程雨備 review
+
+- Pending implementation and deployment verification.

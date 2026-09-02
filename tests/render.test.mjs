@@ -53,6 +53,50 @@ test('day view offers one-tap multi-stop navigation and the rainy catalog', () =
   assert.match(html, /24 個雨天備案/);
 });
 
+test('each weather-sensitive stop offers nearby rain choices and remembers the selected replacement', () => {
+  const rainTrip = structuredClone(trip);
+  const day = rainTrip.days.B.find((item) => item.date === '2026-10-03');
+  const outdoor = day.events[0];
+  outdoor.rainBackupIds = ['okimu', 'teamlab-okinawa'];
+  const html = renderDay(rainTrip, day, {
+    completed: {}, notes: {}, energy: {}, rainMode: {},
+    rainSelections: { [outdoor.id]: 'okimu' },
+  });
+
+  assert.match(html, /data-action="select-rain-backup"/);
+  assert.match(html, new RegExp(`data-event-id="${outdoor.id}"`));
+  assert.match(html, /☔ 這時段下雨/);
+  assert.match(html, /已選雨備/);
+  assert.match(html, /沖縄県立博物館・美術館/);
+  assert.match(html, /data-action="clear-rain-backup"/);
+  assert.match(html, /恢復原行程/);
+  assert.match(html, /直接導航/);
+});
+
+test('daily rain mode swaps to the complete rain itinerary without dropping the day controls', () => {
+  const rainTrip = structuredClone(trip);
+  const day = rainTrip.days.A.find((item) => item.date === '2026-09-24');
+  rainTrip.rainPlans = [{
+    date: '2026-09-24', title: '豐崎室內親子日', area: '那霸 → 豐崎', stay: day.stay,
+    drive: '約 30–45 分', rainPlan: '全室內動線。',
+    events: [{ id: 'R-0924-1', time: '13:00', type: 'activity', title: 'DMM 雨天水族館', place: 'DMMかりゆし水族館', mapQuery: 'DMMかりゆし水族館' }],
+  }];
+  const html = renderDay(rainTrip, day, {
+    completed: {}, notes: {}, energy: {},
+    rainMode: { [day.date]: true }, rainSelections: {},
+  });
+
+  assert.match(html, /data-action="toggle-rain-day"/);
+  assert.match(html, /data-action="toggle-rain-day"[^>]*data-rain-date="2026-09-24"/);
+  assert.doesNotMatch(html, /data-action="toggle-rain-day"[^>]*data-date=/);
+  assert.match(html, /aria-pressed="true"/);
+  assert.match(html, /正在使用整日雨天版/);
+  assert.match(html, /豐崎室內親子日/);
+  assert.match(html, /DMM 雨天水族館/);
+  assert.doesNotMatch(html, /華航 CI120 抵達那覇/);
+  assert.match(html, /今天孩子的電量/);
+});
+
 test('rainy-day view groups all 24 venues with official and map actions', () => {
   const html = renderRainyDayView(trip);
   assert.equal((html.match(/class="rainy-option-card/g) ?? []).length, 24);
@@ -69,7 +113,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=21" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=22" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 

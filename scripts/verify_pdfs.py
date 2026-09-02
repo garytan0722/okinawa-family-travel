@@ -12,11 +12,12 @@ PDFS = {
 }
 for variant, path in PDFS.items():
     reader = PdfReader(path)
-    assert len(reader.pages) >= 14, f"{path.name}: expected at least 14 pages"
+    assert len(reader.pages) >= 35, f"{path.name}: expected normal and rain pages for all 11 days"
     text = "\n".join(page.extract_text() or "" for page in reader.pages)
     assert f"{variant}版" in text, f"{path.name}: missing variant footer"
     for date in ("2026-09-24", "2026-09-30", "2026-10-03", "2026-10-04"):
         assert date in text, f"{path.name}: missing {date}"
+    assert text.count("整日雨天版") == 11, f"{path.name}: every trip date needs one complete rain itinerary"
     assert re.search(r"10/02\s+09:00", text), f"{path.name}: missing fixed snorkeling time"
     assert "青潛 BEST DIVE OKINAWA 青洞浮潛（固定）" in text, f"{path.name}: missing fixed snorkeling activity"
     assert "09:00 活動／08:00 集合" in text, f"{path.name}: missing snorkeling meeting time"
@@ -61,12 +62,21 @@ for variant, path in PDFS.items():
     if variant in ("A", "B"):
         assert "Neo Park Okinawa" in text, f"{path.name}: missing active-plan Neo Park"
         assert "沖繩兒童王國" in text, f"{path.name}: missing active-plan children zoo"
-    early_text = "\n".join((page.extract_text() or "") for page in reader.pages if re.search(r"2026-09-2[4-9]", page.extract_text() or ""))
+    early_text = "\n".join(
+        page_text
+        for page in reader.pages
+        if re.search(r"2026-09-2[4-9]", page_text := (page.extract_text() or "")) and not page_text.startswith("RAIN ")
+    )
     for forbidden in ("美麗海", "美國村", "BANTA", "港川", "普天滿", "Rycom", "首里城", "沖繩世界", "DMM", "瀨長島", "波上宮", "PARCO", "國際通"):
         assert forbidden not in early_text, f"{path.name}: early segment repeats late attraction {forbidden}"
     assert "成人藍洞" not in text, f"{path.name}: contains superseded October 2 plan"
     assert "恩納村私人住宿" in text, f"{path.name}: missing corrected generic accommodation label"
     assert "那霸私人住宿" not in text, f"{path.name}: stale Naha accommodation label"
     assert "精確地址請使用私人訂房訊息" in text, f"{path.name}: missing private navigation guidance"
+    for private_fragment in ("checkinCode", "pinCode", "source_impression_id", "P3UjGsDwREoIt77S", "123"):
+        assert private_fragment not in text, f"{path.name}: contains private booking fragment {private_fragment}"
+    if variant == "B":
+        for supplied_stop in ("C&C BREAKFAST", "西来院", "しむじょう", "沖繩世界・玉泉洞", "小倆口搭計程車往瀨長島"):
+            assert supplied_stop in text, f"{path.name}: missing supplied late-itinerary stop {supplied_stop}"
     assert all(len((page.extract_text() or "").strip()) > 20 for page in reader.pages), f"{path.name}: blank page"
     print(f"verified {path.name}: {len(reader.pages)} pages, {path.stat().st_size} bytes")

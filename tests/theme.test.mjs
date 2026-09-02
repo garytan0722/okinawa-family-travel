@@ -59,6 +59,13 @@ test('energy controls provide a 44 pixel touch target', () => {
   assert.ok(size >= 44);
 });
 
+test('rain itinerary and nearby-choice controls provide 44 pixel touch targets', () => {
+  for (const selector of ['.rain-mode-switch button', '.event-rain-options button', '.event-rain-selection button']) {
+    const size = Number(rule(selector).match(/min-height:\s*([\d.]+)px/)?.[1]);
+    assert.ok(size >= 44, `${selector} must be finger-friendly`);
+  }
+});
+
 test('cat-paw completion stamp is prominent, tappable, and visible when checked', () => {
   const target = rule('.event-check');
   const stamp = rule('.dog-paw-stamp');
