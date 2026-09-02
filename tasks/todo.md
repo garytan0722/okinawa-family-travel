@@ -315,8 +315,11 @@
 - [x] 在每日行程與固定行程頁加入 Airbnb 房源入口
 - [x] 移除分享追蹤參數並保持精確地址、入住與門鎖資料不公開
 - [x] 輪替離線版本並完成自動化、手機版與隱私驗證
-- [ ] 部署 GitHub Pages 並確認正式網站
+- [x] 部署 GitHub Pages 並確認正式網站
 
 ### 私人住宿 Airbnb 快捷入口 review
 
-- Pending implementation and deployment verification.
+- 每日「今晚住」與「固定行程與住宿」皆提供「開啟 Airbnb 房源」，分享網址已移除所有查詢與追蹤參數。
+- Google Maps 每日路線仍以「恩納村希望ヶ丘」一般區域作為住宿錨點，未把 Airbnb 網址、精確地址或入住資料放入導航。
+- Verified 73/73 tests, privacy-safe 18-asset build, v20 cache rotation, and 390px local/live browser checks across A／B／C 9/30、10/2、10/4 with no console, request, route-order, or overflow errors.
+- Deployed release v20 from commit `c9c050b` through GitHub Actions run `33596177112`; the live listing link, trip data and v20 service worker were verified from GitHub Pages.
