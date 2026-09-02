@@ -69,7 +69,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=19" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=20" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -170,11 +170,14 @@ test('emergency view presents OHDr after 119 as non-emergency Chinese medical ba
   assert.match(html, /https:\/\/oh-doctor\.com\/zh-tw\/start-spot-tw\//);
 });
 
-test('private accommodation renders generic guidance without a public map link', () => {
+test('private accommodation exposes the sanitized listing while keeping navigation private', () => {
   const day = trip.days.C.find((item) => item.date === '2026-10-03');
   const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {} });
   assert.match(html, /恩納村私人住宿（譚家四口＋小倆口）/);
-  assert.doesNotMatch(html, /<strong>恩納村私人住宿（譚家四口＋小倆口）<\/strong><a /);
+  assert.match(html, /href="https:\/\/www\.airbnb\.com\.tw\/rooms\/1685544413136173306"/);
+  assert.match(html, /開啟 Airbnb 房源/);
+  assert.doesNotMatch(html, /source_impression_id|1685544413136173306\?/);
+  assert.doesNotMatch(html, /<strong>恩納村私人住宿（譚家四口＋小倆口）<\/strong><a [^>]*google\.com\/maps/);
 });
 
 test('user-controlled notes are escaped', () => {

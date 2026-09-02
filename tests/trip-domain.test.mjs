@@ -128,7 +128,7 @@ test('every published daily route covers its full ordered stop list with mobile-
       for (const segment of plan.segments) {
         assert.ok(segment.stops.length <= 5, `${day.date} exceeds the mobile point limit`);
         assert.ok(segment.url.length < 2048, `${day.date} exceeds the Maps URL limit`);
-        assert.doesNotMatch(segment.url, /恩納村私人住宿|非公開/);
+        assert.doesNotMatch(segment.url, /恩納村私人住宿|非公開|airbnb/i);
       }
     }
   }

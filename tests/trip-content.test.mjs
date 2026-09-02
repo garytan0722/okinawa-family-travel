@@ -379,7 +379,7 @@ test('every paid itinerary attraction resolves to current official ticket inform
   }
 });
 
-test('deployed content uses a generic label for private accommodation', () => {
+test('deployed content exposes only a tracking-free listing for private accommodation', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const stay = trip.stays.find((item) => item.privateNavigation === true);
   assert.equal(stay.name, '恩納村私人住宿');
@@ -387,7 +387,9 @@ test('deployed content uses a generic label for private accommodation', () => {
   assert.equal(stay.privateNavigation, true);
   assert.equal(stay.mapQuery, '');
   assert.equal(stay.routeQuery, '恩納村希望ヶ丘');
+  assert.equal(stay.listingUrl, 'https://www.airbnb.com.tw/rooms/1685544413136173306');
+  assert.doesNotMatch(stay.listingUrl, /\?|source_impression_id/);
   const serialized = JSON.stringify(trip);
-  assert.doesNotMatch(serialized, /airbnb\.com/);
+  assert.doesNotMatch(serialized, /source_impression_id/);
   assert.doesNotMatch(serialized, /"[^"\n]*(?:password|credential|checkinUrl|accessCode|doorCode|accessPin)[^"\n]*"\s*:/i);
 });

@@ -308,3 +308,15 @@
 - 公開內容統一使用「譚家四口」與「小倆口」，六人同行期間則顯示「譚家四口＋小倆口」；舊名稱與重複人數字樣均已移除。
 - Verified 73/73 tests, privacy-safe 18-asset build, three visually inspected 24-page PDFs, and a 390px browser check with no console, request, or overflow errors.
 - Deployed release v19 from commit `5d29173` through GitHub Actions run `33381841847`; the live website and all three PDF hashes match the verified local artifacts.
+
+## 私人住宿 Airbnb 快捷入口
+
+- [x] 以失敗測試鎖定乾淨房源網址、公開隱私界線與路線隔離
+- [x] 在每日行程與固定行程頁加入 Airbnb 房源入口
+- [x] 移除分享追蹤參數並保持精確地址、入住與門鎖資料不公開
+- [x] 輪替離線版本並完成自動化、手機版與隱私驗證
+- [ ] 部署 GitHub Pages 並確認正式網站
+
+### 私人住宿 Airbnb 快捷入口 review
+
+- Pending implementation and deployment verification.

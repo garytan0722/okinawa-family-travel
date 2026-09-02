@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-08-31",
+  "updatedAt": "2026-09-02",
   "recheckBy": "2026-09-17",
   "meta": {
     "title": "沖繩遛小孩",
@@ -32,8 +32,9 @@
       "nameJa": "非公開",
       "mapQuery": "",
       "routeQuery": "恩納村希望ヶ丘",
+      "listingUrl": "https://www.airbnb.com.tw/rooms/1685544413136173306",
       "privateNavigation": true,
-      "note": "公開版只使用恩納村希望丘的一般區域安排路線；精確地址與房源連結請從私人訂房訊息開啟。"
+      "note": "公開版提供房源頁快捷入口，路線仍只使用恩納村希望丘的一般區域；精確地址、入住與門鎖資料請從私人訂房訊息開啟。"
     }
   ],
   "flights": [

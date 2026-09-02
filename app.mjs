@@ -1,7 +1,7 @@
-import { getVariantDay, mapUrl, nextFixedEvent } from './src/trip-domain.mjs?v=19';
-import { centeredScrollLeft, renderDay, renderEmergencyView, renderFlightSummary, renderRainyDayView, renderSources, renderVariantTabs, escapeHtml } from './src/render.mjs?v=19';
-import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=19';
-import { installPwaUpdate } from './src/pwa-update.mjs?v=19';
+import { getVariantDay, nextFixedEvent } from './src/trip-domain.mjs?v=20';
+import { centeredScrollLeft, renderDay, renderEmergencyView, renderFlightSummary, renderRainyDayView, renderSources, renderStayAction, renderVariantTabs, escapeHtml } from './src/render.mjs?v=20';
+import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=20';
+import { installPwaUpdate } from './src/pwa-update.mjs?v=20';
 
 const app = document.querySelector('#app');
 const quickPanel = document.querySelector('#quick-panel-content');
@@ -78,7 +78,7 @@ function renderHome() {
 
 function renderLogistics() {
   const events = [...trip.fixedEvents].sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`));
-  const stays = trip.stays.map((stay) => `<article class="tool-card"><span class="card-number">STAY</span><h3>${escapeHtml(stay.name)}</h3><p>${escapeHtml(stay.from)} — ${escapeHtml(stay.to)}</p>${stay.privateNavigation ? '<small>地址與入住資料留在私人訂房訊息，不公開在此網站。</small>' : `<a href="${mapUrl(stay.mapQuery)}" target="_blank" rel="noopener noreferrer">開啟導航</a>`}</article>`).join('');
+  const stays = trip.stays.map((stay) => `<article class="tool-card"><span class="card-number">STAY</span><h3>${escapeHtml(stay.name)}</h3><p>${escapeHtml(stay.from)} — ${escapeHtml(stay.to)}</p>${renderStayAction(stay, '開啟導航')}</article>`).join('');
   app.innerHTML = `<section class="tool-view"><p class="eyebrow">FIXED LOGISTICS</p><h1>固定行程與住宿</h1><p class="lede">這些是不能移動的時間；其餘景點都應讓位給它們。</p>${renderFlightSummary(trip)}<div class="tool-grid">${stays}</div><ol class="fixed-list">${events.map((event) => `<li><time>${dateLabel(event.date)}<strong>${event.time}${event.end ? `–${event.end}` : ''}</strong></time><div><h3>${escapeHtml(event.title)}</h3><p>${escapeHtml(event.place)}</p>${event.note ? `<small>${escapeHtml(event.note)}</small>` : ''}</div></li>`).join('')}</ol></section>`;
 }
 
@@ -86,7 +86,7 @@ function renderRecords() {
   const variant = state.variants[state.selectedVariant];
   const completed = Object.values(variant.completed).filter(Boolean).length;
   const noted = Object.values(variant.notes).filter(Boolean).length;
-  app.innerHTML = `<section class="tool-view"><p class="eyebrow">YOUR FIELD NOTES</p><h1>記錄與備份</h1><p class="lede">記錄只保存在這台裝置的瀏覽器；換手機前請先匯出。</p><div class="record-summary"><div><strong>${completed}</strong><span>完成行程</span></div><div><strong>${noted}</strong><span>天有筆記</span></div><div><strong>${state.selectedVariant}</strong><span>目前版本</span></div></div><div class="action-stack"><button type="button" data-action="export-backup">下載 JSON 備份</button><label class="file-button">從備份還原<input type="file" accept="application/json" data-action="import-backup"></label><button type="button" class="danger-button" data-action="clear-records">清除本機記錄</button></div><section class="pdf-box"><p class="eyebrow">PRINT EDITIONS</p><h2>A・B・C 三版 PDF</h2><div class="pdf-links"><a href="./output/pdf/okinawa-family-trip-A-balanced.pdf?v=19" download>A 親子平衡</a><a href="./output/pdf/okinawa-family-trip-B-active.pdf?v=19" download>B 景點豐富</a><a href="./output/pdf/okinawa-family-trip-C-relaxed.pdf?v=19" download>C 度假放鬆</a></div></section></section>`;
+  app.innerHTML = `<section class="tool-view"><p class="eyebrow">YOUR FIELD NOTES</p><h1>記錄與備份</h1><p class="lede">記錄只保存在這台裝置的瀏覽器；換手機前請先匯出。</p><div class="record-summary"><div><strong>${completed}</strong><span>完成行程</span></div><div><strong>${noted}</strong><span>天有筆記</span></div><div><strong>${state.selectedVariant}</strong><span>目前版本</span></div></div><div class="action-stack"><button type="button" data-action="export-backup">下載 JSON 備份</button><label class="file-button">從備份還原<input type="file" accept="application/json" data-action="import-backup"></label><button type="button" class="danger-button" data-action="clear-records">清除本機記錄</button></div><section class="pdf-box"><p class="eyebrow">PRINT EDITIONS</p><h2>A・B・C 三版 PDF</h2><div class="pdf-links"><a href="./output/pdf/okinawa-family-trip-A-balanced.pdf?v=20" download>A 親子平衡</a><a href="./output/pdf/okinawa-family-trip-B-active.pdf?v=20" download>B 景點豐富</a><a href="./output/pdf/okinawa-family-trip-C-relaxed.pdf?v=20" download>C 度假放鬆</a></div></section></section>`;
 }
 
 function renderRoute() {
@@ -107,7 +107,7 @@ function renderQuickPanel() {
   const tokyo = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Asia/Tokyo', dateStyle: 'short', timeStyle: 'short', hour12: false }).format(now);
   const [date, time] = tokyo.split(' ');
   const next = nextFixedEvent(trip, date, time) ?? trip.fixedEvents[0];
-  quickPanel.innerHTML = `<article><span>下一個固定行程</span><strong>${dateLabel(next.date)} · ${next.time}</strong><h3>${escapeHtml(next.title)}</h3><p>${escapeHtml(next.place)}</p></article><article><span>公開版提醒</span><p>私人住宿的地址與入住資料請從訂房訊息開啟。</p></article>`;
+  quickPanel.innerHTML = `<article><span>下一個固定行程</span><strong>${dateLabel(next.date)} · ${next.time}</strong><h3>${escapeHtml(next.title)}</h3><p>${escapeHtml(next.place)}</p></article><article><span>公開版提醒</span><p>住宿卡可開啟 Airbnb 房源；精確地址、入住與門鎖資料仍請從訂房訊息開啟。</p></article>`;
 }
 
 app.addEventListener('click', (event) => {
@@ -164,7 +164,7 @@ function updateNetworkStatus() {
 
 async function boot() {
   try {
-    const response = await fetch('./content/trip.json?v=19');
+    const response = await fetch('./content/trip.json?v=20');
     if (!response.ok) throw new Error('行程資料載入失敗');
     trip = await response.json();
     renderRoute();

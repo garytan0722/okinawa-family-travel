@@ -23,8 +23,18 @@ const serializedTrip = JSON.stringify(trip);
 if (/"[^"\n]*(?:password|credential|checkinUrl|accessCode|doorCode|accessPin)[^"\n]*"\s*:/i.test(serializedTrip)) {
   throw new Error('Private booking field detected in content/trip.json');
 }
+if (/source_impression_id/i.test(serializedTrip)) {
+  throw new Error('Tracking parameter detected in content/trip.json');
+}
+for (const stay of trip.stays ?? []) {
+  if (!stay.listingUrl) continue;
+  const url = new URL(stay.listingUrl);
+  if (url.protocol !== 'https:' || url.hostname !== 'www.airbnb.com.tw' || !/^\/rooms\/\d+$/.test(url.pathname) || url.search || url.hash) {
+    throw new Error('Accommodation listing URL must be a clean Airbnb Taiwan room URL');
+  }
+}
 for (const id of ['A', 'B', 'C']) {
   if (trip.days[id]?.length !== 11) throw new Error(`Variant ${id} must contain 11 days`);
 }
 
-console.log(`Static Pages build verified: ${required.length} assets, 3 variants, no private booking credentials.`);
+console.log(`Static Pages build verified: ${required.length} assets, 3 variants, no private booking credentials or tracking parameters.`);
