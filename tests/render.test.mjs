@@ -69,7 +69,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=20" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=21" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -130,15 +130,23 @@ test('flight summary shows the named groups and labels only genuinely missing de
   assert.match(html, /華航 CI120/);
   assert.doesNotMatch(html, /班號未提供/);
   assert.match(html, /航線未提供/);
-  assert.match(html, /IT230/);
+  assert.match(html, /台灣虎航 IT230/);
   assert.match(html, /TPE → OKA/);
   assert.match(html, /星宇航空 JX871/);
+  assert.match(html, /長榮航空 BR185/);
   assert.match(html, /譚家四口/);
   assert.match(html, /小倆口/);
   assert.doesNotMatch(html, /曾蘿情侶/);
   assert.match(html, /15:50.*16:25/s);
+  assert.match(html, /20:20.*20:55/s);
   assert.doesNotMatch(html, /抵達時間未提供/);
   assert.match(html, /OKA → TPE T2/);
+  assert.equal((html.match(/class="flight-card"/g) ?? []).length, 4);
+  assert.equal((html.match(/class="flight-ticket-header"/g) ?? []).length, 4);
+  assert.equal((html.match(/class="flight-route-arrow"/g) ?? []).length, 4);
+  assert.match(html, /class="flight-route-arrow"[^>]*>→<\/span>/);
+  assert.match(html, /aria-label="OKA 到 TPE T2"/);
+  assert.doesNotMatch(html, /✈/);
 });
 
 test('emergency view puts 110 and 119 first and provides actionable OTS instructions', () => {

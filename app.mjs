@@ -1,7 +1,7 @@
-import { getVariantDay, nextFixedEvent } from './src/trip-domain.mjs?v=20';
-import { centeredScrollLeft, renderDay, renderEmergencyView, renderFlightSummary, renderRainyDayView, renderSources, renderStayAction, renderVariantTabs, escapeHtml } from './src/render.mjs?v=20';
-import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=20';
-import { installPwaUpdate } from './src/pwa-update.mjs?v=20';
+import { getVariantDay, nextFixedEvent } from './src/trip-domain.mjs?v=21';
+import { centeredScrollLeft, renderDay, renderEmergencyView, renderFlightSummary, renderRainyDayView, renderSources, renderStayAction, renderVariantTabs, escapeHtml } from './src/render.mjs?v=21';
+import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=21';
+import { installPwaUpdate } from './src/pwa-update.mjs?v=21';
 
 const app = document.querySelector('#app');
 const quickPanel = document.querySelector('#quick-panel-content');
@@ -86,7 +86,7 @@ function renderRecords() {
   const variant = state.variants[state.selectedVariant];
   const completed = Object.values(variant.completed).filter(Boolean).length;
   const noted = Object.values(variant.notes).filter(Boolean).length;
-  app.innerHTML = `<section class="tool-view"><p class="eyebrow">YOUR FIELD NOTES</p><h1>記錄與備份</h1><p class="lede">記錄只保存在這台裝置的瀏覽器；換手機前請先匯出。</p><div class="record-summary"><div><strong>${completed}</strong><span>完成行程</span></div><div><strong>${noted}</strong><span>天有筆記</span></div><div><strong>${state.selectedVariant}</strong><span>目前版本</span></div></div><div class="action-stack"><button type="button" data-action="export-backup">下載 JSON 備份</button><label class="file-button">從備份還原<input type="file" accept="application/json" data-action="import-backup"></label><button type="button" class="danger-button" data-action="clear-records">清除本機記錄</button></div><section class="pdf-box"><p class="eyebrow">PRINT EDITIONS</p><h2>A・B・C 三版 PDF</h2><div class="pdf-links"><a href="./output/pdf/okinawa-family-trip-A-balanced.pdf?v=20" download>A 親子平衡</a><a href="./output/pdf/okinawa-family-trip-B-active.pdf?v=20" download>B 景點豐富</a><a href="./output/pdf/okinawa-family-trip-C-relaxed.pdf?v=20" download>C 度假放鬆</a></div></section></section>`;
+  app.innerHTML = `<section class="tool-view"><p class="eyebrow">YOUR FIELD NOTES</p><h1>記錄與備份</h1><p class="lede">記錄只保存在這台裝置的瀏覽器；換手機前請先匯出。</p><div class="record-summary"><div><strong>${completed}</strong><span>完成行程</span></div><div><strong>${noted}</strong><span>天有筆記</span></div><div><strong>${state.selectedVariant}</strong><span>目前版本</span></div></div><div class="action-stack"><button type="button" data-action="export-backup">下載 JSON 備份</button><label class="file-button">從備份還原<input type="file" accept="application/json" data-action="import-backup"></label><button type="button" class="danger-button" data-action="clear-records">清除本機記錄</button></div><section class="pdf-box"><p class="eyebrow">PRINT EDITIONS</p><h2>A・B・C 三版 PDF</h2><div class="pdf-links"><a href="./output/pdf/okinawa-family-trip-A-balanced.pdf?v=21" download>A 親子平衡</a><a href="./output/pdf/okinawa-family-trip-B-active.pdf?v=21" download>B 景點豐富</a><a href="./output/pdf/okinawa-family-trip-C-relaxed.pdf?v=21" download>C 度假放鬆</a></div></section></section>`;
 }
 
 function renderRoute() {
@@ -164,7 +164,7 @@ function updateNetworkStatus() {
 
 async function boot() {
   try {
-    const response = await fetch('./content/trip.json?v=20');
+    const response = await fetch('./content/trip.json?v=21');
     if (!response.ok) throw new Error('行程資料載入失敗');
     trip = await response.json();
     renderRoute();

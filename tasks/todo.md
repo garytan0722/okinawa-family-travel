@@ -323,3 +323,19 @@
 - Google Maps 每日路線仍以「恩納村希望ヶ丘」一般區域作為住宿錨點，未把 Airbnb 網址、精確地址或入住資料放入導航。
 - Verified 73/73 tests, privacy-safe 18-asset build, v20 cache rotation, and 390px local/live browser checks across A／B／C 9/30、10/2、10/4 with no console, request, route-order, or overflow errors.
 - Deployed release v20 from commit `c9c050b` through GitHub Actions run `33596177112`; the live listing link, trip data and v20 service worker were verified from GitHub Pages.
+
+## 登機證樣式與小倆口 BR185
+
+- [x] 以失敗測試鎖定登機證結構、單向箭頭及無飛機 emoji
+- [x] 新增小倆口 10/4 BR185 回程並同步固定行程與 A／B／C
+- [x] 將航班摘要改成手機優先的票券版型
+- [x] 重建並視覺檢查 A／B／C 三版 PDF
+- [x] 輪替 v21 快取並完成自動化與手機版驗證
+- [ ] 部署 GitHub Pages 並確認正式網站
+
+### 登機證樣式與小倆口 BR185 review
+
+- Implemented a mobile-first boarding-pass layout with ticket notches, dashed perforations, party badges, large route codes, and a centered arrow; the flight summary contains no airplane emoji.
+- Added confirmed 台灣虎航 IT230 and 長榮航空 BR185 details while preserving 譚家四口 JX871, and synchronized fixed events plus A／B／C final-day timelines.
+- Generated and visually inspected three 24-page PDFs; verified 73/73 tests, the static build, PDF text, privacy rules, v21 asset rotation, all multi-stop routes, and a 390px mobile browser with no errors or overflow.
+- GitHub Pages deployment pending.

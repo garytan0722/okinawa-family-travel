@@ -14,8 +14,8 @@ test('PWA shell files exist', () => {
 test('a stalled app exposes a static recovery link that preserves local records', () => {
   const html = readFileSync(new URL('index.html', root), 'utf8');
   const recovery = readFileSync(new URL('recovery.html', root), 'utf8');
-  assert.match(html, /href="\.\/recovery\.html\?v=20"/);
-  assert.match(recovery, /src="\.\/src\/recovery-page\.mjs\?v=20" type="module"/);
+  assert.match(html, /href="\.\/recovery\.html\?v=21"/);
+  assert.match(recovery, /src="\.\/src\/recovery-page\.mjs\?v=21" type="module"/);
   assert.match(recovery, /不會刪除.*行程.*記錄/);
 });
 
@@ -28,13 +28,13 @@ test('HTML shell has mobile metadata, product landmarks, and module entry', () =
   assert.match(html, /src="\.\/app\.mjs\?v=([^"]+)" type="module"/);
 });
 
-test('browser shell resources and dog-paw asset share release v20', () => {
+test('browser shell resources and dog-paw asset share release v21', () => {
   const files = ['index.html', 'app.mjs', 'src/render.mjs', 'manifest.json', 'sw.js'];
   const text = files.map((path) => readFileSync(new URL(path, root), 'utf8')).join('\n');
   const revisions = [...text.matchAll(/(?:index\.html|styles\.css|app\.mjs|manifest\.json|icon\.svg|dog-paw-stamp\.svg|trip\.json|trip-domain\.mjs|render\.mjs|storage\.mjs|pwa-update\.mjs|okinawa-family-trip-(?:A-balanced|B-active|C-relaxed)\.pdf)\?v=([\w.-]+)/g)]
     .map((match) => match[1]);
   assert.ok(revisions.length >= 14, 'all browser shell resources must be revisioned');
-  assert.deepEqual([...new Set(revisions)], ['20']);
+  assert.deepEqual([...new Set(revisions)], ['21']);
 });
 
 test('downloadable PDFs use the current release revision in the app and offline cache', () => {
@@ -45,7 +45,7 @@ test('downloadable PDFs use the current release revision in the app and offline 
     .map((match) => match[0]);
 
   assert.equal(urls.length, 6);
-  assert.ok(urls.every((url) => url.endsWith('?v=20')));
+  assert.ok(urls.every((url) => url.endsWith('?v=21')));
 });
 
 test('manifest uses the GitHub Pages subpath-safe start URL', () => {
@@ -57,7 +57,7 @@ test('manifest uses the GitHub Pages subpath-safe start URL', () => {
 
 test('service worker rotates the cache after privacy-sensitive content changes', () => {
   const worker = readFileSync(new URL('sw.js', root), 'utf8');
-  assert.match(worker, /okinawa-road-book-v20/);
+  assert.match(worker, /okinawa-road-book-v21/);
   assert.match(worker, /key !== CACHE/);
 });
 
@@ -67,7 +67,7 @@ test('service worker only removes old caches owned by this app', async () => {
   const handlers = {};
   const context = {
     caches: {
-      keys: async () => ['okinawa-road-book-v14', 'another-pages-app-v1', 'okinawa-road-book-v20'],
+      keys: async () => ['okinawa-road-book-v14', 'another-pages-app-v1', 'okinawa-road-book-v21'],
       delete: async (key) => { deleted.push(key); },
     },
     self: {
@@ -134,7 +134,7 @@ test('offline navigation falls back to the revisioned HTML shell', async () => {
     respondWith: (promise) => { response = promise; },
   });
   assert.equal((await response).marker, 'revisioned-shell');
-  assert.deepEqual(matched, ['./index.html?v=20']);
+  assert.deepEqual(matched, ['./index.html?v=21']);
 
 test('app exposes the rainy-day route under More', () => {
   const app = readFileSync(new URL('app.mjs', root), 'utf8');

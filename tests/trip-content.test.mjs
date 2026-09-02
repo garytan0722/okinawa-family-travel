@@ -46,12 +46,12 @@ test('rainy-day catalog contains 24 verified, correctly separated venues', () =>
   }
 });
 
-test('the approved September 30 through October 4 itinerary stays locked after the accommodation correction', () => {
+test('the approved late itinerary stays locked after the confirmed BR185 correction', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const expectedHashes = {
-    A: '3cad0f950a59da4cc9cfbdccbae4af4ae00857db96b91c773dda6205249764c7',
-    B: '1191568163a14999c21c6775af09424612a58b95a9303b8e760b0b1530b7e037',
-    C: '0ac28ec78c63213889f216963922f8d3d5d1514620f65c573d37613af3f9e936',
+    A: '4429a14125a9dbdbb980b30b20973e9fdb4226c46d00df96761d90a3bf72ad21',
+    B: 'd5a06c13256b4412f6fd3ba6b2edc6f1915d1ce0363b5ee30f73b84d941a4cca',
+    C: 'a9f9a3fb31b6559657fb1a58c7d827612ce69179993040106b1338b1561ed5db',
   };
 
   for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
@@ -61,12 +61,12 @@ test('the approved September 30 through October 4 itinerary stays locked after t
   }
 });
 
-test('the corrected accommodation geography does not change the late itinerary schedule', () => {
+test('the late itinerary schedule includes only the approved BR185 addition', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const expectedHashes = {
-    A: '97f54110ca802c5d4b87558358e5ce0ec228a2793ba9ad8cdbc0949714940825',
-    B: '139d6db412a6d13eeb340fa3618b3558eef153f18ecc0db5516e8971183c6477',
-    C: '15f7aa93f664fbf176953346f80738e3223e7926a18e2f74fe1ecafee1d9ab37',
+    A: '69b183f2837f87f52c4207a349d01932d04128715403dc36670ffd0b37b66174',
+    B: 'b30f894e6f62b4cafbffe822292f232b1ddb6877dca3507a70eedb17a42c5c37',
+    C: 'd521181971196944c163ff38b0f41bcf5e61c5cf6a6f9d3c316bc1de268b7a2b',
   };
 
   for (const [variantId, expectedHash] of Object.entries(expectedHashes)) {
@@ -193,8 +193,9 @@ test('flight summary includes only confirmed times and known flight identifiers'
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   assert.deepEqual(trip.flights, [
     { date: '2026-09-24', party: '譚家四口', departure: '08:00', arrival: '10:45', airline: '華航', flightNumber: 'CI120', route: null },
-    { date: '2026-09-30', party: '小倆口', departure: '06:50', arrival: '09:20', airline: null, flightNumber: 'IT230', route: 'TPE → OKA' },
+    { date: '2026-09-30', party: '小倆口', departure: '06:50', arrival: '09:20', airline: '台灣虎航', flightNumber: 'IT230', route: 'TPE → OKA' },
     { date: '2026-10-04', party: '譚家四口', departure: '15:50', arrival: '16:25', airline: '星宇航空', flightNumber: 'JX871', route: 'OKA → TPE T2' },
+    { date: '2026-10-04', party: '小倆口', departure: '20:20', arrival: '20:55', airline: '長榮航空', flightNumber: 'BR185', route: 'OKA → TPE T2' },
   ]);
 });
 
@@ -220,22 +221,33 @@ test('public trip content uses only the corrected 譚家四口 and 小倆口 lab
   assert.doesNotMatch(serialized, /曾蘿情侶|曾羅佳|譚家(?!四口)/);
 });
 
-test('October 4 plans finish at the corrected JX871 departure', () => {
+test('October 4 plans preserve JX871 and finish with the confirmed BR185 departure', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
-  const fixedFlight = trip.fixedEvents.find((event) => event.id === 'f-1004-flight');
-  assert.equal(fixedFlight.end, '16:25');
-  assert.match(fixedFlight.note, /16:25.*抵達台灣/);
+  const jxFlight = trip.fixedEvents.find((event) => event.id === 'f-1004-flight');
+  const brFlight = trip.fixedEvents.find((event) => event.id === 'f-1004-flight-couple');
+  assert.equal(jxFlight.end, '16:25');
+  assert.match(jxFlight.note, /16:25.*抵達台灣/);
+  assert.deepEqual(
+    brFlight && { time: brFlight.time, end: brFlight.end, title: brFlight.title },
+    { time: '20:20', end: '20:55', title: '長榮航空 BR185 小倆口返回台灣' },
+  );
 
   for (const variantId of ['A', 'B', 'C']) {
     const day = trip.days[variantId].find((item) => item.date === '2026-10-04');
-    const departure = day.events.at(-1);
+    const jxDeparture = day.events.find((event) => event.time === '15:50');
+    const brDeparture = day.events.at(-1);
     assert.deepEqual(
-      { time: departure.time, type: departure.type, title: departure.title },
+      { time: jxDeparture.time, type: jxDeparture.type, title: jxDeparture.title },
       { time: '15:50', type: 'flight', title: '譚家四口 JX871 起飛' },
-      `${variantId} must end with the corrected flight`,
     );
-    assert.match(departure.note, /16:25.*抵達台灣/);
-    assert.doesNotMatch(departure.note, /抵達時間未提供/);
+    assert.deepEqual(
+      { time: brDeparture.time, type: brDeparture.type, title: brDeparture.title },
+      { time: '20:20', type: 'flight', title: '小倆口 BR185 起飛' },
+      `${variantId} must end with the confirmed companion flight`,
+    );
+    assert.match(jxDeparture.note, /16:25.*抵達台灣/);
+    assert.match(brDeparture.note, /20:55.*抵達台灣.*T2/);
+    assert.doesNotMatch(JSON.stringify(day), /後續.*未提供|交通尚未提供/);
   }
 });
 
@@ -293,6 +305,7 @@ test('fixed logistics preserve the confirmed car handoff and departures', () => 
   assert.equal(fixed.some((event) => event.date === '2026-10-03' && event.kind === 'flight-departure'), false);
   assert.ok(fixed.some((event) => event.date === '2026-10-04' && event.time === '12:30' && event.kind === 'car-return'));
   assert.ok(fixed.some((event) => event.date === '2026-10-04' && event.time === '15:50' && event.kind === 'flight-departure'));
+  assert.ok(fixed.some((event) => event.date === '2026-10-04' && event.time === '20:20' && event.kind === 'flight-departure'));
 });
 
 test('all itineraries preserve the confirmed October 2 snorkeling booking', () => {

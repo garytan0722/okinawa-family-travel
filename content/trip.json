@@ -39,18 +39,20 @@
   ],
   "flights": [
     { "date": "2026-09-24", "party": "譚家四口", "departure": "08:00", "arrival": "10:45", "airline": "華航", "flightNumber": "CI120", "route": null },
-    { "date": "2026-09-30", "party": "小倆口", "departure": "06:50", "arrival": "09:20", "airline": null, "flightNumber": "IT230", "route": "TPE → OKA" },
-    { "date": "2026-10-04", "party": "譚家四口", "departure": "15:50", "arrival": "16:25", "airline": "星宇航空", "flightNumber": "JX871", "route": "OKA → TPE T2" }
+    { "date": "2026-09-30", "party": "小倆口", "departure": "06:50", "arrival": "09:20", "airline": "台灣虎航", "flightNumber": "IT230", "route": "TPE → OKA" },
+    { "date": "2026-10-04", "party": "譚家四口", "departure": "15:50", "arrival": "16:25", "airline": "星宇航空", "flightNumber": "JX871", "route": "OKA → TPE T2" },
+    { "date": "2026-10-04", "party": "小倆口", "departure": "20:20", "arrival": "20:55", "airline": "長榮航空", "flightNumber": "BR185", "route": "OKA → TPE T2" }
   ],
   "fixedEvents": [
     { "id": "f-0924-flight", "date": "2026-09-24", "time": "08:00", "end": "10:45", "kind": "flight-arrival", "title": "華航 CI120 譚家四口飛往沖繩", "place": "那覇空港", "note": "譚家四口；08:00 起飛，10:45 抵達。" },
     { "id": "f-0924-car", "date": "2026-09-24", "time": "12:00", "kind": "car-pickup", "title": "OTS 取第一台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
-    { "id": "f-0930-flight", "date": "2026-09-30", "time": "09:20", "kind": "flight-arrival", "title": "小倆口搭 IT230 抵達 OKA", "place": "那覇空港", "note": "06:50 TPE 起飛，小倆口兩位大人加入。" },
+    { "id": "f-0930-flight", "date": "2026-09-30", "time": "09:20", "kind": "flight-arrival", "title": "小倆口搭台灣虎航 IT230 抵達 OKA", "place": "那覇空港", "note": "06:50 TPE 起飛，小倆口兩位大人加入。" },
     { "id": "f-0930-car2", "date": "2026-09-30", "time": "11:30", "kind": "car-pickup", "title": "OTS 取第二台六人用車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-0930-car1-return", "date": "2026-09-30", "time": "12:00", "kind": "car-return", "title": "OTS 還第一台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-1002-snorkeling", "date": "2026-10-02", "time": "09:00", "kind": "snorkeling", "title": "青潛 BEST DIVE OKINAWA 青洞浮潛（固定）", "place": "青潛免費停車場《裝備區》", "note": "09:00 活動時段；青潛官網要求 08:00 集合，最後以預約確認訊息為準。", "bookingId": "bestdive-snorkeling", "sourceIds": ["bestdive"] },
     { "id": "f-1004-car-return", "date": "2026-10-04", "time": "12:30", "kind": "car-return", "title": "OTS 還第二台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
-    { "id": "f-1004-flight", "date": "2026-10-04", "time": "15:50", "end": "16:25", "kind": "flight-departure", "title": "星宇航空 JX871 譚家四口返回台灣", "place": "那覇空港", "note": "OKA → TPE T2，預計 16:25 抵達台灣；譚家四口。小倆口後續交通未提供。" }
+    { "id": "f-1004-flight", "date": "2026-10-04", "time": "15:50", "end": "16:25", "kind": "flight-departure", "title": "星宇航空 JX871 譚家四口返回台灣", "place": "那覇空港", "note": "OKA → TPE T2，預計 16:25 抵達台灣；譚家四口。" },
+    { "id": "f-1004-flight-couple", "date": "2026-10-04", "time": "20:20", "end": "20:55", "kind": "flight-departure", "title": "長榮航空 BR185 小倆口返回台灣", "place": "那覇空港", "note": "OKA → TPE T2，預計 20:55 抵達台灣；小倆口。" }
   ],
   "activityBookings": {
     "bestdive-snorkeling": {
@@ -393,12 +395,13 @@
         ]
       },
       {
-        "date": "2026-10-04", "title": "DMM水族館・還車・下午班機", "area": "恩納 → 豐見城 → 那覇空港", "stay": "譚家四口機上；小倆口後續未提供", "drive": "恩納到豐見城約 60–85 分，再前往還車與機場", "rainPlan": "全日皆可室內進行。",
+        "date": "2026-10-04", "title": "DMM水族館・還車・兩組分批返台", "area": "恩納 → 豐見城 → 那覇空港", "stay": "譚家四口與小倆口分批返台", "drive": "恩納到豐見城約 60–85 分，再前往還車與機場", "rainPlan": "全日皆可室內進行。",
         "events": [
           { "id": "A-1004-1", "time": "09:00", "type": "activity", "title": "DMM Kariyushi水族館", "place": "DMMかりゆし水族館", "mapQuery": "DMMかりゆし水族館", "note": "只留兩小時，11:15離開準備加油。", "sourceIds": ["dmm"] },
           { "id": "A-1004-2", "time": "12:30", "type": "car", "title": "OTS 還第二台車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "搭接駁回機場；之後不再安排需開車景點。", "sourceIds": ["ots"] },
-          { "id": "A-1004-3", "time": "13:15", "type": "rest", "title": "機場午餐、譚家四口 JX871 報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛；小倆口後續交通尚未提供。" },
-          { "id": "A-1004-4", "time": "15:50", "type": "flight", "title": "譚家四口 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" }
+          { "id": "A-1004-3", "time": "13:15", "type": "rest", "title": "機場午餐、兩組分批報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "譚家四口 15:50 起飛；小倆口 20:20 起飛。" },
+          { "id": "A-1004-4", "time": "15:50", "type": "flight", "title": "譚家四口 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" },
+          { "id": "A-1004-5", "time": "20:20", "type": "flight", "title": "小倆口 BR185 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "小倆口搭長榮航空，OKA → TPE T2；預計 20:55 抵達台灣 T2。" }
         ]
       }
     ],
@@ -472,12 +475,13 @@
         { "id": "B-1003-4", "time": "13:30", "type": "rest", "title": "六人回恩納住宿整理", "place": "恩納村私人住宿", "mapQuery": "", "note": "10/3 沒有搭機，譚家四口與小倆口繼續同行。" },
         { "id": "B-1003-5", "time": "15:00", "type": "shopping", "title": "六人：PARCO CITY", "place": "サンエー浦添西海岸 PARCO CITY", "mapQuery": "サンエー浦添西海岸 PARCO CITY", "note": "孩子累就留在住宿休息。" }
       ]},
-      { "date": "2026-10-04", "title": "DMM・Outlet・還車・下午班機", "area": "恩納 → 豐見城 → 那霸", "stay": "譚家四口機上；小倆口後續未提供", "drive": "上午約 80–110 分", "rainPlan": "全日可室內。", "events": [
+      { "date": "2026-10-04", "title": "DMM・Outlet・還車・兩組分批返台", "area": "恩納 → 豐見城 → 那霸", "stay": "譚家四口與小倆口分批返台", "drive": "上午約 80–110 分", "rainPlan": "全日可室內。", "events": [
         { "id": "B-1004-1", "time": "08:45", "type": "activity", "title": "DMM Kariyushi水族館", "place": "DMMかりゆし水族館", "mapQuery": "DMMかりゆし水族館", "sourceIds": ["dmm"] },
         { "id": "B-1004-2", "time": "10:45", "type": "shopping", "title": "Ashibinaa快速採買", "place": "沖縄アウトレットモール あしびなー", "mapQuery": "沖縄アウトレットモール あしびなー", "note": "次要項；11:30硬離開加油。" },
         { "id": "B-1004-3", "time": "12:30", "type": "car", "title": "OTS還車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
-        { "id": "B-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、譚家四口 JX871 報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛；小倆口後續交通尚未提供。" },
-        { "id": "B-1004-5", "time": "15:50", "type": "flight", "title": "譚家四口 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" }
+        { "id": "B-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、兩組分批報到與最後採買", "place": "那覇空港", "mapQuery": "那覇空港", "note": "譚家四口 15:50 起飛；小倆口 20:20 起飛。" },
+        { "id": "B-1004-5", "time": "15:50", "type": "flight", "title": "譚家四口 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" },
+        { "id": "B-1004-6", "time": "20:20", "type": "flight", "title": "小倆口 BR185 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "小倆口搭長榮航空，OKA → TPE T2；預計 20:55 抵達台灣 T2。" }
       ]}
     ],
     "C": [
@@ -544,12 +548,13 @@
         { "id": "C-1003-3", "time": "13:30", "type": "rest", "title": "六人午餐後回住宿休息", "place": "恩納村私人住宿", "mapQuery": "", "note": "10/3 沒有搭機，譚家四口與小倆口繼續同行。" },
         { "id": "C-1003-4", "time": "15:30", "type": "rest", "title": "六人自由時間", "place": "那霸", "mapQuery": "那覇市", "note": "可留在住宿或一起前往PARCO CITY。" }
       ]},
-      { "date": "2026-10-04", "title": "水族館・還車・下午班機", "area": "恩納 → 豐見城 → 機場", "stay": "譚家四口機上；小倆口後續未提供", "drive": "上午約 80–110 分", "rainPlan": "全日室內。", "events": [
+      { "date": "2026-10-04", "title": "水族館・還車・兩組分批返台", "area": "恩納 → 豐見城 → 機場", "stay": "譚家四口與小倆口分批返台", "drive": "上午約 80–110 分", "rainPlan": "全日室內。", "events": [
         { "id": "C-1004-1", "time": "09:15", "type": "activity", "title": "DMM Kariyushi水族館", "place": "DMMかりゆし水族館", "mapQuery": "DMMかりゆし水族館", "sourceIds": ["dmm"] },
         { "id": "C-1004-2", "time": "11:15", "type": "meal", "title": "豐崎早午餐與加油", "place": "豊崎", "mapQuery": "豊崎 ランチ" },
         { "id": "C-1004-3", "time": "12:30", "type": "car", "title": "OTS還車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
-        { "id": "C-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、譚家四口 JX871 報到與伴手禮", "place": "那覇空港", "mapQuery": "那覇空港", "note": "15:50 起飛；小倆口後續交通尚未提供。" },
-        { "id": "C-1004-5", "time": "15:50", "type": "flight", "title": "譚家四口 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" }
+        { "id": "C-1004-4", "time": "13:15", "type": "rest", "title": "機場午餐、兩組分批報到與伴手禮", "place": "那覇空港", "mapQuery": "那覇空港", "note": "譚家四口 15:50 起飛；小倆口 20:20 起飛。" },
+        { "id": "C-1004-5", "time": "15:50", "type": "flight", "title": "譚家四口 JX871 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "譚家四口搭星宇航空，OKA → TPE T2；預計 16:25 抵達台灣。" },
+        { "id": "C-1004-6", "time": "20:20", "type": "flight", "title": "小倆口 BR185 起飛", "place": "那覇空港", "mapQuery": "那覇空港 国際線", "note": "小倆口搭長榮航空，OKA → TPE T2；預計 20:55 抵達台灣 T2。" }
       ]}
     ]
   }
