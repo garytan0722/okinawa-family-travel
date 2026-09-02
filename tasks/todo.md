@@ -331,11 +331,11 @@
 - [x] 將航班摘要改成手機優先的票券版型
 - [x] 重建並視覺檢查 A／B／C 三版 PDF
 - [x] 輪替 v21 快取並完成自動化與手機版驗證
-- [ ] 部署 GitHub Pages 並確認正式網站
+- [x] 部署 GitHub Pages 並確認正式網站
 
 ### 登機證樣式與小倆口 BR185 review
 
 - Implemented a mobile-first boarding-pass layout with ticket notches, dashed perforations, party badges, large route codes, and a centered arrow; the flight summary contains no airplane emoji.
 - Added confirmed 台灣虎航 IT230 and 長榮航空 BR185 details while preserving 譚家四口 JX871, and synchronized fixed events plus A／B／C final-day timelines.
 - Generated and visually inspected three 24-page PDFs; verified 73/73 tests, the static build, PDF text, privacy rules, v21 asset rotation, all multi-stop routes, and a 390px mobile browser with no errors or overflow.
-- GitHub Pages deployment pending.
+- Deployed release v21 from commit `7e6ede7` through GitHub Actions run `33599898508`; live curl and 390px Playwright checks confirmed the new boarding passes, four flights, v21 service worker, complete route segments, and no console, request, or overflow errors.
