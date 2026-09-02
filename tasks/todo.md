@@ -347,8 +347,13 @@
 - [x] 為每天建立完整雨天版行程及戶外時段附近雨備
 - [x] 新增雨天模式、時段雨備選取、恢復及本機持久化
 - [x] 更新 A／B／C PDF 與 v22 離線快取
-- [ ] 完成本機／手機／隱私驗證並部署 GitHub Pages
+- [x] 完成本機／手機／隱私驗證並部署 GitHub Pages
 
 ### 附件後五日基底與全旅程雨備 review
 
-- Pending implementation and deployment verification.
+- 9/30–10/4 的 B 版已依附件重建為景點豐富主行程；A／C 保留相同固定交通與預約，分別調整為平衡與放鬆節奏。
+- 9/24–10/4 共 11 天都有一鍵整日雨天版；戶外／天候敏感時段可直接選 2–3 個同區或順路室內場地、開啟導航、恢復原行程，選擇保存在手機瀏覽器。
+- 整日雨天版保留 CI120、IT230、OTS 兩次換車、10/2 青潛、10/4 還車及 JX871／BR185，不會因切換雨備遺失固定事件。
+- 附件中的真實姓名、OneStay 入住連結、check-in code、PIN 與私人備註未寫入公開網站或 PDF。
+- Verified 81/81 tests, privacy-safe 18-asset build, three verified and visually inspected 36-page PDFs, and local/live 390px browser checks with no console, request, persistence, route, or overflow errors.
+- Deployed release v22 from commit `fc16a0f` through GitHub Actions run `33616534429`; live site, JSON, service worker, rain controls, all route segments, and exact PDF hashes were verified.
