@@ -381,8 +381,11 @@
 - [x] 在 A／B 10/1、C 10/2 美國村行程加入具體商店卡
 - [x] 更新 v24 離線快取並同步 A／B／C PDF
 - [x] 完成本機、手機、隱私與官方連結驗證
-- [ ] 部署 GitHub Pages 並確認正式版本
+- [x] 部署 GitHub Pages 並確認正式版本
 
 ### 美國村具體逛街與付款注記 review
 
-- Pending implementation and deployment verification.
+- A／B 10/1 與 C 10/2 的既定美國村事件已加入同一條五店步行清單，不更動原本日期、時間、標題或其他 9/30–10/4 行程。
+- 海岸倉庫21依官方頁標示可使用 VISA、Mastercard、JCB、American Express；AMERICAN DEPOT、RANCH、SKIP、OKINAWA MARKET 因官方未列付款方式，標示為「付款未確認・備現金」，沒有臆測 Cash only。
+- Verified 85/85 tests, privacy-safe 18-asset build, five live official store links, three verified and visually inspected 37-page PDFs, exact live PDF hashes, and local/live 390px browser checks with no console, request, route, or overflow errors.
+- Deployed release v24 from commit `5712243` through GitHub Actions run `33725795863`; live A／B／C shopping cards, payment labels, ten shop actions, v24 service worker, and original itinerary ordering were verified.
