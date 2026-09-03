@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-02",
+  "updatedAt": "2026-09-03",
   "recheckBy": "2026-09-17",
   "meta": {
     "title": "沖繩遛小孩",
@@ -162,6 +162,21 @@
       ]
     }
   },
+  "shoppingGuides": {
+    "american-village-family-shopping": {
+      "title": "美國村親子逛街路線",
+      "routeNote": "從 American Depot A／B 館一路走到 Depot Island 海邊，不折返；孩子累時可只逛前三家，再直接吃飯看夕陽。",
+      "checkedAt": "2026-09-03",
+      "paymentSummary": "目前未查到官方確認 Cash only 的店家；付款方式未確認者仍請備現金，結帳前再看店頭標示。",
+      "shops": [
+        { "name": "AMERICAN DEPOT", "category": "美式服飾・古著・雜貨", "hours": "10:00–21:00", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，建議備現金。", "mapQuery": "AMERICAN DEPOT 沖縄 北谷", "sourceId": "american-depot" },
+        { "name": "RANCH", "category": "親子 T-shirt・童裝・原創小物", "hours": "10:00–22:00", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，建議備現金。", "mapQuery": "RANCH アメリカンビレッジ", "sourceId": "american-village-ranch" },
+        { "name": "SKIP", "category": "童裝・親子配對服飾", "hours": "11:00–21:00", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，建議備現金。", "mapQuery": "SKIP アメリカンビレッジ", "sourceId": "american-village-skip" },
+        { "name": "海岸倉庫21", "category": "可愛雜貨・飾品・進口零食", "hours": "10:00–23:00", "paymentStatus": "cards-confirmed", "paymentNote": "官方列 VISA、Mastercard、JCB、American Express。", "mapQuery": "海岸倉庫21 北谷", "sourceId": "kaigan-soko-21" },
+        { "name": "OKINAWA MARKET", "category": "沖繩零食・T-shirt・美式雜貨", "hours": "11:00–20:00", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，建議備現金。", "mapQuery": "OKINAWA MARKET Depot Island", "sourceId": "okinawa-market" }
+      ]
+    }
+  },
   "ticketInfo": [
     { "id": "bestdive", "kind": "activity", "label": "青潛青洞浮潛", "price": "成人（16～65歲）¥6,000／兒童（4～14歲）¥9,000", "note": "兒童自動安排私人組別；費用含基本裝備與活動保險，實際預約內容以確認訊息為準。", "sourceId": "bestdive", "checkedAt": "2026-08-29" },
     { "id": "busena", "kind": "ticket", "label": "部瀨名海中公園", "price": "展望塔＋玻璃底船套票：成人 ¥2,100／4歲～中學生 ¥1,050", "note": "單買展望塔成人 ¥1,050／兒童 ¥530；玻璃底船成人 ¥1,560／兒童 ¥780。海況可能停航。", "sourceId": "busena", "checkedAt": "2026-08-29" },
@@ -248,6 +263,11 @@
   "sources": [
     { "id": "klook-tokutoku", "label": "Klook 沖繩美麗海五合一／三合一套票", "url": "https://www.klook.com/zh-TW/activity/8900-churaumi-toku-toku-5-pass-okinawa/", "checkedAt": "2026-09-03" },
     { "id": "jtb-tokutoku", "label": "JTB 2026 TokuToku Pass 官方設施與價格", "url": "https://www.jtb.co.jp/cvstkt/tokutokuticket/", "checkedAt": "2026-09-03" },
+    { "id": "american-depot", "label": "美國村官方・AMERICAN DEPOT", "url": "https://www.okinawa-americanvillage.com/shop/american-depot/", "checkedAt": "2026-09-03" },
+    { "id": "american-village-ranch", "label": "美國村官方・RANCH", "url": "https://www.okinawa-americanvillage.com/shop/ranch/", "checkedAt": "2026-09-03" },
+    { "id": "american-village-skip", "label": "美國村官方・SKIP", "url": "https://www.okinawa-americanvillage.com/en/shop/skip/", "checkedAt": "2026-09-03" },
+    { "id": "kaigan-soko-21", "label": "美國村官方・海岸倉庫21付款與營業資訊", "url": "https://www.okinawa-americanvillage.com/shop/kagansouko21/", "checkedAt": "2026-09-03" },
+    { "id": "okinawa-market", "label": "美國村官方・OKINAWA MARKET", "url": "https://www.okinawa-americanvillage.com/en/shop/okinawa-market/", "checkedAt": "2026-09-03" },
     { "id": "kariyushi", "label": "嘉利吉海灘度假村官方網站", "url": "https://kariyushi-oceanspa.jp/", "checkedAt": "2026-08-28" },
     { "id": "churaumi", "label": "沖繩美麗海水族館官方票價", "url": "https://churaumi.okinawa/guide/info/", "checkedAt": "2026-08-29" },
     { "id": "busena", "label": "部瀨名海中公園官方票價", "url": "https://www.busena-marinepark.com/charge.html", "checkedAt": "2026-08-29" },
@@ -544,7 +564,7 @@
           { "id": "A-1001-1", "time": "07:30", "type": "drive", "title": "提早北上美麗海", "place": "沖縄美ら海水族館", "mapQuery": "沖縄美ら海水族館", "note": "孩子會重訪，但可改玩兒童砦；小倆口看主館。" },
           { "id": "A-1001-2", "time": "09:30", "type": "activity", "title": "沖繩美麗海水族館／海洋博公園分流", "place": "沖縄美ら海水族館", "mapQuery": "沖縄美ら海水族館", "note": "四大兩小可彈性分成主館與公園組。", "sourceIds": ["churaumi"], "rainBackupIds": ["nago-pineapple","murasaki-mura","aeon-rycom"] },
           { "id": "A-1001-3", "time": "14:30", "type": "drive", "title": "南下北谷，中途休息一次", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ", "note": "不硬排BANTA；孩子睡車上。" },
-          { "id": "A-1001-4", "time": "17:00", "type": "meal", "title": "美國村夕陽與晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ", "note": "20:00前離開，避免過晚回恩納住宿。", "rainBackupIds": ["round1-ginowan", "aeon-rycom", "parco-city"] }
+          { "id": "A-1001-4", "time": "17:00", "type": "meal", "title": "美國村夕陽與晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ", "note": "20:00前離開，避免過晚回恩納住宿。", "shoppingGuideId": "american-village-family-shopping", "rainBackupIds": ["round1-ginowan", "aeon-rycom", "parco-city"] }
         ]
       },
       {
@@ -633,7 +653,7 @@
         { "id": "B-1001-1", "time": "07:30", "type": "drive", "title": "北上美麗海", "place": "沖縄美ら海水族館", "mapQuery": "沖縄美ら海水族館" },
         { "id": "B-1001-2", "time": "08:30", "type": "activity", "title": "沖繩美麗海水族館", "place": "沖縄美ら海水族館", "mapQuery": "沖縄美ら海水族館", "note": "主館優先；大雨時省略海洋博公園戶外區。", "sourceIds": ["churaumi"], "rainBackupIds": ["nago-pineapple", "murasaki-mura", "sango-batake"] },
         { "id": "B-1001-3", "time": "16:00", "type": "cafe", "title": "BANTA CAFE 看日落", "place": "BANTA CAFE", "mapQuery": "BANTA CAFE", "note": "次要項；大雨或無法候位就改讀谷室內場館。", "rainBackupIds": ["murasaki-mura", "sango-batake", "aeon-rycom"] },
-        { "id": "B-1001-4", "time": "18:30", "type": "meal", "title": "美國村晚餐與散步", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ", "rainBackupIds": ["round1-ginowan", "aeon-rycom", "parco-city"] },
+        { "id": "B-1001-4", "time": "18:30", "type": "meal", "title": "美國村晚餐與散步", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ", "shoppingGuideId": "american-village-family-shopping", "rainBackupIds": ["round1-ginowan", "aeon-rycom", "parco-city"] },
         { "id": "B-1001-5", "time": "21:00", "type": "drive", "title": "回恩納住宿", "place": "恩納村私人住宿", "mapQuery": "恩納村希望ヶ丘" }
       ]},
       { "date": "2026-10-02", "title": "青潛青洞浮潛・港川・普天滿・Rycom", "area": "恩納 → 浦添 → 宜野灣 → 北中城", "stay": "恩納村私人住宿", "drive": "全日約 120–160 分", "rainPlan": "08:00 仍依青潛通知集合；海況取消時改石川、宜野灣室內行程。", "events": [
@@ -717,7 +737,7 @@
         { "id": "C-1002-meet", "time": "08:00", "type": "meet", "title": "青潛 08:00 集合", "place": "青潛免費停車場《裝備區》", "mapQuery": "青潛 BEST DIVE OKINAWA", "note": "08:20 後到場可能取消；先穿泳衣並帶浴巾。", "sourceIds": ["bestdive-meeting"] },
         { "id": "C-1002-1", "time": "09:00", "type": "activity", "title": "青潛 BEST DIVE OKINAWA 青洞浮潛（固定）", "place": "青潛免費停車場《裝備區》", "mapQuery": "青潛 BEST DIVE OKINAWA", "note": "09:00 活動時段、08:00 集合；建議 07:00 從恩納村希望丘一帶出發，最終內容以預約確認訊息為準。", "bookingId": "bestdive-snorkeling", "sourceIds": ["bestdive"], "rainBackupIds": ["adventure-okinawa","round1-ginowan","aeon-rycom"] },
         { "id": "C-1002-2", "time": "13:00", "type": "meal", "title": "六人會合午餐", "place": "恩納村", "mapQuery": "恩納村 子連れ ランチ" },
-        { "id": "C-1002-3", "time": "16:00", "type": "walk", "title": "美國村夕陽與早晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ", "rainBackupIds": ["adventure-okinawa","round1-ginowan","aeon-rycom"] },
+        { "id": "C-1002-3", "time": "16:00", "type": "walk", "title": "美國村夕陽與早晚餐", "place": "美浜アメリカンビレッジ", "mapQuery": "美浜アメリカンビレッジ", "shoppingGuideId": "american-village-family-shopping", "rainBackupIds": ["adventure-okinawa","round1-ginowan","aeon-rycom"] },
         { "id": "C-1002-4", "time": "19:00", "type": "drive", "title": "提早回恩納住宿", "place": "恩納村私人住宿", "mapQuery": "恩納村希望ヶ丘" }
       ]},
       { "date": "2026-10-03", "title": "慢早餐・六人那霸慢遊", "area": "恩納 ↔ 那霸", "stay": "恩納村私人住宿（譚家四口＋小倆口）", "drive": "恩納往返那霸約 120–170 分", "rainPlan": "全程可改室內。", "events": [

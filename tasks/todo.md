@@ -373,3 +373,16 @@
 - 小倆口因 9/30 才加入、兩位 4–5 歲小孩因未達套票兒童票年齡，皆標示為單買／依景點現場規則處理；五合一的連續 5 天限制、不可退款與 Neo Park 加購項目亦已列出。
 - Verified 83/83 tests, privacy-safe 18-asset build, three verified and visually inspected 36-page PDFs, exact live PDF hashes, and local/live 390px browser checks with no console, request, route, or overflow errors.
 - Deployed release v23 from commit `df6c9cf` through GitHub Actions run `33720217487`; live trip data, selected B savings card, sanitized Klook link, v23 service worker, and all A／B／C route segments were verified.
+
+## 美國村具體逛街與付款注記
+
+- [x] 查核美國村官方商店、營業時間與付款方式
+- [x] 以失敗測試鎖定商店順序、付款狀態與未知資料提示
+- [x] 在 A／B 10/1、C 10/2 美國村行程加入具體商店卡
+- [x] 更新 v24 離線快取並同步 A／B／C PDF
+- [x] 完成本機、手機、隱私與官方連結驗證
+- [ ] 部署 GitHub Pages 並確認正式版本
+
+### 美國村具體逛街與付款注記 review
+
+- Pending implementation and deployment verification.

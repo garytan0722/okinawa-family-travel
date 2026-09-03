@@ -446,7 +446,7 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
 .event-rain-selection button { min-height: 44px; padding: .35rem 0; border: 0; background: transparent; color: #9a4d38; font-size: .6rem; font-weight: 900; cursor: pointer; }
 .event-actions { display: flex; flex-wrap: wrap; gap: .55rem; margin-top: .55rem; }
 .event-actions a { color: #397f8b; font-size: .67rem; font-weight: 900; }
-.ticket-info, .booking-info, .dining-guide {
+.ticket-info, .booking-info, .dining-guide, .shopping-guide {
   margin: .75rem -3.3rem 0 0;
   border-radius: 14px;
 }
@@ -475,6 +475,28 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
 .dining-option p { margin: .35rem 0 0; color: var(--muted); font-size: .6rem; line-height: 1.45; }
 .dining-actions { display: flex; flex-wrap: wrap; gap: .2rem .6rem; margin-top: .3rem; }
 .dining-actions a { display: inline-flex; min-height: 44px; align-items: center; color: #286b76; font-size: .6rem; font-weight: 900; }
+.shopping-guide { padding: .78rem; border: 1.5px solid #d99582; background: linear-gradient(145deg, #fff3ed, #fffaf0); box-shadow: 3px 4px 0 rgba(242, 140, 120, .16); }
+.shopping-heading { display: flex; gap: .55rem; align-items: center; }
+.shopping-heading > span { display: grid; flex: none; width: 34px; height: 34px; place-items: center; border-radius: 50%; background: var(--pink); transform: rotate(7deg); }
+.shopping-heading small, .shopping-heading strong { display: block; }
+.shopping-heading small { color: #a45548; font-size: .56rem; font-weight: 900; }
+.shopping-heading strong { margin-top: .1rem; font-size: .76rem; line-height: 1.35; }
+.shopping-route { margin: .55rem 0; color: var(--muted); font-size: .64rem; line-height: 1.5; }
+.shopping-options { display: grid; gap: .48rem; }
+.shopping-option { display: grid; grid-template-columns: 30px minmax(0, 1fr); gap: .45rem .55rem; padding: .65rem; border: 1px solid rgba(75, 61, 57, .14); border-radius: 12px; background: rgba(255,255,255,.8); }
+.shopping-order { display: grid; grid-row: 1 / span 2; width: 28px; height: 28px; place-items: center; border: 1.5px solid var(--cocoa); border-radius: 50%; background: var(--sun); font-family: ui-monospace, monospace; font-size: .65rem; font-weight: 900; }
+.shopping-copy { min-width: 0; padding-right: .2rem; }
+.shopping-copy h4, .shopping-copy p, .shopping-copy small { margin: 0; }
+.shopping-copy h4 { font-family: var(--display); font-size: .72rem; line-height: 1.35; }
+.shopping-copy p { margin-top: .08rem; color: var(--muted); font-size: .57rem; }
+.shopping-copy small { display: block; margin-top: .12rem; color: #397f8b; font-size: .56rem; font-weight: 900; }
+.payment-badge { grid-column: 2; justify-self: start; padding: .18rem .42rem; border-radius: 99px; background: #fff0c4; color: #77521d; font-size: .52rem; font-weight: 900; }
+.payment-badge--cards-confirmed { background: var(--foam); color: #356f5d; }
+.payment-badge--cash-only { background: #ffe0d8; color: #923f32; }
+.payment-note { grid-column: 1 / -1; margin: 0; color: var(--muted); font-size: .56rem; line-height: 1.45; }
+.shopping-actions { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: .3rem .75rem; }
+.shopping-actions a { display: inline-flex; min-height: 44px; align-items: center; color: #286b76; font-size: .6rem; font-weight: 900; }
+.shopping-payment-summary { margin: .6rem 0 0; padding: .6rem; border-radius: 11px; background: #fff0c4; color: #725020; font-size: .6rem; line-height: 1.5; }
 .ticket-info {
   padding: .7rem .75rem;
   border: 1.5px dashed #e1a44a;
@@ -796,6 +818,7 @@ main { width: min(100%, 760px); margin: 0 auto; padding: .8rem .85rem 7.5rem; }
   .pass-price-grid, .pass-actions { grid-template-columns: 1fr 1fr; }
   .ots-support-grid { grid-template-columns: 1fr 1fr; }
   .dining-options { grid-template-columns: 1fr 1fr; }
+  .shopping-options { grid-template-columns: 1fr 1fr; }
   .day-route-card { grid-template-columns: minmax(220px, .9fr) 1.1fr; align-items: center; }
   .day-route-card > div:first-child { grid-column: 1 / -1; }
   .rainy-grid { grid-template-columns: 1fr 1fr; }

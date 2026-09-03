@@ -491,3 +491,36 @@ test('TokuToku guide recommends only purchases that beat individual admission fo
   assert.match(guide.familyAdvice.join(' '), /4–5歲.*不買套票/);
   assert.match(guide.rules.join(' '), /連續 5 天.*不可退款.*Neo Park.*另付/);
 });
+
+test('American Village shopping guide keeps a walkable family order and evidence-based payment labels', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const guide = trip.shoppingGuides?.['american-village-family-shopping'];
+
+  assert.ok(guide, 'American Village shopping guide must exist');
+  assert.equal(guide.checkedAt, '2026-09-03');
+  assert.deepEqual(guide.shops.map((shop) => shop.name), [
+    'AMERICAN DEPOT',
+    'RANCH',
+    'SKIP',
+    '海岸倉庫21',
+    'OKINAWA MARKET',
+  ]);
+  assert.deepEqual(guide.shops.map((shop) => shop.paymentStatus), [
+    'unverified', 'unverified', 'unverified', 'cards-confirmed', 'unverified',
+  ]);
+  assert.match(guide.paymentSummary, /未查到官方確認 Cash only.*付款方式未確認.*備現金/);
+  for (const shop of guide.shops) {
+    assert.ok(shop.hours);
+    assert.ok(shop.mapQuery);
+    assert.ok(trip.sources.some((source) => source.id === shop.sourceId), `${shop.name} needs an official source`);
+  }
+
+  const attachedEvents = Object.entries(trip.days).flatMap(([variantId, days]) => days.flatMap((day) => day.events
+    .filter((event) => event.shoppingGuideId === 'american-village-family-shopping')
+    .map((event) => `${variantId}:${day.date}:${event.id}`)));
+  assert.deepEqual(attachedEvents, [
+    'A:2026-10-01:A-1001-4',
+    'B:2026-10-01:B-1001-4',
+    'C:2026-10-02:C-1002-3',
+  ]);
+});

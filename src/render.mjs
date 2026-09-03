@@ -1,4 +1,4 @@
-import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=23';
+import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=24';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -102,6 +102,30 @@ function renderDiningGuide(trip, event) {
   </aside>`;
 }
 
+function renderShoppingGuide(trip, event) {
+  const guide = event.shoppingGuideId ? trip.shoppingGuides?.[event.shoppingGuideId] : null;
+  if (!guide) return '';
+  const shops = guide.shops.map((shop, index) => {
+    const source = trip.sources.find((item) => item.id === shop.sourceId);
+    const paymentLabel = shop.paymentStatus === 'cards-confirmed'
+      ? '可刷卡'
+      : shop.paymentStatus === 'cash-only' ? 'Cash only' : '付款未確認・備現金';
+    return `<article class="shopping-option">
+      <span class="shopping-order">${index + 1}</span>
+      <div class="shopping-copy"><h4>${escapeHtml(shop.name)}</h4><p>${escapeHtml(shop.category)}</p><small>${escapeHtml(shop.hours)}</small></div>
+      <span class="payment-badge payment-badge--${escapeHtml(shop.paymentStatus)}">${escapeHtml(paymentLabel)}</span>
+      <p class="payment-note">${escapeHtml(shop.paymentNote)}</p>
+      <div class="shopping-actions"><a href="${escapeHtml(mapUrl(shop.mapQuery))}" target="_blank" rel="noopener noreferrer">直接導航</a>${source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">官方資料</a>` : ''}</div>
+    </article>`;
+  }).join('');
+  return `<aside class="shopping-guide" aria-label="${escapeHtml(guide.title)}">
+    <div class="shopping-heading"><span aria-hidden="true">🐾</span><div><small>順路逛店 · 查核 ${escapeHtml(guide.checkedAt)}</small><strong>${escapeHtml(guide.title)}</strong></div></div>
+    <p class="shopping-route">${escapeHtml(guide.routeNote)}</p>
+    <div class="shopping-options">${shops}</div>
+    <p class="shopping-payment-summary"><strong>付款提醒：</strong>${escapeHtml(guide.paymentSummary)}</p>
+  </aside>`;
+}
+
 function renderRainPicker(trip, event, rainSelections = {}) {
   const options = (event.rainBackupIds ?? [])
     .map((id) => trip.rainyDayOptions.find((option) => option.id === id))
@@ -134,7 +158,7 @@ function renderEvent(trip, event, completed, rainSelections) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=23" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=24" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -145,6 +169,7 @@ function renderEvent(trip, event, completed, rainSelections) {
         ${event.note ? `<p class="event-note">${escapeHtml(event.note)}</p>` : ''}
         ${renderRainPicker(trip, event, rainSelections)}
         ${renderDiningGuide(trip, event)}
+        ${renderShoppingGuide(trip, event)}
         ${renderBookingInfo(trip, event)}
         ${renderTicketInfo(trip, event)}
         <div class="event-actions">
