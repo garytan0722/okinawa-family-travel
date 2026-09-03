@@ -179,7 +179,75 @@
     { "id": "okinawaworld", "kind": "ticket", "label": "沖繩世界・玉泉洞", "price": "成人（15歲以上）¥2,000／兒童（4～14歲）¥1,000", "note": "園內入場需購票，入口由玉泉洞進入。", "sourceId": "okinawaworld", "checkedAt": "2026-08-29" },
     { "id": "dmm", "kind": "ticket", "label": "DMM Kariyushi水族館", "price": "依日期浮動：成人 ¥2,800～¥3,200／13～17歲 ¥2,200～¥2,600／4～12歲 ¥1,700～¥2,100／3歲以下免費", "note": "10/4 適用級距須查看官方營運日曆；官網預售票可能有早鳥折扣。", "sourceId": "dmm", "checkedAt": "2026-08-29" }
   ],
+  "ticketPassGuide": {
+    "checkedAt": "2026-09-03",
+    "purchaseUrl": "https://www.klook.com/zh-TW/activity/8900-churaumi-toku-toku-5-pass-okinawa/",
+    "officialUrl": "https://www.jtb.co.jp/cvstkt/tokutokuticket/",
+    "sourceIds": ["klook-tokutoku", "jtb-tokutoku"],
+    "options": [
+      { "id": "three-pass", "name": "沖繩 TokuToku 3 Pass", "adultPriceYen": 3800, "includesChuraumi": false, "summary": "任選 3 個指定景點；不含美麗海水族館" },
+      { "id": "five-pass", "name": "美麗海 TokuToku 5 Pass", "adultPriceYen": 5900, "includesChuraumi": true, "summary": "美麗海水族館＋任選 4 個指定景點" }
+    ],
+    "recommendationByVariant": {
+      "A": {
+        "decision": "buy-three-pass",
+        "headline": "買 2 張成人三合一",
+        "party": "譚家四口中的兩位大人",
+        "quantity": 2,
+        "activationDate": "2026-09-26",
+        "individualTotalYen": 4600,
+        "savingPerAdultYen": 800,
+        "uses": [
+          { "date": "9/26", "name": "Neo Park Okinawa", "priceYen": 1600 },
+          { "date": "9/28", "name": "沖繩兒童王國", "priceYen": 1000 },
+          { "date": "9/29", "name": "琉球村", "priceYen": 2000 }
+        ],
+        "note": "三個指定景點剛好連續四天內用完；以套票認列的一般入園價試算。"
+      },
+      "B": {
+        "decision": "buy-three-pass",
+        "headline": "買 2 張成人三合一",
+        "party": "譚家四口中的兩位大人",
+        "quantity": 2,
+        "activationDate": "2026-09-26",
+        "individualTotalYen": 4800,
+        "savingPerAdultYen": 1000,
+        "uses": [
+          { "date": "9/26", "name": "沖繩水果樂園", "priceYen": 1200 },
+          { "date": "9/26", "name": "Neo Park Okinawa", "priceYen": 1600 },
+          { "date": "9/29", "name": "琉球村", "priceYen": 2000 }
+        ],
+        "note": "目前最省：9/26 啟用後在四天內用完三個指定景點。"
+      },
+      "C": {
+        "decision": "individual",
+        "headline": "單買門票較省",
+        "party": "全部旅伴",
+        "quantity": 0,
+        "individualTotalYen": 3000,
+        "savingPerAdultYen": 0,
+        "uses": [
+          { "date": "9/27", "name": "古宇利海洋塔", "priceYen": 1000 },
+          { "date": "9/29", "name": "琉球村", "priceYen": 2000 }
+        ],
+        "note": "符合三合一的既定景點只有兩個，單買 ¥3,000，比套票 ¥3,800 少 ¥800；名護鳳梨園不在 2026 三合一名單。"
+      }
+    },
+    "familyAdvice": [
+      "小倆口建議單買：9/30 才加入，現有行程無法在 5 天內把套票用到划算。",
+      "兩位 4–5歲小孩不買套票：Klook 兒童票從 6 歲起；未滿 6 歲依各景點規定現場購票。"
+    ],
+    "rules": [
+      "從第一個景點啟用後連續 5 天有效。",
+      "購買後不可退款；每人一票、每個景點限用一次。",
+      "Neo Park 套票只含入園；輕便鐵道與其他付費體驗另付。",
+      "Klook 售價可能隨日期或優惠變動，付款前再看結帳頁。"
+    ],
+    "whyNotFivePass": "五合一必須在啟用後連續 5 天內用完；本行程前段可省的景點與後段美麗海相隔太久。硬湊 9/27–10/1 的可用景點，每位大人約只省 ¥280，還會犧牲較省且更符合 A／B 排程的三合一。"
+  },
   "sources": [
+    { "id": "klook-tokutoku", "label": "Klook 沖繩美麗海五合一／三合一套票", "url": "https://www.klook.com/zh-TW/activity/8900-churaumi-toku-toku-5-pass-okinawa/", "checkedAt": "2026-09-03" },
+    { "id": "jtb-tokutoku", "label": "JTB 2026 TokuToku Pass 官方設施與價格", "url": "https://www.jtb.co.jp/cvstkt/tokutokuticket/", "checkedAt": "2026-09-03" },
     { "id": "kariyushi", "label": "嘉利吉海灘度假村官方網站", "url": "https://kariyushi-oceanspa.jp/", "checkedAt": "2026-08-28" },
     { "id": "churaumi", "label": "沖繩美麗海水族館官方票價", "url": "https://churaumi.okinawa/guide/info/", "checkedAt": "2026-08-29" },
     { "id": "busena", "label": "部瀨名海中公園官方票價", "url": "https://www.busena-marinepark.com/charge.html", "checkedAt": "2026-08-29" },

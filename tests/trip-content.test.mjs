@@ -460,3 +460,34 @@ test('deployed content exposes only a tracking-free listing for private accommod
   );
   assert.doesNotMatch(serialized, /"[^"\n]*(?:password|credential|checkinUrl|accessCode|doorCode|accessPin)[^"\n]*"\s*:/i);
 });
+
+test('TokuToku guide recommends only purchases that beat individual admission for each itinerary', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const guide = trip.ticketPassGuide;
+
+  assert.equal(guide.checkedAt, '2026-09-03');
+  assert.equal(guide.purchaseUrl, 'https://www.klook.com/zh-TW/activity/8900-churaumi-toku-toku-5-pass-okinawa/');
+  assert.doesNotMatch(guide.purchaseUrl, /[?&](?:utm_|dd_referrer|aff_)/);
+  assert.deepEqual(guide.options.map(({ id, adultPriceYen, includesChuraumi }) => ({ id, adultPriceYen, includesChuraumi })), [
+    { id: 'three-pass', adultPriceYen: 3800, includesChuraumi: false },
+    { id: 'five-pass', adultPriceYen: 5900, includesChuraumi: true },
+  ]);
+
+  const recommendations = guide.recommendationByVariant;
+  assert.deepEqual(recommendations.A.uses.map((item) => item.name), ['Neo Park Okinawa', '沖繩兒童王國', '琉球村']);
+  assert.deepEqual(recommendations.B.uses.map((item) => item.name), ['沖繩水果樂園', 'Neo Park Okinawa', '琉球村']);
+  for (const variantId of ['A', 'B']) {
+    const recommendation = recommendations[variantId];
+    assert.equal(recommendation.decision, 'buy-three-pass');
+    assert.equal(recommendation.party, '譚家四口中的兩位大人');
+    assert.equal(recommendation.quantity, 2);
+    assert.equal(recommendation.activationDate, '2026-09-26');
+    assert.equal(recommendation.savingPerAdultYen, recommendation.individualTotalYen - 3800);
+    assert.ok(recommendation.savingPerAdultYen > 0);
+  }
+  assert.equal(recommendations.C.decision, 'individual');
+  assert.ok(recommendations.C.individualTotalYen < 3800);
+  assert.match(guide.familyAdvice.join(' '), /小倆口.*單買/);
+  assert.match(guide.familyAdvice.join(' '), /4–5歲.*不買套票/);
+  assert.match(guide.rules.join(' '), /連續 5 天.*不可退款.*Neo Park.*另付/);
+});

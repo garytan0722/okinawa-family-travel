@@ -1,4 +1,4 @@
-import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=22';
+import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=23';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -134,7 +134,7 @@ function renderEvent(trip, event, completed, rainSelections) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=22" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=23" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -257,6 +257,48 @@ export function renderRainyDayView(trip) {
     <div class="rainy-category-nav" aria-label="雨天備案分類">${categoryNav}</div>
     ${groups}
     <aside class="rainy-source-note"><strong>資料怎麼整理？</strong><p>${escapeHtml(trip.rainyDaySource.note)} 各場館狀態查核於 2026-08-30，出發前仍請複核。</p><a href="${escapeHtml(trip.rainyDaySource.url)}" target="_blank" rel="noopener noreferrer">查看原始分享</a></aside>
+  </section>`;
+}
+
+function yen(value) {
+  return `¥${new Intl.NumberFormat('en-US').format(value)}`;
+}
+
+export function renderTicketPassGuide(trip, selectedVariant) {
+  const guide = trip.ticketPassGuide;
+  if (!guide) return '';
+  const threePass = guide.options.find((option) => option.id === 'three-pass');
+  const fivePass = guide.options.find((option) => option.id === 'five-pass');
+  const cards = Object.entries(guide.recommendationByVariant).map(([variantId, recommendation]) => {
+    const variant = trip.variants[variantId];
+    const selected = variantId === selectedVariant;
+    const isPass = recommendation.decision === 'buy-three-pass';
+    const totalSaving = recommendation.savingPerAdultYen * recommendation.quantity;
+    const activation = recommendation.activationDate
+      ? `${Number(recommendation.activationDate.slice(5, 7))}/${Number(recommendation.activationDate.slice(8, 10))} 啟用`
+      : '不用啟用套票';
+    return `<article data-pass-variant="${escapeHtml(variantId)}" class="pass-option-card${selected ? ' is-selected' : ''}">
+      <header><span class="pass-variant">${escapeHtml(variantId)}</span><div><small>${escapeHtml(variant.name)}</small><h3>${escapeHtml(recommendation.headline)}</h3></div>${selected ? '<b>目前行程</b>' : ''}</header>
+      <p class="pass-party">${escapeHtml(recommendation.party)}${isPass ? ` · ${escapeHtml(recommendation.quantity)} 張` : ''}</p>
+      <div class="pass-saving">
+        <span>${isPass ? escapeHtml(activation) : '照既定行程單買'}</span>
+        <strong>${isPass ? `每位大人省 ${yen(recommendation.savingPerAdultYen)}` : `單買比三合一少 ${yen(threePass.adultPriceYen - recommendation.individualTotalYen)}`}</strong>
+        <small>${isPass ? `兩位共省 ${yen(totalSaving)}` : `單買 ${yen(recommendation.individualTotalYen)}／三合一 ${yen(threePass.adultPriceYen)}`}</small>
+      </div>
+      <ol class="pass-use-list">${recommendation.uses.map((item) => `<li><span>${escapeHtml(item.date)}</span><strong>${escapeHtml(item.name)}</strong><small>${yen(item.priceYen)}</small></li>`).join('')}</ol>
+      <p class="pass-note">${escapeHtml(recommendation.note)}</p>
+    </article>`;
+  }).join('');
+  const advice = guide.familyAdvice.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+  const rules = guide.rules.map((item) => `<li>${escapeHtml(item)}</li>`).join('');
+
+  return `<section class="pass-guide" aria-labelledby="ticket-pass-title">
+    <div class="pass-guide-heading"><div><p class="eyebrow">TICKET PAW CHECK · 查核 ${escapeHtml(guide.checkedAt)}</p><h2 id="ticket-pass-title">套票怎麼買最省</h2></div><span class="pass-paw" aria-hidden="true"><span class="paw-print"></span></span></div>
+    <p class="pass-guide-lede">目前行程版本會亮起；要換版本可回「行程」切換 A／B／C。只在真的比單買便宜時才建議買。</p>
+    <div class="pass-options">${cards}</div>
+    <article class="pass-family-card"><h3>這團誰要買？</h3><ul>${advice}</ul></article>
+    <details class="pass-rules"><summary>五合一為什麼不推薦？</summary><p>${escapeHtml(guide.whyNotFivePass)}</p><div class="pass-price-grid"><span><strong>${escapeHtml(threePass.name)}</strong>${yen(threePass.adultPriceYen)}／成人<small>${escapeHtml(threePass.summary)}</small></span><span><strong>${escapeHtml(fivePass.name)}</strong>${yen(fivePass.adultPriceYen)}／成人<small>${escapeHtml(fivePass.summary)}</small></span></div><ul>${rules}</ul></details>
+    <div class="pass-actions"><a class="pass-buy" href="${escapeHtml(guide.purchaseUrl)}" target="_blank" rel="noopener noreferrer">到 Klook 看套票</a><a href="${escapeHtml(guide.officialUrl)}" target="_blank" rel="noopener noreferrer">查看 JTB 2026 官方規則</a></div>
   </section>`;
 }
 

@@ -357,3 +357,16 @@
 - 附件中的真實姓名、OneStay 入住連結、check-in code、PIN 與私人備註未寫入公開網站或 PDF。
 - Verified 81/81 tests, privacy-safe 18-asset build, three verified and visually inspected 36-page PDFs, and local/live 390px browser checks with no console, request, persistence, route, or overflow errors.
 - Deployed release v22 from commit `fc16a0f` through GitHub Actions run `33616534429`; live site, JSON, service worker, rain controls, all route segments, and exact PDF hashes were verified.
+
+## TokuToku 套票評估
+
+- [x] 以即時 Klook 與 2026 JTB 資料核對 3／5 Pass 規則與價格
+- [x] 以失敗測試鎖定 A／B／C 推薦、省額、適用成員與兒童規則
+- [x] 在固定行程頁加入手機友善的套票評估與乾淨購買連結
+- [x] 更新 v23 離線快取並同步 PDF 官方來源
+- [x] 完成測試、手機、隱私與線上購票連結驗證
+- [ ] 部署 GitHub Pages 並確認正式版本
+
+### TokuToku 套票評估 review
+
+- Pending implementation and deployment verification.

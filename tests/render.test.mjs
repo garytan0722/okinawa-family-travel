@@ -113,7 +113,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=22" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=23" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -191,6 +191,23 @@ test('flight summary shows the named groups and labels only genuinely missing de
   assert.match(html, /class="flight-route-arrow"[^>]*>→<\/span>/);
   assert.match(html, /aria-label="OKA 到 TPE T2"/);
   assert.doesNotMatch(html, /✈/);
+});
+
+test('ticket pass guide highlights the selected itinerary and links to a tracking-free checkout', () => {
+  assert.equal(typeof renderModule.renderTicketPassGuide, 'function');
+  if (typeof renderModule.renderTicketPassGuide !== 'function') return;
+  const html = renderModule.renderTicketPassGuide(trip, 'B');
+
+  assert.match(html, /套票怎麼買最省/);
+  assert.match(html, /data-pass-variant="B"[^>]*is-selected/);
+  assert.match(html, /譚家四口中的兩位大人/);
+  assert.match(html, /9\/26 啟用/);
+  assert.match(html, /沖繩水果樂園.*Neo Park Okinawa.*琉球村/s);
+  assert.match(html, /每位大人省 ¥1,000/);
+  assert.match(html, /小倆口.*單買/s);
+  assert.match(html, /4–5歲.*不買套票/s);
+  assert.match(html, /href="https:\/\/www\.klook\.com\/zh-TW\/activity\/8900-churaumi-toku-toku-5-pass-okinawa\/"/);
+  assert.doesNotMatch(html, /utm_|dd_referrer|source_impression_id/);
 });
 
 test('emergency view puts 110 and 119 first and provides actionable OTS instructions', () => {
