@@ -365,8 +365,11 @@
 - [x] 在固定行程頁加入手機友善的套票評估與乾淨購買連結
 - [x] 更新 v23 離線快取並同步 PDF 官方來源
 - [x] 完成測試、手機、隱私與線上購票連結驗證
-- [ ] 部署 GitHub Pages 並確認正式版本
+- [x] 部署 GitHub Pages 並確認正式版本
 
 ### TokuToku 套票評估 review
 
-- Pending implementation and deployment verification.
+- 以 2026 JTB 成人牌價試算：A 建議譚家四口中的兩位大人買三合一，每位省 ¥800；B 每位省 ¥1,000、兩位共省 ¥2,000；C 的符合景點單買只要 ¥3,000，因此不買套票。
+- 小倆口因 9/30 才加入、兩位 4–5 歲小孩因未達套票兒童票年齡，皆標示為單買／依景點現場規則處理；五合一的連續 5 天限制、不可退款與 Neo Park 加購項目亦已列出。
+- Verified 83/83 tests, privacy-safe 18-asset build, three verified and visually inspected 36-page PDFs, exact live PDF hashes, and local/live 390px browser checks with no console, request, route, or overflow errors.
+- Deployed release v23 from commit `df6c9cf` through GitHub Actions run `33720217487`; live trip data, selected B savings card, sanitized Klook link, v23 service worker, and all A／B／C route segments were verified.
