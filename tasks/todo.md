@@ -8,11 +8,16 @@
 - [x] 新增只存在手機本機的私人住宿定位並接入住宿與每日導航
 - [x] 新增匿名行前確認表、勾選保存與備份遷移
 - [x] 保持 9/30–10/4 既有主要事件不變，只加獨立餐飲／購物資料
-- [ ] 輪替離線版本並驗證測試、建置、手機、隱私與部署
+- [x] 輪替離線版本並驗證測試、建置、手機、隱私與部署
 
 ### v25 review
 
-- 待完成。
+- 9/24 A／B／C 改為 OTS 取車後到國際通午餐短逛，15:30 前離開那霸；9/30–10/4 既定主行程順序未改。
+- A／B／C 共 33 個日計畫均有早餐、午餐、晚餐首選／備選與付款狀態；加入國際通、AEON 名護、San-A 大灣與美國村採買指南。
+- 行前確認表含 9 類 27 項；健康項目匿名化，勾選、私人住宿定位與既有紀錄一起存在本機並可備份。
+- 私人住宿精確定位不在公開 JSON；未填時每日路線只使用恩納村希望丘公開區域，填入後才在該裝置取代導航起終點。
+- Verified 95/95 tests, privacy-safe static build, 390px live layout, no console errors, and three regenerated 38-page PDFs with exact local-to-live hashes.
+- Deployed release v25 from commit `3991a05` through GitHub Actions run `34797921677` and confirmed the live service worker, meal cards, checklist, 9/24 國際通與 frozen 9/30 itinerary.
 
 - [x] Confirm GitHub repository and authentication
 - [x] Create isolated implementation branch
