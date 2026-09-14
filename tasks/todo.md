@@ -432,8 +432,11 @@
 - [x] 加入手機支架、車充、可傳資料線與離線地圖提醒
 - [x] 加入 B_DA／WB 的 CarPlay／Android Auto 取車測試與隱私提醒
 - [x] 輪替 v27 離線快取
-- [ ] 完整測試、手機版驗證並部署 GitHub Pages
+- [x] 完整測試、手機版驗證並部署 GitHub Pages
 
 ### 租車手機連線行前確認 review
 
-- 待部署驗證後補充。
+- 行前確認新增「手機支架與 CarPlay／Android Auto 取車測試」，清楚區分 B_DA 有線連接與 WB 依實際車款／接孔確認，並提醒停車後配對、還車前刪除紀錄。
+- 電子用品改為同時準備車充及 USB-A／USB-C／Lightning 可傳資料線，並在離線項目加入沖繩 Google Maps 地圖下載。
+- Verified 99/99 tests, privacy-safe 19-asset build, v27 cache rotation, local checkbox persistence, and local/live 390px layouts with no browser errors or horizontal overflow.
+- Deployed release v27 from commit `022968b` through GitHub Actions run `34818130779`; live shell, trip data, service worker and checklist content were verified.
