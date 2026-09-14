@@ -23,6 +23,23 @@ test('all variants cover each trip date exactly once', () => {
   }
 });
 
+test('pre-trip checklist prepares both rental classes for phone navigation without duplicate reminders', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const categories = Object.fromEntries(trip.preTripChecklist.categories.map((category) => [category.id, category]));
+  const driving = categories.driving.items;
+  const electronics = categories.electronics.items;
+  const phoneSetup = driving.find((item) => item.id === 'driving-phone');
+  const power = electronics.find((item) => item.id === 'electronics-power');
+  const offline = electronics.find((item) => item.id === 'electronics-offline');
+
+  assert.match(power.label, /車充.*資料傳輸線/);
+  assert.match(power.note, /USB-A.*USB-C.*Lightning/);
+  assert.match(offline.note, /沖繩.*Google Maps.*離線/);
+  assert.match(phoneSetup.label, /手機支架.*CarPlay.*Android Auto/);
+  assert.match(phoneSetup.note, /B_DA.*有線.*WB.*實際車款.*接孔/);
+  assert.match(phoneSetup.note, /還車前.*刪除.*配對/);
+});
+
 test('rainy-day catalog contains 24 verified, correctly separated venues', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   assert.equal(trip.rainyDayOptions?.length, 24);

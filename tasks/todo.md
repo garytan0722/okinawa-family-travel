@@ -425,3 +425,15 @@
 - 精確住宿地址、真實預約碼與專屬網址沒有進入 Git、公開 HTML、行程 JSON、PDF 或公開離線資料；公開建置會攔截常見洩漏格式。
 - Verified 98/98 tests, privacy-safe 19-asset build, v26 cache rotation, local persistence, and local/live 375px layouts with zero horizontal overflow or browser errors.
 - Deployed release v26 from commit `34510c8` through GitHub Actions run `34800179353`; live shell, parser module, vault UI and service worker were verified.
+
+## 租車手機連線行前確認
+
+- [x] 以失敗測試鎖定兩種租車級別的手機導航準備內容
+- [x] 加入手機支架、車充、可傳資料線與離線地圖提醒
+- [x] 加入 B_DA／WB 的 CarPlay／Android Auto 取車測試與隱私提醒
+- [x] 輪替 v27 離線快取
+- [ ] 完整測試、手機版驗證並部署 GitHub Pages
+
+### 租車手機連線行前確認 review
+
+- 待部署驗證後補充。

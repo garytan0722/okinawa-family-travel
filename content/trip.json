@@ -342,11 +342,12 @@
       { "id": "driving", "label": "自駕與租車", "icon": "▰", "items": [
         { "id": "driving-license", "label": "台灣駕照、駕照日文譯本與護照", "note": "駕駛人資料放在同一隨身資料夾。" },
         { "id": "driving-ots", "label": "OTS 取還車時間與事故窗口離線保存", "note": "9/30 11:30 取新車、12:00 還舊車；10/4 12:30 還車。" },
+        { "id": "driving-phone", "label": "手機支架與 CarPlay／Android Auto 取車測試", "note": "B_DA 使用有線連接；WB 依實際車款，請向櫃檯確認 CarPlay／Android Auto 與 USB-A／USB-C 接孔。停車後配對，還車前刪除手機與配對紀錄。" },
         { "id": "driving-fuel", "label": "最後加油站、ETC 與停車現金", "note": "還車前保留加油收據。" }
       ] },
       { "id": "electronics", "label": "電子與離線資料", "icon": "⌁", "items": [
-        { "id": "electronics-power", "label": "行動電源與充電線", "note": "行動電源必須隨身上機，不可托運。" },
-        { "id": "electronics-offline", "label": "離線地圖、行程備份與重要截圖", "note": "網站記錄換手機前先匯出 JSON。" },
+        { "id": "electronics-power", "label": "行動電源、車充與資料傳輸線", "note": "準備 USB-A→USB-C／Lightning 與 USB-C→USB-C 可傳資料線；行動電源必須隨身上機，不可托運。" },
+        { "id": "electronics-offline", "label": "離線地圖、行程備份與重要截圖", "note": "預先下載沖繩 Google Maps 離線地圖；網站記錄換手機前先匯出 JSON。" },
         { "id": "electronics-esim", "label": "eSIM／漫遊與緊急聯絡測試", "note": "抵達前確認可收簡訊與撥日本電話。" }
       ] },
       { "id": "money", "label": "付款與現金", "icon": "¥", "items": [
