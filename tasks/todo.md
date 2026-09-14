@@ -411,13 +411,17 @@
 
 ## 私人預約保險箱
 
-- [ ] 以失敗測試鎖定本機預約資料、舊版遷移與公開隱私界線
-- [ ] 新增 OTS 郵件本機擷取與兩筆租車確認卡
-- [ ] 整合 9/30–10/4 私人住宿地址、確認碼與精確導航欄位
-- [ ] 加入遮蔽／顯示、複製、官方連結與完整備份警告
-- [ ] 輪替離線版本並完成自動化與 390px 手機版驗證
-- [ ] 部署 GitHub Pages 並確認正式版本
+- [x] 以失敗測試鎖定本機預約資料、舊版遷移與公開隱私界線
+- [x] 新增 OTS 郵件本機擷取與兩筆租車確認卡
+- [x] 整合 9/30–10/4 私人住宿地址、確認碼與精確導航欄位
+- [x] 加入遮蔽／顯示、複製、官方連結與完整備份警告
+- [x] 輪替離線版本並完成自動化與 390px 手機版驗證
+- [x] 部署 GitHub Pages 並確認正式版本
 
 ### 私人預約保險箱 review
 
-- Pending implementation and verification.
+- 新增兩筆依取車日期辨識的 OTS 卡，以及 9/30–10/4 恩納村住宿卡；可遮蔽、顯示、複製與導航。
+- OTS 郵件只在瀏覽器內解析並保存必要欄位，不保存姓名、Email 或完整郵件；只有官方 HTTPS 確認／聯絡網址可顯示為連結。
+- 精確住宿地址、真實預約碼與專屬網址沒有進入 Git、公開 HTML、行程 JSON、PDF 或公開離線資料；公開建置會攔截常見洩漏格式。
+- Verified 98/98 tests, privacy-safe 19-asset build, v26 cache rotation, local persistence, and local/live 375px layouts with zero horizontal overflow or browser errors.
+- Deployed release v26 from commit `34510c8` through GitHub Actions run `34800179353`; live shell, parser module, vault UI and service worker were verified.
