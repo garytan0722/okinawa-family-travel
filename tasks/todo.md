@@ -408,3 +408,16 @@
 - 海岸倉庫21依官方頁標示可使用 VISA、Mastercard、JCB、American Express；AMERICAN DEPOT、RANCH、SKIP、OKINAWA MARKET 因官方未列付款方式，標示為「付款未確認・備現金」，沒有臆測 Cash only。
 - Verified 85/85 tests, privacy-safe 18-asset build, five live official store links, three verified and visually inspected 37-page PDFs, exact live PDF hashes, and local/live 390px browser checks with no console, request, route, or overflow errors.
 - Deployed release v24 from commit `5712243` through GitHub Actions run `33725795863`; live A／B／C shopping cards, payment labels, ten shop actions, v24 service worker, and original itinerary ordering were verified.
+
+## 私人預約保險箱
+
+- [ ] 以失敗測試鎖定本機預約資料、舊版遷移與公開隱私界線
+- [ ] 新增 OTS 郵件本機擷取與兩筆租車確認卡
+- [ ] 整合 9/30–10/4 私人住宿地址、確認碼與精確導航欄位
+- [ ] 加入遮蔽／顯示、複製、官方連結與完整備份警告
+- [ ] 輪替離線版本並完成自動化與 390px 手機版驗證
+- [ ] 部署 GitHub Pages 並確認正式版本
+
+### 私人預約保險箱 review
+
+- Pending implementation and verification.

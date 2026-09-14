@@ -41,24 +41,33 @@ test('legacy records migrate to rain-ready state without losing notes', () => {
 
   const migrated = loadState(storage);
 
-  assert.equal(migrated.schemaVersion, 3);
+  assert.equal(migrated.schemaVersion, 4);
   assert.equal(migrated.variants.C.notes['2026-09-28'], '保留這段筆記');
   assert.deepEqual(migrated.variants.C.rainMode, {});
   assert.deepEqual(migrated.variants.C.rainSelections, {});
   assert.deepEqual(migrated.checklist, {});
   assert.equal(migrated.privateStayLocation, '');
+  assert.deepEqual(migrated.privateBookings, {
+    rental0924: { confirmationCode: '', detailUrl: '', contactUrl: '' },
+    rental0930: { confirmationCode: '', detailUrl: '', contactUrl: '' },
+    stay0930: { confirmationCode: '', note: '' },
+  });
 });
 
 test('state persists private lodging location and global packing checks without publishing them', () => {
   const storage = new MemoryStorage();
   const state = createEmptyState();
   state.privateStayLocation = '26.12345,127.67890';
+  state.privateBookings.rental0924.confirmationCode = 'LOCAL-ONLY-CODE';
+  state.privateBookings.stay0930.confirmationCode = 'LOCAL-STAY-CODE';
   state.checklist['medical-allergy'] = true;
 
   saveState(storage, state);
 
   const loaded = loadState(storage);
   assert.equal(loaded.privateStayLocation, '26.12345,127.67890');
+  assert.equal(loaded.privateBookings.rental0924.confirmationCode, 'LOCAL-ONLY-CODE');
+  assert.equal(loaded.privateBookings.stay0930.confirmationCode, 'LOCAL-STAY-CODE');
   assert.equal(loaded.checklist['medical-allergy'], true);
   assert.match(exportBackup(state), /26\.12345,127\.67890/);
 });

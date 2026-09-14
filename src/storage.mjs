@@ -5,12 +5,21 @@ function emptyVariantState() {
   return { completed: {}, notes: {}, energy: {}, rainMode: {}, rainSelections: {} };
 }
 
+function emptyPrivateBookings() {
+  return {
+    rental0924: { confirmationCode: '', detailUrl: '', contactUrl: '' },
+    rental0930: { confirmationCode: '', detailUrl: '', contactUrl: '' },
+    stay0930: { confirmationCode: '', note: '' },
+  };
+}
+
 export function createEmptyState() {
   return {
-    schemaVersion: 3,
+    schemaVersion: 4,
     selectedVariant: 'A',
     selectedDate: '2026-09-24',
     privateStayLocation: '',
+    privateBookings: emptyPrivateBookings(),
     checklist: {},
     variants: {
       A: emptyVariantState(),
@@ -25,7 +34,7 @@ function isRecord(value) {
 }
 
 function validatedState(value) {
-  if (!isRecord(value) || ![1, 2, 3].includes(value.schemaVersion) || !VARIANTS.includes(value.selectedVariant)) {
+  if (!isRecord(value) || ![1, 2, 3, 4].includes(value.schemaVersion) || !VARIANTS.includes(value.selectedVariant)) {
     throw new Error('備份檔案格式不正確');
   }
   if (typeof value.selectedDate !== 'string' || !isRecord(value.variants)) {
@@ -42,8 +51,17 @@ function validatedState(value) {
   }
 
   const migrated = JSON.parse(JSON.stringify(value));
-  migrated.schemaVersion = 3;
+  migrated.schemaVersion = 4;
   migrated.privateStayLocation = typeof migrated.privateStayLocation === 'string' ? migrated.privateStayLocation : '';
+  const defaults = emptyPrivateBookings();
+  const storedBookings = isRecord(migrated.privateBookings) ? migrated.privateBookings : {};
+  migrated.privateBookings = Object.fromEntries(Object.entries(defaults).map(([id, fields]) => {
+    const stored = isRecord(storedBookings[id]) ? storedBookings[id] : {};
+    return [id, Object.fromEntries(Object.keys(fields).map((field) => [
+      field,
+      typeof stored[field] === 'string' ? stored[field] : '',
+    ]))];
+  }));
   migrated.checklist = isRecord(migrated.checklist) ? migrated.checklist : {};
   for (const id of VARIANTS) {
     migrated.variants[id].rainMode ??= {};

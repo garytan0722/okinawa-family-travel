@@ -1,4 +1,5 @@
-import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=25';
+import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=26';
+import { officialOtsUrl } from './private-bookings.mjs?v=26';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -198,7 +199,7 @@ function renderEvent(trip, event, completed, rainSelections) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=25" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=26" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -249,6 +250,43 @@ export function renderPrivateStayEditor(privateStayLocation = '') {
     ? `<a class="private-stay-link" href="${escapeHtml(mapUrl(privateStayLocation))}" target="_blank" rel="noopener noreferrer">開啟精確住宿導航</a>`
     : '<span class="private-stay-fallback">目前每日路線使用恩納村公開區域</span>';
   return `<article class="private-stay-editor"><span class="card-number">PRIVATE · DEVICE ONLY</span><h3>精確住宿定位</h3><p>可貼 Google Maps 地點、座標或完整地址；只保存在這台裝置、不寫進公開網站。匯出 JSON 備份時會包含此欄，請自行妥善保管。</p><label>私人住宿定位<input type="text" data-action="private-stay-location" value="${value}" placeholder="例如：Google Maps 地點、26.x,127.x"></label>${status}</article>`;
+}
+
+function privateField(id, field, label, value = '', type = 'text', placeholder = '') {
+  const secret = type === 'password';
+  return `<label>${escapeHtml(label)}<span class="private-input-row"><input type="${type}" data-action="private-booking-field" data-private-booking-id="${escapeHtml(id)}" data-private-booking-field="${escapeHtml(field)}" value="${escapeHtml(value)}" placeholder="${escapeHtml(placeholder)}" autocomplete="off">${secret ? `<button type="button" data-action="toggle-private-secret" aria-label="顯示或隱藏${escapeHtml(label)}">顯示</button><button type="button" data-action="copy-private-field">複製</button>` : ''}</span></label>`;
+}
+
+function rentalBookingCard(id, period, booking = {}) {
+  const detailUrl = officialOtsUrl(booking.detailUrl);
+  const contactUrl = officialOtsUrl(booking.contactUrl, 'contact');
+  return `<section class="private-booking-card">
+    <header><span aria-hidden="true">🚙</span><div><small>OTS RENTAL</small><h4>${escapeHtml(period)}</h4></div></header>
+    ${privateField(id, 'confirmationCode', '預約號碼', booking.confirmationCode, 'password', '貼上或由郵件自動擷取')}
+    ${privateField(id, 'detailUrl', '確認頁網址', booking.detailUrl, 'url', 'OTS 官方確認頁')}
+    ${privateField(id, 'contactUrl', '聯絡頁網址', booking.contactUrl, 'url', 'OTS 官方聯絡頁')}
+    <div class="private-booking-actions">${detailUrl ? `<a href="${escapeHtml(detailUrl)}" target="_blank" rel="noopener noreferrer">開啟確認頁</a>` : ''}${contactUrl ? `<a href="${escapeHtml(contactUrl)}" target="_blank" rel="noopener noreferrer">聯絡 OTS</a>` : ''}</div>
+  </section>`;
+}
+
+export function renderPrivateBookingVault(privateBookings = {}, privateStayLocation = '') {
+  const rental0924 = privateBookings.rental0924 ?? {};
+  const rental0930 = privateBookings.rental0930 ?? {};
+  const stay0930 = privateBookings.stay0930 ?? {};
+  const stayMap = privateStayLocation ? mapUrl(privateStayLocation) : '';
+  return `<article class="private-booking-vault">
+    <header class="private-vault-head"><span class="card-number">PRIVATE · DEVICE ONLY</span><h3>私人預約保險箱</h3><p>確認碼、專屬網址與精確地址只保存在這台裝置，不會上傳到 GitHub、PDF 或離線公開資料。</p></header>
+    <details class="private-mail-import"><summary>貼上 OTS 郵件，自動擷取兩筆預約</summary><p>解析只在瀏覽器內完成；姓名、Email 與完整郵件不會保存。</p><textarea data-action="ots-email-source" rows="5" placeholder="把 OTS 預約郵件貼在這裡"></textarea><button type="button" data-action="parse-ots-email">擷取並保存</button></details>
+    <div class="private-booking-grid">${rentalBookingCard('rental0924', '9/24 → 9/30', rental0924)}${rentalBookingCard('rental0930', '9/30 → 10/4', rental0930)}
+      <section class="private-booking-card private-booking-card--stay">
+        <header><span aria-hidden="true">🏠</span><div><small>PRIVATE STAY</small><h4>9/30 → 10/4 恩納村住宿</h4></div></header>
+        <label>精確住宿地址<span class="private-input-row"><input type="text" data-action="private-stay-location" value="${escapeHtml(privateStayLocation)}" placeholder="完整地址或 Google Maps 地點" autocomplete="street-address"><button type="button" data-action="copy-private-field">複製</button><button type="button" data-action="open-private-stay">導航</button></span></label>
+        ${privateField('stay0930', 'confirmationCode', '住宿確認碼', stay0930.confirmationCode, 'password', '如有確認碼可填入')}
+        <label>入住私人備註<textarea data-action="private-booking-field" data-private-booking-id="stay0930" data-private-booking-field="note" rows="3" placeholder="入住時間、聯絡方式；避免保存門鎖 PIN">${escapeHtml(stay0930.note)}</textarea></label>
+        <div class="private-booking-actions">${stayMap ? `<a href="${escapeHtml(stayMap)}" target="_blank" rel="noopener noreferrer">開啟精確住宿導航</a>` : '<span>尚未填入精確地址</span>'}</div>
+      </section>
+    </div>
+  </article>`;
 }
 
 export function renderChecklistView(trip, completed = {}) {

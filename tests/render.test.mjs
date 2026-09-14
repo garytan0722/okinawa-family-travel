@@ -4,6 +4,7 @@ import test from 'node:test';
 
 import {
   renderDay,
+  renderPrivateBookingVault,
   renderRainyDayView,
   renderSources,
   renderVariantTabs,
@@ -27,6 +28,24 @@ test('variant tabs expose selected state and all three pacing choices', () => {
   assert.match(html, /data-variant="C"/);
   assert.match(html, /景點豐富/);
   assert.equal(html.match(/class="variant-paw paw-print"/g)?.length, 3);
+});
+
+test('private booking vault keeps rental and lodging secrets editable on-device', () => {
+  const html = renderPrivateBookingVault({
+    rental0924: { confirmationCode: 'LOCAL-ONLY-CODE', detailUrl: '', contactUrl: '' },
+    rental0930: { confirmationCode: '', detailUrl: '', contactUrl: '' },
+    stay0930: { confirmationCode: '', note: '' },
+  }, 'Private stay location');
+
+  assert.match(html, /私人預約保險箱/);
+  assert.match(html, /9\/24.*9\/30/s);
+  assert.match(html, /9\/30.*10\/4/s);
+  assert.match(html, /data-action="parse-ots-email"/);
+  assert.match(html, /data-private-booking-id="rental0924"/);
+  assert.match(html, /type="password"[^>]*value="LOCAL-ONLY-CODE"/);
+  assert.match(html, /data-action="private-stay-location"[^>]*value="Private stay location"/);
+  assert.match(html, /只保存在這台裝置/);
+  assert.doesNotMatch(html, /data-private-booking-field="(?:name|email)"/i);
 });
 
 test('day timeline keeps chronological order and map links', () => {
@@ -113,7 +132,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=25" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=26" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
