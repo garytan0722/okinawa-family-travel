@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-03",
+  "updatedAt": "2026-09-14",
   "recheckBy": "2026-09-17",
   "meta": {
     "title": "沖繩遛小孩",
@@ -80,6 +80,15 @@
     }
   },
   "diningGuides": {
+    "kokusai-lunch": {
+      "title": "國際通抵達日親子午餐",
+      "routeNote": "取車後直接進國際通松尾端吃飯與短逛，15:30 前離開市區北上恩納。",
+      "checkedAt": "2026-09-14",
+      "options": [
+        { "rank": "首選", "name": "A&W 國際通松尾店", "food": "漢堡・兒童套餐", "familyNote": "9:00 開門、早餐供應至 11:00；午餐出餐快。", "mapQuery": "A&W 国際通り松尾店", "sourceId": "aw-kokusai", "paymentStatus": "cards-confirmed", "paymentNote": "A&W 官方付款頁確認可使用信用卡與電子支付。" },
+        { "rank": "備選", "name": "花笠食堂", "food": "沖繩家常定食", "familyNote": "位在平和通市場內，品項多且可分食；排隊太長就回 A&W。", "mapQuery": "花笠食堂 那覇", "paymentStatus": "unverified", "paymentNote": "未查到店家官方付款說明，請備現金。" }
+      ]
+    },
     "toyosaki-lunch": {
       "title": "豐崎快速親子午餐",
       "routeNote": "OTS 取車後到同區 iias 吃飯與補給，再直接沿西岸北上恩納，不回那霸市區。",
@@ -163,6 +172,41 @@
     }
   },
   "shoppingGuides": {
+    "kokusai-family-shopping": {
+      "title": "國際通親子短逛路線",
+      "routeNote": "以松尾到久茂地一小段為主；午餐後挑 2–3 家，15:30 前離開那霸北上。",
+      "checkedAt": "2026-09-14",
+      "paymentSummary": "唐吉訶德官方確認可刷卡；其餘未查到官方付款說明，請備現金並看店頭標示。",
+      "shops": [
+        { "name": "御菓子御殿 國際通松尾店", "category": "紅芋塔・沖繩伴手禮", "hours": "營業時間行前複核", "paymentStatus": "unverified", "paymentNote": "未查到本分店官方付款說明，請備現金。", "mapQuery": "御菓子御殿 国際通り松尾店" },
+        { "name": "Splash Okinawa 1號店", "category": "海洋風雜貨・親子小物", "hours": "營業時間行前複核", "paymentStatus": "unverified", "paymentNote": "未查到店家官方付款說明，請備現金。", "mapQuery": "Splash Okinawa 1号店" },
+        { "name": "Calbee+ 沖繩國際通店", "category": "現炸薯條・限定零食", "hours": "營業時間行前複核", "paymentStatus": "unverified", "paymentNote": "未查到分店官方付款說明，請備現金。", "mapQuery": "カルビープラス 沖縄国際通り店" },
+        { "name": "唐吉訶德 國際通店", "category": "藥妝・零食・旅行補給", "hours": "08:00–翌01:00", "paymentStatus": "cards-confirmed", "paymentNote": "官方店舖頁列有信用卡；無專用停車場。", "mapQuery": "ドン・キホーテ 国際通り店", "sourceId": "donki-kokusai" }
+      ]
+    },
+    "aeon-nago-family-shopping": {
+      "title": "AEON 名護親子採買清單",
+      "routeNote": "晚餐前先逛生活補給與童裝，最後到食品區；全程使用同一停車場。",
+      "checkedAt": "2026-09-14",
+      "paymentSummary": "官方店舖頁未逐櫃列付款方式；結帳前看店頭標示並保留現金。",
+      "shops": [
+        { "name": "AEON 名護食品區", "category": "水果・飲料・隔日補給", "hours": "08:00–23:00", "paymentStatus": "unverified", "paymentNote": "官方頁未列本次適用付款品牌，請現場確認。", "mapQuery": "イオン名護店", "sourceId": "aeon-nago" },
+        { "name": "THREEPPY AEON名護", "category": "可愛生活雜貨・兒童小物", "hours": "依商場營業時間", "paymentStatus": "unverified", "paymentNote": "官方商場頁未列付款方式，請備現金。", "mapQuery": "THREEPPY イオン名護店", "sourceId": "aeon-nago" },
+        { "name": "Mac-House AEON名護", "category": "休閒服・童裝備選", "hours": "依商場營業時間", "paymentStatus": "unverified", "paymentNote": "官方商場頁未列付款方式，請現場確認。", "mapQuery": "マックハウス イオン名護店", "sourceId": "aeon-nago" },
+        { "name": "Blue Seal AEON名護", "category": "冰淇淋休息站", "hours": "依商場營業時間", "paymentStatus": "unverified", "paymentNote": "官方商場頁未列付款方式，請備現金。", "mapQuery": "ブルーシール イオン名護店", "sourceId": "aeon-nago" }
+      ]
+    },
+    "owan-family-shopping": {
+      "title": "San-A 大灣晚餐前採買",
+      "routeNote": "先買藥妝與兒童小物，再吃晚餐；不需移車，結束後沿西岸北上恩納。",
+      "checkedAt": "2026-09-14",
+      "paymentSummary": "DAISO 官方確認可刷卡與電子支付；其他櫃位付款方式未逐店確認。",
+      "shops": [
+        { "name": "DAISO San-A 大灣 City", "category": "兒童用品・旅行收納・雨具", "hours": "09:00–22:00", "paymentStatus": "cards-confirmed", "paymentNote": "DAISO 官方頁列信用卡、電子錢包與行動支付。", "mapQuery": "ダイソー サンエー大湾シティ店", "sourceId": "daiso-owan" },
+        { "name": "松本清 San-A 大灣店", "category": "藥妝・防曬・常備品補給", "hours": "09:00–22:00", "paymentStatus": "unverified", "paymentNote": "官方商場資訊未列本分店付款品牌，請現場確認。", "mapQuery": "マツモトキヨシ 大湾シティ店", "sourceId": "matsukiyo-owan" },
+        { "name": "San-A 食品館", "category": "早餐・水果・飲料採買", "hours": "依商場營業時間", "paymentStatus": "unverified", "paymentNote": "公開頁未逐項列付款方式，請保留現金。", "mapQuery": "サンエー大湾シティ" }
+      ]
+    },
     "american-village-family-shopping": {
       "title": "美國村親子逛街路線",
       "routeNote": "從 American Depot A／B 館一路走到 Depot Island 海邊，不折返；孩子累時可只逛前三家，再直接吃飯看夕陽。",
@@ -176,6 +220,145 @@
         { "name": "OKINAWA MARKET", "category": "沖繩零食・T-shirt・美式雜貨", "hours": "11:00–20:00", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，建議備現金。", "mapQuery": "OKINAWA MARKET Depot Island", "sourceId": "okinawa-market" }
       ]
     }
+  },
+  "mealRecommendations": {
+    "tpe-breakfast": { "name": "桃園機場第二航廈早餐", "mapQuery": "桃園國際機場 第二航廈 美食廣場", "paymentStatus": "unverified", "paymentNote": "依當日營業櫃位為準，信用卡支援請看櫃位標示。", "familyNote": "安檢後挑粥、吐司或飯糰，避免登機前吃太油。" },
+    "tpe-backup": { "name": "桃園機場便利商店備餐", "mapQuery": "桃園國際機場 第二航廈 便利商店", "paymentStatus": "unverified", "paymentNote": "付款方式依現場櫃位，另備少量現金。", "familyNote": "班機早時可先買飯糰、香蕉與水上機前吃。" },
+    "kariyushi-breakfast": { "name": "嘉利吉飯店 THE DINING 早餐", "mapQuery": "沖縄かりゆしビーチリゾート THE DINING", "paymentStatus": "unverified", "paymentNote": "本次住宿含早餐；加購或其他消費付款方式請向飯店確認。", "familyNote": "06:30–10:00，7:30–8:30 較容易擁擠，帶幼兒建議 07:00 左右入場。", "sourceId": "kariyushi-dining" },
+    "lawson-onna": { "name": "LAWSON 恩納希望丘入口店", "mapQuery": "ローソン 恩納希望ヶ丘入口店", "paymentStatus": "unverified", "paymentNote": "未查核本店可用付款品牌，請備現金。", "familyNote": "錯過早餐或早出發時買飯糰、牛奶與香蕉。" },
+    "kokusai-aw": { "name": "A&W 國際通松尾店", "mapQuery": "A&W 国際通り松尾店", "paymentStatus": "cards-confirmed", "paymentNote": "A&W 官方確認可使用信用卡與電子支付。", "familyNote": "出餐快、有兒童套餐；抵達日先吃再短逛最穩。", "sourceId": "aw-kokusai" },
+    "kokusai-hanagasa": { "name": "花笠食堂", "mapQuery": "花笠食堂 那覇", "paymentStatus": "unverified", "paymentNote": "未查到店家官方付款說明，請備現金。", "familyNote": "沖繩家常定食可分食，候位太久就改首選。" },
+    "hotel-dinner": { "name": "嘉利吉飯店 THE DINING 晚餐", "mapQuery": "沖縄かりゆしビーチリゾート THE DINING", "paymentStatus": "unverified", "paymentNote": "未查核當日方案與付款方式，入住時確認。", "familyNote": "孩子累時不用再開車，最適合抵達日與長途日。", "sourceId": "kariyushi-dining" },
+    "seaside-drivein": { "name": "Seaside Drive-In", "mapQuery": "シーサイドドライブイン 恩納村", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，請備現金。", "familyNote": "58 號沿線、餐點跨度大，適合多人各選所需。", "sourceId": "seaside-drivein" },
+    "aw-nago-meal": { "name": "A&W 名護店", "mapQuery": "A&W 名護店", "paymentStatus": "cards-confirmed", "paymentNote": "A&W 官方確認可使用信用卡與電子支付。", "familyNote": "座位多、有得來速與兒童餐，銜接名護景點方便。", "sourceId": "aw-nago" },
+    "miyazato-soba": { "name": "宮里そば", "mapQuery": "宮里そば 名護", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請備現金。", "familyNote": "沖繩麵與白飯簡單，靠近 21 世紀之森。" },
+    "churahana": { "name": "美ら花 別邸", "mapQuery": "美ら花 別邸 名護", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請備現金。", "familyNote": "58 號旁有停車，部瀨名回程不繞路。" },
+    "kafuu-seragaki": { "name": "かふぅ 瀬良垣店", "mapQuery": "かふぅ 瀬良垣店", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請備現金。", "familyNote": "麵飯選擇單純，適合孩子快速用餐。" },
+    "gabusoka": { "name": "我部祖河食堂 名護店", "mapQuery": "我部祖河食堂 名護店", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請備現金。", "familyNote": "鳳梨園往 Neo Park 的順路沖繩麵。" },
+    "neopark-cafe-meal": { "name": "Neo Park しましましっぽ Cafe", "mapQuery": "ネオパークオキナワ カフェ", "paymentStatus": "unverified", "paymentNote": "未查到店內付款方式，請備現金。", "familyNote": "上午拖延時直接到景點用餐，少停一次車。", "sourceId": "neopark-cafe" },
+    "oceanblue": { "name": "Ocean Blue 古宇利海洋塔", "mapQuery": "Ocean Blue 古宇利オーシャンタワー", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，請備現金。", "familyNote": "就在海洋塔內，披薩適合親子共享。", "sourceId": "kouri-restaurant" },
+    "kouri-shrimp-meal": { "name": "KOURI SHRIMP", "mapQuery": "KOURI SHRIMP", "paymentStatus": "unverified", "paymentNote": "未查到官方付款方式，請備現金。", "familyNote": "蒜蝦飯可外帶；座位不便就帶走。", "sourceId": "kouri-shrimp" },
+    "aeon-gokoku": { "name": "五穀 AEON 名護店", "mapQuery": "五穀 イオン名護店", "paymentStatus": "unverified", "paymentNote": "商場官方頁未列櫃位付款方式，請現場確認。", "familyNote": "定食、魚肉與白飯選擇完整。", "sourceId": "aeon-nago" },
+    "aeon-hanamaru": { "name": "はなまるうどん AEON 名護店", "mapQuery": "はなまるうどん イオン名護店", "paymentStatus": "unverified", "paymentNote": "商場官方頁未列櫃位付款方式，請現場確認。", "familyNote": "出餐快、份量可調，孩子累時最好用。", "sourceId": "aeon-nago" },
+    "ishikawa-wafutei": { "name": "和風亭 石川 City店", "mapQuery": "和風亭 石川シティ店", "paymentStatus": "unverified", "paymentNote": "未查核店頭付款品牌，請備現金。", "familyNote": "壽司、烏龍麵與兒童餐集中。", "sourceId": "san-a-wafutei" },
+    "ishikawa-ohsho": { "name": "大阪王將 石川 City店", "mapQuery": "大阪王将 石川シティ店", "paymentStatus": "unverified", "paymentNote": "官方店頁未列付款方式，請備現金。", "familyNote": "餃子炒飯容易共享，商場停車方便。", "sourceId": "osaka-ohsho-ishikawa" },
+    "owan-wafutei": { "name": "和風亭 大灣 City店", "mapQuery": "和風亭 大湾シティ店", "paymentStatus": "unverified", "paymentNote": "未查核店頭付款品牌，請備現金。", "familyNote": "日式定食與兒童餐，採買後直接吃。", "sourceId": "san-a-wafutei" },
+    "owan-ohsho": { "name": "大阪王將 大灣 City店", "mapQuery": "大阪王将 大湾シティ店", "paymentStatus": "unverified", "paymentNote": "官方店頁未列付款方式，請備現金。", "familyNote": "多人共享彈性高，孩子可吃炒飯與餃子。", "sourceId": "osaka-ohsho" },
+    "onna-pipara": { "name": "恩菜食房 ぴぱら", "mapQuery": "恩菜食房 ぴぱら おんなの駅", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，請備現金。", "familyNote": "共用座位與停車，沖繩麵好分食。", "sourceId": "onna-no-eki" },
+    "airport-aw": { "name": "A&W 那霸機場店", "mapQuery": "A&W 那覇空港店", "paymentStatus": "cards-confirmed", "paymentNote": "A&W 官方確認可使用信用卡與電子支付。", "familyNote": "抵達、會合或回程報到前的快速保底。", "sourceId": "aw-naha-airport" },
+    "cc-breakfast-meal": { "name": "C&C BREAKFAST", "mapQuery": "C&C BREAKFAST OKINAWA", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，請備現金。", "familyNote": "早午餐份量完整；多人時需預留候位。", "sourceId": "cc-breakfast" },
+    "toyosaki-aw": { "name": "A&W iias 沖繩豐崎店", "mapQuery": "A&W イーアス沖縄豊崎店", "paymentStatus": "cards-confirmed", "paymentNote": "A&W 官方確認可使用信用卡與電子支付。", "familyNote": "換車後同區快速吃，不增加路線折返。", "sourceId": "aw-toyosaki" },
+    "toyosaki-hanamaru": { "name": "はなまるうどん iias 沖繩豐崎店", "mapQuery": "はなまるうどん イーアス沖縄豊崎店", "paymentStatus": "unverified", "paymentNote": "未查核櫃位付款方式，請備現金。", "familyNote": "出餐快、孩子方便分食。", "sourceId": "iias-gourmet" },
+    "umikaji-kijimunaa": { "name": "タコライスcafe きじむなぁ 瀨長島店", "mapQuery": "きじむなぁ 瀬長島ウミカジテラス店", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請備現金。", "familyNote": "蛋包塔可飯容易分食，景觀區內不移車。" },
+    "umikaji-posillipo": { "name": "POSILLIPO cucina meridionale", "mapQuery": "POSILLIPO 瀬長島", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請現場確認。", "familyNote": "多人想坐下慢吃的義式備選，先看候位。" },
+    "naha-main-wafutei": { "name": "和風亭 Naha Main Place店", "mapQuery": "和風亭 那覇メインプレイス店", "paymentStatus": "unverified", "paymentNote": "未查核櫃位付款方式，請備現金。", "familyNote": "六人都能選到麵飯，商場停車方便。", "sourceId": "san-a-main-place" },
+    "naha-main-aw": { "name": "A&W Naha Main Place店", "mapQuery": "A&W 那覇メインプレイス店", "paymentStatus": "cards-confirmed", "paymentNote": "A&W 官方確認可使用信用卡與電子支付。", "familyNote": "晚到時快速吃完再回恩納。" },
+    "private-breakfast": { "name": "住宿附近便利商店早餐", "mapQuery": "恩納村 希望ヶ丘 コンビニ", "paymentStatus": "unverified", "paymentNote": "店別未固定，付款方式以現場標示為準。", "familyNote": "前晚先買飯糰、牛奶、水果，早晨不用排隊。" },
+    "private-cafe": { "name": "恩納村希望丘早餐咖啡店", "mapQuery": "恩納村 希望ヶ丘 朝食 カフェ", "paymentStatus": "unverified", "paymentNote": "尚未固定店家，請備現金並看當日營業。", "familyNote": "不趕行程日再選；固定活動日優先便利商店。" },
+    "churaumi-inoh": { "name": "Restaurant INOH 海洋博公園", "mapQuery": "レストラン イノー 海洋博公園", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，請現場確認。", "familyNote": "園區內用餐，六人不用再移車。" },
+    "churaumi-oceanblue": { "name": "Cafe Ocean Blue 美麗海水族館", "mapQuery": "カフェ オーシャンブルー 美ら海水族館", "paymentStatus": "unverified", "paymentNote": "官方頁未列付款方式，請現場確認。", "familyNote": "想少走路可留在館內簡單吃。" },
+    "american-aw": { "name": "A&W 牧港店", "mapQuery": "A&W 牧港店", "paymentStatus": "cards-confirmed", "paymentNote": "A&W 官方確認可使用信用卡與電子支付。", "familyNote": "美國村前後的快速保底，兒童餐好處理。" },
+    "american-sushi": { "name": "くら寿司 沖繩北谷店", "mapQuery": "くら寿司 沖縄北谷店", "paymentStatus": "unverified", "paymentNote": "未查核本店付款方式，請備現金。", "familyNote": "六人座位與孩子可選品項較有彈性。" },
+    "minatogawa-ohacorte": { "name": "oHacorté 港川本店", "mapQuery": "オハコルテ 港川本店", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請備現金。", "familyNote": "水果塔與輕食，適合浮潛後少量補充。" },
+    "minatogawa-ippe": { "name": "ippe coppe", "mapQuery": "ippe coppe 港川", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請備現金。", "familyNote": "麵包可外帶，孩子累時不必久坐。" },
+    "rycom-aw": { "name": "A&W AEON Mall Rycom店", "mapQuery": "A&W イオンモール沖縄ライカム店", "paymentStatus": "cards-confirmed", "paymentNote": "A&W 官方確認可使用信用卡與電子支付。", "familyNote": "晚餐保底，逛街後直接吃。" },
+    "rycom-sushi": { "name": "くら寿司 AEON Mall Rycom店", "mapQuery": "くら寿司 イオンモール沖縄ライカム店", "paymentStatus": "unverified", "paymentNote": "未查核本店付款方式，請備現金。", "familyNote": "六人可各取所需，尖峰先取號。" },
+    "shimujo-meal": { "name": "沖縄そばの店 しむじょう", "mapQuery": "沖縄そばの店 しむじょう", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請備現金。", "familyNote": "既定午餐，售完可能提早結束，避免晚到。", "sourceId": "shimujo" },
+    "eibun": { "name": "OKINAWA SOBA EIBUN", "mapQuery": "OKINAWA SOBA EIBUN", "paymentStatus": "unverified", "paymentNote": "未查到官方付款說明，請備現金。", "familyNote": "しむじょう售完時的那霸市區備選。" },
+    "parco-wafutei": { "name": "和風亭 PARCO CITY店", "mapQuery": "和風亭 パルコシティ店", "paymentStatus": "unverified", "paymentNote": "未查核櫃位付款方式，請備現金。", "familyNote": "定食與兒童餐，六人較容易分流選餐。" },
+    "parco-aw": { "name": "A&W PARCO CITY店", "mapQuery": "A&W パルコシティ店", "paymentStatus": "cards-confirmed", "paymentNote": "A&W 官方確認可使用信用卡與電子支付。", "familyNote": "時間晚或孩子累時快速用餐。" },
+    "airport-porkegg": { "name": "ポーたま 那霸機場國內線店", "mapQuery": "ポーたま 那覇空港国内線到着ロビー店", "paymentStatus": "unverified", "paymentNote": "未查核本店付款方式，請備現金。", "familyNote": "還車後可外帶飯糰，配合不同班機時間。" },
+    "tpe-dinner": { "name": "桃園機場第二航廈抵達後晚餐", "mapQuery": "桃園國際機場 第二航廈 美食廣場", "paymentStatus": "unverified", "paymentNote": "依抵達時仍營業櫃位為準，付款方式看店頭標示。", "familyNote": "譚家四口若不餓可直接返家；小倆口晚班機建議先在那霸吃。" }
+  },
+  "dailyMealPlans": {
+    "A": {
+      "2026-09-24": { "breakfast": { "time": "06:00", "primaryId": "tpe-breakfast", "backupId": "tpe-backup" }, "lunch": { "time": "13:15", "primaryId": "kokusai-aw", "backupId": "kokusai-hanagasa" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-25": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:15", "primaryId": "aw-nago-meal", "backupId": "miyazato-soba" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-26": { "breakfast": { "time": "07:15", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:30", "primaryId": "gabusoka", "backupId": "neopark-cafe-meal" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-27": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "11:30", "primaryId": "oceanblue", "backupId": "kouri-shrimp-meal" }, "dinner": { "time": "17:00", "primaryId": "aeon-gokoku", "backupId": "aeon-hanamaru" } },
+      "2026-09-28": { "breakfast": { "time": "07:15", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:30", "primaryId": "ishikawa-wafutei", "backupId": "ishikawa-ohsho" }, "dinner": { "time": "18:00", "primaryId": "owan-wafutei", "backupId": "owan-ohsho" } },
+      "2026-09-29": { "breakfast": { "time": "07:30", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:30", "primaryId": "seaside-drivein", "backupId": "onna-pipara" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-30": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "airport-aw" }, "lunch": { "time": "13:00", "primaryId": "toyosaki-aw", "backupId": "toyosaki-hanamaru" }, "dinner": { "time": "17:30", "primaryId": "kokusai-aw", "backupId": "naha-main-wafutei" } },
+      "2026-10-01": { "breakfast": { "time": "07:00", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "12:30", "primaryId": "churaumi-inoh", "backupId": "churaumi-oceanblue" }, "dinner": { "time": "18:00", "primaryId": "american-sushi", "backupId": "american-aw" } },
+      "2026-10-02": { "breakfast": { "time": "06:45", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "12:00", "primaryId": "onna-pipara", "backupId": "seaside-drivein" }, "dinner": { "time": "17:30", "primaryId": "rycom-sushi", "backupId": "rycom-aw" } },
+      "2026-10-03": { "breakfast": { "time": "07:00", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "11:30", "primaryId": "cc-breakfast-meal", "backupId": "kokusai-aw" }, "dinner": { "time": "17:30", "primaryId": "parco-wafutei", "backupId": "parco-aw" } },
+      "2026-10-04": { "breakfast": { "time": "07:00", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "12:45", "primaryId": "airport-porkegg", "backupId": "airport-aw" }, "dinner": { "time": "18:00", "primaryId": "tpe-dinner", "backupId": "airport-aw" } }
+    },
+    "B": {
+      "2026-09-24": { "breakfast": { "time": "06:00", "primaryId": "tpe-breakfast", "backupId": "tpe-backup" }, "lunch": { "time": "13:15", "primaryId": "kokusai-aw", "backupId": "kokusai-hanagasa" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-25": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:15", "primaryId": "aw-nago-meal", "backupId": "miyazato-soba" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-26": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "13:00", "primaryId": "gabusoka", "backupId": "neopark-cafe-meal" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-27": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "11:30", "primaryId": "oceanblue", "backupId": "kouri-shrimp-meal" }, "dinner": { "time": "17:00", "primaryId": "aeon-gokoku", "backupId": "aeon-hanamaru" } },
+      "2026-09-28": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:30", "primaryId": "ishikawa-wafutei", "backupId": "ishikawa-ohsho" }, "dinner": { "time": "18:00", "primaryId": "owan-wafutei", "backupId": "owan-ohsho" } },
+      "2026-09-29": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:45", "primaryId": "seaside-drivein", "backupId": "onna-pipara" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-30": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "airport-aw" }, "lunch": { "time": "13:00", "primaryId": "cc-breakfast-meal", "backupId": "kokusai-aw" }, "dinner": { "time": "18:30", "primaryId": "naha-main-wafutei", "backupId": "naha-main-aw" } },
+      "2026-10-01": { "breakfast": { "time": "07:00", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "12:30", "primaryId": "churaumi-inoh", "backupId": "churaumi-oceanblue" }, "dinner": { "time": "18:00", "primaryId": "american-sushi", "backupId": "american-aw" } },
+      "2026-10-02": { "breakfast": { "time": "06:45", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "13:00", "primaryId": "minatogawa-ohacorte", "backupId": "minatogawa-ippe" }, "dinner": { "time": "17:30", "primaryId": "rycom-sushi", "backupId": "rycom-aw" } },
+      "2026-10-03": { "breakfast": { "time": "07:00", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "11:30", "primaryId": "shimujo-meal", "backupId": "eibun" }, "dinner": { "time": "17:30", "primaryId": "parco-wafutei", "backupId": "parco-aw" } },
+      "2026-10-04": { "breakfast": { "time": "07:00", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "12:45", "primaryId": "airport-porkegg", "backupId": "airport-aw" }, "dinner": { "time": "18:00", "primaryId": "airport-aw", "backupId": "tpe-dinner" } }
+    },
+    "C": {
+      "2026-09-24": { "breakfast": { "time": "06:00", "primaryId": "tpe-breakfast", "backupId": "tpe-backup" }, "lunch": { "time": "13:15", "primaryId": "kokusai-aw", "backupId": "kokusai-hanagasa" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-25": { "breakfast": { "time": "07:30", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:30", "primaryId": "churahana", "backupId": "kafuu-seragaki" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-26": { "breakfast": { "time": "07:30", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:30", "primaryId": "gabusoka", "backupId": "neopark-cafe-meal" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-27": { "breakfast": { "time": "07:15", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "11:30", "primaryId": "oceanblue", "backupId": "kouri-shrimp-meal" }, "dinner": { "time": "17:00", "primaryId": "aeon-gokoku", "backupId": "aeon-hanamaru" } },
+      "2026-09-28": { "breakfast": { "time": "07:30", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "13:15", "primaryId": "ishikawa-wafutei", "backupId": "ishikawa-ohsho" }, "dinner": { "time": "17:00", "primaryId": "owan-wafutei", "backupId": "owan-ohsho" } },
+      "2026-09-29": { "breakfast": { "time": "07:30", "primaryId": "kariyushi-breakfast", "backupId": "lawson-onna" }, "lunch": { "time": "12:30", "primaryId": "seaside-drivein", "backupId": "onna-pipara" }, "dinner": { "time": "18:00", "primaryId": "hotel-dinner", "backupId": "seaside-drivein" } },
+      "2026-09-30": { "breakfast": { "time": "07:00", "primaryId": "kariyushi-breakfast", "backupId": "airport-aw" }, "lunch": { "time": "13:15", "primaryId": "umikaji-kijimunaa", "backupId": "umikaji-posillipo" }, "dinner": { "time": "18:00", "primaryId": "seaside-drivein", "backupId": "onna-pipara" } },
+      "2026-10-01": { "breakfast": { "time": "07:00", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "13:30", "primaryId": "churaumi-inoh", "backupId": "churaumi-oceanblue" }, "dinner": { "time": "18:00", "primaryId": "seaside-drivein", "backupId": "onna-pipara" } },
+      "2026-10-02": { "breakfast": { "time": "06:45", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "13:00", "primaryId": "onna-pipara", "backupId": "seaside-drivein" }, "dinner": { "time": "17:00", "primaryId": "american-sushi", "backupId": "american-aw" } },
+      "2026-10-03": { "breakfast": { "time": "08:00", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "12:00", "primaryId": "cc-breakfast-meal", "backupId": "kokusai-aw" }, "dinner": { "time": "17:30", "primaryId": "parco-wafutei", "backupId": "parco-aw" } },
+      "2026-10-04": { "breakfast": { "time": "07:00", "primaryId": "private-breakfast", "backupId": "private-cafe" }, "lunch": { "time": "12:45", "primaryId": "airport-porkegg", "backupId": "airport-aw" }, "dinner": { "time": "18:00", "primaryId": "airport-aw", "backupId": "tpe-dinner" } }
+    }
+  },
+  "preTripChecklist": {
+    "categories": [
+      { "id": "documents", "label": "證件與預約", "icon": "▣", "items": [
+        { "id": "documents-passport", "label": "全員護照與效期", "note": "另留離線影本，和正本分開保管。" },
+        { "id": "documents-flights", "label": "機票、住宿、租車與浮潛確認", "note": "截圖保存班機、OTS 與青潛預約。" },
+        { "id": "documents-insurance", "label": "旅遊保險與保單聯絡方式", "note": "保單號碼離線保存。" }
+      ] },
+      { "id": "medical", "label": "醫藥與急救", "icon": "＋", "items": [
+        { "id": "medical-allergy", "label": "兒童過敏藥水", "note": "原包裝攜帶，備足旅程天數並加 2 天。" },
+        { "id": "medical-nosebleed", "label": "鼻血處理包", "note": "生理食鹽水、紗布、濕紙巾與小垃圾袋；流血時身體前傾並壓鼻翼 10–15 分鐘。" },
+        { "id": "medical-adult", "label": "成人退燒與腸胃常備藥", "note": "使用原包裝，攜帶處方或藥品說明。" },
+        { "id": "medical-thermometer", "label": "體溫計、退熱貼與基本 OK 繃", "note": "藥物劑量依醫師或藥師指示。" }
+      ] },
+      { "id": "children", "label": "兒童在車上", "icon": "★", "items": [
+        { "id": "children-seat", "label": "兩張合齡汽座確認", "note": "取車時先確認固定方式與安全帶。" },
+        { "id": "children-snacks", "label": "水壺、低碎屑點心與暈車袋", "note": "長途北上日放在隨手可取的位置。" },
+        { "id": "children-id", "label": "走失聯絡卡與近期照片", "note": "卡片只寫必要電話，不放公開網站。" }
+      ] },
+      { "id": "weather", "label": "天氣與防曬", "icon": "☂", "items": [
+        { "id": "weather-rain", "label": "摺疊傘、輕便雨衣與防水袋", "note": "幼兒雨衣比共撐傘更方便。" },
+        { "id": "weather-sun", "label": "防曬、遮陽帽與補水", "note": "戶外日定時補擦與喝水。" },
+        { "id": "weather-typhoon", "label": "出發前複核颱風、海況與場館營業", "note": "尤其 9/25 玻璃船與 10/2 浮潛。" }
+      ] },
+      { "id": "snorkeling", "label": "浮潛固定行程", "icon": "≈", "items": [
+        { "id": "snorkeling-kit", "label": "泳衣先穿、浴巾、乾衣、拖鞋與水", "note": "10/2 08:00 集合，08:20 後到場可能取消。" },
+        { "id": "snorkeling-health", "label": "參加者健康狀況已向青潛確認", "note": "服藥、氣喘或特殊疾病事前主動詢問。" },
+        { "id": "snorkeling-parking", "label": "集合停車位與 MapCode 已離線截圖", "note": "不要停到鄰居車位。" }
+      ] },
+      { "id": "driving", "label": "自駕與租車", "icon": "▰", "items": [
+        { "id": "driving-license", "label": "台灣駕照、駕照日文譯本與護照", "note": "駕駛人資料放在同一隨身資料夾。" },
+        { "id": "driving-ots", "label": "OTS 取還車時間與事故窗口離線保存", "note": "9/30 11:30 取新車、12:00 還舊車；10/4 12:30 還車。" },
+        { "id": "driving-fuel", "label": "最後加油站、ETC 與停車現金", "note": "還車前保留加油收據。" }
+      ] },
+      { "id": "electronics", "label": "電子與離線資料", "icon": "⌁", "items": [
+        { "id": "electronics-power", "label": "行動電源與充電線", "note": "行動電源必須隨身上機，不可托運。" },
+        { "id": "electronics-offline", "label": "離線地圖、行程備份與重要截圖", "note": "網站記錄換手機前先匯出 JSON。" },
+        { "id": "electronics-esim", "label": "eSIM／漫遊與緊急聯絡測試", "note": "抵達前確認可收簡訊與撥日本電話。" }
+      ] },
+      { "id": "money", "label": "付款與現金", "icon": "¥", "items": [
+        { "id": "money-cards", "label": "兩張不同發卡組織信用卡", "note": "分開保管，先開啟海外交易。" },
+        { "id": "money-cash", "label": "日圓現金與零錢", "note": "付款未確認店家、停車與小店使用。" },
+        { "id": "money-pass", "label": "套票購買與啟用日期複核", "note": "A／B 建議兩張成人三合一；C 建議單買。" }
+      ] },
+      { "id": "home", "label": "出門前家務", "icon": "⌂", "items": [
+        { "id": "home-power", "label": "瓦斯、水電、門窗與垃圾", "note": "長天數離家前逐項確認。" },
+        { "id": "home-copies", "label": "行程與緊急聯絡留給家人", "note": "只分享必要資訊，不轉傳門鎖資料。" }
+      ] }
+    ]
   },
   "ticketInfo": [
     { "id": "bestdive", "kind": "activity", "label": "青潛青洞浮潛", "price": "成人（16～65歲）¥6,000／兒童（4～14歲）¥9,000", "note": "兒童自動安排私人組別；費用含基本裝備與活動保險，實際預約內容以確認訊息為準。", "sourceId": "bestdive", "checkedAt": "2026-08-29" },
@@ -261,6 +444,14 @@
     "whyNotFivePass": "五合一必須在啟用後連續 5 天內用完；本行程前段可省的景點與後段美麗海相隔太久。硬湊 9/27–10/1 的可用景點，每位大人約只省 ¥280，還會犧牲較省且更符合 A／B 排程的三合一。"
   },
   "sources": [
+    { "id": "kariyushi-dining", "label": "嘉利吉 THE DINING 官方早餐資訊", "url": "https://kariyushi-oceanspa.jp/restaurant/dining/", "checkedAt": "2026-09-14" },
+    { "id": "aw-kokusai", "label": "A&W 國際通松尾店與官方付款資訊", "url": "https://www.awok.co.jp/shopsearch/kokusai_matsuo/", "checkedAt": "2026-09-14" },
+    { "id": "donki-kokusai", "label": "唐吉訶德國際通店官方營業與付款資訊", "url": "https://www.donki.com/store/shop_detail.php?shop_id=713", "checkedAt": "2026-09-14" },
+    { "id": "daiso-owan", "label": "DAISO San-A 大灣 City店官方付款資訊", "url": "https://www.daiso-sangyo.co.jp/shop/detail/002063", "checkedAt": "2026-09-14" },
+    { "id": "matsukiyo-owan", "label": "San-A 松本清官方店舖資訊", "url": "https://www.san-a.co.jp/matsumotokiyoshi/", "checkedAt": "2026-09-14" },
+    { "id": "taiwan-cdc-travel-kit", "label": "台灣疾管署旅遊健康包建議", "url": "https://www.cdc.gov.tw/Category/ListContent/wL-8Abm9o5_5l4gSOR8M5g?uaid=SjM_AQg3Aor9Co4xx0KVwg", "checkedAt": "2026-09-14" },
+    { "id": "japan-mhlw-medicine", "label": "日本厚生勞動省個人攜帶藥品規定", "url": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/kenkou_iryou/iyakuhin/kojinyunyu/topics/tp010401-1_00001.html", "checkedAt": "2026-09-14" },
+    { "id": "nhs-nosebleed", "label": "NHS 鼻血急救步驟", "url": "https://www.nhs.uk/conditions/nosebleed/", "checkedAt": "2026-09-14" },
     { "id": "klook-tokutoku", "label": "Klook 沖繩美麗海五合一／三合一套票", "url": "https://www.klook.com/zh-TW/activity/8900-churaumi-toku-toku-5-pass-okinawa/", "checkedAt": "2026-09-03" },
     { "id": "jtb-tokutoku", "label": "JTB 2026 TokuToku Pass 官方設施與價格", "url": "https://www.jtb.co.jp/cvstkt/tokutokuticket/", "checkedAt": "2026-09-03" },
     { "id": "american-depot", "label": "美國村官方・AMERICAN DEPOT", "url": "https://www.okinawa-americanvillage.com/shop/american-depot/", "checkedAt": "2026-09-03" },
@@ -490,12 +681,12 @@
   "days": {
     "A": [
       {
-        "date": "2026-09-24", "title": "抵達・把第一天留給適應", "area": "豐崎 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "約 60–75 分，視那霸交通", "rainPlan": "取車後直接到飯店；用室內泳池或房內休息取代海灘。",
+        "date": "2026-09-24", "title": "抵達・國際通午餐短逛・恩納入住", "area": "豐崎 → 那霸國際通 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 100–135 分，15:30 前離開那霸避開晚尖峰", "rainPlan": "國際通只走騎樓與商店；雨太大就吃完直接到飯店。",
         "events": [
           { "id": "A-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛；入境領行李後替孩子補水、上洗手間。" },
           { "id": "A-0924-2", "time": "12:00", "type": "car", "title": "OTS 取第一台車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "確認兩張兒童座椅、ETC與行李空間。", "sourceIds": ["ots"] },
-          { "id": "A-0924-3", "time": "13:00", "type": "meal", "title": "iias 豐崎快速親子午餐＋補給", "place": "イーアス沖縄豊崎", "mapQuery": "A&W イーアス沖縄豊崎店", "note": "同館吃飯與補給後直接北上恩納，不回那霸市區。", "diningGuideId": "toyosaki-lunch" },
-          { "id": "A-0924-4", "time": "15:30", "type": "stay", "title": "飯店入住、泳池或海邊散步", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "不再加景點，讓孩子調整。", "sourceIds": ["kariyushi"], "rainBackupIds": ["iias-toyosaki", "dmm-aquarium", "ashibinaa"] }
+          { "id": "A-0924-3", "time": "13:20", "type": "meal", "title": "國際通午餐與親子短逛", "place": "國際通松尾 → 久茂地", "mapQuery": "A&W 国際通り松尾店", "note": "午餐後只挑 2–3 家商店，15:30 硬離開北上恩納。", "diningGuideId": "kokusai-lunch", "shoppingGuideId": "kokusai-family-shopping" },
+          { "id": "A-0924-4", "time": "17:00", "type": "stay", "title": "飯店入住、泡澡與早睡", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "不再加景點，讓孩子調整。", "sourceIds": ["kariyushi"], "rainBackupIds": ["iias-toyosaki", "dmm-aquarium", "ashibinaa"] }
         ]
       },
       {
@@ -523,7 +714,7 @@
           { "id": "A-0927-1", "time": "09:30", "type": "activity", "title": "古宇利海洋塔", "place": "古宇利オーシャンタワー", "mapQuery": "古宇利オーシャンタワー", "note": "搭園內車上塔看古宇利大橋；遇強風依現場調整。", "sourceIds": ["kouri"], "rainBackupIds": ["yambaru-toy-museum","kuina-forest","nago-pineapple"] },
           { "id": "A-0927-2", "time": "11:30", "type": "meal", "title": "古宇利島上直接午餐", "place": "古宇利島", "mapQuery": "Ocean Blue 古宇利オーシャンタワー", "note": "12:30前離開，直接往國頭山區，不下橋後再找店。", "diningGuideId": "kouri-lunch" },
           { "id": "A-0927-3", "time": "13:30", "type": "activity", "title": "やんばる森のおもちゃ美術館", "place": "やんばる森のおもちゃ美術館", "mapQuery": "やんばる森のおもちゃ美術館", "navigationUrl": "https://maps.app.goo.gl/x5uAXns3p6EgxshAA?g_st=il", "note": "週日可能採2小時入館制；16:00閉館、最晚15:30入館。", "sourceIds": ["toy-museum"], "rainBackupIds": ["yambaru-toy-museum","kuina-forest","nago-pineapple"] },
-          { "id": "A-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、親子晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "南下後一次完成晚餐與補給，再沿58號回飯店。", "diningGuideId": "aeon-nago-dinner", "sourceIds": ["aeon-nago"] },
+          { "id": "A-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、親子晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "南下後一次完成晚餐與補給，再沿58號回飯店。", "diningGuideId": "aeon-nago-dinner", "shoppingGuideId": "aeon-nago-family-shopping", "sourceIds": ["aeon-nago"] },
           { "id": "A-0927-5", "time": "18:00", "type": "drive", "title": "返回飯店", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
         ]
       },
@@ -534,7 +725,7 @@
           { "id": "A-0928-2", "time": "10:00", "type": "activity", "title": "沖繩兒童王國＋Wonder Museum", "place": "沖縄こどもの国", "mapQuery": "沖縄こどもの国", "note": "戶外動物與室內探索各抓一段。", "sourceIds": ["zoo"], "rainBackupIds": ["adventure-okinawa","cave-okinawa","aeon-rycom"] },
           { "id": "A-0928-3", "time": "13:00", "type": "meal", "title": "サンエー石川シティ親子午餐", "place": "サンエー石川シティ", "mapQuery": "和風亭 石川シティ店", "note": "一路北上到石川吃飯，再進冒險王國，不回沖繩市找餐廳。", "diningGuideId": "ishikawa-lunch" },
           { "id": "A-0928-4", "time": "14:30", "type": "activity", "title": "釣って見つけるぼうけんの国 沖縄", "place": "釣って見つけるぼうけんの国 沖縄", "mapQuery": "釣って見つけるぼうけんの国 沖縄", "navigationUrl": "https://maps.app.goo.gl/ZqBSD95bMudWB7G9A?g_st=il", "note": "13:30～14:00部分區域維護；建議事先預約，免費停車100台但額滿可能限制入場。", "sourceIds": ["adventure-okinawa", "adventure-okinawa-info"], "rainBackupIds": ["adventure-okinawa","cave-okinawa","aeon-rycom"] },
-          { "id": "A-0928-5", "time": "18:15", "type": "meal", "title": "サンエー大湾シティ親子晚餐", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "冒險王國後往西到讀谷吃飯，再沿西岸北上飯店。", "diningGuideId": "owan-dinner" },
+          { "id": "A-0928-5", "time": "18:15", "type": "meal", "title": "サンエー大湾シティ親子晚餐", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "冒險王國後往西到讀谷吃飯，再沿西岸北上飯店。", "diningGuideId": "owan-dinner", "shoppingGuideId": "owan-family-shopping" },
           { "id": "A-0928-6", "time": "19:30", "type": "drive", "title": "沿西岸返回飯店", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "晚餐後只剩北上，不再折返石川。", "sourceIds": ["kariyushi"] }
         ]
       },
@@ -598,11 +789,11 @@
       }
     ],
     "B": [
-      { "date": "2026-09-24", "title": "抵達・豐崎補給・恩納入住", "area": "豐崎 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "約 60–75 分", "rainPlan": "取車後直接入住。", "events": [
+      { "date": "2026-09-24", "title": "抵達・國際通午餐短逛・恩納入住", "area": "豐崎 → 那霸國際通 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 100–135 分", "rainPlan": "雨大時國際通只吃飯與逛室內店，15:30 前北上。", "events": [
         { "id": "B-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達、入境與領行李", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛，10:45 抵達。" },
         { "id": "B-0924-2", "time": "12:00", "type": "car", "title": "OTS取車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "確認兒童座椅。", "sourceIds": ["ots"] },
-        { "id": "B-0924-3", "time": "13:00", "type": "meal", "title": "iias豐崎快速親子午餐與補給", "place": "イーアス沖縄豊崎", "mapQuery": "A&W イーアス沖縄豊崎店", "note": "同館吃飯、補給後直接北上恩納。", "diningGuideId": "toyosaki-lunch" },
-        { "id": "B-0924-4", "time": "16:00", "type": "stay", "title": "入住、飯店巡禮", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
+        { "id": "B-0924-3", "time": "13:20", "type": "meal", "title": "國際通午餐與親子短逛", "place": "國際通松尾 → 久茂地", "mapQuery": "A&W 国際通り松尾店", "note": "午餐後挑 2–3 家商店，15:30 硬離開。", "diningGuideId": "kokusai-lunch", "shoppingGuideId": "kokusai-family-shopping" },
+        { "id": "B-0924-4", "time": "17:00", "type": "stay", "title": "入住、飯店巡禮", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-25", "title": "部瀨名玻璃船・名護海灘", "area": "部瀨名 → 名護", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 60–85 分", "rainPlan": "海況停航就取消玻璃船；海灘改飯店室內設施。", "events": [
         { "id": "B-0925-1", "time": "09:00", "type": "activity", "title": "部瀨名玻璃底船", "place": "ブセナ海中公園", "mapQuery": "ブセナ海中公園", "note": "先查海況與航班。", "sourceIds": ["busena"], "rainBackupIds": ["nago-pineapple","adventure-okinawa","yambaru-toy-museum"] },
@@ -622,14 +813,14 @@
         { "id": "B-0927-1", "time": "09:15", "type": "activity", "title": "古宇利海洋塔", "place": "古宇利オーシャンタワー", "mapQuery": "古宇利オーシャンタワー", "sourceIds": ["kouri"], "rainBackupIds": ["yambaru-toy-museum","kuina-forest","nago-pineapple"] },
         { "id": "B-0927-2", "time": "11:30", "type": "meal", "title": "古宇利島上直接午餐", "place": "古宇利島", "mapQuery": "Ocean Blue 古宇利オーシャンタワー", "note": "12:30前直接往國頭，不下橋後再找店。", "diningGuideId": "kouri-lunch" },
         { "id": "B-0927-3", "time": "13:30", "type": "activity", "title": "やんばる森のおもちゃ美術館", "place": "やんばる森のおもちゃ美術館", "mapQuery": "やんばる森のおもちゃ美術館", "navigationUrl": "https://maps.app.goo.gl/x5uAXns3p6EgxshAA?g_st=il", "note": "週日可能採2小時入館制；16:00閉館、最晚15:30入館。", "sourceIds": ["toy-museum"], "rainBackupIds": ["yambaru-toy-museum","kuina-forest","nago-pineapple"] },
-        { "id": "B-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、親子晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "南下後一次完成晚餐與補給，再沿58號回飯店。", "diningGuideId": "aeon-nago-dinner", "sourceIds": ["aeon-nago"] },
+        { "id": "B-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、親子晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "南下後一次完成晚餐與補給，再沿58號回飯店。", "diningGuideId": "aeon-nago-dinner", "shoppingGuideId": "aeon-nago-family-shopping", "sourceIds": ["aeon-nago"] },
         { "id": "B-0927-5", "time": "18:00", "type": "drive", "title": "返回飯店", "place": "恩納村", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ" }
       ]},
       { "date": "2026-09-28", "title": "兒童王國・釣魚尋寶・大灣晚餐", "area": "沖繩市 → 石川 → 讀谷 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "順時針西返約 125–160 分", "rainPlan": "冒險王國與大灣City皆有室內區；大雨縮短兒童王國戶外區。", "events": [
         { "id": "B-0928-1", "time": "09:30", "type": "activity", "title": "沖繩兒童王國", "place": "沖縄こどもの国", "mapQuery": "沖縄こどもの国", "note": "避開週二休園。", "sourceIds": ["zoo"], "rainBackupIds": ["adventure-okinawa","cave-okinawa","aeon-rycom"] },
         { "id": "B-0928-2", "time": "12:30", "type": "meal", "title": "サンエー石川シティ親子午餐", "place": "サンエー石川シティ", "mapQuery": "和風亭 石川シティ店", "note": "往北到石川吃飯後再進冒險王國，避開13:30～14:00維護時段。", "diningGuideId": "ishikawa-lunch" },
         { "id": "B-0928-3", "time": "14:00", "type": "activity", "title": "釣って見つけるぼうけんの国 沖縄", "place": "釣って見つけるぼうけんの国 沖縄", "mapQuery": "釣って見つけるぼうけんの国 沖縄", "navigationUrl": "https://maps.app.goo.gl/ZqBSD95bMudWB7G9A?g_st=il", "note": "建議事先預約；免費停車100台但額滿可能限制入場。", "sourceIds": ["adventure-okinawa", "adventure-okinawa-info"], "rainBackupIds": ["adventure-okinawa","cave-okinawa","aeon-rycom"] },
-        { "id": "B-0928-4", "time": "18:00", "type": "meal", "title": "サンエー大湾シティ親子晚餐", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "冒險王國後向西到讀谷，再沿西岸北上飯店。", "diningGuideId": "owan-dinner" },
+        { "id": "B-0928-4", "time": "18:00", "type": "meal", "title": "サンエー大湾シティ親子晚餐", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "冒險王國後向西到讀谷，再沿西岸北上飯店。", "diningGuideId": "owan-dinner", "shoppingGuideId": "owan-family-shopping" },
         { "id": "B-0928-5", "time": "19:15", "type": "drive", "title": "沿西岸返回飯店", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "晚餐後只剩北上，不折返石川。", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-29", "title": "殘波岬・琉球村・萬座毛一路北上", "area": "讀谷 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 80–105 分", "rainPlan": "大雨取消殘波岬，只留琉球村與順路午餐後回飯店。", "events": [
@@ -682,11 +873,11 @@
       ]}
     ],
     "C": [
-      { "date": "2026-09-24", "title": "抵達・只做入住", "area": "豐崎 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "約 60–75 分", "rainPlan": "直接入住與休息。", "events": [
+      { "date": "2026-09-24", "title": "抵達・國際通午餐短逛・恩納入住", "area": "豐崎 → 那霸國際通 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 100–135 分", "rainPlan": "雨大時國際通只吃飯與逛室內店，15:30 前北上。", "events": [
         { "id": "C-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛，10:45 抵達。" },
         { "id": "C-0924-2", "time": "12:00", "type": "car", "title": "OTS取車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
-        { "id": "C-0924-3", "time": "13:00", "type": "meal", "title": "iias豐崎快速親子午餐與補給", "place": "イーアス沖縄豊崎", "mapQuery": "A&W イーアス沖縄豊崎店", "note": "同館吃飯與補給後直接北上恩納。", "diningGuideId": "toyosaki-lunch" },
-        { "id": "C-0924-4", "time": "15:30", "type": "stay", "title": "入住、泡澡、早睡", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
+        { "id": "C-0924-3", "time": "13:20", "type": "meal", "title": "國際通午餐與親子短逛", "place": "國際通松尾 → 久茂地", "mapQuery": "A&W 国際通り松尾店", "note": "午餐後挑 2–3 家商店，15:30 硬離開。", "diningGuideId": "kokusai-lunch", "shoppingGuideId": "kokusai-family-shopping" },
+        { "id": "C-0924-4", "time": "17:00", "type": "stay", "title": "入住、泡澡、早睡", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-25", "title": "部瀨名半日・午後慢慢玩", "area": "部瀨名", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "單程約 10–15 分", "rainPlan": "海況停航時全日留飯店。", "events": [
         { "id": "C-0925-1", "time": "09:30", "type": "activity", "title": "部瀨名玻璃底船", "place": "ブセナ海中公園", "mapQuery": "ブセナ海中公園", "note": "當天只排這個主景點；先查海況與航班。", "sourceIds": ["busena"], "rainBackupIds": ["nago-pineapple","adventure-okinawa","yambaru-toy-museum"] },
@@ -703,13 +894,13 @@
         { "id": "C-0927-1", "time": "09:30", "type": "activity", "title": "古宇利海洋塔", "place": "古宇利オーシャンタワー", "mapQuery": "古宇利オーシャンタワー", "note": "搭園內車上塔，11:15前離開。", "sourceIds": ["kouri"], "rainBackupIds": ["yambaru-toy-museum","kuina-forest","nago-pineapple"] },
         { "id": "C-0927-2", "time": "11:30", "type": "meal", "title": "古宇利島上直接午餐", "place": "古宇利島", "mapQuery": "Ocean Blue 古宇利オーシャンタワー", "note": "12:30前直接往國頭，不下橋後再找店。", "diningGuideId": "kouri-lunch" },
         { "id": "C-0927-3", "time": "13:30", "type": "activity", "title": "やんばる森のおもちゃ美術館", "place": "やんばる森のおもちゃ美術館", "mapQuery": "やんばる森のおもちゃ美術館", "navigationUrl": "https://maps.app.goo.gl/x5uAXns3p6EgxshAA?g_st=il", "note": "週日可能採2小時入館制；16:00閉館。", "sourceIds": ["toy-museum"], "rainBackupIds": ["yambaru-toy-museum","kuina-forest","nago-pineapple"] },
-        { "id": "C-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、親子晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "南下後一次完成晚餐與補給，再沿58號回飯店。", "diningGuideId": "aeon-nago-dinner", "sourceIds": ["aeon-nago"] },
+        { "id": "C-0927-4", "time": "16:30", "type": "shopping", "title": "AEON 名護購物、親子晚餐與補給", "place": "イオン名護店", "mapQuery": "イオン名護店", "note": "南下後一次完成晚餐與補給，再沿58號回飯店。", "diningGuideId": "aeon-nago-dinner", "shoppingGuideId": "aeon-nago-family-shopping", "sourceIds": ["aeon-nago"] },
         { "id": "C-0927-5", "time": "18:00", "type": "drive", "title": "返回飯店", "place": "飯店", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "sourceIds": ["kariyushi"] }
       ]},
       { "date": "2026-09-28", "title": "室內釣魚尋寶・大灣早晚餐", "area": "石川 → 讀谷 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "一路西返約 85–110 分", "rainPlan": "冒險王國與大灣City皆有室內區；若孩子怕魚就提早到大灣City休息。", "events": [
         { "id": "C-0928-1", "time": "10:00", "type": "activity", "title": "釣って見つけるぼうけんの国 沖縄", "place": "釣って見つけるぼうけんの国 沖縄", "mapQuery": "釣って見つけるぼうけんの国 沖縄", "navigationUrl": "https://maps.app.goo.gl/ZqBSD95bMudWB7G9A?g_st=il", "note": "當天唯一主景點；13:30前離開可避開部分區域維護。建議事先預約。", "sourceIds": ["adventure-okinawa", "adventure-okinawa-info"], "rainBackupIds": ["adventure-okinawa","cave-okinawa","aeon-rycom"] },
         { "id": "C-0928-2", "time": "13:15", "type": "meal", "title": "サンエー石川シティ親子午餐", "place": "サンエー石川シティ", "mapQuery": "和風亭 石川シティ店", "note": "活動後留在石川吃飯，再一路往西到讀谷。", "diningGuideId": "ishikawa-lunch" },
-        { "id": "C-0928-3", "time": "15:15", "type": "rest", "title": "大湾City室內休息、買東西", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "孩子可在車上小睡；到商場後不上新景點。" },
+        { "id": "C-0928-3", "time": "15:15", "type": "rest", "title": "大湾City室內休息、買東西", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "孩子可在車上小睡；到商場後不上新景點。", "shoppingGuideId": "owan-family-shopping" },
         { "id": "C-0928-4", "time": "17:00", "type": "meal", "title": "サンエー大湾シティ親子晚餐", "place": "サンエー大湾シティ", "mapQuery": "サンエー大湾シティ", "navigationUrl": "https://maps.app.goo.gl/dCrZJu6TaCYwdDhM8?g_st=i", "note": "早一點吃完，再沿西岸北上飯店。", "diningGuideId": "owan-dinner" },
         { "id": "C-0928-5", "time": "18:15", "type": "drive", "title": "沿西岸返回飯店泡湯", "place": "沖縄かりゆしビーチリゾート・オーシャンスパ", "mapQuery": "沖縄かりゆしビーチリゾート・オーシャンスパ", "note": "不回石川、不增加晚間景點。", "sourceIds": ["kariyushi"] }
       ]},

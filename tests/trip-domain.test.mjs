@@ -101,6 +101,16 @@ test('daily route includes overnight lodging at both ends and keeps walk destina
   assert.deepEqual(plan.segments.map((segment) => segment.stops), [plan.stops]);
 });
 
+test('device-local private lodging replaces only the broad public route anchor', () => {
+  const day = trip.days.C.find((item) => item.date === '2026-10-02');
+  const exact = '26.50001,127.90002';
+  const plan = dayRoutePlan(trip, day, 5, exact);
+
+  assert.equal(plan.stops[0], exact);
+  assert.equal(plan.stops.at(-1), exact);
+  assert.doesNotMatch(JSON.stringify(trip), /26\.50001|127\.90002/);
+});
+
 test('September 30 route starts at the prior hotel and ends at the corrected Onna stay', () => {
   const day = trip.days.A.find((item) => item.date === '2026-09-30');
   const plan = dayRoutePlan(trip, day);

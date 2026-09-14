@@ -41,10 +41,26 @@ test('legacy records migrate to rain-ready state without losing notes', () => {
 
   const migrated = loadState(storage);
 
-  assert.equal(migrated.schemaVersion, 2);
+  assert.equal(migrated.schemaVersion, 3);
   assert.equal(migrated.variants.C.notes['2026-09-28'], '保留這段筆記');
   assert.deepEqual(migrated.variants.C.rainMode, {});
   assert.deepEqual(migrated.variants.C.rainSelections, {});
+  assert.deepEqual(migrated.checklist, {});
+  assert.equal(migrated.privateStayLocation, '');
+});
+
+test('state persists private lodging location and global packing checks without publishing them', () => {
+  const storage = new MemoryStorage();
+  const state = createEmptyState();
+  state.privateStayLocation = '26.12345,127.67890';
+  state.checklist['medical-allergy'] = true;
+
+  saveState(storage, state);
+
+  const loaded = loadState(storage);
+  assert.equal(loaded.privateStayLocation, '26.12345,127.67890');
+  assert.equal(loaded.checklist['medical-allergy'], true);
+  assert.match(exportBackup(state), /26\.12345,127\.67890/);
 });
 
 test('state persists selected variant, completion, note, and energy', () => {

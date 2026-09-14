@@ -7,9 +7,11 @@ function emptyVariantState() {
 
 export function createEmptyState() {
   return {
-    schemaVersion: 2,
+    schemaVersion: 3,
     selectedVariant: 'A',
     selectedDate: '2026-09-24',
+    privateStayLocation: '',
+    checklist: {},
     variants: {
       A: emptyVariantState(),
       B: emptyVariantState(),
@@ -23,7 +25,7 @@ function isRecord(value) {
 }
 
 function validatedState(value) {
-  if (!isRecord(value) || ![1, 2].includes(value.schemaVersion) || !VARIANTS.includes(value.selectedVariant)) {
+  if (!isRecord(value) || ![1, 2, 3].includes(value.schemaVersion) || !VARIANTS.includes(value.selectedVariant)) {
     throw new Error('備份檔案格式不正確');
   }
   if (typeof value.selectedDate !== 'string' || !isRecord(value.variants)) {
@@ -40,7 +42,9 @@ function validatedState(value) {
   }
 
   const migrated = JSON.parse(JSON.stringify(value));
-  migrated.schemaVersion = 2;
+  migrated.schemaVersion = 3;
+  migrated.privateStayLocation = typeof migrated.privateStayLocation === 'string' ? migrated.privateStayLocation : '';
+  migrated.checklist = isRecord(migrated.checklist) ? migrated.checklist : {};
   for (const id of VARIANTS) {
     migrated.variants[id].rainMode ??= {};
     migrated.variants[id].rainSelections ??= {};

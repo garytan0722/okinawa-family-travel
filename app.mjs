@@ -1,8 +1,8 @@
-import { getVariantDay, nextFixedEvent } from './src/trip-domain.mjs?v=24';
-import { centeredScrollLeft, renderDay, renderEmergencyView, renderFlightSummary, renderRainyDayView, renderSources, renderStayAction, renderTicketPassGuide, renderVariantTabs, escapeHtml } from './src/render.mjs?v=24';
-import { clearRainBackup, selectRainBackup, toggleRainMode } from './src/rain-state.mjs?v=24';
-import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=24';
-import { installPwaUpdate } from './src/pwa-update.mjs?v=24';
+import { getVariantDay, nextFixedEvent } from './src/trip-domain.mjs?v=25';
+import { centeredScrollLeft, renderChecklistView, renderDay, renderEmergencyView, renderFlightSummary, renderPrivateStayEditor, renderRainyDayView, renderSources, renderStayAction, renderTicketPassGuide, renderVariantTabs, escapeHtml } from './src/render.mjs?v=25';
+import { clearRainBackup, selectRainBackup, toggleRainMode } from './src/rain-state.mjs?v=25';
+import { createEmptyState, exportBackup, importBackup, loadState, saveState } from './src/storage.mjs?v=25';
+import { installPwaUpdate } from './src/pwa-update.mjs?v=25';
 
 const app = document.querySelector('#app');
 const quickPanel = document.querySelector('#quick-panel-content');
@@ -56,7 +56,7 @@ function renderHome() {
   const days = trip.days[state.selectedVariant];
   if (!days.some((day) => day.date === state.selectedDate)) state.selectedDate = days[0].date;
   const day = getVariantDay(trip, state.selectedVariant, state.selectedDate);
-  app.innerHTML = `${renderHero()}${renderVariantTabs(trip, state.selectedVariant)}${renderDateStrip(days)}${renderDay(trip, day, state.variants[state.selectedVariant])}`;
+  app.innerHTML = `${renderHero()}${renderVariantTabs(trip, state.selectedVariant)}${renderDateStrip(days)}${renderDay(trip, day, state.variants[state.selectedVariant], { variantId: state.selectedVariant, privateStayLocation: state.privateStayLocation })}`;
   queueMicrotask(() => {
     const current = document.querySelector('[aria-current="date"]');
     const strip = current?.closest('.date-strip');
@@ -80,14 +80,14 @@ function renderHome() {
 function renderLogistics() {
   const events = [...trip.fixedEvents].sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`));
   const stays = trip.stays.map((stay) => `<article class="tool-card"><span class="card-number">STAY</span><h3>${escapeHtml(stay.name)}</h3><p>${escapeHtml(stay.from)} — ${escapeHtml(stay.to)}</p>${renderStayAction(stay, '開啟導航')}</article>`).join('');
-  app.innerHTML = `<section class="tool-view"><p class="eyebrow">FIXED LOGISTICS</p><h1>固定行程與住宿</h1><p class="lede">這些是不能移動的時間；其餘景點都應讓位給它們。</p>${renderFlightSummary(trip)}${renderTicketPassGuide(trip, state.selectedVariant)}<div class="tool-grid">${stays}</div><ol class="fixed-list">${events.map((event) => `<li><time>${dateLabel(event.date)}<strong>${event.time}${event.end ? `–${event.end}` : ''}</strong></time><div><h3>${escapeHtml(event.title)}</h3><p>${escapeHtml(event.place)}</p>${event.note ? `<small>${escapeHtml(event.note)}</small>` : ''}</div></li>`).join('')}</ol></section>`;
+  app.innerHTML = `<section class="tool-view"><p class="eyebrow">FIXED LOGISTICS</p><h1>固定行程與住宿</h1><p class="lede">這些是不能移動的時間；其餘景點都應讓位給它們。</p>${renderFlightSummary(trip)}${renderTicketPassGuide(trip, state.selectedVariant)}<div class="tool-grid">${stays}</div>${renderPrivateStayEditor(state.privateStayLocation)}<ol class="fixed-list">${events.map((event) => `<li><time>${dateLabel(event.date)}<strong>${event.time}${event.end ? `–${event.end}` : ''}</strong></time><div><h3>${escapeHtml(event.title)}</h3><p>${escapeHtml(event.place)}</p>${event.note ? `<small>${escapeHtml(event.note)}</small>` : ''}</div></li>`).join('')}</ol></section>`;
 }
 
 function renderRecords() {
   const variant = state.variants[state.selectedVariant];
   const completed = Object.values(variant.completed).filter(Boolean).length;
   const noted = Object.values(variant.notes).filter(Boolean).length;
-  app.innerHTML = `<section class="tool-view"><p class="eyebrow">YOUR FIELD NOTES</p><h1>記錄與備份</h1><p class="lede">記錄只保存在這台裝置的瀏覽器；換手機前請先匯出。</p><div class="record-summary"><div><strong>${completed}</strong><span>完成行程</span></div><div><strong>${noted}</strong><span>天有筆記</span></div><div><strong>${state.selectedVariant}</strong><span>目前版本</span></div></div><div class="action-stack"><button type="button" data-action="export-backup">下載 JSON 備份</button><label class="file-button">從備份還原<input type="file" accept="application/json" data-action="import-backup"></label><button type="button" class="danger-button" data-action="clear-records">清除本機記錄</button></div><section class="pdf-box"><p class="eyebrow">PRINT EDITIONS</p><h2>A・B・C 三版 PDF</h2><div class="pdf-links"><a href="./output/pdf/okinawa-family-trip-A-balanced.pdf?v=24" download>A 親子平衡</a><a href="./output/pdf/okinawa-family-trip-B-active.pdf?v=24" download>B 景點豐富</a><a href="./output/pdf/okinawa-family-trip-C-relaxed.pdf?v=24" download>C 度假放鬆</a></div></section></section>`;
+  app.innerHTML = `<section class="tool-view"><p class="eyebrow">YOUR FIELD NOTES</p><h1>記錄與備份</h1><p class="lede">記錄只保存在這台裝置的瀏覽器；換手機前請先匯出。</p><div class="record-summary"><div><strong>${completed}</strong><span>完成行程</span></div><div><strong>${noted}</strong><span>天有筆記</span></div><div><strong>${state.selectedVariant}</strong><span>目前版本</span></div></div><div class="action-stack"><button type="button" data-action="export-backup">下載 JSON 備份</button><label class="file-button">從備份還原<input type="file" accept="application/json" data-action="import-backup"></label><button type="button" class="danger-button" data-action="clear-records">清除本機記錄</button></div><section class="pdf-box"><p class="eyebrow">PRINT EDITIONS</p><h2>A・B・C 三版 PDF</h2><div class="pdf-links"><a href="./output/pdf/okinawa-family-trip-A-balanced.pdf?v=25" download>A 親子平衡</a><a href="./output/pdf/okinawa-family-trip-B-active.pdf?v=25" download>B 景點豐富</a><a href="./output/pdf/okinawa-family-trip-C-relaxed.pdf?v=25" download>C 度假放鬆</a></div></section></section>`;
 }
 
 function renderRoute() {
@@ -95,6 +95,7 @@ function renderRoute() {
   document.querySelectorAll('.bottom-nav a').forEach((link) => link.classList.toggle('is-active', link.dataset.route === route || (route === 'rainy' && link.dataset.route === 'sources') || (route === 'home' && link.dataset.route === 'home')));
   if (route === 'logistics') renderLogistics();
   else if (route === 'emergency') app.innerHTML = renderEmergencyView(trip);
+  else if (route === 'checklist') app.innerHTML = renderChecklistView(trip, state.checklist);
   else if (route === 'records') renderRecords();
   else if (route === 'rainy') app.innerHTML = renderRainyDayView(trip);
   else if (route === 'sources') app.innerHTML = renderSources(trip);
@@ -142,7 +143,7 @@ app.addEventListener('click', (event) => {
     const url = URL.createObjectURL(blob);
     const anchor = Object.assign(document.createElement('a'), { href: url, download: 'okinawa-trip-backup.json' });
     anchor.click(); URL.revokeObjectURL(url);
-  } else if (action.dataset.action === 'clear-records' && confirm('確定清除這台裝置上的行程勾選與筆記？')) {
+  } else if (action.dataset.action === 'clear-records' && confirm('確定清除這台裝置上的行程記錄、行前勾選與私人住宿定位？')) {
     state = createEmptyState(); persist(); renderRecords();
   }
 });
@@ -153,6 +154,23 @@ app.addEventListener('change', async (event) => {
   if (action === 'toggle-event') {
     variantState.completed[event.target.dataset.eventId] = event.target.checked;
     persist(); event.target.closest('.event-card')?.classList.toggle('is-complete', event.target.checked);
+  } else if (action === 'toggle-checklist') {
+    state.checklist[event.target.dataset.checklistId] = event.target.checked;
+    persist();
+    event.target.closest('.checklist-item')?.classList.toggle('is-complete', event.target.checked);
+    const allItems = trip.preTripChecklist.categories.flatMap((category) => category.items);
+    const done = allItems.filter((item) => state.checklist[item.id] === true).length;
+    const progressLabel = document.querySelector('.checklist-progress strong');
+    const progressBar = document.querySelector('.checklist-progress i');
+    if (progressLabel) progressLabel.textContent = `已完成 ${done} / ${allItems.length}`;
+    if (progressBar) progressBar.style.width = `${Math.round((done / allItems.length) * 100)}%`;
+    const category = event.target.closest('.checklist-category');
+    const categoryChecks = [...(category?.querySelectorAll('input[data-checklist-id]') ?? [])];
+    const categoryLabel = category?.querySelector('header small');
+    if (categoryLabel) categoryLabel.textContent = `${categoryChecks.filter((input) => input.checked).length} / ${categoryChecks.length}`;
+  } else if (action === 'private-stay-location') {
+    state.privateStayLocation = event.target.value.trim();
+    persist(); renderLogistics();
   } else if (action === 'import-backup' && event.target.files?.[0]) {
     try {
       state = importBackup(await event.target.files[0].text()); persist(); alert('備份已還原。'); renderRecords();
@@ -174,7 +192,7 @@ function updateNetworkStatus() {
 
 async function boot() {
   try {
-    const response = await fetch('./content/trip.json?v=24');
+    const response = await fetch('./content/trip.json?v=25');
     if (!response.ok) throw new Error('行程資料載入失敗');
     trip = await response.json();
     renderRoute();

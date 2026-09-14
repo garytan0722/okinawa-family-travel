@@ -55,10 +55,15 @@ function previousDate(date) {
   return value.toISOString().slice(0, 10);
 }
 
-function stayPoint(stay) {
-  const query = stay?.routeQuery || stay?.mapQuery;
+function stayPoint(stay, privateStayQuery = '') {
+  const query = stay?.privateNavigation && privateStayQuery
+    ? privateStayQuery
+    : stay?.routeQuery || stay?.mapQuery;
   if (!query) return null;
-  return { query, label: stay.privateNavigation ? `${stay.name}附近` : stay.name };
+  return {
+    query,
+    label: stay.privateNavigation && privateStayQuery ? '精確住宿導航' : stay.privateNavigation ? `${stay.name}附近` : stay.name,
+  };
 }
 
 function appendPoint(points, point, replaceMatchingLabel = false) {
@@ -96,13 +101,13 @@ export function dayRouteSegments(day, maxPoints = 5) {
   return segments;
 }
 
-export function dayRoutePlan(trip, day, maxPoints = 5) {
+export function dayRoutePlan(trip, day, maxPoints = 5, privateStayQuery = '') {
   const points = [];
-  appendPoint(points, stayPoint(getStayForDate(trip, previousDate(day.date))));
+  appendPoint(points, stayPoint(getStayForDate(trip, previousDate(day.date)), privateStayQuery));
   for (const point of routePoints(day)) appendPoint(points, point);
 
   const finishesAtAirport = day.events.at(-1)?.type === 'flight';
-  if (!finishesAtAirport) appendPoint(points, stayPoint(getStayForDate(trip, day.date)), true);
+  if (!finishesAtAirport) appendPoint(points, stayPoint(getStayForDate(trip, day.date), privateStayQuery), true);
 
   const stops = points.map((point) => point.query);
   const routeDay = { events: stops.map((mapQuery) => ({ mapQuery })) };

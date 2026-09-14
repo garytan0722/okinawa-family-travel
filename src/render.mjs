@@ -1,4 +1,4 @@
-import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=24';
+import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=25';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -35,6 +35,17 @@ function sourceLinks(trip, ids = []) {
     .filter(Boolean)
     .map((source) => `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">官方資料</a>`);
   return links.length ? `<span class="source-links">${links.join(' · ')}</span>` : '';
+}
+
+function paymentLabel(status) {
+  if (status === 'cards-confirmed') return '💳 可刷卡';
+  if (status === 'cash-only') return '¥ Cash only';
+  return '? 未確認・備現金';
+}
+
+function paymentBadge(status, note = '', unverifiedLabel = '') {
+  const label = status === 'unverified' && unverifiedLabel ? unverifiedLabel : paymentLabel(status);
+  return `<span class="payment-badge payment-badge--${escapeHtml(status || 'unverified')}" title="${escapeHtml(note)}">${escapeHtml(label)}</span>`;
 }
 
 function ticketForEvent(trip, event) {
@@ -88,6 +99,8 @@ function renderDiningGuide(trip, event) {
     return `<article class="dining-option${option.rank === '首選' ? ' is-primary' : ''}">
       <span class="dining-rank">${escapeHtml(option.rank)}</span>
       <div><strong>${escapeHtml(option.name)}</strong><small>${escapeHtml(option.food)}</small></div>
+      ${paymentBadge(option.paymentStatus, option.paymentNote)}
+      ${option.paymentNote ? `<small class="payment-note">${escapeHtml(option.paymentNote)}</small>` : ''}
       <p>${escapeHtml(option.familyNote)}</p>
       <div class="dining-actions">
         <a href="${escapeHtml(mapUrl(option.mapQuery))}" target="_blank" rel="noopener noreferrer">📍 直接導航</a>
@@ -107,13 +120,10 @@ function renderShoppingGuide(trip, event) {
   if (!guide) return '';
   const shops = guide.shops.map((shop, index) => {
     const source = trip.sources.find((item) => item.id === shop.sourceId);
-    const paymentLabel = shop.paymentStatus === 'cards-confirmed'
-      ? '可刷卡'
-      : shop.paymentStatus === 'cash-only' ? 'Cash only' : '付款未確認・備現金';
     return `<article class="shopping-option">
       <span class="shopping-order">${index + 1}</span>
       <div class="shopping-copy"><h4>${escapeHtml(shop.name)}</h4><p>${escapeHtml(shop.category)}</p><small>${escapeHtml(shop.hours)}</small></div>
-      <span class="payment-badge payment-badge--${escapeHtml(shop.paymentStatus)}">${escapeHtml(paymentLabel)}</span>
+      ${paymentBadge(shop.paymentStatus, shop.paymentNote, '付款未確認・備現金')}
       <p class="payment-note">${escapeHtml(shop.paymentNote)}</p>
       <div class="shopping-actions"><a href="${escapeHtml(mapUrl(shop.mapQuery))}" target="_blank" rel="noopener noreferrer">直接導航</a>${source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">官方資料</a>` : ''}</div>
     </article>`;
@@ -124,6 +134,36 @@ function renderShoppingGuide(trip, event) {
     <div class="shopping-options">${shops}</div>
     <p class="shopping-payment-summary"><strong>付款提醒：</strong>${escapeHtml(guide.paymentSummary)}</p>
   </aside>`;
+}
+
+function inferVariantId(day) {
+  const match = day?.events?.find((event) => /^[ABC]-/.test(event.id))?.id.match(/^([ABC])-/);
+  return match?.[1] || 'A';
+}
+
+function renderMealOption(trip, optionId, rank) {
+  const option = trip.mealRecommendations?.[optionId];
+  if (!option) return '';
+  const source = option.sourceId ? trip.sources.find((item) => item.id === option.sourceId) : null;
+  return `<article class="meal-choice${rank === '首選' ? ' is-primary' : ''}">
+    <div class="meal-choice-head"><span>${escapeHtml(rank)}</span><strong>${escapeHtml(option.name)}</strong></div>
+    ${paymentBadge(option.paymentStatus, option.paymentNote)}
+    <p>${escapeHtml(option.familyNote)}</p>
+    <small class="payment-note">${escapeHtml(option.paymentNote)}</small>
+    <div class="meal-choice-actions"><a href="${escapeHtml(mapUrl(option.mapQuery))}" target="_blank" rel="noopener noreferrer">直接導航</a>${source ? `<a href="${escapeHtml(source.url)}" target="_blank" rel="noopener noreferrer">官方資料</a>` : ''}</div>
+  </article>`;
+}
+
+function renderDailyMeals(trip, date, variantId) {
+  const plan = trip.dailyMealPlans?.[variantId]?.[date];
+  if (!plan) return '';
+  const labels = { breakfast: '早餐', lunch: '午餐', dinner: '晚餐' };
+  const icons = { breakfast: '☀', lunch: '◐', dinner: '☾' };
+  const cards = Object.entries(plan).map(([slotId, slot]) => `<article class="meal-slot meal-slot--${escapeHtml(slotId)}">
+    <header><span aria-hidden="true">${icons[slotId] || '•'}</span><div><small>${escapeHtml(slot.time)}</small><h3>${escapeHtml(labels[slotId] || slotId)}</h3></div></header>
+    <div class="meal-choices">${renderMealOption(trip, slot.primaryId, '首選')}${renderMealOption(trip, slot.backupId, '備選')}</div>
+  </article>`).join('');
+  return `<section class="daily-meals" aria-labelledby="daily-meals-${escapeHtml(date)}"><div class="daily-meals-heading"><span aria-hidden="true">🐾</span><div><small>BREAKFAST · LUNCH · DINNER</small><h2 id="daily-meals-${escapeHtml(date)}">今日吃什麼</h2></div></div><div class="daily-meal-grid">${cards}</div></section>`;
 }
 
 function renderRainPicker(trip, event, rainSelections = {}) {
@@ -158,7 +198,7 @@ function renderEvent(trip, event, completed, rainSelections) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=24" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=25" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -203,7 +243,26 @@ export function renderStayAction(stay, navigationLabel = '導航') {
     : '';
 }
 
-export function renderDay(trip, day, variantState) {
+export function renderPrivateStayEditor(privateStayLocation = '') {
+  const value = escapeHtml(privateStayLocation);
+  const status = value
+    ? `<a class="private-stay-link" href="${escapeHtml(mapUrl(privateStayLocation))}" target="_blank" rel="noopener noreferrer">開啟精確住宿導航</a>`
+    : '<span class="private-stay-fallback">目前每日路線使用恩納村公開區域</span>';
+  return `<article class="private-stay-editor"><span class="card-number">PRIVATE · DEVICE ONLY</span><h3>精確住宿定位</h3><p>可貼 Google Maps 地點、座標或完整地址；只保存在這台裝置、不寫進公開網站。匯出 JSON 備份時會包含此欄，請自行妥善保管。</p><label>私人住宿定位<input type="text" data-action="private-stay-location" value="${value}" placeholder="例如：Google Maps 地點、26.x,127.x"></label>${status}</article>`;
+}
+
+export function renderChecklistView(trip, completed = {}) {
+  const categories = trip.preTripChecklist?.categories ?? [];
+  const items = categories.flatMap((category) => category.items ?? []);
+  const done = items.filter((item) => completed[item.id] === true).length;
+  const sections = categories.map((category) => `<section class="checklist-category">
+    <header><span aria-hidden="true">${escapeHtml(category.icon || '🐾')}</span><div><h2>${escapeHtml(category.label)}</h2><small>${(category.items ?? []).filter((item) => completed[item.id]).length} / ${(category.items ?? []).length}</small></div></header>
+    <div class="checklist-items">${(category.items ?? []).map((item) => `<label class="checklist-item${completed[item.id] ? ' is-complete' : ''}"><input type="checkbox" data-action="toggle-checklist" data-checklist-id="${escapeHtml(item.id)}"${completed[item.id] ? ' checked' : ''}><span class="checklist-box" aria-hidden="true">✓</span><span><strong>${escapeHtml(item.label)}</strong>${item.note ? `<small>${escapeHtml(item.note)}</small>` : ''}</span></label>`).join('')}</div>
+  </section>`).join('');
+  return `<section class="tool-view checklist-view"><p class="eyebrow">READY, SET, PAWS</p><h1>行前確認表</h1><p class="lede">不含衣服與盥洗用品；健康項目採匿名分類，勾選只保存在這台裝置。</p><div class="checklist-progress"><strong>已完成 ${done} / ${items.length}</strong><span><i style="width:${items.length ? Math.round((done / items.length) * 100) : 0}%"></i></span></div>${sections}</section>`;
+}
+
+export function renderDay(trip, day, variantState, options = {}) {
   const party = getPartyForDate(trip, day.date);
   const stay = getStayForDate(trip, day.date);
   const note = variantState.notes?.[day.date] ?? '';
@@ -212,7 +271,8 @@ export function renderDay(trip, day, variantState) {
   const isRainMode = variantState.rainMode?.[day.date] === true && Boolean(rainPlan);
   const activeDay = isRainMode ? rainPlan : day;
   const events = activeDay.events.map((event) => renderEvent(trip, event, variantState.completed ?? {}, variantState.rainSelections ?? {})).join('');
-  const routePlan = dayRoutePlan(trip, activeDay);
+  const variantId = options.variantId || inferVariantId(day);
+  const routePlan = dayRoutePlan(trip, activeDay, 5, options.privateStayLocation || '');
   const routeSegments = routePlan.segments;
   const routeActions = routeSegments.map((segment, index) => {
     const start = index * 4 + 1;
@@ -236,6 +296,7 @@ export function renderDay(trip, day, variantState) {
         <section><span>今晚住</span><strong>${escapeHtml(activeDay.stay)}</strong>${renderStayAction(stay)}</section>
         <section><span>今日車程</span><strong>${escapeHtml(activeDay.drive)}</strong></section>
       </div>
+      ${renderDailyMeals(trip, day.date, variantId)}
       ${routeActions ? `<section class="day-route-card" aria-label="今日 Google Maps 多站導航"><div><span>GOOGLE MAPS ROUTE</span><strong>完整順序 · ${routePlan.points.length} 個停靠點</strong><small>手機版有途經點上限，請照段數依序開啟；每段會重疊上一段終點。</small></div><ol class="day-route-stops">${routeStops}</ol><div class="day-route-actions">${routeActions}</div></section>` : ''}
       <ol class="event-list">${events}</ol>
       <section class="rain-card"><span>${isRainMode ? '☔ 今日雨天路線' : '☔ 雨天／疲累備案'}</span><p>${escapeHtml(activeDay.rainPlan)}</p><a href="#/rainy">查看 24 個雨天備案 →</a></section>

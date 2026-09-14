@@ -113,7 +113,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=24" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=25" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -221,6 +221,43 @@ test('American Village itinerary renders ordered shops without guessing cash-onl
   assert.match(html, /未查到官方確認 Cash only/);
   assert.match(html, /直接導航/);
   assert.equal((html.match(/class="shopping-option"/g) ?? []).length, 5);
+});
+
+test('day view renders breakfast lunch and dinner cards with always-visible payment badges', () => {
+  const day = trip.days.B.find((item) => item.date === '2026-09-27');
+  const html = renderDay(trip, day, { completed: {}, notes: {}, energy: {}, rainSelections: {} }, { variantId: 'B' });
+
+  assert.match(html, /今日吃什麼/);
+  assert.match(html, /早餐.*午餐.*晚餐/s);
+  assert.equal((html.match(/class="meal-slot/g) ?? []).length, 3);
+  assert.match(html, /💳 可刷卡|¥ Cash only|\? 未確認・備現金/);
+  assert.match(html, /首選/);
+  assert.match(html, /備選/);
+});
+
+test('private stay editor keeps exact navigation in device state and falls back to the public area', () => {
+  assert.equal(typeof renderModule.renderPrivateStayEditor, 'function');
+  const empty = renderModule.renderPrivateStayEditor('');
+  const filled = renderModule.renderPrivateStayEditor('26.50001,127.90002');
+
+  assert.match(empty, /恩納村公開區域/);
+  assert.match(empty, /data-action="private-stay-location"/);
+  assert.doesNotMatch(empty, /26\.50001/);
+  assert.match(filled, /26\.50001,127\.90002/);
+  assert.match(filled, /精確住宿導航/);
+});
+
+test('packing checklist renders categories, progress, and anonymous tappable items', () => {
+  assert.equal(typeof renderModule.renderChecklistView, 'function');
+  const html = renderModule.renderChecklistView(trip, { 'medical-allergy': true });
+
+  assert.match(html, /行前確認表/);
+  assert.match(html, /醫藥與急救/);
+  assert.match(html, /兒童過敏藥水/);
+  assert.match(html, /鼻血處理包/);
+  assert.match(html, /data-action="toggle-checklist"/);
+  assert.match(html, /已完成 1/);
+  assert.doesNotMatch(html, /妹妹|哥哥/);
 });
 
 test('emergency view puts 110 and 119 first and provides actionable OTS instructions', () => {

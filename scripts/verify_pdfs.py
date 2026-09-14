@@ -67,7 +67,7 @@ for variant, path in PDFS.items():
         for page in reader.pages
         if re.search(r"2026-09-2[4-9]", page_text := (page.extract_text() or "")) and not page_text.startswith("RAIN ")
     )
-    for forbidden in ("美麗海", "美國村", "BANTA", "港川", "普天滿", "Rycom", "首里城", "沖繩世界", "DMM", "瀨長島", "波上宮", "PARCO", "國際通"):
+    for forbidden in ("美麗海", "美國村", "BANTA", "港川", "普天滿", "Rycom", "首里城", "沖繩世界", "DMM", "瀨長島", "波上宮", "PARCO"):
         assert forbidden not in early_text, f"{path.name}: early segment repeats late attraction {forbidden}"
     assert "成人藍洞" not in text, f"{path.name}: contains superseded October 2 plan"
     assert "恩納村私人住宿" in text, f"{path.name}: missing corrected generic accommodation label"

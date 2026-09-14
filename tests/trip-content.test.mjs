@@ -131,7 +131,7 @@ test('September 24 through 29 use the approved northern plan without late-itiner
   const forbiddenLateAttractions = [
     '美麗海', '美國村', 'BANTA', '港川', '普天滿', '來客夢', 'Rycom',
     '首里城', '沖繩世界', '玉泉洞', 'DMM', '瀨長島', '波上宮', 'PARCO',
-    '國際通', '牧志市場', 'Ashibinaa',
+    '牧志市場', 'Ashibinaa',
   ];
 
   for (const variantId of ['A', 'B', 'C']) {
@@ -149,6 +149,77 @@ test('September 24 through 29 use the approved northern plan without late-itiner
     assert.match(earlyText, /Neo Park Okinawa/);
     assert.match(earlyText, /沖繩兒童王國/);
   }
+});
+
+test('September 24 replaces Toyosaki shopping with a short Kokusai-dori stop', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  for (const variantId of ['A', 'B', 'C']) {
+    const day = trip.days[variantId].find((item) => item.date === '2026-09-24');
+    const serialized = JSON.stringify(day);
+    assert.match(serialized, /國際通/);
+    assert.doesNotMatch(serialized, /iias豐崎快速親子午餐|iias 豐崎快速親子午餐/);
+    assert.ok(day.events.some((event) => event.shoppingGuideId === 'kokusai-family-shopping'));
+  }
+});
+
+test('every A B C day has breakfast lunch and dinner recommendations with visible payment evidence', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const expectedDates = trip.days.A.map((day) => day.date);
+  const statuses = new Set(['cards-confirmed', 'cash-only', 'unverified']);
+
+  for (const variantId of ['A', 'B', 'C']) {
+    assert.deepEqual(Object.keys(trip.dailyMealPlans?.[variantId] ?? {}), expectedDates);
+    for (const date of expectedDates) {
+      const plan = trip.dailyMealPlans[variantId][date];
+      assert.deepEqual(Object.keys(plan), ['breakfast', 'lunch', 'dinner']);
+      for (const slot of Object.values(plan)) {
+        assert.ok(slot.time);
+        assert.ok(slot.primaryId && slot.backupId);
+        for (const optionId of [slot.primaryId, slot.backupId]) {
+          const option = trip.mealRecommendations?.[optionId];
+          assert.ok(option?.name && option?.mapQuery, `${optionId} must resolve`);
+          assert.ok(statuses.has(option.paymentStatus), `${variantId} ${date} ${option.name} needs payment status`);
+          assert.ok(option.paymentNote, `${option.name} needs payment evidence note`);
+          assert.ok(option.familyNote, `${option.name} needs a family note`);
+        }
+      }
+    }
+  }
+
+  for (const variantId of ['A', 'B', 'C']) {
+    for (const date of ['2026-09-25', '2026-09-26', '2026-09-27', '2026-09-28', '2026-09-29', '2026-09-30']) {
+      const breakfast = trip.mealRecommendations[trip.dailyMealPlans[variantId][date].breakfast.primaryId];
+      assert.match(breakfast.name, /嘉利吉.*早餐/);
+    }
+  }
+});
+
+test('shopping guides cover the approved route-aware shopping stops', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  for (const id of ['kokusai-family-shopping', 'aeon-nago-family-shopping', 'owan-family-shopping', 'american-village-family-shopping']) {
+    const guide = trip.shoppingGuides?.[id];
+    assert.ok(guide, `${id} must exist`);
+    assert.ok(guide.shops.length >= 3);
+    for (const shop of guide.shops) {
+      assert.ok(shop.name && shop.category && shop.mapQuery);
+      assert.ok(['cards-confirmed', 'cash-only', 'unverified'].includes(shop.paymentStatus));
+      assert.ok(shop.paymentNote);
+    }
+  }
+});
+
+test('public packing checklist is complete but keeps family health details anonymous', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const categories = trip.preTripChecklist?.categories ?? [];
+  assert.deepEqual(categories.map((category) => category.id), [
+    'documents', 'medical', 'children', 'weather', 'snorkeling', 'driving', 'electronics', 'money', 'home',
+  ]);
+  const serialized = JSON.stringify(categories);
+  for (const required of ['護照', '駕照日文譯本', '兒童過敏藥水', '鼻血處理包', '成人退燒與腸胃常備藥', '體溫計', '旅遊保險', '行動電源']) {
+    assert.match(serialized, new RegExp(required));
+  }
+  assert.doesNotMatch(serialized, /妹妹|哥哥|常常打噴嚏|常常流鼻血/);
+  assert.doesNotMatch(serialized, /衣服|盥洗/);
 });
 
 test('new family attractions replace the approved northern stops without touching the frozen segment', () => {
@@ -178,13 +249,13 @@ test('new family attractions replace the approved northern stops without touchin
 test('September 24 through 29 meals resolve to concrete route-aware family dining guides', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   const requiredGuides = [
-    'toyosaki-lunch', 'nago-coast-lunch', 'busena-lunch', 'nago-attractions-lunch', 'kouri-lunch',
+    'toyosaki-lunch', 'kokusai-lunch', 'nago-coast-lunch', 'busena-lunch', 'nago-attractions-lunch', 'kouri-lunch',
     'aeon-nago-dinner', 'ishikawa-lunch', 'owan-dinner', 'onna-lunch',
   ];
 
   assert.deepEqual(Object.keys(trip.diningGuides ?? {}).sort(), requiredGuides.sort());
   for (const [guideId, guide] of Object.entries(trip.diningGuides)) {
-    assert.match(guide.checkedAt, /^2026-08-30$/);
+    assert.match(guide.checkedAt, /^2026-(08-30|09-14)$/);
     assert.ok(guide.routeNote.length > 12, `${guideId} must explain why it is on route`);
     assert.equal(guide.options.length, 2, `${guideId} must offer a primary and backup restaurant`);
     assert.deepEqual(guide.options.map((option) => option.rank), ['首選', '備選']);

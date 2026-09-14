@@ -1,5 +1,19 @@
 # Delivery checklist
 
+## 每日三餐、付款、購物、私人定位與行前確認（v25）
+
+- [x] 以失敗測試鎖定 A／B／C 每日早午晚餐完整覆蓋
+- [x] 以失敗測試鎖定餐廳／商店付款徽章與可靠來源狀態
+- [x] 將 9/24 國際通與順路購物指南加入行程
+- [x] 新增只存在手機本機的私人住宿定位並接入住宿與每日導航
+- [x] 新增匿名行前確認表、勾選保存與備份遷移
+- [x] 保持 9/30–10/4 既有主要事件不變，只加獨立餐飲／購物資料
+- [ ] 輪替離線版本並驗證測試、建置、手機、隱私與部署
+
+### v25 review
+
+- 待完成。
+
 - [x] Confirm GitHub repository and authentication
 - [x] Create isolated implementation branch
 - [x] Update design and implementation plan for GitHub Pages
