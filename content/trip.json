@@ -320,6 +320,7 @@
       ] },
       { "id": "medical", "label": "醫藥與急救", "icon": "＋", "items": [
         { "id": "medical-allergy", "label": "兒童過敏藥水", "note": "原包裝攜帶，備足旅程天數並加 2 天。" },
+        { "id": "medical-child-masks", "label": "兒童口罩與備用口罩", "note": "準備合臉尺寸，隨身包與車上各放備用；用過或弄濕後立即更換。" },
         { "id": "medical-nosebleed", "label": "鼻血處理包", "note": "生理食鹽水、紗布、濕紙巾與小垃圾袋；流血時身體前傾並壓鼻翼 10–15 分鐘。" },
         { "id": "medical-adult", "label": "成人退燒與腸胃常備藥", "note": "使用原包裝，攜帶處方或藥品說明。" },
         { "id": "medical-thermometer", "label": "體溫計、退熱貼與基本 OK 繃", "note": "藥物劑量依醫師或藥師指示。" }

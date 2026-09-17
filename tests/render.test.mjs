@@ -132,7 +132,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=27" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=28" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -273,6 +273,7 @@ test('packing checklist renders categories, progress, and anonymous tappable ite
   assert.match(html, /行前確認表/);
   assert.match(html, /醫藥與急救/);
   assert.match(html, /兒童過敏藥水/);
+  assert.match(html, /兒童口罩與備用口罩/);
   assert.match(html, /鼻血處理包/);
   assert.match(html, /手機支架與 CarPlay／Android Auto 取車測試/);
   assert.match(html, /行動電源、車充與資料傳輸線/);

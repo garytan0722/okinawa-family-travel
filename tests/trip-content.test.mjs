@@ -232,7 +232,7 @@ test('public packing checklist is complete but keeps family health details anony
     'documents', 'medical', 'children', 'weather', 'snorkeling', 'driving', 'electronics', 'money', 'home',
   ]);
   const serialized = JSON.stringify(categories);
-  for (const required of ['護照', '駕照日文譯本', '兒童過敏藥水', '鼻血處理包', '成人退燒與腸胃常備藥', '體溫計', '旅遊保險', '行動電源']) {
+  for (const required of ['護照', '駕照日文譯本', '兒童過敏藥水', '兒童口罩與備用口罩', '鼻血處理包', '成人退燒與腸胃常備藥', '體溫計', '旅遊保險', '行動電源']) {
     assert.match(serialized, new RegExp(required));
   }
   assert.doesNotMatch(serialized, /妹妹|哥哥|常常打噴嚏|常常流鼻血/);
