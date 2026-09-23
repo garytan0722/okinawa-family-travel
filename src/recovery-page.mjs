@@ -1,4 +1,4 @@
-import { recoverApp } from './recovery.mjs?v=28';
+import { recoverApp } from './recovery.mjs?v=29';
 
 const status = document.querySelector('#recovery-status');
 const retry = document.querySelector('#recovery-retry');

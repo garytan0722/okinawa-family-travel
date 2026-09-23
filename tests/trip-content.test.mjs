@@ -40,6 +40,44 @@ test('pre-trip checklist prepares both rental classes for phone navigation witho
   assert.match(phoneSetup.note, /還車前.*刪除.*配對/);
 });
 
+test('September 24 airport transfer and Visit Japan Web prep are complete without publishing private contact details', () => {
+  const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
+  const transfer = trip.fixedEvents.find((event) => event.id === 'f-0924-airport-transfer');
+
+  assert.deepEqual(transfer, {
+    id: 'f-0924-airport-transfer',
+    date: '2026-09-24',
+    time: '04:00',
+    kind: 'airport-transfer',
+    title: '板橋 → 桃園機場第二航廈接送',
+    place: '板橋上車 → 桃園國際機場第二航廈',
+    note: '司機依預約單前往；資訊有誤請立即使用原訊息聯絡司機或客服。',
+    vehicle: '灰白色 Kia Carnival 8人座',
+    vehicleNumber: '0928',
+    officialUrl: 'https://airport4.webnode.tw/',
+    officialLabel: '機場接送官網',
+    contactNote: '私人聯絡方式請使用原訊息或 LINE；不公開在網站。',
+  });
+
+  for (const day of [...Object.values(trip.days).map((days) => days.find((item) => item.date === '2026-09-24')), trip.rainPlans.find((item) => item.date === '2026-09-24')]) {
+    const event = day.events.find((item) => item.fixedEventId === transfer.id);
+    assert.equal(event?.time, '04:00');
+    assert.equal(event?.mapQuery, undefined, 'Taiwan transfer must not contaminate the Okinawa Google Maps route');
+  }
+
+  const visitJapan = trip.visitJapanWeb;
+  assert.equal(visitJapan.officialUrl, 'https://services.digital.go.jp/zh-cmn-hant/visit-japan-web/');
+  assert.equal(visitJapan.checkedAt, '2026-09-23');
+  assert.match(visitJapan.summary, /免費.*入境審查.*海關申報/);
+  assert.match(visitJapan.privacyNote, /護照資料.*官方網站.*不會儲存/);
+  assert.match(visitJapan.steps.join(' '), /四人護照.*CI120.*第一晚住宿.*每位旅客.*QR Code.*截圖/);
+  const documentItems = trip.preTripChecklist.categories.find((category) => category.id === 'documents').items;
+  assert.ok(documentItems.some((item) => item.id === 'documents-visit-japan-web'));
+
+  const serialized = JSON.stringify({ transfer, visitJapan });
+  assert.doesNotMatch(serialized, /(?:09|\+886)\d{7,9}|@/);
+});
+
 test('rainy-day catalog contains 24 verified, correctly separated venues', () => {
   const trip = JSON.parse(readFileSync(tripPath, 'utf8'));
   assert.equal(trip.rainyDayOptions?.length, 24);

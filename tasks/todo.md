@@ -440,3 +440,18 @@
 - 電子用品改為同時準備車充及 USB-A／USB-C／Lightning 可傳資料線，並在離線項目加入沖繩 Google Maps 地圖下載。
 - Verified 99/99 tests, privacy-safe 19-asset build, v27 cache rotation, local checkbox persistence, and local/live 390px layouts with no browser errors or horizontal overflow.
 - Deployed release v27 from commit `022968b` through GitHub Actions run `34818130779`; live shell, trip data, service worker and checklist content were verified.
+
+## 9/24 機場接送與 Visit Japan Web
+
+- [x] 以測試鎖定 9/24 04:00 板橋至桃園二航接送資料與公開隱私界線
+- [x] 在固定行程及 9/24 A／B／C／雨天時間軸加入接送資訊，不影響沖繩導航
+- [x] 在行前確認表加入 Visit Japan Web 官方入口、四人填寫步驟與防詐提醒
+- [x] 輪替離線版本並重建 A／B／C PDF
+- [ ] 完成自動化、隱私、手機版與部署驗證
+
+### 機場接送與 Visit Japan Web review
+
+- 9/24 04:00 接送已加入固定行程、三版 9/24 時間軸與雨天版；公開資料只含路線、灰白 Kia Carnival 8 人座、車號 0928 與官方網站，不含司機姓名或私人電話。
+- 接送事件沒有 `mapQuery`，不會被誤加到沖繩每日 Google Maps 導航。
+- 行前確認新增日本數位廳 Visit Japan Web 官方入口、譚家四口逐人入境／海關申報、QR Code 離線截圖與偽網站防詐提醒；本 App 不儲存護照、帳密或 QR Code。
+- Verified 101/101 tests, privacy-safe 19-asset build, local logistics/checklist browser rendering, and three verified 38-page PDFs containing the transfer details.

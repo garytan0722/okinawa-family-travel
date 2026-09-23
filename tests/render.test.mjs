@@ -132,7 +132,7 @@ test('event completion keeps a native checkbox and shows a dog-paw image stamp',
   const eventId = day.events[0].id;
   const html = renderDay(trip, day, { completed: { [eventId]: true }, notes: {}, energy: {} });
   assert.match(html, /type="checkbox"[^>]*checked/);
-  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=28" alt=""/);
+  assert.match(html, /<img class="dog-paw-stamp" src="\.\/icons\/dog-paw-stamp\.svg\?v=29" alt=""/);
   assert.match(html, /class="sr-only">完成/);
 });
 
@@ -210,6 +210,26 @@ test('flight summary shows the named groups and labels only genuinely missing de
   assert.match(html, /class="flight-route-arrow"[^>]*>→<\/span>/);
   assert.match(html, /aria-label="OKA 到 TPE T2"/);
   assert.doesNotMatch(html, /✈/);
+});
+
+test('fixed logistics and checklist render the airport transfer and official Visit Japan Web guidance', () => {
+  assert.equal(typeof renderModule.renderFixedEventList, 'function');
+  const transferHtml = renderModule.renderFixedEventList(trip.fixedEvents);
+  assert.match(transferHtml, /04:00/);
+  assert.match(transferHtml, /板橋 → 桃園機場第二航廈接送/);
+  assert.match(transferHtml, /灰白色 Kia Carnival 8人座/);
+  assert.match(transferHtml, /車號 0928/);
+  assert.match(transferHtml, /href="https:\/\/airport4\.webnode\.tw\/"/);
+  assert.match(transferHtml, /原訊息或 LINE/);
+
+  const checklistHtml = renderModule.renderChecklistView(trip, {});
+  assert.match(checklistHtml, /Visit Japan Web/);
+  assert.match(checklistHtml, /日本數位廳官方網站/);
+  assert.match(checklistHtml, /四人護照/);
+  assert.match(checklistHtml, /CI120/);
+  assert.match(checklistHtml, /每位旅客/);
+  assert.match(checklistHtml, /QR Code/);
+  assert.match(checklistHtml, /href="https:\/\/services\.digital\.go\.jp\/zh-cmn-hant\/visit-japan-web\/"/);
 });
 
 test('ticket pass guide highlights the selected itinerary and links to a tracking-free checkout', () => {
@@ -335,7 +355,7 @@ test('user-controlled notes are escaped', () => {
 test('source ledger renders official links and recheck date', () => {
   const html = renderSources(trip);
   assert.match(html, /沖繩美麗海水族館官方票價/);
-  assert.match(html, /2026-09-17/);
+  assert.match(html, /2026-09-23/);
   assert.equal(trip.sources.some((source) => source.id === 'private-stay'), false);
   assert.match(html, /href="#\/rainy"/);
 });

@@ -1,7 +1,7 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-14",
-  "recheckBy": "2026-09-17",
+  "updatedAt": "2026-09-23",
+  "recheckBy": "2026-09-23",
   "meta": {
     "title": "沖繩遛小孩",
     "subtitle": "2026 親子自駕 A・B・C 行程手帳",
@@ -44,6 +44,7 @@
     { "date": "2026-10-04", "party": "小倆口", "departure": "20:20", "arrival": "20:55", "airline": "長榮航空", "flightNumber": "BR185", "route": "OKA → TPE T2" }
   ],
   "fixedEvents": [
+    { "id": "f-0924-airport-transfer", "date": "2026-09-24", "time": "04:00", "kind": "airport-transfer", "title": "板橋 → 桃園機場第二航廈接送", "place": "板橋上車 → 桃園國際機場第二航廈", "note": "司機依預約單前往；資訊有誤請立即使用原訊息聯絡司機或客服。", "vehicle": "灰白色 Kia Carnival 8人座", "vehicleNumber": "0928", "officialUrl": "https://airport4.webnode.tw/", "officialLabel": "機場接送官網", "contactNote": "私人聯絡方式請使用原訊息或 LINE；不公開在網站。" },
     { "id": "f-0924-flight", "date": "2026-09-24", "time": "08:00", "end": "10:45", "kind": "flight-arrival", "title": "華航 CI120 譚家四口飛往沖繩", "place": "那覇空港", "note": "譚家四口；08:00 起飛，10:45 抵達。" },
     { "id": "f-0924-car", "date": "2026-09-24", "time": "12:00", "kind": "car-pickup", "title": "OTS 取第一台車", "place": "OTS 臨空豐崎營業所（那覇機場）" },
     { "id": "f-0930-flight", "date": "2026-09-30", "time": "09:20", "kind": "flight-arrival", "title": "小倆口搭台灣虎航 IT230 抵達 OKA", "place": "那覇空港", "note": "06:50 TPE 起飛，小倆口兩位大人加入。" },
@@ -316,6 +317,7 @@
       { "id": "documents", "label": "證件與預約", "icon": "▣", "items": [
         { "id": "documents-passport", "label": "全員護照與效期", "note": "另留離線影本，和正本分開保管。" },
         { "id": "documents-flights", "label": "機票、住宿、租車與浮潛確認", "note": "截圖保存班機、OTS 與青潛預約。" },
+        { "id": "documents-visit-japan-web", "label": "Visit Japan Web 四人資料與 QR Code", "note": "只使用日本數位廳官方網站；逐一確認每位旅客的入境審查與海關申報 QR Code，並保存離線截圖。" },
         { "id": "documents-insurance", "label": "旅遊保險與保單聯絡方式", "note": "保單號碼離線保存。" }
       ] },
       { "id": "medical", "label": "醫藥與急救", "icon": "＋", "items": [
@@ -361,6 +363,21 @@
         { "id": "home-copies", "label": "行程與緊急聯絡留給家人", "note": "只分享必要資訊，不轉傳門鎖資料。" }
       ] }
     ]
+  },
+  "visitJapanWeb": {
+    "checkedAt": "2026-09-23",
+    "officialUrl": "https://services.digital.go.jp/zh-cmn-hant/visit-japan-web/",
+    "summary": "日本數位廳提供的免費服務，可預先登錄入境審查與海關申報資料；不是簽證，也不需要付費代辦。",
+    "steps": [
+      "準備四人護照、華航 CI120 航班資料，以及第一晚住宿（嘉利吉飯店）的地址與電話。",
+      "在官方網站建立或登入帳號，登錄本人、同行家人與 9/24 抵達日本的旅程。",
+      "逐一完成每位旅客的入境審查與海關申報，確認每位旅客都能顯示 QR Code。",
+      "出發前打開一次並保存 QR Code 截圖；抵達那霸機場後仍以現場人員指示為準。"
+    ],
+    "privacyNote": "護照資料只填在日本數位廳官方網站；本 App 不會儲存護照號碼、帳號密碼或 QR Code。",
+    "fraudNote": "認明 digital.go.jp／services.digital.go.jp 官方網域。Visit Japan Web 免費，遇到收費代辦、要求信用卡或仿冒 App 請停止操作。",
+    "nahaNote": "那霸機場支援海關電子申告；每位旅客仍須依現場流程掃描護照與 QR Code。",
+    "sourceIds": ["visit-japan-web", "japan-customs-egate", "japan-customs-fraud"]
   },
   "ticketInfo": [
     { "id": "bestdive", "kind": "activity", "label": "青潛青洞浮潛", "price": "成人（16～65歲）¥6,000／兒童（4～14歲）¥9,000", "note": "兒童自動安排私人組別；費用含基本裝備與活動保險，實際預約內容以確認訊息為準。", "sourceId": "bestdive", "checkedAt": "2026-08-29" },
@@ -446,6 +463,10 @@
     "whyNotFivePass": "五合一必須在啟用後連續 5 天內用完；本行程前段可省的景點與後段美麗海相隔太久。硬湊 9/27–10/1 的可用景點，每位大人約只省 ¥280，還會犧牲較省且更符合 A／B 排程的三合一。"
   },
   "sources": [
+    { "id": "airport-transfer", "label": "使用者提供的機場接送官網", "url": "https://airport4.webnode.tw/", "checkedAt": "2026-09-23" },
+    { "id": "visit-japan-web", "label": "日本數位廳 Visit Japan Web 官方繁體中文資訊", "url": "https://services.digital.go.jp/zh-cmn-hant/visit-japan-web/", "checkedAt": "2026-09-23" },
+    { "id": "japan-customs-egate", "label": "日本海關・那霸機場電子申告閘門", "url": "https://www.customs.go.jp/kaigairyoko/egate.htm", "checkedAt": "2026-09-23" },
+    { "id": "japan-customs-fraud", "label": "日本海關・Visit Japan Web 偽網站警示", "url": "https://www.customs.go.jp/news/news/oshirase/20260528.html", "checkedAt": "2026-09-23" },
     { "id": "kariyushi-dining", "label": "嘉利吉 THE DINING 官方早餐資訊", "url": "https://kariyushi-oceanspa.jp/restaurant/dining/", "checkedAt": "2026-09-14" },
     { "id": "aw-kokusai", "label": "A&W 國際通松尾店與官方付款資訊", "url": "https://www.awok.co.jp/shopsearch/kokusai_matsuo/", "checkedAt": "2026-09-14" },
     { "id": "donki-kokusai", "label": "唐吉訶德國際通店官方營業與付款資訊", "url": "https://www.donki.com/store/shop_detail.php?shop_id=713", "checkedAt": "2026-09-14" },
@@ -586,6 +607,7 @@
   "rainPlans": [
     {
       "date": "2026-09-24", "title": "抵達日雨備・豐崎全室內", "area": "那覇空港 → 豐崎 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "機場與豐崎同區，完成取車後再北上恩納", "rainPlan": "班機與取車照常；其餘留在豐崎室內，孩子累就取消水族館直接北上。", "events": [
+        { "id": "R-0924-0", "time": "04:00", "type": "drive", "title": "板橋 → 桃園機場第二航廈接送", "place": "板橋上車 → 桃園機場第二航廈", "note": "灰白色 Kia Carnival 8人座；車號 0928。", "fixedEventId": "f-0924-airport-transfer" },
         { "id": "R-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港", "fixedEventId": "f-0924-flight" },
         { "id": "R-0924-2", "time": "12:00", "type": "car", "title": "OTS 取第一台車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "fixedEventId": "f-0924-car" },
         { "id": "R-0924-3", "time": "13:00", "type": "meal", "title": "iias 豐崎室內午餐與補給", "place": "iias沖縄豊崎", "mapQuery": "イーアス沖縄豊崎", "rainOptionId": "iias-toyosaki" },
@@ -685,6 +707,7 @@
       {
         "date": "2026-09-24", "title": "抵達・國際通午餐短逛・恩納入住", "area": "豐崎 → 那霸國際通 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 100–135 分，15:30 前離開那霸避開晚尖峰", "rainPlan": "國際通只走騎樓與商店；雨太大就吃完直接到飯店。",
         "events": [
+          { "id": "A-0924-0", "time": "04:00", "type": "drive", "title": "板橋 → 桃園機場第二航廈接送", "place": "板橋上車 → 桃園機場第二航廈", "note": "灰白色 Kia Carnival 8人座；車號 0928。", "fixedEventId": "f-0924-airport-transfer" },
           { "id": "A-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛；入境領行李後替孩子補水、上洗手間。" },
           { "id": "A-0924-2", "time": "12:00", "type": "car", "title": "OTS 取第一台車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "確認兩張兒童座椅、ETC與行李空間。", "sourceIds": ["ots"] },
           { "id": "A-0924-3", "time": "13:20", "type": "meal", "title": "國際通午餐與親子短逛", "place": "國際通松尾 → 久茂地", "mapQuery": "A&W 国際通り松尾店", "note": "午餐後只挑 2–3 家商店，15:30 硬離開北上恩納。", "diningGuideId": "kokusai-lunch", "shoppingGuideId": "kokusai-family-shopping" },
@@ -792,6 +815,7 @@
     ],
     "B": [
       { "date": "2026-09-24", "title": "抵達・國際通午餐短逛・恩納入住", "area": "豐崎 → 那霸國際通 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 100–135 分", "rainPlan": "雨大時國際通只吃飯與逛室內店，15:30 前北上。", "events": [
+        { "id": "B-0924-0", "time": "04:00", "type": "drive", "title": "板橋 → 桃園機場第二航廈接送", "place": "板橋上車 → 桃園機場第二航廈", "note": "灰白色 Kia Carnival 8人座；車號 0928。", "fixedEventId": "f-0924-airport-transfer" },
         { "id": "B-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達、入境與領行李", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛，10:45 抵達。" },
         { "id": "B-0924-2", "time": "12:00", "type": "car", "title": "OTS取車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "note": "確認兒童座椅。", "sourceIds": ["ots"] },
         { "id": "B-0924-3", "time": "13:20", "type": "meal", "title": "國際通午餐與親子短逛", "place": "國際通松尾 → 久茂地", "mapQuery": "A&W 国際通り松尾店", "note": "午餐後挑 2–3 家商店，15:30 硬離開。", "diningGuideId": "kokusai-lunch", "shoppingGuideId": "kokusai-family-shopping" },
@@ -876,6 +900,7 @@
     ],
     "C": [
       { "date": "2026-09-24", "title": "抵達・國際通午餐短逛・恩納入住", "area": "豐崎 → 那霸國際通 → 恩納", "stay": "沖繩嘉利吉海灘海洋溫泉度假村", "drive": "全日約 100–135 分", "rainPlan": "雨大時國際通只吃飯與逛室內店，15:30 前北上。", "events": [
+        { "id": "C-0924-0", "time": "04:00", "type": "drive", "title": "板橋 → 桃園機場第二航廈接送", "place": "板橋上車 → 桃園機場第二航廈", "note": "灰白色 Kia Carnival 8人座；車號 0928。", "fixedEventId": "f-0924-airport-transfer" },
         { "id": "C-0924-1", "time": "10:45", "type": "flight", "title": "華航 CI120 抵達那覇", "place": "那覇空港", "mapQuery": "那覇空港", "note": "08:00 起飛，10:45 抵達。" },
         { "id": "C-0924-2", "time": "12:00", "type": "car", "title": "OTS取車", "place": "OTS臨空豊崎営業所", "mapQuery": "OTSレンタカー 臨空豊崎営業所", "sourceIds": ["ots"] },
         { "id": "C-0924-3", "time": "13:20", "type": "meal", "title": "國際通午餐與親子短逛", "place": "國際通松尾 → 久茂地", "mapQuery": "A&W 国際通り松尾店", "note": "午餐後挑 2–3 家商店，15:30 硬離開。", "diningGuideId": "kokusai-lunch", "shoppingGuideId": "kokusai-family-shopping" },

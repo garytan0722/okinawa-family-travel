@@ -1,5 +1,5 @@
-import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=28';
-import { officialOtsUrl } from './private-bookings.mjs?v=28';
+import { dayRoutePlan, getPartyForDate, getStayForDate, mapUrl } from './trip-domain.mjs?v=29';
+import { officialOtsUrl } from './private-bookings.mjs?v=29';
 
 const TYPE_ICONS = {
   activity: '🎟', car: '🚙', culture: '⛩', drive: '🛣', flight: '✈️',
@@ -199,7 +199,7 @@ function renderEvent(trip, event, completed, rainSelections) {
       <span class="route-dot" aria-hidden="true"><span class="paw-print" aria-hidden="true"></span></span>
       <label class="event-check">
         <input type="checkbox" data-action="toggle-event" data-event-id="${escapeHtml(event.id)}"${isDone ? ' checked' : ''}>
-        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=28" alt=""></span>
+        <span class="check-paw" aria-hidden="true"><img class="dog-paw-stamp" src="./icons/dog-paw-stamp.svg?v=29" alt=""></span>
         <span class="sr-only">完成 ${escapeHtml(event.title)}</span>
       </label>
       <time>${escapeHtml(event.time)}</time>
@@ -289,15 +289,39 @@ export function renderPrivateBookingVault(privateBookings = {}, privateStayLocat
   </article>`;
 }
 
+export function renderFixedEventList(events = []) {
+  const sorted = [...events].sort((a, b) => `${a.date}${a.time}`.localeCompare(`${b.date}${b.time}`));
+  return `<ol class="fixed-list">${sorted.map((event) => {
+    const isTransfer = event.kind === 'airport-transfer';
+    return `<li class="${isTransfer ? 'fixed-event--transfer' : ''}">
+      <time>${shortDate(event.date)}<strong>${escapeHtml(event.time)}${event.end ? `–${escapeHtml(event.end)}` : ''}</strong></time>
+      <div><h3>${escapeHtml(event.title)}</h3><p>${escapeHtml(event.place)}</p>
+        ${event.vehicle ? `<div class="transfer-vehicle"><strong>${escapeHtml(event.vehicle)}</strong>${event.vehicleNumber ? `<span>車號 ${escapeHtml(event.vehicleNumber)}</span>` : ''}</div>` : ''}
+        ${event.note ? `<small>${escapeHtml(event.note)}</small>` : ''}
+        ${event.contactNote ? `<small class="fixed-event-contact">${escapeHtml(event.contactNote)}</small>` : ''}
+        ${event.officialUrl ? `<a class="fixed-event-action" href="${escapeHtml(event.officialUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(event.officialLabel || '開啟官方資料')} →</a>` : ''}
+      </div>
+    </li>`;
+  }).join('')}</ol>`;
+}
+
 export function renderChecklistView(trip, completed = {}) {
   const categories = trip.preTripChecklist?.categories ?? [];
+  const visitJapan = trip.visitJapanWeb;
   const items = categories.flatMap((category) => category.items ?? []);
   const done = items.filter((item) => completed[item.id] === true).length;
   const sections = categories.map((category) => `<section class="checklist-category">
     <header><span aria-hidden="true">${escapeHtml(category.icon || '🐾')}</span><div><h2>${escapeHtml(category.label)}</h2><small>${(category.items ?? []).filter((item) => completed[item.id]).length} / ${(category.items ?? []).length}</small></div></header>
     <div class="checklist-items">${(category.items ?? []).map((item) => `<label class="checklist-item${completed[item.id] ? ' is-complete' : ''}"><input type="checkbox" data-action="toggle-checklist" data-checklist-id="${escapeHtml(item.id)}"${completed[item.id] ? ' checked' : ''}><span class="checklist-box" aria-hidden="true">✓</span><span><strong>${escapeHtml(item.label)}</strong>${item.note ? `<small>${escapeHtml(item.note)}</small>` : ''}</span></label>`).join('')}</div>
   </section>`).join('');
-  return `<section class="tool-view checklist-view"><p class="eyebrow">READY, SET, PAWS</p><h1>行前確認表</h1><p class="lede">不含衣服與盥洗用品；健康項目採匿名分類，勾選只保存在這台裝置。</p><div class="checklist-progress"><strong>已完成 ${done} / ${items.length}</strong><span><i style="width:${items.length ? Math.round((done / items.length) * 100) : 0}%"></i></span></div>${sections}</section>`;
+  const visitJapanCard = visitJapan ? `<aside class="visit-japan-card">
+    <header><span aria-hidden="true">JP</span><div><small>OFFICIAL · FREE</small><h2>Visit Japan Web</h2></div></header>
+    <p>${escapeHtml(visitJapan.summary)}</p>
+    <ol>${(visitJapan.steps ?? []).map((step) => `<li>${escapeHtml(step)}</li>`).join('')}</ol>
+    <div class="visit-japan-notes"><p><strong>隱私</strong>${escapeHtml(visitJapan.privacyNote)}</p><p><strong>防詐</strong>${escapeHtml(visitJapan.fraudNote)}</p><p><strong>那霸機場</strong>${escapeHtml(visitJapan.nahaNote)}</p></div>
+    <a href="${escapeHtml(visitJapan.officialUrl)}" target="_blank" rel="noopener noreferrer">開啟日本數位廳官方網站 →</a>
+  </aside>` : '';
+  return `<section class="tool-view checklist-view"><p class="eyebrow">READY, SET, PAWS</p><h1>行前確認表</h1><p class="lede">不含衣服與盥洗用品；健康項目採匿名分類，勾選只保存在這台裝置。</p>${visitJapanCard}<div class="checklist-progress"><strong>已完成 ${done} / ${items.length}</strong><span><i style="width:${items.length ? Math.round((done / items.length) * 100) : 0}%"></i></span></div>${sections}</section>`;
 }
 
 export function renderDay(trip, day, variantState, options = {}) {

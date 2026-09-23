@@ -171,7 +171,10 @@ def logistics_page(pdf, trip, variant_id, page_number):
         pdf.drawString(152, y - 9, event["title"])
         pdf.setFillColor(MUTED)
         pdf.setFont(FONT, 7.5)
-        pdf.drawString(152, y - 26, event["place"])
+        detail = event["place"]
+        if event.get("vehicle"):
+            detail += f" · {event['vehicle']} · 車號 {event.get('vehicleNumber', '未提供')}"
+        pdf.drawString(152, y - 26, detail)
         y -= 49
 
     pdf.setFillColor(INK)
