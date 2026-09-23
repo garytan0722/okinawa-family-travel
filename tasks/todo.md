@@ -447,7 +447,7 @@
 - [x] 在固定行程及 9/24 A／B／C／雨天時間軸加入接送資訊，不影響沖繩導航
 - [x] 在行前確認表加入 Visit Japan Web 官方入口、四人填寫步驟與防詐提醒
 - [x] 輪替離線版本並重建 A／B／C PDF
-- [ ] 完成自動化、隱私、手機版與部署驗證
+- [x] 完成自動化、隱私、手機版與部署驗證
 
 ### 機場接送與 Visit Japan Web review
 
@@ -455,3 +455,4 @@
 - 接送事件沒有 `mapQuery`，不會被誤加到沖繩每日 Google Maps 導航。
 - 行前確認新增日本數位廳 Visit Japan Web 官方入口、譚家四口逐人入境／海關申報、QR Code 離線截圖與偽網站防詐提醒；本 App 不儲存護照、帳密或 QR Code。
 - Verified 101/101 tests, privacy-safe 19-asset build, local logistics/checklist browser rendering, and three verified 38-page PDFs containing the transfer details.
+- Deployed release v29 from commit `b8a3da3` through GitHub Actions run `35834868402`; verified the live logistics card, Visit Japan Web checklist, trip JSON and v29 service worker.
